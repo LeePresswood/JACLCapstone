@@ -1,0 +1,13 @@
+These are some good links for game development:
+
+libGDX
+======
+http://libgdx.badlogicgames.com/
+  (Main website. Includes downloads, tools, and documentation.)
+
+Artwork
+=======
+http://opengameart.org/
+  (Free game art. Must use correct licensing.)
+http://www.sonniss.com/sound-effects/free-download-game-audio/ 
+  (10GB of free game audio.) (Torrent: http://sonniss.com/GameAudioGDC.torrent)
