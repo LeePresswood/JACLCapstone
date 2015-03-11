@@ -1,13 +1,15 @@
-These are some good links for game development:
+These are some good links for our project:
 
 libGDX
 ======
 http://libgdx.badlogicgames.com/
   (Main website. Includes downloads, tools, and documentation.)
+https://www.youtube.com/watch?v=_rVS1zHThZ0
+  (YouTube tutorial. Developer creates an entire game in a single session.)
 
 Artwork
 =======
 http://opengameart.org/
   (Free game art. Must use correct licensing.)
 http://www.sonniss.com/sound-effects/free-download-game-audio/ 
-  (10GB of free game audio.) (Torrent: http://sonniss.com/GameAudioGDC.torrent)
+  (10GB of free game audio. Royalty-free.) (Torrent: http://sonniss.com/GameAudioGDC.torrent)
