@@ -8,15 +8,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ScreenTutorialGame extends ScreenAdapter
 {
-	public TutorialGame game;					//Allows access of game data objects.
+	public TutorialGame game;				//Allows access of game data objects.
 	
-	public SpriteBatch batch;					//Manages drawing.
+	public SpriteBatch batch;				//Manages drawing.
 	
-	public Sprite sprite;						//Almost everything on the screen will be a sprite.
+	public Sprite sprite;					//Almost everything on the screen will be a sprite.
 	
 	public float sprite_speed = 50f;			//Try to add the 'f' after every float value to assure the most accurate value.
-														//Also keep in mind that, because we're using delta * speed to move, this value
-														//is out pixels-per-second speed.
+								//Also keep in mind that, because we're using delta * speed to set our translations,
+								//this speed is in terms of pixels-per-second.
 	
 	public ScreenTutorialGame(TutorialGame game)
 	{
@@ -48,6 +48,19 @@ public class ScreenTutorialGame extends ScreenAdapter
 		//If sprite's right edge goes off the right side of the screen, destroy it.
 		if(sprite.getX() + sprite.getWidth() > Gdx.graphics.getWidth())
 			sprite = null;
+		
+		/* Drawing comes next.
+		 * We want to clear the last rendering of the screen by simply painting over it.
+		 * We do this through two OpenGL functions.
+		 * The first function sets th ecolor to use as our reset color. Black or white are common here.
+		 * The second function does the actual clearing. Everything is painted over so that we have
+		 * a blank slate. The drawing that happens after this will draw over this painted color, so
+		 * you can think of it as a way to set the background color.*/
+		Gdx.gl.glClearColor(0f, 0f, 0f, 0f);			//Reset color is (0,0,0). This is black.
+									//Note: The passed numbers are between 0 and 1.
+									//If you have a hex value, simply divide each channel by 255.
+		
+		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT);		//Clearing done here.
 		
 		//Must start drawing with SpriteBatch.begin(). I like to tab-over all items being drawn to make it look like a block of code for simple finding.
 		batch.begin();
