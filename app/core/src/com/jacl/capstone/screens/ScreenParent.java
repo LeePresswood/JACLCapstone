@@ -55,7 +55,10 @@ public abstract class ScreenParent extends ScreenAdapter
 	
 	/**
 	 * This abstract method changes the background color of the screen. Called once automatically during the constructor,
-	 * but it can be called again whenever you want. Can be used to create a day-night type of thing with repeated calls.
+	 * but it can be called again whenever you want. Can be used to create a day-night type of thing with repeated calls.<br><br>
+	 * 
+	 * If the background is never seen by the player, then just think of it as the color OpenGL uses to refresh the screen 
+	 * after every frame. Use (0, 0, 0, 0).
 	 * 
 	 * @return The color that will be set as the background.
 	 */
