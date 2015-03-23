@@ -1,4 +1,4 @@
-package com.jacl.capstone.game;
+package com.jacl.capstone.screens.game;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
