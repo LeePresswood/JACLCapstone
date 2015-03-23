@@ -61,7 +61,7 @@ public class ScreenTutorialGame extends ScreenAdapter
 																//Note: The passed numbers are between 0 and 1.
 																//If you have a hex value, simply divide each channel by 255.
 		
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);		//Clearing done here.
+		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);	//Clearing done here.
 		
 		//Must start drawing with SpriteBatch.begin(). I like to tab-over all items being drawn to make it look like a block of code for simple finding.
 		batch.begin();
