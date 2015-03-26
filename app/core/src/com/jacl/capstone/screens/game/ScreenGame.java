@@ -2,7 +2,6 @@ package com.jacl.capstone.screens.game;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jacl.capstone.CapstoneGame;
 import com.jacl.capstone.screens.ScreenParent;
 
