@@ -4,13 +4,20 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
 import com.jacl.capstone.screens.ScreenParent;
+import com.jacl.capstone.screens.game.hud.HUDManager;
+import com.jacl.capstone.screens.game.world.WorldManager;
 
 public class ScreenGame extends ScreenParent
 {
-
+	public WorldManager world;
+	public HUDManager hud;
+	
 	public ScreenGame(CapstoneGame game)
 	{
 		super(game);
+		
+		world = new WorldManager(this);
+		hud = new HUDManager(this);
 	}
 
 	@Override
@@ -28,19 +35,20 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
+		//Update world first and HUD second to stay parallel with the draw method.
+		world.update(delta);
+		hud.update(delta);
 	}
 
 	@Override
 	public void draw()
 	{
-		//SpriteBatch can be used to draw sprites.
-		batch.begin();
-		
-		batch.end();
-		
-		//ShapeRenderer can be used to draw basic shapes. Example:
-		/*renderer.begin(ShapeType.Filled);
-			renderer.rect(0, 0, 50, 50);
-		renderer.end();*/
+		/* We want to draw the world first and the HUD second. We do it this
+		 * way to assure that the HUD is drawn over the world (bottom of the
+		 * draw buffer for that pixel is the first thing that was drawn in
+		 * this method).
+		 */
+		world.draw();
+		hud.draw();
 	}
 }

@@ -1,17 +1,17 @@
-package com.jacl.capstone.screens.game.world;
+package com.jacl.capstone.screens.game.hud;
 
 import com.jacl.capstone.screens.game.ScreenGame;
 
 /**
- * Handles the updating and rendering of game objects.
+ * Updates and renders the HUD of the world.
  * @author Lee
  *
  */
-public class WorldManager
+public class HUDManager
 {
-	public ScreenGame screen; 
+	public ScreenGame screen;
 	
-	public WorldManager(ScreenGame screen)
+	public HUDManager(ScreenGame screen)
 	{
 		this.screen = screen;
 	}
