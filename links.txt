@@ -9,7 +9,7 @@ https://www.youtube.com/watch?v=_rVS1zHThZ0
 
 Artwork
 =======
-http://www.reddit.com/r/freegameassets/top/
+http://www.reddit.com/r/freegameassets/
 	(Subreddit containing assets for developers. Must use correct licensing.)
 http://opengameart.org/
   (Free game art. Must use correct licensing.)
