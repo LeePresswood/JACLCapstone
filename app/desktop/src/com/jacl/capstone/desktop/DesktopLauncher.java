@@ -1,5 +1,7 @@
 package com.jacl.capstone.desktop;
 
+import tutorial.TutorialGame;
+
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.jacl.capstone.CapstoneGame;
@@ -17,6 +19,6 @@ public class DesktopLauncher {
 		
 		//config.addIcon(null, null);
 		
-		new LwjglApplication(new CapstoneGame(), config);
+		new LwjglApplication(new TutorialGame(), config);
 	}
 }

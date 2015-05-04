@@ -1,6 +1,7 @@
 package tutorial;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,9 +16,11 @@ public class ScreenTutorialGame extends ScreenAdapter
 	
 	public Sprite sprite;					//Almost everything on the screen will be a sprite.
 	
-	public float sprite_speed = 50f;		//Try to add the 'f' after every float value to assure the most accurate value.
+	public float sprite_speed = 300f;		//Try to add the 'f' after every float value to assure the most accurate value.
 													//Also keep in mind that, because we're using delta * speed to set our translations,
 													//this speed is in terms of pixels-per-second.
+	
+	public boolean up, down, left, right;
 	
 	public ScreenTutorialGame(TutorialGame game)
 	{
@@ -29,7 +32,9 @@ public class ScreenTutorialGame extends ScreenAdapter
 		
 		//Initialize sprites with a texture from the AssetManager extension class found in TutorialGame.
 		sprite = new Sprite(game.assets.get("texture.jpg", Texture.class));
-		sprite.setBounds(0, 30, 50, 50);
+		sprite.setBounds(0, 30, 300, 300);
+		
+		Gdx.input.setInputProcessor(new InputTutorial(this));
 	}
 	
 	/**
@@ -44,8 +49,14 @@ public class ScreenTutorialGame extends ScreenAdapter
 	public void render(float delta)
 	{
 		//Update. If multiple updates need to be made across multiple managers (like the UI, the world, etc), make a new method for neatness.
-		sprite.translateX(delta * sprite_speed);
-		
+		if(up)
+			sprite.translateY(sprite_speed * delta);
+		if(down)
+			sprite.translateY(-sprite_speed * delta);
+		if(left)
+			sprite.translateX(-sprite_speed * delta);
+		if(right)
+			sprite.translateX(sprite_speed * delta);
 		//If sprite's right edge goes off the right side of the screen, destroy it.
 		if(sprite.getX() + sprite.getWidth() > Gdx.graphics.getWidth())
 			sprite = null;
