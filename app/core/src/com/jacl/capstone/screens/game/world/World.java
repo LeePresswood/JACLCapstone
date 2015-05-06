@@ -15,7 +15,7 @@ import com.jacl.capstone.screens.game.world.sector.SectorCamera;
  * @author Lee
  *
  */
-public class WorldManager
+public class World
 {
 	public ScreenGame screen; 
 	
@@ -28,17 +28,16 @@ public class WorldManager
 	public float sprite_speed;
 	public boolean up, down, left, right;
 	
-	public WorldManager(ScreenGame screen)
+	public World(ScreenGame screen)
 	{
 		this.screen = screen;
 		
 		//Camera and tile map.
-		camera = new SectorCamera();
 		map = new TmxMapLoader().load("maps/test.tmx");
-      tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
-      
-      
-      //Sprite.
+		tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
+		camera = new SectorCamera(map);
+		
+		//Sprite.
 		sprite = new Sprite(new Texture(Gdx.files.internal("image.png")));
 		sprite_speed = 10f * camera.TILE_SIZE;
 	}

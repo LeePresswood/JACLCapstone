@@ -1,6 +1,7 @@
 package com.jacl.capstone.screens.game.world.sector;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 
 /**
  * Idea behind the camera:
@@ -14,6 +15,8 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
  * 
  * Because most modern screens are 16:9, we should go for as close as as we can with our
  * defined width:height ratio.
+ * 
+ * @author Lee
  */
 public class SectorCamera extends OrthographicCamera
 {
@@ -21,16 +24,26 @@ public class SectorCamera extends OrthographicCamera
 	public final float TILES_HORIZONTAL = 35f;
 	public final float TILES_VERTICAL = TILES_HORIZONTAL * 9f / 16f;
 	
-	//Each tile will be a certain width/height. Define this size for our own calculations.
-	public final float TILE_SIZE = 32f;
+	//Each tile will be a certain width/height. This is defined in the map file.
+	public final float TILE_SIZE;
+
+	//The map will also define the width and height of the map in tiles.
+	public final int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
 	
-	public SectorCamera()
+	public SectorCamera(TiledMap map)
 	{
 		super();
+		
+		//Read bounds and sizes of map.
+		TILE_SIZE = (Float) map.getProperties().get("tile_size");
+		TILES_TOTAL_HORIZONTAL = (Integer) map.getProperties().get("tiles_total_horizontal");
+		TILES_TOTAL_VERTICAL = (Integer) map.getProperties().get("tiles_total_vertical");
 		
 		//Define camera width and height in terms of tiles. This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
 		setToOrtho(false, TILE_SIZE * TILES_HORIZONTAL, TILE_SIZE * TILES_VERTICAL);
 		update();
+		
+		
 	}
 	
 }
