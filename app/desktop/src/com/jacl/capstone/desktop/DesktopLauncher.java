@@ -1,7 +1,5 @@
 package com.jacl.capstone.desktop;
 
-import tutorial.TutorialGame;
-
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.jacl.capstone.CapstoneGame;
@@ -13,12 +11,12 @@ public class DesktopLauncher {
 		
 		config.title = Constants.GAME_NAME + " : " + Constants.GAME_VERSION;
 		
-		config.width = 1080;
-		config.height = 670;
+		config.width = 1440;
+		config.height = (int) (config.width * 9f / 16f);
 		config.resizable = false;
 		
 		//config.addIcon(null, null);
 		
-		new LwjglApplication(new TutorialGame(), config);
+		new LwjglApplication(new CapstoneGame(), config);
 	}
 }
