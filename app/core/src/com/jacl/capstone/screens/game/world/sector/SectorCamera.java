@@ -35,7 +35,6 @@ public class SectorCamera extends OrthographicCamera
 		super();
 		
 		//Read bounds and sizes of map.
-		System.out.println(map.getProperties());
 		TILE_SIZE = (Float) map.getProperties().get("Tile size");
 		TILES_TOTAL_HORIZONTAL = (Integer) map.getProperties().get("tiles_total_horizontal");
 		TILES_TOTAL_VERTICAL = (Integer) map.getProperties().get("tiles_total_vertical");
