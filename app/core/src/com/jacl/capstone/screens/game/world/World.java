@@ -39,7 +39,7 @@ public class World
 		
 		//Sprite.
 		sprite = new Sprite(new Texture(Gdx.files.internal("image.png")));
-		sprite_speed = 10f * camera.TILE_SIZE;
+		sprite_speed = 25f * camera.TILE_SIZE;
 	}
 	
 	public void update(float delta)
@@ -54,8 +54,8 @@ public class World
 		if(right)
 			sprite.translateX(sprite_speed * delta);
 		
-		//Follow character.
-		camera.position.set(sprite.getX() + sprite.getWidth() / 2f, sprite.getY() + sprite.getHeight() / 2f, 0);
+		//Update camera
+		camera.updateCamera(this);
 	}
 	
 	public void draw()

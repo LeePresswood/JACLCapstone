@@ -2,6 +2,7 @@ package com.jacl.capstone.screens.game.world.sector;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.jacl.capstone.screens.game.world.World;
 
 /**
  * Idea behind the camera:
@@ -30,15 +31,17 @@ public class SectorCamera extends OrthographicCamera
 	//The map will also define the width and height of the map in tiles.
 	public final int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
 	
+	//Use these to store the new position of the camera after each update.
+	private float new_x, new_y;
+	
 	public SectorCamera(TiledMap map)
 	{
 		super();
 		
 		//Read bounds and sizes of map.
-		System.out.println(map.getProperties().get("Size"));
-		TILE_SIZE = (Float) map.getProperties().get("tile_size");
-		TILES_TOTAL_HORIZONTAL = (Integer) map.getProperties().get("world_width");
-		TILES_TOTAL_VERTICAL = (Integer) map.getProperties().get("world_height");
+		TILE_SIZE = Float.parseFloat(map.getProperties().get("tile_size", String.class));
+		TILES_TOTAL_HORIZONTAL = Integer.parseInt(map.getProperties().get("world_width", String.class));
+		TILES_TOTAL_VERTICAL = Integer.parseInt(map.getProperties().get("world_height", String.class));
 		
 		//Define camera width and height in terms of tiles. This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
 		setToOrtho(false, TILE_SIZE * TILES_HORIZONTAL, TILE_SIZE * TILES_VERTICAL);
@@ -47,4 +50,44 @@ public class SectorCamera extends OrthographicCamera
 		
 	}
 	
+	/**
+	 * Update the camera each tick of the game. This involves changing the camera's position based upon both the player's position and the bounds of the world.
+	 * @param world
+	 */
+	public void updateCamera(World world)
+	{
+		/*
+		 * Main idea here is that the world's bounds have a greater priority than the player's position.
+		 * To represent this, move to the player's position first. Afterward, readjust the camera to 
+		 * fit with the world's bounds.
+		 */
+		//Look at player.
+		position.set(world.sprite.getX() + world.sprite.getWidth() / 2f, world.sprite.getY() + world.sprite.getHeight() / 2f, 0);
+				
+		//Adjust bounds in accordance with the world's bounds.
+		new_x = position.x;
+		new_y = position.y;
+		
+		//Left side
+		if(position.x < viewportWidth / 2f)
+			new_x = viewportWidth / 2f;
+		
+		//Right side
+		else if(position.x > TILES_TOTAL_HORIZONTAL * TILE_SIZE - viewportWidth / 2f)
+			new_x = TILES_TOTAL_HORIZONTAL * TILE_SIZE - viewportWidth / 2f;
+		
+		//Bottom side
+		if(position.y < viewportHeight / 2f)
+			new_y = viewportHeight / 2f;
+		
+		//Top side
+		else if(position.y > TILES_TOTAL_VERTICAL * TILE_SIZE - viewportHeight / 2f)
+			new_y = TILES_TOTAL_VERTICAL * TILE_SIZE - viewportHeight / 2f;
+
+		//Finalize the correction.
+		position.set(new_x, new_y, 0);		
+		
+		//Finish updating and end.
+		update();
+	}
 }
