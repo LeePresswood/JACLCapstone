@@ -35,9 +35,10 @@ public class SectorCamera extends OrthographicCamera
 		super();
 		
 		//Read bounds and sizes of map.
-		TILE_SIZE = (Float) map.getProperties().get("Tile size");
-		TILES_TOTAL_HORIZONTAL = (Integer) map.getProperties().get("tiles_total_horizontal");
-		TILES_TOTAL_VERTICAL = (Integer) map.getProperties().get("tiles_total_vertical");
+		System.out.println(map.getProperties().get("Size"));
+		TILE_SIZE = (Float) map.getProperties().get("tile_size");
+		TILES_TOTAL_HORIZONTAL = (Integer) map.getProperties().get("world_width");
+		TILES_TOTAL_VERTICAL = (Integer) map.getProperties().get("world_height");
 		
 		//Define camera width and height in terms of tiles. This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
 		setToOrtho(false, TILE_SIZE * TILES_HORIZONTAL, TILE_SIZE * TILES_VERTICAL);
