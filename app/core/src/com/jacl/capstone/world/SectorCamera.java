@@ -45,18 +45,17 @@ public class SectorCamera extends OrthographicCamera
 	}
 	
 	/**
-	 * Update the camera each tick of the game. This involves changing the camera's position based upon both the player's position and the bounds of the world.
+	 * Update the camera each tick of the game. This involves changing the camera's position based upon both the player's position and the bounds of the world.<br><br>
+	 * 
+	 * Main idea here is that the world's bounds have a greater priority than the player's position.
+	 * To represent this, move to the player's position first. Afterward, readjust the camera to 
+	 * fit with the world's bounds.
 	 * @param world
 	 */
 	public void updateCamera(World world)
 	{
-		/*
-		 * Main idea here is that the world's bounds have a greater priority than the player's position.
-		 * To represent this, move to the player's position first. Afterward, readjust the camera to 
-		 * fit with the world's bounds.
-		 */
 		//Look at player.
-		position.set(world.player.sprite.getX() + world.player.sprite.getWidth() / 2f, world.player.sprite.getY() + world.player.sprite.getHeight() / 2f, 0);
+		position.set(world.player.getCenterX(), world.player.getCenterY(), 0);
 				
 		//Adjust bounds in accordance with the world's bounds.
 		//Left side

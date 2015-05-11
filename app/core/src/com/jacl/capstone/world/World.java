@@ -32,7 +32,7 @@ public class World
 		tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
 		camera = new SectorCamera(map);
 		
-		//Player.
+		//World entities.
 		player = new Player(this);
 	}
 	
@@ -46,7 +46,6 @@ public class World
 	
 	public void draw()
 	{
-		camera.update();
       tiledMapRenderer.setView(camera);
       tiledMapRenderer.render();
 		
