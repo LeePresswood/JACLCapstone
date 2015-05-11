@@ -31,9 +31,6 @@ public class SectorCamera extends OrthographicCamera
 	//The map will also define the width and height of the map in tiles.
 	public final int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
 	
-	//Use these to store the new position of the camera after each update.
-	private float new_x, new_y;
-	
 	public SectorCamera(TiledMap map)
 	{
 		super();
@@ -46,8 +43,6 @@ public class SectorCamera extends OrthographicCamera
 		//Define camera width and height in terms of tiles. This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
 		setToOrtho(false, TILE_SIZE * TILES_HORIZONTAL, TILE_SIZE * TILES_VERTICAL);
 		update();
-		
-		
 	}
 	
 	/**
@@ -65,27 +60,21 @@ public class SectorCamera extends OrthographicCamera
 		position.set(world.sprite.getX() + world.sprite.getWidth() / 2f, world.sprite.getY() + world.sprite.getHeight() / 2f, 0);
 				
 		//Adjust bounds in accordance with the world's bounds.
-		new_x = position.x;
-		new_y = position.y;
-		
 		//Left side
 		if(position.x < viewportWidth / 2f)
-			new_x = viewportWidth / 2f;
+			position.x = viewportWidth / 2f;
 		
 		//Right side
 		else if(position.x > TILES_TOTAL_HORIZONTAL * TILE_SIZE - viewportWidth / 2f)
-			new_x = TILES_TOTAL_HORIZONTAL * TILE_SIZE - viewportWidth / 2f;
+			position.x = TILES_TOTAL_HORIZONTAL * TILE_SIZE - viewportWidth / 2f;
 		
 		//Bottom side
 		if(position.y < viewportHeight / 2f)
-			new_y = viewportHeight / 2f;
+			position.y = viewportHeight / 2f;
 		
 		//Top side
 		else if(position.y > TILES_TOTAL_VERTICAL * TILE_SIZE - viewportHeight / 2f)
-			new_y = TILES_TOTAL_VERTICAL * TILE_SIZE - viewportHeight / 2f;
-
-		//Finalize the correction.
-		position.set(new_x, new_y, 0);		
+			position.y = TILES_TOTAL_VERTICAL * TILE_SIZE - viewportHeight / 2f;
 		
 		//Finish updating and end.
 		update();
