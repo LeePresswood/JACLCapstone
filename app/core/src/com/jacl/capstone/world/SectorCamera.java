@@ -56,7 +56,7 @@ public class SectorCamera extends OrthographicCamera
 		 * fit with the world's bounds.
 		 */
 		//Look at player.
-		position.set(world.sprite.getX() + world.sprite.getWidth() / 2f, world.sprite.getY() + world.sprite.getHeight() / 2f, 0);
+		position.set(world.player.sprite.getX() + world.player.sprite.getWidth() / 2f, world.player.sprite.getY() + world.player.sprite.getHeight() / 2f, 0);
 				
 		//Adjust bounds in accordance with the world's bounds.
 		//Left side

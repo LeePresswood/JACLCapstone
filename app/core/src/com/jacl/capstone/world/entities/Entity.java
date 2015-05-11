@@ -1,5 +1,7 @@
 package com.jacl.capstone.world.entities;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.world.World;
 
 /**
@@ -18,12 +20,54 @@ import com.jacl.capstone.world.World;
 public abstract class Entity
 {
 	public World world;
+	public Sprite sprite;
 	
 	public Entity(World world)
 	{
 		this.world = world;
+		
+		sprite = makeSprite();
 	}
 	
+	/**
+	 * The constructor will automatically call this method to create the sprite.
+	 * This method should define the sprite's location, size, texture, rotation,
+	 * and any other qualities that may be useful here.
+	 * @return An instance of the sprite that we will use.
+	 */
+	protected abstract Sprite makeSprite();
+	
 	public abstract void update(float delta);
-	public abstract void draw();
+	public abstract void draw(SpriteBatch batch);
+	
+	//These methods will be very helpful in checking bounds of/moving toward an entity.
+	public float getCenterX()
+	{
+		return sprite.getX() + sprite.getWidth() / 2f;
+	}
+	
+	public float getCenterY()
+	{
+		return sprite.getY() + sprite.getHeight() / 2f;
+	}
+	
+	public float getLeft()
+	{
+		return sprite.getX();
+	}
+	
+	public float getRight()
+	{
+		return sprite.getX() + sprite.getWidth();
+	}
+	
+	public float getBottom()
+	{
+		return sprite.getY();
+	}
+	
+	public float getTop()
+	{
+		return sprite.getY() + sprite.getHeight();
+	}
 }
