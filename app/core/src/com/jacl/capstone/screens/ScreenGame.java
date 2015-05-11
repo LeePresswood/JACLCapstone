@@ -1,10 +1,10 @@
-package com.jacl.capstone.screens.game;
+package com.jacl.capstone.screens;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
-import com.jacl.capstone.screens.ScreenParent;
-import com.jacl.capstone.screens.game.hud.HUDManager;
+import com.jacl.capstone.hud.HUDManager;
+import com.jacl.capstone.input.InputGame;
 import com.jacl.capstone.world.World;
 
 public class ScreenGame extends ScreenParent

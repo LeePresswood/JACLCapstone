@@ -1,7 +1,8 @@
-package com.jacl.capstone.screens.game;
+package com.jacl.capstone.input;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
+import com.jacl.capstone.screens.ScreenGame;
 
 public class InputGame implements InputProcessor
 {

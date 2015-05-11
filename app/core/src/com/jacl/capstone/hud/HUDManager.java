@@ -1,8 +1,8 @@
-package com.jacl.capstone.screens.game.hud;
+package com.jacl.capstone.hud;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.jacl.capstone.screens.game.ScreenGame;
+import com.jacl.capstone.screens.ScreenGame;
 
 /**
  * Updates and renders the HUD of the world.
