@@ -1,8 +1,7 @@
-package com.jacl.capstone.screens.game.world.sector;
+package com.jacl.capstone.world;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.jacl.capstone.screens.game.world.World;
 
 /**
  * Idea behind the camera:

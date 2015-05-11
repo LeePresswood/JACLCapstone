@@ -1,4 +1,4 @@
-package com.jacl.capstone.screens.game.world;
+package com.jacl.capstone.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,7 +8,6 @@ import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.jacl.capstone.screens.game.ScreenGame;
-import com.jacl.capstone.screens.game.world.sector.SectorCamera;
 
 /**
  * Handles the updating and rendering of game objects. Create managers to keep this class general.
@@ -74,7 +73,7 @@ public class World
 		//Recorrect if diagonal.
 		if(up && left || up && right || down && left || down && right)
 			sprite_speed *= 1.189207115f;
-		System.out.println(sprite_speed);
+		
 		//Update camera
 		camera.updateCamera(this);
 	}

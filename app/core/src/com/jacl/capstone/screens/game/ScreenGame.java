@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
 import com.jacl.capstone.screens.ScreenParent;
 import com.jacl.capstone.screens.game.hud.HUDManager;
-import com.jacl.capstone.screens.game.world.World;
+import com.jacl.capstone.world.World;
 
 public class ScreenGame extends ScreenParent
 {
