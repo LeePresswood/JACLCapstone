@@ -9,14 +9,15 @@ import com.jacl.capstone.world.entities.Entity;
 
 public class Player extends Entity
 {
-	public float sprite_speed;
+	public float speed;
 	public boolean up, down, left, right;
+	private float store_x, store_y;
 
 	public Player(World world)
 	{
 		super(world);
 		
-		sprite_speed = 25f * world.camera.TILE_SIZE;
+		speed = 5f * world.camera.TILE_SIZE;
 	}
 
 	@Override
@@ -29,10 +30,10 @@ public class Player extends Entity
 	public void update(float delta)
 	{
 		//Move.
-		playerMove(delta);
+		move(delta);
 		
 		//Check collision.
-		
+		collision();		
 	}
 
 	@Override
@@ -55,23 +56,47 @@ public class Player extends Entity
 	 * Rather than calculating the fourth root of two every time, let's just store it here as an approximation.
 	 * Move the sprite's speed down by the fourth root of two, do the translation, and correct it.
 	 */
-	private void playerMove(float delta)
+	private void move(float delta)
 	{
+		//Store the current location for collision detection in the future.
+		store_x = sprite.getX();
+		store_y = sprite.getY();
+		
+		//Correct if diagonal.
 		if(up && left || up && right || down && left || down && right)
-			sprite_speed /= 1.189207115f;
+			speed /= 1.189207115f;
 
 		//Do the translation.
 		if(up)
-			sprite.translateY(sprite_speed * delta);
+			sprite.translateY(speed * delta);
 		else if(down)
-			sprite.translateY(-sprite_speed * delta);
+			sprite.translateY(-speed * delta);
 		if(left)
-			sprite.translateX(-sprite_speed * delta);
+			sprite.translateX(-speed * delta);
 		else if(right)
-			sprite.translateX(sprite_speed * delta);
+			sprite.translateX(speed * delta);
 		
-		//Recorrect if diagonal.
+		//Undo correction if diagonal.
 		if(up && left || up && right || down && left || down && right)
-			sprite_speed *= 1.189207115f;
+			speed *= 1.189207115f;
+	}
+	
+	private void collision()
+	{
+		//Left.
+		if(world.collision.getCollisionCell(this.getLeft(), this.getCenterY()) != null)
+			sprite.setX(store_x);
+		
+		//Right.
+		if(world.collision.getCollisionCell(this.getRight(), this.getCenterY()) != null)
+			sprite.setX(store_x);
+		
+		//Top.
+		if(world.collision.getCollisionCell(this.getCenterX(), this.getTop()) != null)
+			sprite.setY(store_y);
+		
+		//Bottom.
+		if(world.collision.getCollisionCell(this.getCenterX(), this.getBottom()) != null)
+			sprite.setY(store_y);
 	}
 }
