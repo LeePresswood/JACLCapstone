@@ -2,6 +2,7 @@ package com.jacl.capstone.world;
 
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.jacl.capstone.screens.ScreenGame;
@@ -19,7 +20,9 @@ public class World
 	public SectorCamera camera;
 	
 	public TiledMap map;
-	public TiledMapRenderer tiledMapRenderer;
+	public TiledMapRenderer tiled_map_renderer;
+	
+	public CollisionHandler collision;
 	
 	public Player player;
 	
@@ -27,9 +30,14 @@ public class World
 	{
 		this.screen = screen;
 		
-		//Camera and tile map.
+		//Tile map.
 		map = new TmxMapLoader().load("maps/test.tmx");
-		tiledMapRenderer = new OrthogonalTiledMapRenderer(map);
+		tiled_map_renderer = new OrthogonalTiledMapRenderer(map);
+		
+		//Collision.		
+		collision = new CollisionHandler(this);
+		
+		//Camera.
 		camera = new SectorCamera(map);
 		
 		//World entities.
@@ -46,8 +54,8 @@ public class World
 	
 	public void draw()
 	{
-      tiledMapRenderer.setView(camera);
-      tiledMapRenderer.render();
+      tiled_map_renderer.setView(camera);
+      tiled_map_renderer.render();
 		
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
