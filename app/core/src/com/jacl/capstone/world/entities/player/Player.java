@@ -23,7 +23,9 @@ public class Player extends Entity
 	@Override
 	protected Sprite makeSprite()
 	{
-		return new Sprite(new Texture(Gdx.files.internal("image.png")));
+		Sprite s = new Sprite(new Texture(Gdx.files.internal("image.png")));
+		s.setBounds(0, 0, 1f * world.camera.TILE_SIZE, 1f * world.camera.TILE_SIZE);
+		return s;
 	}
 
 	@Override
@@ -81,22 +83,41 @@ public class Player extends Entity
 			speed *= 1.189207115f;
 	}
 	
+	/**
+	 * Do the sprite collision. Test the four corners and the four midpoints. All must pass.
+	 */
 	private void collision()
 	{
 		//Left.
+		if(world.collision.getCollisionCell(this.getLeft(), this.getTop()) != null)
+			sprite.setX(store_x);
 		if(world.collision.getCollisionCell(this.getLeft(), this.getCenterY()) != null)
+			sprite.setX(store_x);
+		if(world.collision.getCollisionCell(this.getLeft(), this.getBottom()) != null)
 			sprite.setX(store_x);
 		
 		//Right.
+		if(world.collision.getCollisionCell(this.getRight(), this.getTop()) != null)
+			sprite.setX(store_x);
 		if(world.collision.getCollisionCell(this.getRight(), this.getCenterY()) != null)
+			sprite.setX(store_x);
+		if(world.collision.getCollisionCell(this.getRight(), this.getBottom()) != null)
 			sprite.setX(store_x);
 		
 		//Top.
+		if(world.collision.getCollisionCell(this.getLeft(), this.getTop()) != null)
+			sprite.setY(store_y);
 		if(world.collision.getCollisionCell(this.getCenterX(), this.getTop()) != null)
+			sprite.setY(store_y);
+		if(world.collision.getCollisionCell(this.getRight(), this.getTop()) != null)
 			sprite.setY(store_y);
 		
 		//Bottom.
+		if(world.collision.getCollisionCell(this.getLeft(), this.getBottom()) != null)
+			sprite.setY(store_y);
 		if(world.collision.getCollisionCell(this.getCenterX(), this.getBottom()) != null)
+			sprite.setY(store_y);
+		if(world.collision.getCollisionCell(this.getRight(), this.getBottom()) != null)
 			sprite.setY(store_y);
 	}
 }

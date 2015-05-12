@@ -21,7 +21,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 public class SectorCamera extends OrthographicCamera
 {
 	//Define how many tiles we want to see. Define one in terms of the other so that we only need to change one in the future.
-	public final float TILES_HORIZONTAL = 35f;
+	public final float TILES_HORIZONTAL = 50f;
 	public final float TILES_VERTICAL = TILES_HORIZONTAL * 9f / 16f;
 	
 	//Each tile will be a certain width/height. This is defined in the map file.
@@ -35,9 +35,9 @@ public class SectorCamera extends OrthographicCamera
 		super();
 		
 		//Read bounds and sizes of map.
-		TILE_SIZE = Float.parseFloat(map.getProperties().get("tile_size", String.class));
-		TILES_TOTAL_HORIZONTAL = Integer.parseInt(map.getProperties().get("world_width", String.class));
-		TILES_TOTAL_VERTICAL = Integer.parseInt(map.getProperties().get("world_height", String.class));
+		TILE_SIZE = map.getProperties().get("tilewidth", Integer.class);
+		TILES_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
+		TILES_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);
 		
 		//Define camera width and height in terms of tiles. This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
 		setToOrtho(false, TILE_SIZE * TILES_HORIZONTAL, TILE_SIZE * TILES_VERTICAL);
