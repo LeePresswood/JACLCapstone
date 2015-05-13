@@ -68,20 +68,20 @@ public class World
 		
 		//Add these to the arrays.
 		int array_counter = 0;
-		layers_under_player = new int[over.size()];
+		layers_under_player = new int[under.size()];
 		for(Integer i : under)
 			layers_under_player[array_counter++] = i;
 		
 		array_counter = 0;
 		layers_over_player = new int[over.size()];
 		for(Integer i : over)
-			layers_over_player[array_counter++] = i;		
+			layers_over_player[array_counter++] = i;
 	}
 	
 	public void update(float delta)
 	{
 		//Update map tiles.
-
+		
 		
 		//Update entities.
 		player.update(delta);
@@ -103,7 +103,6 @@ public class World
 		screen.batch.end();
 		
 		//Render layers/objects over player.
-		tiled_map_renderer.setView(camera);
 		tiled_map_renderer.render(layers_over_player);
 	}
 }

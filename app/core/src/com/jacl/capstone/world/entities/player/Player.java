@@ -91,33 +91,33 @@ public class Player extends Entity
 		//Left.
 		if(world.collision.getCollisionCell(this.getLeft(), this.getTop()) != null)
 			sprite.setX(store_x);
-		if(world.collision.getCollisionCell(this.getLeft(), this.getCenterY()) != null)
+		else if(world.collision.getCollisionCell(this.getLeft(), this.getCenterY()) != null)
 			sprite.setX(store_x);
-		if(world.collision.getCollisionCell(this.getLeft(), this.getBottom()) != null)
+		else if(world.collision.getCollisionCell(this.getLeft(), this.getBottom()) != null)
 			sprite.setX(store_x);
 		
 		//Right.
-		if(world.collision.getCollisionCell(this.getRight(), this.getTop()) != null)
+		else if(world.collision.getCollisionCell(this.getRight(), this.getTop()) != null)
 			sprite.setX(store_x);
-		if(world.collision.getCollisionCell(this.getRight(), this.getCenterY()) != null)
+		else if(world.collision.getCollisionCell(this.getRight(), this.getCenterY()) != null)
 			sprite.setX(store_x);
-		if(world.collision.getCollisionCell(this.getRight(), this.getBottom()) != null)
+		else if(world.collision.getCollisionCell(this.getRight(), this.getBottom()) != null)
 			sprite.setX(store_x);
 		
 		//Top.
 		if(world.collision.getCollisionCell(this.getLeft(), this.getTop()) != null)
 			sprite.setY(store_y);
-		if(world.collision.getCollisionCell(this.getCenterX(), this.getTop()) != null)
+		else if(world.collision.getCollisionCell(this.getCenterX(), this.getTop()) != null)
 			sprite.setY(store_y);
-		if(world.collision.getCollisionCell(this.getRight(), this.getTop()) != null)
+		else if(world.collision.getCollisionCell(this.getRight(), this.getTop()) != null)
 			sprite.setY(store_y);
 		
 		//Bottom.
-		if(world.collision.getCollisionCell(this.getLeft(), this.getBottom()) != null)
+		else if(world.collision.getCollisionCell(this.getLeft(), this.getBottom()) != null)
 			sprite.setY(store_y);
-		if(world.collision.getCollisionCell(this.getCenterX(), this.getBottom()) != null)
+		else if(world.collision.getCollisionCell(this.getCenterX(), this.getBottom()) != null)
 			sprite.setY(store_y);
-		if(world.collision.getCollisionCell(this.getRight(), this.getBottom()) != null)
+		else if(world.collision.getCollisionCell(this.getRight(), this.getBottom()) != null)
 			sprite.setY(store_y);
 	}
 }
