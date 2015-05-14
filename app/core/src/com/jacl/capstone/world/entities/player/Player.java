@@ -46,18 +46,18 @@ public class Player extends Entity
 	}
 	
 	/**
-	 * Read the signals. Translate appropriately.
+	 * Read the signals. Translate appropriately.<br><br>
+	 * 
 	 * Keep in mind that simply translating in whatever direction the player is pressing
 	 * works for the 4 main directions, but if this method is used for the 4 corners,
-	 * the player will be moving at (player_speed) * (root(2)). Do the Pythagorean Theorem
-	 * if you don't believe me.<br><br>
+	 * the player will be moving at (player_speed) * (root(2)). To correct this, we 
+	 * will translate the player in both directions by the sprite's speed divided by 
+	 * the 2^(1/4), or (root(root(2))). Doing the theorem will get a final speed magnitude 
+	 * of x * root(2) / root(2), or x.<br><br>
 	 * 
-	 * To correct this, we will translate the player in both directions by the sprite's 
-	 * speed divided by the 2^(1/4), or (root(root(2))). Doing the theorem will get a
-	 * final speed magnitude of x * root(2) / root(2), or x.<br><br>
-	 * 
-	 * Rather than calculating the fourth root of two every time, let's just store it here as an approximation.
-	 * Move the sprite's speed down by the fourth root of two, do the translation, and correct it.
+	 * Rather than calculating the fourth root of two every time, let's just store it here as 
+	 * an approximation. Move the sprite's speed down by the fourth root of two, do the 
+	 * translation, and correct it.
 	 */
 	private void move(float delta)
 	{

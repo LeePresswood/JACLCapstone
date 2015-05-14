@@ -20,7 +20,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
  */
 public class SectorCamera extends OrthographicCamera
 {
-	//Define how many tiles we want to see. Define one in terms of the other so that we only need to change one in the future.
+	//Define how many tiles we want to see. Define one in terms of the other so that we only need to change the independent one in the future.
 	public final float TILES_HORIZONTAL = 50f;
 	public final float TILES_VERTICAL = TILES_HORIZONTAL * 9f / 16f;
 	
@@ -39,13 +39,15 @@ public class SectorCamera extends OrthographicCamera
 		TILES_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
 		TILES_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);
 		
-		//Define camera width and height in terms of tiles. This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
+		//Define camera width and height in terms of tiles. 
+		//This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
 		setToOrtho(false, TILE_SIZE * TILES_HORIZONTAL, TILE_SIZE * TILES_VERTICAL);
 		update();
 	}
 	
 	/**
-	 * Update the camera each tick of the game. This involves changing the camera's position based upon both the player's position and the bounds of the world.<br><br>
+	 * Update the camera each tick of the game. This involves changing the camera's position based upon 
+	 * both the player's position and the bounds of the world.<br><br>
 	 * 
 	 * Main idea here is that the world's bounds have a greater priority than the player's position.
 	 * To represent this, move to the player's position first. Afterward, readjust the camera to 
