@@ -93,10 +93,10 @@ public class World
 	public void draw()
 	{
 		//Render layers/objects under player.
-      tiled_map_renderer.setView(camera);
-      tiled_map_renderer.render(layers_under_player);
-      
-      //Render player and other entities.		
+		tiled_map_renderer.setView(camera);
+		tiled_map_renderer.render(layers_under_player);
+		
+		//Render player and other entities.		
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
 			player.draw(screen.batch);
