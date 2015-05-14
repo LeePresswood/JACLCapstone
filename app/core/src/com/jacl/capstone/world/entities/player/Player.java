@@ -34,7 +34,8 @@ public class Player extends Entity
 		//Move.
 		move(delta);
 		
-		//Check collision if player moved.
+		//Check collision if player moved. This include player-controlled movement, knockback,
+		//and other random movement forms.
 		if(up || down || left || right)
 			collision();		
 	}
@@ -97,5 +98,13 @@ public class Player extends Entity
 			sprite.setY(store_y);
 		if(down && world.collision.getCollisionCell(this.getCenterX(), this.getBottom()) != null)
 			sprite.setY(store_y);
+	}
+	
+	/**
+	 * Player requested to attack. If an item is selected, do its use motion and effect.
+	 */
+	public void attack()
+	{
+		
 	}
 }

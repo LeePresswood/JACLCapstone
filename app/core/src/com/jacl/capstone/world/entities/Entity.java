@@ -20,6 +20,7 @@ import com.jacl.capstone.world.World;
 public abstract class Entity
 {
 	public World world;
+	
 	public Sprite sprite;
 	
 	public Entity(World world)

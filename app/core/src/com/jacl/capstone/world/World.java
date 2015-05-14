@@ -1,12 +1,20 @@
 package com.jacl.capstone.world;
 
 import java.util.ArrayList;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.jacl.capstone.screens.ScreenGame;
+import com.jacl.capstone.world.atmosphere.GameTime;
+import com.jacl.capstone.world.atmosphere.TimeColorer;
 import com.jacl.capstone.world.entities.player.Player;
 
 /**
@@ -29,6 +37,10 @@ public class World
 	
 	public int[] layers_under_player, layers_over_player;
 	
+	public GameTime time;
+	public ShapeRenderer shape_renderer;
+	public Color time_color;
+	
 	public World(ScreenGame screen)
 	{
 		this.screen = screen;
@@ -46,13 +58,23 @@ public class World
 		//World entities.
 		player = new Player(this);
 		
-		/*
-		 * To give a little more flexibility when it comes to rendering items, we want to divide the map
-		 * into layers. The layers will be those that are above the player and those that are below the player.
-		 * Player's level is considered level 1. He/She is standing on level 1 and collides with level 1 objects.
-		 * Level 2+ objects/collisions should be seen as being above his/her head and will be rendered after the
-		 * player. Level 0- objects are below the player and the main level ground.
-		 */
+		//Separate the map layers.
+		separateLayers();
+		
+		//Get the world timing and the effects that will result from it.
+		time = new GameTime();
+		shape_renderer = new ShapeRenderer();
+	}
+	
+	/**
+	 * To give a little more flexibility when it comes to rendering items, we want to divide the map
+	 * into layers. The layers will be those that are above the player and those that are below the player.
+	 * Player's level is considered level 1. He/She is standing on level 1 and collides with level 1 objects.
+	 * Level 2+ objects/collisions should be seen as being above his/her head and will be rendered after the
+	 * player. Level 0- objects are below the player and the main level ground.
+	 */
+	private void separateLayers()
+	{		
 		ArrayList<Integer> under = new ArrayList<Integer>();
 		ArrayList<Integer> over = new ArrayList<Integer>();
 		
@@ -77,9 +99,13 @@ public class World
 		for(Integer i : over)
 			layers_over_player[array_counter++] = i;
 	}
-	
+
 	public void update(float delta)
 	{
+		//Update managers.
+		time.update(delta);
+		time_color = TimeColorer.getColor(time);
+		
 		//Update map tiles.
 		
 		
@@ -104,5 +130,15 @@ public class World
 		
 		//Render layers/objects over player.
 		tiled_map_renderer.render(layers_over_player);
+		
+		//Draw the overlay.	
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		shape_renderer.setColor(time_color);
+		shape_renderer.begin(ShapeType.Filled);	
+			shape_renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		shape_renderer.end();
+	   Gdx.gl.glDisable(GL20.GL_BLEND);
+
 	}
 }
