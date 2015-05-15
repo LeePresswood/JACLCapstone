@@ -131,7 +131,7 @@ public class Player extends MovingEntity
 	}
 	
 	/**
-	 * Player requested to attack. If an item is selected, do its use motion and effect.
+	 * Player requested to attack. If an item is selected, do its motion and effect.
 	 */
 	public void attack()
 	{
