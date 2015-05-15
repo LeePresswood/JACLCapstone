@@ -62,7 +62,8 @@ public class Player extends MovingEntity
 	 * an approximation. Move the sprite's speed down by the fourth root of two, do the 
 	 * translation, and correct it.
 	 */
-	private void move(float delta)
+	@Override
+	protected void move(float delta)
 	{
 		//Store the current location for collision detection in the future.
 		store_x = sprite.getX();
@@ -88,7 +89,7 @@ public class Player extends MovingEntity
 	}
 	
 	/**
-	 * Do the sprite collision with blocks.<br><br>
+	 * Do the sprite collision detection with solid blocks.<br><br>
 	 * This is different from the initial cellCollision()in the sense that we can 
 	 * make it a little faster by only checking the collision detection of the 
 	 * direction in which we moved. The main logic remains the same, however.

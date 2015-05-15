@@ -1,7 +1,5 @@
 package com.jacl.capstone.world.entities;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.world.World;
 
 /**
@@ -13,33 +11,34 @@ import com.jacl.capstone.world.World;
  */
 public abstract class MovingEntity extends Entity
 {
-	//Collision stuff.
+	//Collision variables.
 	protected float store_x, store_y;
 	protected float jump_x, jump_y;
 	
 	public MovingEntity(World world)
 	{
 		super(world);
-	}
-
-	@Override
-	protected Sprite makeSprite()
-	{
-		return null;
+		
+		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
+		final float jump_percent = 0.35f;
+		jump_x = jump_percent * sprite.getWidth();
+		jump_y = jump_percent * sprite.getHeight();
 	}
 	
 	@Override
 	public void update(float delta)
 	{
+		//Move.
+		move(delta);
+		
+		//Check collision.
+		cellCollision();	
 	}
 	
-	@Override
-	public void draw(SpriteBatch batch)
-	{
-	}
+	protected abstract void move(float delta);
 	
 	/**
-	 * Do the sprite collision into solid blocks.
+	 * Do the sprite collision detection with solid blocks.
 	 * Go +-x% of the sprite's width/height away from the centerpoint of the side to get better collisions.
 	 * Test for a collision at this point.
 	 */
