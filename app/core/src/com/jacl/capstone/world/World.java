@@ -64,6 +64,7 @@ public class World
 		//Get the world timing and the effects that will result from it.
 		time = new GameTime();
 		shape_renderer = new ShapeRenderer();
+		time_color = TimeColorer.getColor(time);
 	}
 	
 	/**
@@ -102,9 +103,12 @@ public class World
 
 	public void update(float delta)
 	{
-		//Update managers.
+		//Update time.
 		time.update(delta);
-		time_color = TimeColorer.getColor(time);
+		
+		//If the hour changed, update color.
+		if(time.recently_updated_hour)
+			time_color = TimeColorer.getColor(time);
 		
 		//Update map tiles.
 		
@@ -133,7 +137,6 @@ public class World
 		
 		//Draw the overlay.	
 		Gdx.gl.glEnable(GL20.GL_BLEND);
-		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		shape_renderer.setColor(time_color);
 		shape_renderer.begin(ShapeType.Filled);	
 			shape_renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());

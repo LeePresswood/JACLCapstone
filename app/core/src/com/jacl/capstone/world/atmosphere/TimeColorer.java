@@ -15,13 +15,17 @@ import com.badlogic.gdx.graphics.Color;
  */
 public class TimeColorer
 {
+	private static final String COLOR_NIGHT = "24707B50";
+	private static final String COLOR_MORNING = "FFFFFF30";
+	private static final String COLOR_DAY = "00000000";
+	
 	public static Color getColor(GameTime time)
 	{
 		if(time.hours < 6 || time.hours > 22)
-			return Color.valueOf("24707B50");
+			return Color.valueOf(COLOR_NIGHT);
 		else if(time.hours >= 6 && time.hours < 14)
-			return Color.valueOf("FFFFFF30");
+			return Color.valueOf(COLOR_MORNING);
 		else
-			return Color.valueOf("00000000");
+			return Color.valueOf(COLOR_DAY);
 	}
 }

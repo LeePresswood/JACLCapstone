@@ -6,7 +6,7 @@ package com.jacl.capstone.data;
  * @author Lee
  *
  */
-public class Constants
+public class GameConstants
 {
 	//All values should be static members to this class to allow retrieval without instantiation.
 	public static final String GAME_NAME = "Game";		//Use this to write the name of the game in the UI box.
@@ -16,5 +16,8 @@ public class Constants
 																		 * number only when a major feature addition has been made.
 																		 * Version number should be 0 until first working version
 																		 * of the game has been produced. Another name for this is "Alpha".
+																		 * Also note that "0.1" and "0.10" are different things.
 																		 */
+	public static final int GAME_WIDTH = 800;
+	public static final int GAME_HEIGHT = (int) (9f / 16f * GAME_WIDTH);
 }

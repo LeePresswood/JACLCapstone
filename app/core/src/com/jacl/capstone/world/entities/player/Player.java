@@ -12,6 +12,8 @@ public class Player extends Entity
 	public float speed;
 	public boolean up, down, left, right;
 	private float store_x, store_y;
+	
+	private final float FOURTH_ROOT_FOUR = 1.189207115f;
 
 	public Player(World world)
 	{
@@ -68,7 +70,7 @@ public class Player extends Entity
 		
 		//Correct if diagonal.
 		if(up && left || up && right || down && left || down && right)
-			speed /= 1.189207115f;
+			speed /= FOURTH_ROOT_FOUR;
 
 		//Do the translation.
 		if(up)
@@ -82,7 +84,7 @@ public class Player extends Entity
 		
 		//Undo correction if diagonal.
 		if(up && left || up && right || down && left || down && right)
-			speed *= 1.189207115f;
+			speed *= FOURTH_ROOT_FOUR;
 	}
 	
 	/**
