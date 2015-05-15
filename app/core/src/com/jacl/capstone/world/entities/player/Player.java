@@ -104,9 +104,10 @@ public class Player extends MovingEntity
 	
 	/**
 	 * Do the sprite collision detection with solid blocks.<br><br>
-	 * This is different from the initial cellCollision()in the sense that we can 
-	 * make it a little faster by only checking the collision detection of the 
-	 * direction in which we moved. The main logic remains the same, however.
+	 * 
+	 * This is different from the initial cellCollision() in the sense that we can 
+	 * make it faster by only checking the collision detection of the direction in 
+	 * which we moved. The main logic remains the same, however.
 	 */
 	@Override
 	protected void cellCollision()
@@ -130,10 +131,12 @@ public class Player extends MovingEntity
 			sprite.setY(store_y);
 	}
 	
+	@Override
 	/**
-	 * Player requested to attack. If an item is selected, do its motion and effect.
+	 * See if player requested an attack. If so, get selected item and do its 
+	 * motion and effect.
 	 */
-	public void attack()
+	protected void attack()
 	{
 		
 	}
@@ -141,6 +144,6 @@ public class Player extends MovingEntity
 	@Override
 	protected float setSpeed()
 	{
-		return 5f * world.camera.TILE_SIZE;
+		return 5f;
 	}
 }

@@ -22,23 +22,27 @@ public abstract class MovingEntity extends Entity
 	{
 		super(world);
 		
-		//Speed is set by the derived classes.
-		speed = setSpeed();
+		//Speed is set by the derived classes. Set in terms of tiles per second..
+		speed = setSpeed() * world.camera.TILE_SIZE;
 		
 		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
-		final float jump_percent = 0.35f;
+		final float jump_percent = 0.40f;
 		jump_x = jump_percent * sprite.getWidth();
 		jump_y = jump_percent * sprite.getHeight();
 	}
 	
 	protected abstract float setSpeed();
 	protected abstract void move(float delta);
+	protected abstract void attack();
 	
 	@Override
 	public void update(float delta)
 	{
 		//Move.
 		move(delta);
+		
+		//Do attack if necessary.
+		attack();
 		
 		//Check collision.
 		cellCollision();	
