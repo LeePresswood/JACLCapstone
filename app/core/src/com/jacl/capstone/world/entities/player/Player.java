@@ -5,14 +5,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.entities.Entity;
+import com.jacl.capstone.world.entities.MovingEntity;
 
-public class Player extends Entity
+public class Player extends MovingEntity
 {
 	public float speed;
 	public boolean up, down, left, right;
-	private float store_x, store_y;
-	private float jump_x, jump_y;
+	
 	
 	private final float FOURTH_ROOT_FOUR = 1.189207115f;
 
@@ -21,10 +20,6 @@ public class Player extends Entity
 		super(world);
 		
 		speed = 5f * world.camera.TILE_SIZE;
-		
-		final float jump_percent = 0.35f;
-		jump_x = jump_percent * sprite.getWidth();
-		jump_y = jump_percent * sprite.getHeight();
 	}
 
 	@Override
@@ -44,7 +39,7 @@ public class Player extends Entity
 		//Check collision if player moved. This include player-controlled movement, knockback,
 		//and other random movement forms.
 		if(up || down || left || right)
-			collision();		
+			cellCollision();		
 	}
 
 	@Override
@@ -93,11 +88,15 @@ public class Player extends Entity
 	}
 	
 	/**
-	 * Do the sprite collision. Test the midpoint of the side(s) that face the direction you are moving.
+	 * Do the sprite collision with blocks.<br><br>
+	 * This is different from the initial cellCollision()in the sense that we can 
+	 * make it a little faster by only checking the collision detection of the 
+	 * direction in which we moved. The main logic remains the same, however.
 	 */
-	private void collision()
+	@Override
+	protected void cellCollision()
 	{
-		//Go +-x% of the sprite's width/height away from the centerpoint of the side to get better collisions.
+		//If the cell we collided with is solid, return to our previous position.
 		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
 			sprite.setX(store_x);
 		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() - jump_y) != null)
