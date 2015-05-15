@@ -8,15 +8,27 @@ import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
- * This
+ * This is the player that is controlled by input.There should 
+ * be a direct link between the inputs that are executed and 
+ * the actions this class takes.<br><br>
+ * 
+ * When an attack is requested, spawn the item from a reference
+ * point of this player.<br><br>
+ * 
+ * When the enemy wishes to attack or move toward the player,
+ * do so by aiming at the player's center.<br><br>
+ * 
+ * The player will be the only entity that communicates with 
+ * EventEntities. During the block collision step, check for
+ * collisions with event blocks.
  * 
  * @author Lee
  *
  */
 public class Player extends MovingEntity
 {
-	public boolean up, down, left, right;
-	
+	//Rather than AI, we will use signals to define the correct time to move.
+	public boolean up, down, left, right;	
 	private final float FOURTH_ROOT_FOUR = 1.189207115f;
 
 	public Player(World world)
