@@ -12,6 +12,7 @@ public class Player extends Entity
 	public float speed;
 	public boolean up, down, left, right;
 	private float store_x, store_y;
+	private float jump_x, jump_y;
 	
 	private final float FOURTH_ROOT_FOUR = 1.189207115f;
 
@@ -20,6 +21,10 @@ public class Player extends Entity
 		super(world);
 		
 		speed = 5f * world.camera.TILE_SIZE;
+		
+		final float jump_percent = 0.35f;
+		jump_x = jump_percent * sprite.getWidth();
+		jump_y = jump_percent * sprite.getHeight();
 	}
 
 	@Override
@@ -92,13 +97,22 @@ public class Player extends Entity
 	 */
 	private void collision()
 	{
-		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY()) != null)
+		//Go +-x% of the sprite's width/height away from the centerpoint of the side to get better collisions.
+		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
 			sprite.setX(store_x);
-		if(right && world.collision.getCollisionCell(this.getRight(), this.getCenterY()) != null)
+		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() - jump_y) != null)
 			sprite.setX(store_x);
-		if(up && world.collision.getCollisionCell(this.getCenterX(), this.getTop()) != null)
+		if(right && world.collision.getCollisionCell(this.getRight(), this.getCenterY() + jump_y) != null)
+			sprite.setX(store_x);
+		if(right && world.collision.getCollisionCell(this.getRight(), this.getCenterY() - jump_y) != null)
+			sprite.setX(store_x);
+		if(up && world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getTop()) != null)
 			sprite.setY(store_y);
-		if(down && world.collision.getCollisionCell(this.getCenterX(), this.getBottom()) != null)
+		if(up && world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getTop()) != null)
+			sprite.setY(store_y);
+		if(down && world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getBottom()) != null)
+			sprite.setY(store_y);
+		if(down && world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getBottom()) != null)
 			sprite.setY(store_y);
 	}
 	

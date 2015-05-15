@@ -49,6 +49,6 @@ public class CollisionHandler
 	 */
 	public boolean collidesWith(Entity a, Entity b)
 	{
-		return false;
+		return a.sprite.getBoundingRectangle().overlaps(b.sprite.getBoundingRectangle());
 	}
 }
