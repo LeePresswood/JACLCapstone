@@ -12,7 +12,7 @@ import com.jacl.capstone.world.World;
 public abstract class MovingEntity extends Entity
 {
 	//MovingEntities need to be able to move.
-	public float speed;
+	protected float speed;
 	
 	//Collision variables.
 	protected float store_x, store_y;
