@@ -11,6 +11,9 @@ import com.jacl.capstone.world.World;
  */
 public abstract class MovingEntity extends Entity
 {
+	//MovingEntities need to be able to move.
+	public float speed;
+	
 	//Collision variables.
 	protected float store_x, store_y;
 	protected float jump_x, jump_y;
@@ -19,11 +22,17 @@ public abstract class MovingEntity extends Entity
 	{
 		super(world);
 		
+		//Speed is set by the derived classes.
+		speed = setSpeed();
+		
 		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
 		final float jump_percent = 0.35f;
 		jump_x = jump_percent * sprite.getWidth();
 		jump_y = jump_percent * sprite.getHeight();
 	}
+	
+	protected abstract float setSpeed();
+	protected abstract void move(float delta);
 	
 	@Override
 	public void update(float delta)
@@ -34,8 +43,6 @@ public abstract class MovingEntity extends Entity
 		//Check collision.
 		cellCollision();	
 	}
-	
-	protected abstract void move(float delta);
 	
 	/**
 	 * Do the sprite collision detection with solid blocks.

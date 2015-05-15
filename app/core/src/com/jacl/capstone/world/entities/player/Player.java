@@ -7,19 +7,21 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
 
+/**
+ * This
+ * 
+ * @author Lee
+ *
+ */
 public class Player extends MovingEntity
 {
-	public float speed;
 	public boolean up, down, left, right;
-	
 	
 	private final float FOURTH_ROOT_FOUR = 1.189207115f;
 
 	public Player(World world)
 	{
 		super(world);
-		
-		speed = 5f * world.camera.TILE_SIZE;
 	}
 
 	@Override
@@ -122,5 +124,11 @@ public class Player extends MovingEntity
 	public void attack()
 	{
 		
+	}
+
+	@Override
+	protected float setSpeed()
+	{
+		return 5f * world.camera.TILE_SIZE;
 	}
 }
