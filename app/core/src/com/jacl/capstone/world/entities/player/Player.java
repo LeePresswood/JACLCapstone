@@ -106,7 +106,7 @@ public class Player extends MovingEntity
 		//Do attack if necessary.
 		attack(delta);
 		
-		//Check collision. This differs from MovingEntity by only sending in the signals. This is a little faster.
+		//Check collision. By sending in the signals, we get a little faster logic operation.
 		cellCollision(left, right, up, down);	
 	}
 	
