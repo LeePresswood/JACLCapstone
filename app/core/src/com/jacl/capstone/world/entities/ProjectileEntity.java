@@ -33,17 +33,18 @@ public abstract class ProjectileEntity extends Entity
 	
 	protected abstract float setSpeed();
 	protected abstract void move(float delta);
+	protected abstract void collision();
 	
 	@Override
 	public void update(float delta)
 	{
-		//Update position.
+		//Update position. It will be different for each type of projectile.
 		move(delta);
 		
 		//Center sprite around this new position.
 		sprite.setPosition(position.x - sprite.getWidth() / 2f, position.y - sprite.getHeight() / 2f);
 		
-		//Check collision.
-		
+		//Check collision. It will be different for each type of projectile.
+		collision();
 	}
 }

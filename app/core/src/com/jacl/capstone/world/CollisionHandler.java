@@ -6,12 +6,13 @@ import com.jacl.capstone.world.entities.Entity;
 
 /**
  * Handles collision of entities.
+ * 
  * @author Lee
  *
  */
 public class CollisionHandler
 {
-	private World world;
+	public World world;
 	
 	private TiledMapTileLayer collision_layer;
 	private final int COLLISION_LAYER_INDEX = 1;
