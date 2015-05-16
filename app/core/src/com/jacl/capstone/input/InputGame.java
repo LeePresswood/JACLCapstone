@@ -21,15 +21,19 @@ public class InputGame implements InputProcessor
 		{
 			//The Keys class has static references to all keys on the keyboard. We can use these to decode the button click.
 			case Keys.UP:
+			case Keys.W:
 				screen.world.player.up = true;
 				break;
 			case Keys.DOWN:
+			case Keys.S:
 				screen.world.player.down = true;
 				break;
 			case Keys.LEFT:
+			case Keys.A:
 				screen.world.player.left = true;
 				break;
 			case Keys.RIGHT:
+			case Keys.D:
 				screen.world.player.right = true;
 				break;
 		}
@@ -46,15 +50,19 @@ public class InputGame implements InputProcessor
 		{
 			//The Keys class has static references to all keys on the keyboard. We can use these to decode the button click.
 			case Keys.UP:
+			case Keys.W:
 				screen.world.player.up = false;
 				break;
 			case Keys.DOWN:
+			case Keys.S:
 				screen.world.player.down = false;
 				break;
 			case Keys.LEFT:
+			case Keys.A:
 				screen.world.player.left = false;
 				break;
 			case Keys.RIGHT:
+			case Keys.D:
 				screen.world.player.right = false;
 				break;
 		}
