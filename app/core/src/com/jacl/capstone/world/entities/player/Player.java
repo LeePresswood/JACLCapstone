@@ -27,8 +27,9 @@ import com.jacl.capstone.world.entities.MovingEntity;
  */
 public class Player extends MovingEntity
 {
-	//Rather than AI, we will use signals to define the correct time to move.
+	//Rather than AI, we will use signals to define the correct time to move/attack.
 	public boolean up, down, left, right;	
+	public boolean attacking, mid_attack;
 	private final float FOURTH_ROOT_FOUR = 1.189207115f;
 
 	public Player(World world)
@@ -103,7 +104,7 @@ public class Player extends MovingEntity
 		move(delta);
 		
 		//Do attack if necessary.
-		attack();
+		attack(delta);
 		
 		//Check collision. This differs from MovingEntity by only sending in the signals. This is a little faster.
 		cellCollision(left, right, up, down);	
@@ -111,11 +112,33 @@ public class Player extends MovingEntity
 	
 	@Override
 	/**
-	 * See if player requested an attack. If so, get selected item and do its 
-	 * motion and effect.
+	 * See if player requested an attack. If so, get selected item and do its motion and effect.
 	 */
-	protected void attack()
+	protected void attack(float delta)
 	{
-		
+		if(attacking || mid_attack)
+		{
+			//We don't want to stop mid attack. Commit to the attack until the end by setting a mid-attack flag.
+			//mid_attack = true;
+			
+			//Get the selected item if a copy of the item does not exist.
+			/*if(item == null)
+			 	item = ItemFactory.get(this);
+			 */
+			
+			//Update the item's animation and collision.
+			//item.update(delta);
+			/*for(Entity e : world.enemies)
+			 	if(world.collision.collidesWith(item, e)
+			 		e.damage();
+			 */
+			
+			//If the attack is over, set mid_attack to off. That way, the only thing affecting the player's attacking is the keyboard input.
+			/*if(item.isDone())
+			{
+				mid_attack = false;
+				item = null;
+			}*/
+		}
 	}
 }

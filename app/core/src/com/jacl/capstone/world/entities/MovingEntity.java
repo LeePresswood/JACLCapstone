@@ -38,7 +38,7 @@ public abstract class MovingEntity extends Entity
 		move(delta);
 		
 		//Do attack if necessary.
-		attack();
+		attack(delta);
 		
 		//Check collision.
 		cellCollision(true, true, true, true);	
@@ -72,5 +72,5 @@ public abstract class MovingEntity extends Entity
 	
 	protected abstract float setSpeed();
 	protected abstract void move(float delta);
-	protected abstract void attack();
+	protected abstract void attack(float delta);
 }

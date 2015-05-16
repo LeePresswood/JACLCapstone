@@ -36,6 +36,9 @@ public class InputGame implements InputProcessor
 			case Keys.D:
 				screen.world.player.right = true;
 				break;
+			case Keys.SPACE:
+				screen.world.player.attacking = true;
+				break;
 		}
 		
 		//Always return true on input methods you use. This tells LibGDX that it is in use and should be reading for it.
@@ -64,6 +67,9 @@ public class InputGame implements InputProcessor
 			case Keys.RIGHT:
 			case Keys.D:
 				screen.world.player.right = false;
+				break;
+			case Keys.SPACE:
+				screen.world.player.attacking = true;
 				break;
 		}
 		
