@@ -15,6 +15,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.atmosphere.GameTime;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
+import com.jacl.capstone.world.entities.events.EventEntity;
+import com.jacl.capstone.world.entities.events.EventEntityHandler;
 import com.jacl.capstone.world.entities.player.Player;
 
 /**
@@ -37,9 +39,14 @@ public class World
 	
 	public int[] layers_under_player, layers_over_player;
 	
+	//Atmosphere.
 	public GameTime time;
 	public ShapeRenderer shape_renderer;
 	public Color time_color;
+
+	//Events.
+	public EventEntityHandler event_handler;
+	public EventEntity event;
 	
 	public World(ScreenGame screen)
 	{
@@ -65,6 +72,9 @@ public class World
 		time = new GameTime();
 		shape_renderer = new ShapeRenderer();
 		time_color = TimeColorer.getColor(time);
+		
+		//Get event items.
+		event_handler = new EventEntityHandler(this);
 	}
 	
 	/**

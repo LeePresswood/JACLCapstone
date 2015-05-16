@@ -26,7 +26,6 @@ public class EventEntityHandler
 	public World world;
 	
 	private TiledMapTileLayer event_layer;
-	private Cell[][] cells;
 	private HashMap<String, EventEntity> event_map;
 	
 	public EventEntityHandler(World world)
@@ -39,17 +38,13 @@ public class EventEntityHandler
 		if(event_layer != null)
 		{
 			event_map = new HashMap<String, EventEntity>();
-			
-			cells = new Cell[event_layer.getHeight()][event_layer.getWidth()];
 			for(int y = 0; y < event_layer.getHeight(); y++)
 			{	
 				for(int x = 0; x < event_layer.getWidth(); x++)
 				{
-					cells[y][x] = event_layer.getCell(x, y);
-					
-					//If the above is not null, we can put the event into the event map.
-					if(cells[y][x] != null)
-						event_map.put(x + "," + y, EventEntityFactory.get(world, (String) event_layer.getProperties().get(x + "," + y)));
+					//If the tile is not null, we can put the event into the event map.
+					if(event_layer.getCell(x, y) != null)
+						event_map.put(x + "," + y, EventEntityFactory.get(world, x, y, (String) event_layer.getProperties().get(x + "," + y)));
 				}
 			}
 		}		
@@ -63,22 +58,13 @@ public class EventEntityHandler
 	public void doEventEntity(float x, float y)
 	{
 		//First, determine if there is an event in this location.
-		Cell c = cells[(int) (y / event_layer.getTileHeight())][(int) (x / event_layer.getTileWidth())];
-		
-		if(c != null)
+		int new_x = (int) (x / event_layer.getTileWidth()), new_y = (int) (y / event_layer.getTileHeight());		
+		if(event_map.containsKey(new_x + "," + new_y))
 		{
 			//Now we need to determine if we have collided with the event.
-			//Normal collision would be bad here because barely clipping the corner of the event
-			//entity tile would activate the event. Thinking of a doorway, simply walking up to
-			//the door would be enough to activate it. This isn't good.
-			//Instead, we want to be within the event entity tile before we start it.
-			//To cause this effect, create a smaller rectangle from the event entity cell's
-			//collision rectangle. Center this smaller rectangle around the event's center.
-			//Collide with that.
-			final float shrink_by = 0.75f;
-			//final Rectangle r = c.
+			EventEntity event = event_map.get(new_x + "," + new_y);
+			if(event.eventCollision(x, y))
+				world.event = event;
 		}
-		
-		//return a.sprite.getBoundingRectangle().overlaps(b.sprite.getBoundingRectangle());
 	}
 }
