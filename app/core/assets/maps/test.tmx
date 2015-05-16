@@ -23,4 +23,12 @@
    eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
+ <layer name="Events" width="30" height="30">
+  <properties>
+   <property name="11,22" value="goto test test2"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzjEBAAAIA6ClsI/9S/maQB9IQAIAADe6vgfANkVVAFg=
+  </data>
+ </layer>
 </map>
