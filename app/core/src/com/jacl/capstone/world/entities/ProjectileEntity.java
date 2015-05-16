@@ -31,10 +31,6 @@ public abstract class ProjectileEntity extends Entity
 		sprite.setPosition(position.x - sprite.getWidth() / 2f, position.y - sprite.getHeight() / 2f);
 	}
 	
-	protected abstract float setSpeed();
-	protected abstract void move(float delta);
-	protected abstract void collision();
-	
 	@Override
 	public void update(float delta)
 	{
@@ -47,4 +43,8 @@ public abstract class ProjectileEntity extends Entity
 		//Check collision. It will be different for each type of projectile.
 		collision();
 	}
+	
+	protected abstract float setSpeed();
+	protected abstract void move(float delta);
+	protected abstract void collision();
 }

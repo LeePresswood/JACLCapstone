@@ -37,29 +37,23 @@ public class Player extends MovingEntity
 	}
 
 	@Override
+	public void draw(SpriteBatch batch)
+	{
+		sprite.draw(batch);
+	}
+	
+	@Override
 	protected Sprite makeSprite()
 	{
 		Sprite s = new Sprite(new Texture(Gdx.files.internal("image.png")));
 		s.setBounds(0, 0, 1f * world.camera.TILE_SIZE, 1f * world.camera.TILE_SIZE);
 		return s;
 	}
-
+	
 	@Override
-	public void update(float delta)
+	protected float setSpeed()
 	{
-		//Move.
-		move(delta);
-		
-		//Check collision if player moved. This include player-controlled movement, knockback,
-		//and other random movement forms.
-		if(up || down || left || right)
-			cellCollision();		
-	}
-
-	@Override
-	public void draw(SpriteBatch batch)
-	{
-		sprite.draw(batch);
+		return 5f;
 	}
 	
 	/**
@@ -102,33 +96,17 @@ public class Player extends MovingEntity
 			speed *= FOURTH_ROOT_FOUR;
 	}
 	
-	/**
-	 * Do the sprite collision detection with solid blocks.<br><br>
-	 * 
-	 * This is different from the initial cellCollision() in the sense that we can 
-	 * make it faster by only checking the collision detection of the direction in 
-	 * which we moved. The main logic remains the same, however.
-	 */
 	@Override
-	protected void cellCollision()
+	public void update(float delta)
 	{
-		//If the cell we collided with is solid, return to our previous position.
-		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
-			sprite.setX(store_x);
-		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() - jump_y) != null)
-			sprite.setX(store_x);
-		if(right && world.collision.getCollisionCell(this.getRight(), this.getCenterY() + jump_y) != null)
-			sprite.setX(store_x);
-		if(right && world.collision.getCollisionCell(this.getRight(), this.getCenterY() - jump_y) != null)
-			sprite.setX(store_x);
-		if(up && world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getTop()) != null)
-			sprite.setY(store_y);
-		if(up && world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getTop()) != null)
-			sprite.setY(store_y);
-		if(down && world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getBottom()) != null)
-			sprite.setY(store_y);
-		if(down && world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getBottom()) != null)
-			sprite.setY(store_y);
+		//Move.
+		move(delta);
+		
+		//Do attack if necessary.
+		attack();
+		
+		//Check collision. This differs from MovingEntity by only sending in the signals. This is a little faster.
+		cellCollision(left, right, up, down);	
 	}
 	
 	@Override
@@ -139,11 +117,5 @@ public class Player extends MovingEntity
 	protected void attack()
 	{
 		
-	}
-
-	@Override
-	protected float setSpeed()
-	{
-		return 5f;
 	}
 }

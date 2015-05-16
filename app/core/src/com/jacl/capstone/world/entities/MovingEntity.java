@@ -31,10 +31,6 @@ public abstract class MovingEntity extends Entity
 		jump_y = jump_percent * sprite.getHeight();
 	}
 	
-	protected abstract float setSpeed();
-	protected abstract void move(float delta);
-	protected abstract void attack();
-	
 	@Override
 	public void update(float delta)
 	{
@@ -45,7 +41,7 @@ public abstract class MovingEntity extends Entity
 		attack();
 		
 		//Check collision.
-		cellCollision();	
+		cellCollision(true, true, true, true);	
 	}
 	
 	/**
@@ -53,23 +49,28 @@ public abstract class MovingEntity extends Entity
 	 * Go +-x% of the sprite's width/height away from the centerpoint of the side to get better collisions.
 	 * Test for a collision at this point.
 	 */
-	protected void cellCollision()
+	protected void cellCollision(boolean left, boolean right, boolean up, boolean down)
 	{
-		if(world.collision.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
+		//If the cell we collided with is solid, return to our previous position.
+		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
 			sprite.setX(store_x);
-		if(world.collision.getCollisionCell(this.getLeft(), this.getCenterY() - jump_y) != null)
+		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() - jump_y) != null)
 			sprite.setX(store_x);
-		if(world.collision.getCollisionCell(this.getRight(), this.getCenterY() + jump_y) != null)
+		if(right && world.collision.getCollisionCell(this.getRight(), this.getCenterY() + jump_y) != null)
 			sprite.setX(store_x);
-		if(world.collision.getCollisionCell(this.getRight(), this.getCenterY() - jump_y) != null)
+		if(right && world.collision.getCollisionCell(this.getRight(), this.getCenterY() - jump_y) != null)
 			sprite.setX(store_x);
-		if(world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getTop()) != null)
+		if(up && world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getTop()) != null)
 			sprite.setY(store_y);
-		if(world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getTop()) != null)
+		if(up && world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getTop()) != null)
 			sprite.setY(store_y);
-		if(world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getBottom()) != null)
+		if(down && world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getBottom()) != null)
 			sprite.setY(store_y);
-		if(world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getBottom()) != null)
+		if(down && world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getBottom()) != null)
 			sprite.setY(store_y);
 	}
+	
+	protected abstract float setSpeed();
+	protected abstract void move(float delta);
+	protected abstract void attack();
 }

@@ -30,17 +30,6 @@ public abstract class Entity
 		sprite = makeSprite();
 	}
 	
-	/**
-	 * The constructor will automatically call this method to create the sprite.
-	 * This method should define the sprite's location, size, texture, rotation,
-	 * and any other qualities that may be useful here.
-	 * @return An instance of the sprite that we will use.
-	 */
-	protected abstract Sprite makeSprite();
-	
-	public abstract void update(float delta);
-	public abstract void draw(SpriteBatch batch);
-	
 	//These methods will be very helpful in checking bounds of/moving toward an entity.
 	public float getCenterX()
 	{
@@ -71,4 +60,14 @@ public abstract class Entity
 	{
 		return sprite.getY() + sprite.getHeight();
 	}
+	
+	/**
+	 * The constructor will automatically call this method to create the sprite.
+	 * This method should define the sprite's location, size, texture, rotation,
+	 * and any other qualities that may be useful here.
+	 * @return An instance of the sprite that we will use.
+	 */
+	protected abstract Sprite makeSprite();	
+	public abstract void update(float delta);
+	public abstract void draw(SpriteBatch batch);
 }
