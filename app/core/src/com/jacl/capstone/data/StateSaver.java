@@ -17,17 +17,37 @@ import com.jacl.capstone.world.atmosphere.TimeColorer;
  */
 public class StateSaver
 {
+	private final String SAVE_DIR = "saves/";
 	public World world;
 	
 	public StateSaver(World world)
 	{
 		this.world = world;
+		
+		//Make the saves/ directory if it does not exist.
+		if(!Gdx.files.local(SAVE_DIR).exists() || !Gdx.files.local(SAVE_DIR).isDirectory())
+			init();
+	}
+	
+	/**
+	 * This is called the first time the game is run. Initializes the game to the initial state.
+	 */
+	private void init()
+	{
+		//Make the save directory.
+		Gdx.files.local(SAVE_DIR).mkdirs();
+		
+		//Write a file with the initial information.
+		FileHandle file = Gdx.files.local(SAVE_DIR + "test_save.txt");
+		file.writeString("time 00:00\n", false);
+		file.writeString("player_location 0 1\n", true);
+		file.writeString("map test.tmx\n", true);
 	}
 	
 	public void read()
 	{
 		//Read from save file.
-		FileHandle file = Gdx.files.local("test_save.txt");
+		FileHandle file = Gdx.files.local(SAVE_DIR + "test_save.txt");
 		Scanner scanner = new Scanner(file.read());
 		
 		//Read the time.
@@ -55,9 +75,9 @@ public class StateSaver
 	public void write()
 	{
 		//Create a new file for save.
-		FileHandle file = Gdx.files.local("test_save.txt");
+		FileHandle file = Gdx.files.local(SAVE_DIR + "test_save.txt");
 		file.writeString("time " + world.time.toString() + "\n", false);
-		file.writeString("player_location " + world.player.getLeft() + " " + world.player.getBottom() + "\n", true);
-		file.writeString("map test.tmx", true);
+		file.writeString("player_location " + world.player.getTileX() + " " + world.player.getTileY() + "\n", true);
+		file.writeString("map " + world.map_name + "\n", true);
 	}
 }

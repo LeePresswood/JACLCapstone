@@ -1,0 +1,3 @@
+time 00:13
+player_location 11 6
+map test.tmx

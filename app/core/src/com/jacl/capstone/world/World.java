@@ -32,6 +32,7 @@ public class World
 	
 	//Map and collision.
 	private final String MAP_DIRECTORY = "maps/";
+	public String map_name;
 	public TiledMap map;
 	public TiledMapRenderer tiled_map_renderer;
 	public int[] layers_under_player, layers_over_player;
@@ -63,6 +64,7 @@ public class World
 	public void init(String map_name, int start_x, int start_y)
 	{
 		//Tile map.
+		this.map_name = map_name;
 		map = new TmxMapLoader().load(MAP_DIRECTORY + map_name);
 		tiled_map_renderer = new OrthogonalTiledMapRenderer(map);
 		

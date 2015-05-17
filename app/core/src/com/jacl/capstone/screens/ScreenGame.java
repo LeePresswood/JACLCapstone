@@ -1,8 +1,6 @@
 package com.jacl.capstone.screens;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
 import com.jacl.capstone.hud.HUDManager;
@@ -25,7 +23,7 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public Color setUpBackgroundColor()
 	{
-		return new Color(0f, 0f, 0f, 0f);
+		return new Color(0f, 0f, 0f, 1f);
 	}
 
 	@Override
