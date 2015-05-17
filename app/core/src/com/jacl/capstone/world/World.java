@@ -25,18 +25,17 @@ import com.jacl.capstone.world.entities.player.Player;
  */
 public class World
 {
-	public ScreenGame screen; 
-	
+	public ScreenGame screen;
 	public SectorCamera camera;
 	
+	//Map and collision.
 	public TiledMap map;
 	public TiledMapRenderer tiled_map_renderer;
-	
+	public int[] layers_under_player, layers_over_player;
 	public CollisionHandler collision;
 	
+	//Entities.
 	public Player player;
-	
-	public int[] layers_under_player, layers_over_player;
 	
 	//Atmosphere.
 	public GameTime time;
@@ -127,18 +126,7 @@ public class World
 		}
 		else
 		{
-			//Update time.
-			time.update(delta);
-			
-			//If the hour changed, update color.
-			if(time.recently_updated_hour)
-				time_color = TimeColorer.getColor(time);
-			
-			//Update entities.
-			player.update(delta);
-			
-			//Update camera.
-			camera.updateCamera(this);
+			worldUpdate(delta);
 		}
 	}
 	
@@ -153,6 +141,27 @@ public class World
 		{
 			worldDraw();
 		}
+	}
+	
+	/**
+	 * The function in which the actual updating is done. Separated out so that 
+	 * events may use the normal game logic without getting held-up in the
+	 * update() method.
+	 */
+	public void worldUpdate(float delta)
+	{
+		//Update time.
+		time.update(delta);
+		
+		//If the hour changed, update color.
+		if(time.recently_updated_hour)
+			time_color = TimeColorer.getColor(time);
+		
+		//Update entities.
+		player.update(delta);
+		
+		//Update camera.
+		camera.updateCamera(this);
 	}
 	
 	/**
