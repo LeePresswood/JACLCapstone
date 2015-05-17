@@ -18,7 +18,7 @@ public abstract class ProjectileEntity extends Entity
 	
 	public ProjectileEntity(World world, float x1, float y1, float x2, float y2)
 	{
-		super(world);
+		super(world, x1, x2);
 		
 		//Set position vector and related attributes.
 		position = new Vector2(x1, y1);

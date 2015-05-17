@@ -23,11 +23,11 @@ public abstract class Entity
 	
 	public Sprite sprite;
 	
-	public Entity(World world)
+	public Entity(World world, float x, float y)
 	{
 		this.world = world;
-		
-		sprite = makeSprite();
+		System.out.println(world + "," + this.world);
+		sprite = makeSprite(x, y);
 	}
 	
 	//These methods will be very helpful in checking bounds of/moving toward an entity.
@@ -65,9 +65,11 @@ public abstract class Entity
 	 * The constructor will automatically call this method to create the sprite.
 	 * This method should define the sprite's location, size, texture, rotation,
 	 * and any other qualities that may be useful here.
+	 * @param y 
+	 * @param x 
 	 * @return An instance of the sprite that we will use.
 	 */
-	protected abstract Sprite makeSprite();	
+	protected abstract Sprite makeSprite(float x, float y);	
 	public abstract void update(float delta);
 	public abstract void draw(SpriteBatch batch);
 }

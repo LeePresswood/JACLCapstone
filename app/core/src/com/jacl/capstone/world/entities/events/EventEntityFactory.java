@@ -11,9 +11,10 @@ import com.jacl.capstone.world.entities.events.navigation.GoToEventEntity;
  */
 public class EventEntityFactory
 {
-	public static EventEntity get(World world, int x, int y, String command)
+	public static EventEntity get(World world, float x, float y, String command)
 	{
-		System.out.println(command);
+		System.out.println("\tCommand: " + command);
+		
 		//This event will be determined by the command variable.
 		String[] tokens = command.split(" ");
 		
@@ -21,9 +22,9 @@ public class EventEntityFactory
 		switch(EventTypes.valueOf(tokens[0]))
 		{
 			case GOTO:
-				return new GoToEventEntity(world, x, y, tokens[1]);
+				return new GoToEventEntity(world, x, y, tokens);
 			default:
 				return null;
 		}
-	}	
+	}
 }

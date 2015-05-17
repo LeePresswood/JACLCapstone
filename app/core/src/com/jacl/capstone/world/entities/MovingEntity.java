@@ -18,9 +18,9 @@ public abstract class MovingEntity extends Entity
 	protected float store_x, store_y;
 	protected float jump_x, jump_y;
 	
-	public MovingEntity(World world)
+	public MovingEntity(World world, float x, float y)
 	{
-		super(world);
+		super(world, x, y);
 		
 		//Speed is set by the derived classes. Set in terms of tiles per second..
 		speed = setSpeed() * world.camera.TILE_SIZE;

@@ -32,9 +32,9 @@ public class Player extends MovingEntity
 	public boolean attacking, mid_attack;
 	private final float FOURTH_ROOT_FOUR = 1.189207115f;
 
-	public Player(World world)
+	public Player(World world, float x, float y)
 	{
-		super(world);
+		super(world, x, y);
 	}
 
 	@Override
@@ -44,10 +44,10 @@ public class Player extends MovingEntity
 	}
 	
 	@Override
-	protected Sprite makeSprite()
+	protected Sprite makeSprite(float x, float y)
 	{
 		Sprite s = new Sprite(new Texture(Gdx.files.internal("image.png")));
-		s.setBounds(0, 0, 1f * world.camera.TILE_SIZE, 1f * world.camera.TILE_SIZE);
+		s.setBounds(x, y, 1f * world.camera.TILE_SIZE, 1f * world.camera.TILE_SIZE);
 		return s;
 	}
 	
@@ -108,6 +108,9 @@ public class Player extends MovingEntity
 		
 		//Check collision. By sending in the signals, we get a little faster logic operation.
 		cellCollision(left, right, up, down);	
+		
+		//Check for entities we may have started.
+		world.event_handler.doEventEntity(getCenterX(), getCenterY());
 	}
 	
 	@Override

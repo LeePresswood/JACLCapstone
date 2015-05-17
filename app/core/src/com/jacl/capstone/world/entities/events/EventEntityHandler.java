@@ -3,10 +3,7 @@ package com.jacl.capstone.world.entities.events;
 import java.util.HashMap;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
-import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.math.Rectangle;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.entities.Entity;
 
 /**
  * Event entities will be scattered throughout the land. If one is stepped upon, we must activate it.<br><br>
@@ -44,7 +41,10 @@ public class EventEntityHandler
 				{
 					//If the tile is not null, we can put the event into the event map.
 					if(event_layer.getCell(x, y) != null)
-						event_map.put(x + "," + y, EventEntityFactory.get(world, x, y, (String) event_layer.getProperties().get(x + "," + y)));
+					{
+						System.out.println("Event found: " + x + "," + y);
+						event_map.put(x + "," + y, EventEntityFactory.get(world, x* world.camera.TILE_SIZE, y* world.camera.TILE_SIZE, (String) event_layer.getProperties().get(x + "," + y)));
+					}
 				}
 			}
 		}		
@@ -58,13 +58,17 @@ public class EventEntityHandler
 	public void doEventEntity(float x, float y)
 	{
 		//First, determine if there is an event in this location.
-		int new_x = (int) (x / event_layer.getTileWidth()), new_y = (int) (y / event_layer.getTileHeight());		
+		int new_x = (int) (x / event_layer.getTileWidth());
+		int new_y = (int) (y / event_layer.getTileHeight());		
 		if(event_map.containsKey(new_x + "," + new_y))
 		{
 			//Now we need to determine if we have collided with the event.
 			EventEntity event = event_map.get(new_x + "," + new_y);
 			if(event.eventCollision(x, y))
+			{System.out.println(1);
+				event.init();
 				world.event = event;
+			}
 		}
 	}
 }

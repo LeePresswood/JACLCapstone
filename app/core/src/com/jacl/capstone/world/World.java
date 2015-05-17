@@ -63,7 +63,7 @@ public class World
 		camera = new SectorCamera(map);
 		
 		//World entities.
-		player = new Player(this);
+		player = new Player(this, 1f, 1f);
 		
 		//Separate the map layers.
 		separateLayers();
@@ -113,45 +113,57 @@ public class World
 
 	public void update(float delta)
 	{
-		//Update time.
-		time.update(delta);
-		
-		//If the hour changed, update color.
-		if(time.recently_updated_hour)
-			time_color = TimeColorer.getColor(time);
-		
-		//Update map tiles.
-		
-		
-		//Update entities.
-		player.update(delta);
-		
-		//Update camera.
-		camera.updateCamera(this);
+		//If there is an active event, play it. Otherwise, play the update.
+		if(event != null)
+		{
+			event.update(delta);
+		}
+		else
+		{
+			//Update time.
+			time.update(delta);
+			
+			//If the hour changed, update color.
+			if(time.recently_updated_hour)
+				time_color = TimeColorer.getColor(time);
+			
+			//Update entities.
+			player.update(delta);
+			
+			//Update camera.
+			camera.updateCamera(this);
+		}
 	}
 	
 	public void draw()
 	{
-		//Render layers/objects under player.
-		tiled_map_renderer.setView(camera);
-		tiled_map_renderer.render(layers_under_player);
-		
-		//Render player and other entities.		
-		screen.batch.setProjectionMatrix(camera.combined);
-		screen.batch.begin();
-			player.draw(screen.batch);
-		screen.batch.end();
-		
-		//Render layers/objects over player.
-		tiled_map_renderer.render(layers_over_player);
-		
-		//Draw the overlay.	
-		Gdx.gl.glEnable(GL20.GL_BLEND);
-		shape_renderer.setColor(time_color);
-		shape_renderer.begin(ShapeType.Filled);	
-			shape_renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		shape_renderer.end();
-	   Gdx.gl.glDisable(GL20.GL_BLEND);
-
+		//If there is an active event, play it. Otherwise, play the update.
+		if(event != null)
+		{
+			event.draw(screen.batch);
+		}
+		else
+		{
+			//Render layers/objects under player.
+			tiled_map_renderer.setView(camera);
+			tiled_map_renderer.render(layers_under_player);
+			
+			//Render player and other entities.		
+			screen.batch.setProjectionMatrix(camera.combined);
+			screen.batch.begin();
+				player.draw(screen.batch);
+			screen.batch.end();
+			
+			//Render layers/objects over player.
+			tiled_map_renderer.render(layers_over_player);
+			
+			//Draw the overlay.	
+			Gdx.gl.glEnable(GL20.GL_BLEND);
+			shape_renderer.setColor(time_color);
+			shape_renderer.begin(ShapeType.Filled);	
+				shape_renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			shape_renderer.end();
+			Gdx.gl.glDisable(GL20.GL_BLEND);
+		}
 	}
 }
