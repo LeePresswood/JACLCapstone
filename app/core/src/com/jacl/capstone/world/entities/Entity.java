@@ -61,6 +61,16 @@ public abstract class Entity
 		return sprite.getY() + sprite.getHeight();
 	}
 	
+	public int getTileX()
+	{
+		return (int) (getCenterX() / world.camera.TILE_SIZE);
+	}
+	
+	public int getTileY()
+	{
+		return (int) (getCenterY() / world.camera.TILE_SIZE);
+	}
+	
 	/**
 	 * The constructor will automatically call this method to create the sprite.
 	 * This method should define the sprite's location, size, texture, rotation,

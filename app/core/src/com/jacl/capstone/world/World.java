@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.jacl.capstone.data.StateSaver;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.atmosphere.GameTime;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
@@ -27,6 +28,7 @@ public class World
 {
 	public ScreenGame screen;
 	public SectorCamera camera;
+	public StateSaver saver;
 	
 	//Map and collision.
 	private final String MAP_DIRECTORY = "maps/";
@@ -49,12 +51,7 @@ public class World
 	public World(ScreenGame screen)
 	{
 		this.screen = screen;
-		
-		init("test.tmx", 11, 6);
-		
-		//Get the world timing and the effects that will result from it.
-		time = new GameTime();
-		time_color = TimeColorer.getColor(time);
+		saver = new StateSaver(this);
 	}
 	
 	/**
