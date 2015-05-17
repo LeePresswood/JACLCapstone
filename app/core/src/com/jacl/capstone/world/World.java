@@ -20,8 +20,8 @@ import com.jacl.capstone.world.entities.player.Player;
 
 /**
  * Handles the updating and rendering of game objects. Create managers to keep this class general.
+ * 
  * @author Lee
- *
  */
 public class World
 {
@@ -65,10 +65,9 @@ public class World
 	
 	/**
 	 * Call this to initialize the world to the passed map.
-	 * @param start_y 
-	 * @param start_x 
-	 * 
-	 * @param map
+	 * @param map_name The map to load. Note: Map directory should not be included. Simply pass the name of the map found in the map directory of the assets folder.
+	 * @param start_x Player's starting X location (in blocks).
+	 * @param start_y Player's starting Y location (in blocks). 
 	 */
 	public void init(String map_name, int start_x, int start_y)
 	{
