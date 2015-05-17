@@ -44,6 +44,10 @@ public class StateSaver
 		file.writeString("map test.tmx\n", true);
 	}
 	
+	/**
+	 * Read from the save file and push to the world. This happens upon the world
+	 * loading.
+	 */
 	public void read()
 	{
 		//Read from save file.
@@ -72,6 +76,9 @@ public class StateSaver
 		scanner.close();
 	}
 	
+	/**
+	 * Save to save file. This happens upon the world closing.
+	 */
 	public void write()
 	{
 		//Create a new file for save.
