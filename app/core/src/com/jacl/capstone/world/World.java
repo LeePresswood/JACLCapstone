@@ -50,12 +50,29 @@ public class World
 	{
 		this.screen = screen;
 		
-		//Tile map.
-		map = new TmxMapLoader().load("maps/test.tmx");
-		tiled_map_renderer = new OrthogonalTiledMapRenderer(map);
+		init("maps/test.tmx");
 		
 		//Collision.		
 		collision = new CollisionHandler(this);
+		
+		//Get the world timing and the effects that will result from it.
+		time = new GameTime();
+		time_color = TimeColorer.getColor(time);
+		
+		//Get event items.
+		event_handler = new EventEntityHandler(this);
+	}
+	
+	/**
+	 * Call this to initialize the world to the passed map.
+	 * 
+	 * @param map
+	 */
+	public void init(String map_name)
+	{
+		//Tile map.
+		map = new TmxMapLoader().load(map_name);
+		tiled_map_renderer = new OrthogonalTiledMapRenderer(map);
 		
 		//Camera.
 		camera = new SectorCamera(map);
@@ -65,13 +82,6 @@ public class World
 		
 		//Separate the map layers.
 		separateLayers();
-		
-		//Get the world timing and the effects that will result from it.
-		time = new GameTime();
-		time_color = TimeColorer.getColor(time);
-		
-		//Get event items.
-		event_handler = new EventEntityHandler(this);
 	}
 	
 	/**

@@ -24,20 +24,20 @@ public abstract class EventEntity extends Entity
 	//To cause this effect, create a smaller rectangle from the event entity cell's
 	//collision rectangle. Center this smaller rectangle around the event's center.
 	//Collide with that.
-	private final float SHRINK_SIZE_BY = 0.2f;
+	private final float SHRINK_SIZE_BY = 0.15f;
 	
 	public EventEntity(World world, float x, float y, String... arguments)
 	{
 		super(world, x, y);
-		
-		sprite.setSize(SHRINK_SIZE_BY * world.camera.TILE_SIZE, SHRINK_SIZE_BY * world.camera.TILE_SIZE);
-		sprite.setPosition(x + world.camera.TILE_SIZE / 2f - sprite.getWidth() / 2f, y + world.camera.TILE_SIZE / 2f - sprite.getHeight() / 2f);
 	}
 	
 	@Override
 	protected Sprite makeSprite(float x, float y)
 	{
-		return new Sprite();
+		Sprite s = new Sprite();
+		s.setSize(SHRINK_SIZE_BY * world.camera.TILE_SIZE, SHRINK_SIZE_BY * world.camera.TILE_SIZE);
+		s.setPosition(x + world.camera.TILE_SIZE / 2f - s.getWidth() / 2f, y + world.camera.TILE_SIZE / 2f - s.getHeight() / 2f);
+		return s;
 	}
 	
 	/**
