@@ -120,7 +120,7 @@ public class World
 
 	public void update(float delta)
 	{
-		//If there is an active event, play it. Otherwise, play the update.
+		//If there is an active event, play it. Otherwise, update normally.
 		if(event != null)
 		{
 			event.update(delta);
@@ -144,33 +144,43 @@ public class World
 	
 	public void draw()
 	{
-		//If there is an active event, play it. Otherwise, play the update.
+		//If there is an active event, play it. Otherwise, draw normally.
 		if(event != null)
 		{
 			event.draw(screen.batch);
 		}
 		else
 		{
-			//Render layers/objects under player.
-			tiled_map_renderer.setView(camera);
-			tiled_map_renderer.render(layers_under_player);
-			
-			//Render player and other entities.		
-			screen.batch.setProjectionMatrix(camera.combined);
-			screen.batch.begin();
-				player.draw(screen.batch);
-			screen.batch.end();
-			
-			//Render layers/objects over player.
-			tiled_map_renderer.render(layers_over_player);
-			
-			//Draw the overlay.	
-			Gdx.gl.glEnable(GL20.GL_BLEND);
-			screen.renderer.setColor(time_color);
-			screen.renderer.begin(ShapeType.Filled);	
-				screen.renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			screen.renderer.end();
-			Gdx.gl.glDisable(GL20.GL_BLEND);
+			worldDraw();
 		}
+	}
+	
+	/**
+	 * The function in which the actual drawing is done. Separated out so that 
+	 * events may use this as a frame buffer of sorts without getting held-up
+	 * in the draw() method.
+	 */
+	public void worldDraw()
+	{
+		//Render layers/objects under player.
+		tiled_map_renderer.setView(camera);
+		tiled_map_renderer.render(layers_under_player);
+		
+		//Render player and other entities.		
+		screen.batch.setProjectionMatrix(camera.combined);
+		screen.batch.begin();
+			player.draw(screen.batch);
+		screen.batch.end();
+		
+		//Render layers/objects over player.
+		tiled_map_renderer.render(layers_over_player);
+		
+		//Draw the overlay.	
+		Gdx.gl.glEnable(GL20.GL_BLEND);
+		screen.renderer.setColor(time_color);
+		screen.renderer.begin(ShapeType.Filled);	
+			screen.renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		screen.renderer.end();
+		Gdx.gl.glDisable(GL20.GL_BLEND);
 	}
 }

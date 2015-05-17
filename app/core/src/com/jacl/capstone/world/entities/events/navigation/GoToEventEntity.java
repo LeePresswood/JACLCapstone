@@ -58,10 +58,15 @@ public class GoToEventEntity extends EventEntity
 			//Are we ready for Phase 2?
 			if(current_fade >= FADE_TIME)
 			{
+				//Switch to the opposite direction.
 				fade_out = false;
+				current_fade = FADE_TIME;
+				
+				//Delete frame buffer.
+				sprite.getTexture().dispose();
 				
 				//Initialize the new map.
-				
+				world.init("maps/test.tmx");
 			}
 		}
 		else
@@ -72,8 +77,6 @@ public class GoToEventEntity extends EventEntity
 			if(current_fade <= 0f)
 			{
 				world.event = null;
-				sprite.getTexture().dispose();
-				world.player.sprite.translateY(world.camera.TILE_SIZE);
 			}			
 		}
 	}
@@ -81,14 +84,23 @@ public class GoToEventEntity extends EventEntity
 	@Override
 	public void draw(SpriteBatch batch)
 	{
-		//Draw the frame buffer.
-		batch.begin();
-			sprite.draw(batch);
-		batch.end();
+		//Draw the frame buffer during fading out. It is no longer necessary after that.
+		if(fade_out)
+		{
+			batch.begin();
+				sprite.draw(batch);
+			batch.end();
+		}
+		//Otherwise, do the draw function of the world.
+		else
+		{
+			world.worldDraw();
+		}
+		
 		
 		//Draw the fading.
 		Gdx.gl.glEnable(GL20.GL_BLEND);
-		world.screen.renderer.setColor(new Color(Color.rgba8888(0f, 0f, 0f, current_fade)));
+		world.screen.renderer.setColor(new Color(Color.rgba8888(0f, 0f, 0f, current_fade * 1f / FADE_TIME)));
 		world.screen.renderer.begin(ShapeType.Filled);
 			world.screen.renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		world.screen.renderer.end();
