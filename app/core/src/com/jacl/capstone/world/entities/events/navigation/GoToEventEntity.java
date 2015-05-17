@@ -23,20 +23,32 @@ public class GoToEventEntity extends EventEntity
 	private final float FADE_TIME = 0.5f;			//Time to fade (in seconds). Double this to see how long the full transition is. 
 	private float current_fade = 0f;					//Current amount of time since fade started.
 	private boolean fade_out = true;					//Are we fading in or out?
+	private Sprite buffer_sprite;						//The last known buffer of the frame. This is used to view our previous location as we fade out.
+	
+	//These are the tokens from the arguments.
+	private String map_to_load;
+	private int start_x, start_y;
 	
 	public GoToEventEntity(World world, float x, float y, String... arguments)
 	{
 		super(world, x, y, arguments);	
 		
 		//First token is the command. We already know that one. Let's look at the others (starting from 1 rather than 0).
+		//First is the map we are going to load.
+		map_to_load = arguments[1];
+		
+		//Second is this location we will spawn. Split this up.
+		String[] location = arguments[2].split(",");
+		start_x = Integer.parseInt(location[0]);
+		start_y = Integer.parseInt(location[1]);
 	}
 
 	@Override
 	public void init()
 	{
 		//We will be fading to black in this event. To do so, let's grab the frame buffer as a texture.
-		sprite = new Sprite(ScreenUtils.getFrameBufferTexture());
-		sprite.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		buffer_sprite = new Sprite(ScreenUtils.getFrameBufferTexture());
+		buffer_sprite.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 	}
 
 	@Override
@@ -46,10 +58,10 @@ public class GoToEventEntity extends EventEntity
 		 * The logic here states that we will fade to black while we leave the current map.
 		 * We will fade in from black as we arrive at the new location.
 		 * 
-		 * Do this in three parts:
-		 * 1) Fading out.
-		 * 2) Fading in.
-		 * 3) Finalizing the new map by re-initializing the world.
+		 * Do this in two parts:
+		 * 1) Fading out. Initialize new location once this is over.
+		 * 2) Fading in. Draw the world from this point on to give a
+		 * 	preview of the map we have entered.
 		 */
 		if(fade_out)
 		{
@@ -63,10 +75,10 @@ public class GoToEventEntity extends EventEntity
 				current_fade = FADE_TIME;
 				
 				//Delete frame buffer.
-				sprite.getTexture().dispose();
+				buffer_sprite.getTexture().dispose();
 				
 				//Initialize the new map.
-				world.init("maps/test.tmx");
+				world.init(map_to_load, start_x, start_y);
 			}
 		}
 		else
@@ -88,7 +100,7 @@ public class GoToEventEntity extends EventEntity
 		if(fade_out)
 		{
 			batch.begin();
-				sprite.draw(batch);
+			buffer_sprite.draw(batch);
 			batch.end();
 		}
 		//Otherwise, do the draw function of the world.
@@ -96,7 +108,6 @@ public class GoToEventEntity extends EventEntity
 		{
 			world.worldDraw();
 		}
-		
 		
 		//Draw the fading.
 		Gdx.gl.glEnable(GL20.GL_BLEND);

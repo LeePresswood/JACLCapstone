@@ -29,6 +29,7 @@ public class World
 	public SectorCamera camera;
 	
 	//Map and collision.
+	private final String MAP_DIRECTORY = "maps/";
 	public TiledMap map;
 	public TiledMapRenderer tiled_map_renderer;
 	public int[] layers_under_player, layers_over_player;
@@ -49,7 +50,7 @@ public class World
 	{
 		this.screen = screen;
 		
-		init("maps/test.tmx");
+		init("test.tmx", 1, 1);
 		
 		//Collision.		
 		collision = new CollisionHandler(this);
@@ -64,20 +65,25 @@ public class World
 	
 	/**
 	 * Call this to initialize the world to the passed map.
+	 * @param start_y 
+	 * @param start_x 
 	 * 
 	 * @param map
 	 */
-	public void init(String map_name)
+	public void init(String map_name, int start_x, int start_y)
 	{
 		//Tile map.
-		map = new TmxMapLoader().load(map_name);
+		map = new TmxMapLoader().load(MAP_DIRECTORY + map_name);
 		tiled_map_renderer = new OrthogonalTiledMapRenderer(map);
 		
 		//Camera.
 		camera = new SectorCamera(map);
 		
 		//World entities.
-		player = new Player(this, 1f, 1f);
+		player = new Player(this, start_x * camera.TILE_SIZE, start_y * camera.TILE_SIZE);
+		
+		//Update camera onto player.
+		camera.updateCamera(this);
 		
 		//Separate the map layers.
 		separateLayers();
