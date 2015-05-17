@@ -42,7 +42,6 @@ public class EventEntityHandler
 					//If the tile is not null, we can put the event into the event map.
 					if(event_layer.getCell(x, y) != null)
 					{
-						System.out.println("Event found: " + x + "," + y);
 						event_map.put(x + "," + y, EventEntityFactory.get(world, x* world.camera.TILE_SIZE, y* world.camera.TILE_SIZE, (String) event_layer.getProperties().get(x + "," + y)));
 					}
 				}
@@ -65,7 +64,7 @@ public class EventEntityHandler
 			//Now we need to determine if we have collided with the event.
 			EventEntity event = event_map.get(new_x + "," + new_y);
 			if(event.eventCollision(x, y))
-			{System.out.println(1);
+			{
 				event.init();
 				world.event = event;
 			}

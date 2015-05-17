@@ -38,7 +38,6 @@ public class GoToEventEntity extends EventEntity
 	public void update(float delta)
 	{
 		fade_time -= delta;
-		System.out.println(fade_time);
 		
 		if(fade_time <= 0)
 		{
@@ -50,5 +49,8 @@ public class GoToEventEntity extends EventEntity
 	@Override
 	public void draw(SpriteBatch batch)
 	{
+		batch.begin();
+			sprite.draw(batch);
+		batch.end();
 	}
 }

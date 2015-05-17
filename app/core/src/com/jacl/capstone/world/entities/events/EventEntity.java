@@ -24,7 +24,7 @@ public abstract class EventEntity extends Entity
 	//To cause this effect, create a smaller rectangle from the event entity cell's
 	//collision rectangle. Center this smaller rectangle around the event's center.
 	//Collide with that.
-	private final float SHRINK_SIZE_BY = 0.75f;
+	private final float SHRINK_SIZE_BY = 0.2f;
 	
 	public EventEntity(World world, float x, float y, String... arguments)
 	{
@@ -45,7 +45,7 @@ public abstract class EventEntity extends Entity
 	 * @return True if collision. False otherwise.
 	 */
 	public boolean eventCollision(float x, float y)
-	{System.out.println(x + "," + y + "\n" + sprite.getBoundingRectangle());
+	{
 		return sprite.getBoundingRectangle().contains(x, y);
 	}
 

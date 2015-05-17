@@ -26,7 +26,7 @@ public abstract class Entity
 	public Entity(World world, float x, float y)
 	{
 		this.world = world;
-		System.out.println(world + "," + this.world);
+		
 		sprite = makeSprite(x, y);
 	}
 	

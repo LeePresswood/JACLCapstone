@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -41,7 +40,6 @@ public class World
 	
 	//Atmosphere.
 	public GameTime time;
-	public ShapeRenderer shape_renderer;
 	public Color time_color;
 
 	//Events.
@@ -70,7 +68,6 @@ public class World
 		
 		//Get the world timing and the effects that will result from it.
 		time = new GameTime();
-		shape_renderer = new ShapeRenderer();
 		time_color = TimeColorer.getColor(time);
 		
 		//Get event items.
@@ -159,10 +156,10 @@ public class World
 			
 			//Draw the overlay.	
 			Gdx.gl.glEnable(GL20.GL_BLEND);
-			shape_renderer.setColor(time_color);
-			shape_renderer.begin(ShapeType.Filled);	
-				shape_renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			shape_renderer.end();
+			screen.renderer.setColor(time_color);
+			screen.renderer.begin(ShapeType.Filled);	
+				screen.renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			screen.renderer.end();
 			Gdx.gl.glDisable(GL20.GL_BLEND);
 		}
 	}
