@@ -21,14 +21,14 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 public class SectorCamera extends OrthographicCamera
 {
 	//Define how many tiles we want to see. Define one in terms of the other so that we only need to change the independent one in the future.
-	public final float TILES_HORIZONTAL = 20f;
-	public final float TILES_VERTICAL = TILES_HORIZONTAL * 9f / 16f;
+	private final float TILES_HORIZONTAL = 20f;
+	private final float TILES_VERTICAL = TILES_HORIZONTAL * 9f / 16f;
 	
 	//Each tile will be a certain width/height. This is defined in the map file.
-	public final float TILE_SIZE;
+	private final float TILE_SIZE;
 
 	//The map will also define the width and height of the map in tiles.
-	public final int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
+	private final int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
 	
 	public SectorCamera(TiledMap map)
 	{

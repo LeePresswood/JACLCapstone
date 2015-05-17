@@ -63,12 +63,12 @@ public abstract class Entity
 	
 	public int getTileX()
 	{
-		return (int) (getCenterX() / world.camera.TILE_SIZE);
+		return (int) (getCenterX() / world.map_manager.TILE_SIZE);
 	}
 	
 	public int getTileY()
 	{
-		return (int) (getCenterY() / world.camera.TILE_SIZE);
+		return (int) (getCenterY() / world.map_manager.TILE_SIZE);
 	}
 	
 	/**

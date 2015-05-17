@@ -16,11 +16,20 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
  */
 public class MapManager
 {
+	//Map naming.
 	private final String MAP_DIRECTORY = "maps/";
 	public String map_name;
+	
+	//Map and layers.
 	public TiledMap map;
 	public TiledMapRenderer tiled_map_renderer;
 	public int[] layers_under_player, layers_over_player;
+	
+	//Each tile will be a certain width/height. This is defined in the map file.
+	public float TILE_SIZE;
+
+	//The map will also define the width and height of the map in tiles.
+	public int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
 	
 	/**
 	 * Initialize portions of the map.
@@ -31,6 +40,11 @@ public class MapManager
 		this.map_name = map_name;
 		map = new TmxMapLoader().load(MAP_DIRECTORY + map_name);
 		tiled_map_renderer = new OrthogonalTiledMapRenderer(map);
+		
+		//Read bounds and sizes of map.
+		TILE_SIZE = map.getProperties().get("tilewidth", Integer.class);
+		TILES_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
+		TILES_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);
 		
 		//Separate the map layers.
 		separateLayers();

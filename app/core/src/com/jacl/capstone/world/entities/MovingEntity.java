@@ -23,7 +23,7 @@ public abstract class MovingEntity extends Entity
 		super(world, x, y);
 		
 		//Speed is set by the derived classes. Set in terms of tiles per second..
-		speed = setSpeed() * world.camera.TILE_SIZE;
+		speed = setSpeed() * world.map_manager.TILE_SIZE;
 		
 		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
 		final float jump_percent = 0.40f;

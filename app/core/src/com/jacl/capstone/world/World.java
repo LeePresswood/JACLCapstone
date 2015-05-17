@@ -26,7 +26,7 @@ public class World
 	public StateSaver saver;
 	public MapManager map_manager;
 	public CollisionHandler collision;	
-	public EventEntityHandler event_handler;	
+	public EventEntityHandler event_handler;
 	
 	//Entities.
 	public Player player;
@@ -58,7 +58,7 @@ public class World
 		camera = new SectorCamera(map_manager.map);
 		
 		//World entities.
-		player = new Player(this, start_x * camera.TILE_SIZE, start_y * camera.TILE_SIZE);
+		player = new Player(this, start_x * map_manager.TILE_SIZE, start_y * map_manager.TILE_SIZE);
 		
 		//Update camera onto player.
 		camera.updateCamera(this);
