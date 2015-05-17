@@ -19,21 +19,6 @@ public class GameTime
 	{
 		hours = 0;
 		minutes = 0;
-		
-		buffer = 0f;
-	}
-	
-	/**
-	 * Sets the game time to the passed hours and minutes.
-	 * @param hours
-	 * @param minutes
-	 */
-	public GameTime(int hours, int minutes)
-	{
-		this.hours = hours;
-		this.minutes = minutes;
-		
-		buffer = 0f;
 	}
 	
 	/**
@@ -45,8 +30,6 @@ public class GameTime
 		String[] splitter = time.split(":");
 		hours = Integer.parseInt(splitter[0]);
 		minutes = Integer.parseInt(splitter[1]);
-		
-		buffer = 0f;
 	}
 	
 	/**
@@ -54,12 +37,10 @@ public class GameTime
 	 * @param hours
 	 * @param minutes
 	 */
-	public GameTime(int hours, int minutes, int seconds)
+	public GameTime(int hours, int minutes)
 	{
 		this.hours = hours;
 		this.minutes = minutes;
-		
-		buffer = 0f;
 	}
 	
 	/**
@@ -74,7 +55,10 @@ public class GameTime
 	
 	@Override
 	/**
-	 * Represent the game time as a string of hours:minutes.
+	 * Represent the game time as a string of the
+	 * form hours:minutes. Note: Will format hours
+	 * or minutes less than 10 to a two-digit 
+	 * format.
 	 */
 	public String toString()
 	{
