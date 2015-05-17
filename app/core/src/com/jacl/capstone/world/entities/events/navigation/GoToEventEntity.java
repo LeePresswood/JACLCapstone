@@ -89,7 +89,7 @@ public class GoToEventEntity extends EventEntity
 			//Are we ready for Phase 3?
 			if(current_fade <= 0f)
 			{
-				world.event = null;
+				world.event_handler.event = null;
 			}			
 		}
 	}

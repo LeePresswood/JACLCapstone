@@ -8,7 +8,6 @@ import com.jacl.capstone.data.StateSaver;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.atmosphere.GameTime;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
-import com.jacl.capstone.world.entities.events.EventEntity;
 import com.jacl.capstone.world.entities.events.EventEntityHandler;
 import com.jacl.capstone.world.entities.player.Player;
 
@@ -30,7 +29,6 @@ public class World
 	
 	//Entities.
 	public Player player;
-	public EventEntity event;
 	
 	//Atmosphere.
 	public GameTime time;
@@ -69,8 +67,8 @@ public class World
 	public void update(float delta)
 	{
 		//If there is an active event, play it. Otherwise, update normally.
-		if(event != null)
-			event.update(delta);
+		if(event_handler.event != null)
+			event_handler.event.update(delta);
 		else
 			worldUpdate(delta);
 	}
@@ -78,8 +76,8 @@ public class World
 	public void draw()
 	{
 		//If there is an active event, draw it. Otherwise, draw normally.
-		if(event != null)
-			event.draw(screen.batch);
+		if(event_handler.event != null)
+			event_handler.event.draw(screen.batch);
 		else
 			worldDraw();
 	}

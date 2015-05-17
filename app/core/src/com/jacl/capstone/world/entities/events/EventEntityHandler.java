@@ -22,8 +22,12 @@ public class EventEntityHandler
 {
 	public World world;
 	
+	//Map-related items.
 	private TiledMapTileLayer event_layer;
 	private HashMap<String, EventEntity> event_map;
+	
+	//Currently selected event.
+	public EventEntity event;
 	
 	public EventEntityHandler(World world)
 	{
@@ -69,7 +73,7 @@ public class EventEntityHandler
 			if(event.eventCollision(x, y))
 			{
 				event.init();
-				world.event = event;
+				world.event_handler.event = event;
 				
 				//Reset the event at that HashMap spot.
 				event_map.put(new_x + "," + new_y, EventEntityFactory.get(world, new_x * world.map_manager.TILE_SIZE, new_y * world.map_manager.TILE_SIZE, (String) event_layer.getProperties().get(new_x + "," + new_y)));
