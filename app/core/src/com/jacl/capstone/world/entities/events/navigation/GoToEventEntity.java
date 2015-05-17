@@ -20,14 +20,15 @@ import com.jacl.capstone.world.entities.events.EventEntity;
  */
 public class GoToEventEntity extends EventEntity
 {
-	private final float FADE_TIME = 0.5f;			//Time to fade (in seconds). Double this to see how long the full transition is. 
+	//Fade-related items.
+	private final float FADE_TIME = 1f;				//Time to fade (in seconds). Double this to see how long the full transition is. 
 	private float current_fade = 0f;					//Current amount of time since fade started.
 	private boolean fade_out = true;					//Are we fading in or out?
 	private Sprite buffer_sprite;						//The last known buffer of the frame. This is used to view our previous location as we fade out.
 	
 	//These are the tokens from the arguments.
-	private String map_to_load;
-	private int start_x, start_y;
+	private String map_to_load;						//Name of the map file to load. Note: Do not include the map directory. It is done automatically in the World class.
+	private int start_x, start_y;						//The X and Y tile locations of the block we will end up on after the new map loads.
 	
 	public GoToEventEntity(World world, float x, float y, String... arguments)
 	{

@@ -52,15 +52,9 @@ public class World
 		
 		init("test.tmx", 1, 1);
 		
-		//Collision.		
-		collision = new CollisionHandler(this);
-		
 		//Get the world timing and the effects that will result from it.
 		time = new GameTime();
 		time_color = TimeColorer.getColor(time);
-		
-		//Get event items.
-		event_handler = new EventEntityHandler(this);
 	}
 	
 	/**
@@ -86,6 +80,12 @@ public class World
 		
 		//Separate the map layers.
 		separateLayers();
+		
+		//Collision.		
+		collision = new CollisionHandler(this);
+		
+		//Get event items.
+		event_handler = new EventEntityHandler(this);
 	}
 	
 	/**
