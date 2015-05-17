@@ -28,9 +28,12 @@ public class EventEntityHandler
 	public EventEntityHandler(World world)
 	{
 		this.world = world;
-		
+	}
+	
+	public void handlerInit()
+	{
 		event_layer = (TiledMapTileLayer) world.map_manager.map.getLayers().get("Events");
-		
+				
 		//Get cells.
 		if(event_layer != null)
 		{

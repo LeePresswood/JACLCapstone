@@ -21,7 +21,10 @@ public class CollisionHandler
 	public CollisionHandler(World world)
 	{
 		this.world = world;
-		
+	}
+	
+	public void handlerInit()
+	{
 		collision_layer = (TiledMapTileLayer) world.map_manager.map.getLayers().get(COLLISION_LAYER_INDEX);
 		
 		//Get cells.

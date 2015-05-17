@@ -1,7 +1,6 @@
 package com.jacl.capstone.world;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.maps.tiled.TiledMap;
 
 /**
  * Idea behind the camera:
@@ -20,29 +19,36 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
  */
 public class SectorCamera extends OrthographicCamera
 {
+	public World world;
+	
 	//Define how many tiles we want to see. Define one in terms of the other so that we only need to change the independent one in the future.
 	private final float TILES_HORIZONTAL = 20f;
 	private final float TILES_VERTICAL = TILES_HORIZONTAL * 9f / 16f;
 	
 	//Each tile will be a certain width/height. This is defined in the map file.
-	private final float TILE_SIZE;
+	private float TILE_SIZE;
 
 	//The map will also define the width and height of the map in tiles.
-	private final int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
+	private int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
 	
-	public SectorCamera(TiledMap map)
+	public SectorCamera(World world)
 	{
 		super();
 		
+		this.world = world;
+	}
+	
+	public void handlerInit()
+	{
 		//Read bounds and sizes of map.
-		TILE_SIZE = map.getProperties().get("tilewidth", Integer.class);
-		TILES_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
-		TILES_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);
+		TILE_SIZE = world.map_manager.map.getProperties().get("tilewidth", Integer.class);
+		TILES_TOTAL_HORIZONTAL = world.map_manager.map.getProperties().get("width", Integer.class);
+		TILES_TOTAL_VERTICAL = world.map_manager.map.getProperties().get("height", Integer.class);
 		
 		//Define camera width and height in terms of tiles. 
 		//This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
 		setToOrtho(false, TILE_SIZE * TILES_HORIZONTAL, TILE_SIZE * TILES_VERTICAL);
-		update();
+		updateCamera(world);
 	}
 	
 	/**

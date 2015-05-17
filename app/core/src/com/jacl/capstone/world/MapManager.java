@@ -16,6 +16,8 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
  */
 public class MapManager
 {
+	public World world;
+	
 	//Map naming.
 	private final String MAP_DIRECTORY = "maps/";
 	public String map_name;
@@ -31,10 +33,15 @@ public class MapManager
 	//The map will also define the width and height of the map in tiles.
 	public int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
 	
+	public MapManager(World world)
+	{
+		this.world = world;
+	}
+
 	/**
 	 * Initialize portions of the map.
 	 */
-	public void map_init(String map_name)
+	public void handlerInit(String map_name)
 	{
 		//Get map data.
 		this.map_name = map_name;

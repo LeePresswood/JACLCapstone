@@ -39,7 +39,13 @@ public class World
 	public World(ScreenGame screen)
 	{
 		this.screen = screen;
+		
+		//Initialize helpers.
 		saver = new StateSaver(this);
+		map_manager = new MapManager(this);
+		collision = new CollisionHandler(this);
+		event_handler = new EventEntityHandler(this);
+		camera = new SectorCamera(this);
 	}
 	
 	/**
@@ -49,25 +55,15 @@ public class World
 	 * @param start_y Player's starting Y location (in blocks). 
 	 */
 	public void init(String map_name, int start_x, int start_y)
-	{
-		//Tile map.
-		map_manager = new MapManager();
-		map_manager.map_init(map_name);
+	{		
+		map_manager.handlerInit(map_name);
 		
-		//Camera.
-		camera = new SectorCamera(map_manager.map);
-		
-		//World entities.
+		//We will eventually have an EntityManager here to complete the set.
 		player = new Player(this, start_x * map_manager.TILE_SIZE, start_y * map_manager.TILE_SIZE);
 		
-		//Update camera onto player.
-		camera.updateCamera(this);
-		
-		//Collision.		
-		collision = new CollisionHandler(this);
-		
-		//Get event items.
-		event_handler = new EventEntityHandler(this);
+		camera.handlerInit();
+		collision.handlerInit();
+		event_handler.handlerInit();
 	}
 
 	public void update(float delta)
@@ -81,7 +77,7 @@ public class World
 	
 	public void draw()
 	{
-		//If there is an active event, play it. Otherwise, draw normally.
+		//If there is an active event, draw it. Otherwise, draw normally.
 		if(event != null)
 			event.draw(screen.batch);
 		else
@@ -105,7 +101,7 @@ public class World
 		//Update entities.
 		player.update(delta);
 		
-		//Update camera.
+		//Update camera onto player.
 		camera.updateCamera(this);
 	}
 	
