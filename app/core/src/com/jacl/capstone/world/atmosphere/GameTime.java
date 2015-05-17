@@ -24,6 +24,32 @@ public class GameTime
 	}
 	
 	/**
+	 * Sets the game time to the passed hours and minutes.
+	 * @param hours
+	 * @param minutes
+	 */
+	public GameTime(int hours, int minutes)
+	{
+		this.hours = hours;
+		this.minutes = minutes;
+		
+		buffer = 0f;
+	}
+	
+	/**
+	 * Sets the game time after extracting the time from the passed string. Used in loading saves.
+	 * @param time
+	 */
+	public GameTime(String time)
+	{
+		String[] splitter = time.split(":");
+		hours = Integer.parseInt(splitter[0]);
+		minutes = Integer.parseInt(splitter[1]);
+		
+		buffer = 0f;
+	}
+	
+	/**
 	 * Allows us to initialize the game time from a specific point.
 	 * @param hours
 	 * @param minutes

@@ -1,0 +1,2 @@
+time 00:02
+player_location 176.0 96.0

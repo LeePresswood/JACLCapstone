@@ -50,7 +50,7 @@ public class World
 	{
 		this.screen = screen;
 		
-		init("test.tmx", 1, 1);
+		init("test.tmx", 11, 6);
 		
 		//Get the world timing and the effects that will result from it.
 		time = new GameTime();

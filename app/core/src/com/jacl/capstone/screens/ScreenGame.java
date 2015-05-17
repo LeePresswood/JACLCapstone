@@ -1,6 +1,10 @@
 package com.jacl.capstone.screens;
 
+import java.util.Scanner;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
 import com.jacl.capstone.hud.HUDManager;
@@ -50,5 +54,43 @@ public class ScreenGame extends ScreenParent
 		 */
 		world.draw();
 		hud.draw();
+	}
+	
+	@Override
+	/**
+	 * This is called when the screen is first made.
+	 * Gather the player's location and time from the save file.
+	 */	
+	public void show()
+	{
+		//Read from save file.
+		FileHandle file = Gdx.files.local("test_save.txt");
+		Scanner scanner = new Scanner(file.read());
+		
+		//Read the time.
+		String time_line = scanner.nextLine().split(" ")[1];
+		
+		//Read player's location.
+		String location_line[] = scanner.nextLine().split(" ");
+		float x = Float.parseFloat(location_line[1]);
+		float y = Float.parseFloat(location_line[2]);
+		
+		//Push these into the game's world.
+		
+		//Done reading.
+		scanner.close();
+	}
+	
+	@Override
+	/**
+	 * This is called when this screen is closed.
+	 * Save the player's location and time to the save file.
+	 */
+	public void hide()
+	{System.out.println(1);
+		//Create a new file for save.
+		FileHandle file = Gdx.files.local("test_save.txt");
+		file.writeString("time " + world.time.toString() + "\n", false);
+		file.writeString("player_location " + world.player.getLeft() + " " + world.player.getBottom() + "\n", true);
 	}
 }
