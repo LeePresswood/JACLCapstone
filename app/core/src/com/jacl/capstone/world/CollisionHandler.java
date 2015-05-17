@@ -22,7 +22,7 @@ public class CollisionHandler
 	{
 		this.world = world;
 		
-		collision_layer = (TiledMapTileLayer) world.map.getLayers().get(COLLISION_LAYER_INDEX);
+		collision_layer = (TiledMapTileLayer) world.map_manager.map.getLayers().get(COLLISION_LAYER_INDEX);
 		
 		//Get cells.
 		cells = new Cell[collision_layer.getHeight()][collision_layer.getWidth()];
