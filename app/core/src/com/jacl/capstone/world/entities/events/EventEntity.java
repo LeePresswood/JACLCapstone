@@ -35,8 +35,8 @@ public abstract class EventEntity extends Entity
 	protected Sprite makeSprite(float x, float y)
 	{
 		Sprite s = new Sprite();
-		s.setSize(SHRINK_SIZE_BY * world.map_manager.TILE_SIZE, SHRINK_SIZE_BY * world.map_manager.TILE_SIZE);
-		s.setPosition(x + world.map_manager.TILE_SIZE / 2f - s.getWidth() / 2f, y + world.map_manager.TILE_SIZE / 2f - s.getHeight() / 2f);
+		s.setSize(SHRINK_SIZE_BY * world.map_manager.tile_size, SHRINK_SIZE_BY * world.map_manager.tile_size);
+		s.setPosition(x + world.map_manager.tile_size / 2f - s.getWidth() / 2f, y + world.map_manager.tile_size / 2f - s.getHeight() / 2f);
 		return s;
 	}
 	

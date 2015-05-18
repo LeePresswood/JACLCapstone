@@ -57,7 +57,7 @@ public class World
 		map_manager.handlerInit(map_name);
 		
 		//We will eventually have an EntityManager here to complete the set.
-		player = new Player(this, start_x * map_manager.TILE_SIZE, start_y * map_manager.TILE_SIZE);
+		player = new Player(this, start_x * map_manager.tile_size, start_y * map_manager.tile_size);
 		
 		camera.handlerInit();
 		collision.handlerInit();
@@ -123,12 +123,15 @@ public class World
 		//Render layers/objects over player.
 		map_manager.tiled_map_renderer.render(map_manager.layers_over_player);
 		
-		//Draw the overlay.	
-		Gdx.gl.glEnable(GL20.GL_BLEND);
-		screen.renderer.setColor(time_color);
-		screen.renderer.begin(ShapeType.Filled);	
-			screen.renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		screen.renderer.end();
-		Gdx.gl.glDisable(GL20.GL_BLEND);
+		//Draw the day/night overlay if we are outside.
+		if(map_manager.isOutside)
+		{
+			Gdx.gl.glEnable(GL20.GL_BLEND);
+			screen.renderer.setColor(time_color);
+			screen.renderer.begin(ShapeType.Filled);	
+				screen.renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			screen.renderer.end();
+			Gdx.gl.glDisable(GL20.GL_BLEND);
+		}
 	}
 }

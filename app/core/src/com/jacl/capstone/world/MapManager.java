@@ -27,11 +27,12 @@ public class MapManager
 	public TiledMapRenderer tiled_map_renderer;
 	public int[] layers_under_player, layers_over_player;
 	
-	//Each tile will be a certain width/height. This is defined in the map file.
-	public float TILE_SIZE;
-
-	//The map will also define the width and height of the map in tiles.
-	public int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
+	//Each tile will be a certain width/height. This is defined in the map file. The map will also define the width and height of the map in tiles.
+	public float tile_size;
+	public int tiles_total_horizontal, tiles_total_vertical;
+	
+	//Other map qualities.
+	public boolean isOutside;
 	
 	public MapManager(World world)
 	{
@@ -49,9 +50,12 @@ public class MapManager
 		tiled_map_renderer = new OrthogonalTiledMapRenderer(map);
 		
 		//Read bounds and sizes of map.
-		TILE_SIZE = map.getProperties().get("tilewidth", Integer.class);
-		TILES_TOTAL_HORIZONTAL = map.getProperties().get("width", Integer.class);
-		TILES_TOTAL_VERTICAL = map.getProperties().get("height", Integer.class);
+		tile_size = map.getProperties().get("tilewidth", Integer.class);
+		tiles_total_horizontal = map.getProperties().get("width", Integer.class);
+		tiles_total_vertical = map.getProperties().get("height", Integer.class);
+		
+		//Read other map qualties
+		isOutside = Boolean.parseBoolean(map.getProperties().get("outside", String.class));
 		
 		//Separate the map layers.
 		separateLayers();

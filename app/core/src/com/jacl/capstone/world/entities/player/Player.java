@@ -47,7 +47,7 @@ public class Player extends MovingEntity
 	protected Sprite makeSprite(float x, float y)
 	{
 		Sprite s = new Sprite(new Texture(Gdx.files.internal("image.png")));
-		s.setBounds(x, y, 1f * world.map_manager.TILE_SIZE, 1f * world.map_manager.TILE_SIZE);
+		s.setBounds(x, y, 1f * world.map_manager.tile_size, 1f * world.map_manager.tile_size);
 		return s;
 	}
 	
