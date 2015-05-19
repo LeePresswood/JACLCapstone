@@ -10,7 +10,6 @@ import com.jacl.capstone.world.atmosphere.GameTime;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
 import com.jacl.capstone.world.entities.EntityHandler;
 import com.jacl.capstone.world.entities.events.EventEntityHandler;
-import com.jacl.capstone.world.entities.player.Player;
 
 /**
  * Handles the updating and rendering of game objects. Create managers to keep this class general.
@@ -21,16 +20,13 @@ public class World
 {
 	public ScreenGame screen;	
 	
-	//Helpers.
+	//Handlers.
 	public CameraHandler camera;
 	public SaveHandler saver;
 	public MapHandler map_manager;
 	public EntityHandler entity_handler;
 	public CollisionHandler collision;	
 	public EventEntityHandler event_handler;
-	
-	//Entities.
-	public Player player;
 	
 	//Atmosphere.
 	public GameTime time;
@@ -97,7 +93,7 @@ public class World
 			time_color = TimeColorer.getColor(time);
 		
 		//Update entities.
-		player.update(delta);
+		entity_handler.update(delta);
 		
 		//Update camera onto player.
 		camera.updateCamera(this);
@@ -115,10 +111,7 @@ public class World
 		map_manager.tiled_map_renderer.render(map_manager.layers_under_player);
 		
 		//Render player and other entities.		
-		screen.batch.setProjectionMatrix(camera.combined);
-		screen.batch.begin();
-			player.draw(screen.batch);
-		screen.batch.end();
+		entity_handler.draw();
 		
 		//Render layers/objects over player.
 		map_manager.tiled_map_renderer.render(map_manager.layers_over_player);

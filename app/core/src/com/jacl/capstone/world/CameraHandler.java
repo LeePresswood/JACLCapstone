@@ -63,7 +63,7 @@ public class CameraHandler extends OrthographicCamera
 	public void updateCamera(World world)
 	{
 		//Look at player.
-		position.set(world.player.getCenterX(), world.player.getCenterY(), 0);
+		position.set(world.entity_handler.player.getCenterX(), world.entity_handler.player.getCenterY(), 0);
 				
 		//Adjust bounds in accordance with the world's bounds.
 		//Left side
