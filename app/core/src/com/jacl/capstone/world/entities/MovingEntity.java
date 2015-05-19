@@ -23,7 +23,7 @@ public abstract class MovingEntity extends Entity
 		super(world, x, y);
 		
 		//Speed is set by the derived classes. Set in terms of tiles per second..
-		speed = setSpeed() * world.map_manager.tile_size;
+		speed = setSpeed() * world.map_handler.tile_size;
 		
 		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
 		final float jump_percent = 0.40f;
@@ -52,21 +52,21 @@ public abstract class MovingEntity extends Entity
 	protected void cellCollision(boolean left, boolean right, boolean up, boolean down)
 	{
 		//If the cell we collided with is solid, return to our previous position.
-		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
+		if(left && world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
 			sprite.setX(store_x);
-		if(left && world.collision.getCollisionCell(this.getLeft(), this.getCenterY() - jump_y) != null)
+		if(left && world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() - jump_y) != null)
 			sprite.setX(store_x);
-		if(right && world.collision.getCollisionCell(this.getRight(), this.getCenterY() + jump_y) != null)
+		if(right && world.collision_handler.getCollisionCell(this.getRight(), this.getCenterY() + jump_y) != null)
 			sprite.setX(store_x);
-		if(right && world.collision.getCollisionCell(this.getRight(), this.getCenterY() - jump_y) != null)
+		if(right && world.collision_handler.getCollisionCell(this.getRight(), this.getCenterY() - jump_y) != null)
 			sprite.setX(store_x);
-		if(up && world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getTop()) != null)
+		if(up && world.collision_handler.getCollisionCell(this.getCenterX() + jump_x, this.getTop()) != null)
 			sprite.setY(store_y);
-		if(up && world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getTop()) != null)
+		if(up && world.collision_handler.getCollisionCell(this.getCenterX() - jump_x, this.getTop()) != null)
 			sprite.setY(store_y);
-		if(down && world.collision.getCollisionCell(this.getCenterX() + jump_x, this.getBottom()) != null)
+		if(down && world.collision_handler.getCollisionCell(this.getCenterX() + jump_x, this.getBottom()) != null)
 			sprite.setY(store_y);
-		if(down && world.collision.getCollisionCell(this.getCenterX() - jump_x, this.getBottom()) != null)
+		if(down && world.collision_handler.getCollisionCell(this.getCenterX() - jump_x, this.getBottom()) != null)
 			sprite.setY(store_y);
 	}
 	

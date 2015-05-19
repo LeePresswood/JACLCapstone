@@ -25,7 +25,7 @@ public abstract class ProjectileEntity extends Entity
 		angle = MathUtils.atan2(y2 - y1, x2 - x1) * MathUtils.radiansToDegrees;
 		
 		//Speed is set by the derived classes. Set in terms of tiles per second.
-		speed = setSpeed() * world.map_manager.tile_size;
+		speed = setSpeed() * world.map_handler.tile_size;
 		
 		//Center the sprite around the vector.
 		sprite.setPosition(position.x - sprite.getWidth() / 2f, position.y - sprite.getHeight() / 2f);

@@ -36,7 +36,7 @@ public class EventEntityHandler
 	
 	public void handlerInit()
 	{
-		event_layer = (TiledMapTileLayer) world.map_manager.map.getLayers().get("Events");
+		event_layer = (TiledMapTileLayer) world.map_handler.map.getLayers().get("Events");
 				
 		//Get cells.
 		if(event_layer != null)
@@ -49,7 +49,7 @@ public class EventEntityHandler
 					//If the tile is not null, we can put the event into the event map.
 					if(event_layer.getCell(x, y) != null)
 					{
-						event_map.put(x + "," + y, EventEntityFactory.get(world, x * world.map_manager.tile_size, y * world.map_manager.tile_size, (String) event_layer.getProperties().get(x + "," + y)));
+						event_map.put(x + "," + y, EventEntityFactory.get(world, x * world.map_handler.tile_size, y * world.map_handler.tile_size, (String) event_layer.getProperties().get(x + "," + y)));
 					}
 				}
 			}
@@ -76,7 +76,7 @@ public class EventEntityHandler
 				world.event_handler.event = event;
 				
 				//Reset the event at that HashMap spot.
-				event_map.put(new_x + "," + new_y, EventEntityFactory.get(world, new_x * world.map_manager.tile_size, new_y * world.map_manager.tile_size, (String) event_layer.getProperties().get(new_x + "," + new_y)));
+				event_map.put(new_x + "," + new_y, EventEntityFactory.get(world, new_x * world.map_handler.tile_size, new_y * world.map_handler.tile_size, (String) event_layer.getProperties().get(new_x + "," + new_y)));
 			}
 		}
 	}

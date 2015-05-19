@@ -21,11 +21,11 @@ public class World
 	public ScreenGame screen;	
 	
 	//Handlers.
-	public CameraHandler camera;
-	public SaveHandler saver;
-	public MapHandler map_manager;
+	public CameraHandler camera_handler;
+	public SaveHandler save_handler;
+	public MapHandler map_handler;
 	public EntityHandler entity_handler;
-	public CollisionHandler collision;	
+	public CollisionHandler collision_handler;	
 	public EventEntityHandler event_handler;
 	
 	//Atmosphere.
@@ -37,12 +37,12 @@ public class World
 		this.screen = screen;
 		
 		//Initialize helpers.
-		saver = new SaveHandler(this);
-		map_manager = new MapHandler(this);
+		save_handler = new SaveHandler(this);
+		map_handler = new MapHandler(this);
 		entity_handler = new EntityHandler(this);
-		collision = new CollisionHandler(this);
+		collision_handler = new CollisionHandler(this);
 		event_handler = new EventEntityHandler(this);
-		camera = new CameraHandler(this);
+		camera_handler = new CameraHandler(this);
 	}
 	
 	/**
@@ -53,10 +53,10 @@ public class World
 	 */
 	public void init(String map_name, int start_x, int start_y)
 	{		
-		map_manager.handlerInit(map_name);
+		map_handler.handlerInit(map_name);
 		entity_handler.handlerInit(start_x, start_y);
-		camera.handlerInit();
-		collision.handlerInit();
+		camera_handler.handlerInit();
+		collision_handler.handlerInit();
 		event_handler.handlerInit();
 	}
 
@@ -96,7 +96,7 @@ public class World
 		entity_handler.update(delta);
 		
 		//Update camera onto player.
-		camera.updateCamera(this);
+		camera_handler.updateCamera(this);
 	}
 	
 	/**
@@ -107,17 +107,17 @@ public class World
 	public void worldDraw()
 	{
 		//Render layers/objects under player.
-		map_manager.tiled_map_renderer.setView(camera);
-		map_manager.tiled_map_renderer.render(map_manager.layers_under_player);
+		map_handler.tiled_map_renderer.setView(camera_handler);
+		map_handler.tiled_map_renderer.render(map_handler.layers_under_player);
 		
 		//Render player and other entities.		
 		entity_handler.draw();
 		
 		//Render layers/objects over player.
-		map_manager.tiled_map_renderer.render(map_manager.layers_over_player);
+		map_handler.tiled_map_renderer.render(map_handler.layers_over_player);
 		
 		//Draw the day/night overlay if we are outside.
-		if(map_manager.isOutside)
+		if(map_handler.isOutside)
 		{
 			Gdx.gl.glEnable(GL20.GL_BLEND);
 			screen.renderer.setColor(time_color);

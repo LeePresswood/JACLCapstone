@@ -85,6 +85,6 @@ public class SaveHandler
 		FileHandle file = Gdx.files.local(SAVE_DIR + "test_save.txt");
 		file.writeString("time " + world.time.toString() + "\n", false);
 		file.writeString("player_location " + world.entity_handler.player.getTileX() + " " + world.entity_handler.player.getTileY() + "\n", true);
-		file.writeString("map " + world.map_manager.map_name + "\n", true);
+		file.writeString("map " + world.map_handler.map_name + "\n", true);
 	}
 }

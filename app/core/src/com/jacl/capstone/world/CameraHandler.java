@@ -41,9 +41,9 @@ public class CameraHandler extends OrthographicCamera
 	public void handlerInit()
 	{
 		//Read bounds and sizes of map.
-		TILE_SIZE = world.map_manager.map.getProperties().get("tilewidth", Integer.class);
-		TILES_TOTAL_HORIZONTAL = world.map_manager.map.getProperties().get("width", Integer.class);
-		TILES_TOTAL_VERTICAL = world.map_manager.map.getProperties().get("height", Integer.class);
+		TILE_SIZE = world.map_handler.map.getProperties().get("tilewidth", Integer.class);
+		TILES_TOTAL_HORIZONTAL = world.map_handler.map.getProperties().get("width", Integer.class);
+		TILES_TOTAL_VERTICAL = world.map_handler.map.getProperties().get("height", Integer.class);
 		
 		//Define camera width and height in terms of tiles. 
 		//This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 

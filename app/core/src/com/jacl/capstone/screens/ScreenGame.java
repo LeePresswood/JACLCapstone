@@ -59,7 +59,7 @@ public class ScreenGame extends ScreenParent
 	 */	
 	public void show()
 	{
-		world.saver.read();
+		world.save_handler.read();
 	}
 	
 	@Override
@@ -69,6 +69,6 @@ public class ScreenGame extends ScreenParent
 	 */
 	public void hide()
 	{
-		world.saver.write();
+		world.save_handler.write();
 	}
 }
