@@ -17,7 +17,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
  * 
  * @author Lee
  */
-public class SectorCamera extends OrthographicCamera
+public class CameraHandler extends OrthographicCamera
 {
 	public World world;
 	
@@ -31,7 +31,7 @@ public class SectorCamera extends OrthographicCamera
 	//The map will also define the width and height of the map in tiles.
 	private int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
 	
-	public SectorCamera(World world)
+	public CameraHandler(World world)
 	{
 		super();
 		

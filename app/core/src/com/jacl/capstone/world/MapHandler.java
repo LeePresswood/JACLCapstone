@@ -14,7 +14,7 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
  * @author Lee
  *
  */
-public class MapManager
+public class MapHandler
 {
 	public World world;
 	
@@ -34,7 +34,7 @@ public class MapManager
 	//Other map qualities.
 	public boolean isOutside;
 	
-	public MapManager(World world)
+	public MapHandler(World world)
 	{
 		this.world = world;
 	}

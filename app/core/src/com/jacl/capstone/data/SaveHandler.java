@@ -15,12 +15,12 @@ import com.jacl.capstone.world.atmosphere.TimeColorer;
  * @author Lee
  *
  */
-public class StateSaver
+public class SaveHandler
 {
 	private final String SAVE_DIR = "saves/";
 	public World world;
 	
-	public StateSaver(World world)
+	public SaveHandler(World world)
 	{
 		this.world = world;
 		

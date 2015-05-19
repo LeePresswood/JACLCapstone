@@ -4,10 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.jacl.capstone.data.StateSaver;
+import com.jacl.capstone.data.SaveHandler;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.atmosphere.GameTime;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
+import com.jacl.capstone.world.entities.EntityHandler;
 import com.jacl.capstone.world.entities.events.EventEntityHandler;
 import com.jacl.capstone.world.entities.player.Player;
 
@@ -21,9 +22,10 @@ public class World
 	public ScreenGame screen;	
 	
 	//Helpers.
-	public SectorCamera camera;
-	public StateSaver saver;
-	public MapManager map_manager;
+	public CameraHandler camera;
+	public SaveHandler saver;
+	public MapHandler map_manager;
+	public EntityHandler entity_handler;
 	public CollisionHandler collision;	
 	public EventEntityHandler event_handler;
 	
@@ -39,11 +41,12 @@ public class World
 		this.screen = screen;
 		
 		//Initialize helpers.
-		saver = new StateSaver(this);
-		map_manager = new MapManager(this);
+		saver = new SaveHandler(this);
+		map_manager = new MapHandler(this);
+		entity_handler = new EntityHandler(this);
 		collision = new CollisionHandler(this);
 		event_handler = new EventEntityHandler(this);
-		camera = new SectorCamera(this);
+		camera = new CameraHandler(this);
 	}
 	
 	/**
@@ -55,10 +58,7 @@ public class World
 	public void init(String map_name, int start_x, int start_y)
 	{		
 		map_manager.handlerInit(map_name);
-		
-		//We will eventually have an EntityManager here to complete the set.
-		player = new Player(this, start_x * map_manager.tile_size, start_y * map_manager.tile_size);
-		
+		entity_handler.handlerInit(start_x, start_y);
 		camera.handlerInit();
 		collision.handlerInit();
 		event_handler.handlerInit();
