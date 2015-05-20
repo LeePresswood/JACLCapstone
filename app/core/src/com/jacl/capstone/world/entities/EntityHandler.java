@@ -1,11 +1,18 @@
 package com.jacl.capstone.world.entities;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.player.Player;
 
 public class EntityHandler
 {
 	public World world;
+	
+	//We will have an all entities array that will be used for drawing. We can sort this array by the Y-values to give an effect of being in front of/behind each other.
+	private ArrayList<Entity> all_entities;
 	
 	//Players
 	public Player player;
@@ -31,18 +38,53 @@ public class EntityHandler
 		//We will eventually have an EntityManager here to complete the set.
 		player = new Player(world, start_x * world.map_handler.tile_size, start_y * world.map_handler.tile_size);
 		
+		//Because this is when we are first creating the EnitityHandler, there should be no items in the all_entities array. Let's make it and add the player.
+		//Note: We would normally sort the array after adding an entity, but because this is the only entity, there's no need.
+		all_entities = new ArrayList<Entity>();
+		all_entities.add(player);
+	}
+	
+	/**
+	 * Populate the world by adding the passed entity.
+	 * @param e Entity to add.
+	 */
+	public void add(Entity e)
+	{
+		//Add and sort by Y values. Highest to lowest.
+		all_entities.add(e);
+		Collections.sort(all_entities, new EntityComparator());
 	}
 	
 	public void update(float delta)
 	{
 		player.update(delta);
+		Collections.sort(all_entities, new EntityComparator());
 	}
 	
 	public void draw()
 	{
 		world.screen.batch.setProjectionMatrix(world.camera_handler.combined);
 		world.screen.batch.begin();
-			player.draw(world.screen.batch);
+			//While drawing the entities, draw the highest Y values first. 
+			//These are the sprites that are farthest from the camera. 
+			//They are behind the lower Y values. 
+			for(Entity e : all_entities)
+				e.draw(world.screen.batch);
 		world.screen.batch.end();
+	}
+	
+	/**
+	 * Used in sorting the items by Y values. Sort by the top value of the sprite
+	 * 
+	 * @author Lee
+	 *
+	 */
+	private class EntityComparator implements Comparator<Entity> 
+	{
+	    @Override
+	    public int compare(Entity a, Entity b) 
+	    {
+	        return a.getCenterY() < b.getCenterY() ? -1 : a.getCenterY() == b.getCenterY() ? 0 : 1;
+	    }
 	}
 }

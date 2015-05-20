@@ -1,3 +1,3 @@
-time 06:18
-player_location 8 14
+time 06:41
+player_location 5 10
 map test.tmx
