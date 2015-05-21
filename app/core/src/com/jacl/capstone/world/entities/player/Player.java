@@ -98,14 +98,6 @@ public class Player extends MovingEntity
 	@Override
 	public void update(float delta)
 	{
-		/*//Move.
-		move(delta);
-		
-		//Do attack if necessary.
-		attack(delta);
-		
-		//Check collision. By sending in the signals, we get a little faster logic operation.
-		cellCollision(left, right, up, down);*/
 		super.update(delta);
 		
 		//Check for entities we may have started.
