@@ -72,23 +72,31 @@ public class Player extends MovingEntity
 	@Override
 	protected void move(float delta)
 	{
-		//Store the current location for collision detection in the future.
-		store_x = sprite.getX();
-		store_y = sprite.getY();
-		
 		//Correct if diagonal.
 		if(up && left || up && right || down && left || down && right)
 			speed /= FOURTH_ROOT_FOUR;
 
 		//Do the translation.
 		if(up)
+		{
 			sprite.translateY(speed * delta);
+			last_direction = Directions.UP;
+		}
 		else if(down)
+		{
 			sprite.translateY(-speed * delta);
+			last_direction = Directions.DOWN;
+		}
 		if(left)
+		{
 			sprite.translateX(-speed * delta);
+			last_direction = Directions.LEFT;
+		}
 		else if(right)
+		{
 			sprite.translateX(speed * delta);
+			last_direction = Directions.RIGHT;
+		}
 		
 		//Undo correction if diagonal.
 		if(up && left || up && right || down && left || down && right)
