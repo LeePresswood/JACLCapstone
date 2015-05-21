@@ -28,8 +28,6 @@ import com.jacl.capstone.world.entities.MovingEntity;
 public class Player extends MovingEntity
 {
 	//Rather than AI, we will use signals to define the correct time to move/attack.
-	public boolean up, down, left, right;	
-	public boolean attacking, mid_attack;
 	private final float FOURTH_ROOT_FOUR = 1.189207115f;
 
 	public Player(World world, float x, float y)
@@ -100,14 +98,15 @@ public class Player extends MovingEntity
 	@Override
 	public void update(float delta)
 	{
-		//Move.
+		/*//Move.
 		move(delta);
 		
 		//Do attack if necessary.
 		attack(delta);
 		
 		//Check collision. By sending in the signals, we get a little faster logic operation.
-		cellCollision(left, right, up, down);	
+		cellCollision(left, right, up, down);*/
+		super.update(delta);
 		
 		//Check for entities we may have started.
 		world.event_handler.doEventEntity(getCenterX(), getCenterY());
