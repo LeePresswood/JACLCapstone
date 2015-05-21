@@ -40,9 +40,9 @@ public class DesktopLauncher
 	{
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		
-		config.title = GameConstants.GAME_NAME + " : " + GameConstants.GAME_VERSION;		
-		config.width = GameConstants.GAME_WIDTH;
-		config.height = GameConstants.GAME_HEIGHT;
+		config.title = GAME_NAME + " : " + GAME_VERSION;		
+		config.width = GAME_WIDTH;
+		config.height = GAME_HEIGHT;
 		config.resizable = false;
 		
 		//config.addIcon(null, null);
