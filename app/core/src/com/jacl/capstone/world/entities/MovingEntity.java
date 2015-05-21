@@ -28,6 +28,7 @@ public abstract class MovingEntity extends Entity
 	//MovingEntities need to be able to move.
 	protected float speed;
 	public boolean up, down, left, right;
+	protected Directions last_direction;
 	
 	//They will also need to attack.
 	public boolean attacking, mid_attack;
@@ -143,14 +144,15 @@ public abstract class MovingEntity extends Entity
 			}
 			
 			//Do the knockback movement. This will depend upon the last direction the entity moved.
-			if(last_direction == Direction.LEFT)
-				sprite.translateX(-delta * KNOCKBACK_SPEED);
-			if(last_direction == Direction.RIGHT)
+			//Direction moved is opposite of the direction facing.
+			if(last_direction == Directions.LEFT)
 				sprite.translateX(delta * KNOCKBACK_SPEED);
-			if(last_direction == Direction.UP)
-				sprite.translateY(delta * KNOCKBACK_SPEED);
-			if(last_direction == Direction.DOWN)
+			if(last_direction == Directions.RIGHT)
+				sprite.translateX(-delta * KNOCKBACK_SPEED);
+			if(last_direction == Directions.UP)
 				sprite.translateY(-delta * KNOCKBACK_SPEED);
+			if(last_direction == Directions.DOWN)
+				sprite.translateY(delta * KNOCKBACK_SPEED);
 		}
 	}
 	
