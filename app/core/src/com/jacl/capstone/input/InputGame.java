@@ -72,7 +72,7 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.attacking = false;
 				break;
 			case Keys.E:
-				screen.world.entity_handler.add(new SampleCreep(screen.world, 2 * world.map_handler.tile_size, 2 * world.map_handler.tile_size));
+				screen.world.entity_handler.add(new SampleCreep(screen.world, 2, 2));
 				break;
 		}
 		
