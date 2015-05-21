@@ -19,7 +19,7 @@ public class SampleCreep extends Enemy
 	protected Sprite makeSprite(float x, float y)
 	{
 		Sprite s = new Sprite(world.screen.game.assets.get(Assets.PLAYER, Texture.class);
-		s.setBounds(x, y, 1f * world.map_handler.tile_size, 1f * world.map_handler.tile_size);
+		s.setBounds(x * world.map_handler.tile_size, y * world.map_handler.tile_size, 1f * world.map_handler.tile_size, 1f * world.map_handler.tile_size);
 		return s;
 	}
 
