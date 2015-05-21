@@ -44,6 +44,9 @@ public abstract class MovingEntity extends Entity
 		//Knockback block distance is knockback_blocks * size of blocks.
 		knockback_distance = KNOCKBACK_DISTANCE * world.map_handler.tile_size;
 		
+		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
+		last_direction = Directions.DOWN;
+		
 		//Speed is set by the derived classes. Set in terms of tiles per second.
 		speed = setSpeed() * world.map_handler.tile_size;
 		
