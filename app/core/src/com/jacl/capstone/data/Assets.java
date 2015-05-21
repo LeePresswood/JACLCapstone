@@ -23,6 +23,6 @@ public class Assets extends AssetManager
 		
 		
 		//Textures
-		load("texture.jpg", Texture.class);
+		load("image.png", Texture.class);
 	}
 }
