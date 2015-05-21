@@ -46,7 +46,7 @@ public class Player extends MovingEntity
 	@Override
 	protected Sprite makeSprite(float x, float y)
 	{
-		Sprite s = new Sprite(new Texture(Gdx.files.internal("image.png")));
+		Sprite s = new Sprite(world.screen.game.assets.get("image.png", Texture.class);
 		s.setBounds(x, y, 1f * world.map_handler.tile_size, 1f * world.map_handler.tile_size);
 		return s;
 	}
