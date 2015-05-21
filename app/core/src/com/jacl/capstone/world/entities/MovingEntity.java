@@ -103,7 +103,7 @@ public abstract class MovingEntity extends Entity
 		invincible_time_current = 0f;
 	}
 	
-	public void knockback(float delta)
+	private void knockback(float delta)
 	{
 		if(being_knocked_back)
 		{
@@ -115,7 +115,7 @@ public abstract class MovingEntity extends Entity
 		}
 	}
 	
-	public void invincible(float delta)
+	private void invincible(float delta)
 	{
 		if(is_invincible)
 		{
