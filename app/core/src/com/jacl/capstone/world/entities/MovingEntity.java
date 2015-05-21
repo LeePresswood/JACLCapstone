@@ -27,6 +27,10 @@ public abstract class MovingEntity extends Entity
 	
 	//MovingEntities need to be able to move.
 	protected float speed;
+	public boolean up, down, left, right;
+	
+	//They will also need to attack.
+	public boolean attacking, mid_attack;
 	
 	//Collision variables.
 	protected float store_x, store_y;
@@ -51,16 +55,16 @@ public abstract class MovingEntity extends Entity
 	@Override
 	public void update(float delta)
 	{
-		//Move and knockback.
-		move(delta);
+		if(!being_knocked_back)
+		{
+			move(delta);
+			attack(delta);
+			entityCollision();
+		}
+		
 		knockback(delta);
 		invincible(delta);
-		
-		//Do attack if necessary.
-		attack(delta);
-		
-		//Check collision.
-		cellCollision(true, true, true, true);	
+		cellCollision();
 	}
 	
 	/**
@@ -68,7 +72,7 @@ public abstract class MovingEntity extends Entity
 	 * Go +-x% of the sprite's width/height away from the centerpoint of the side to get better collisions.
 	 * Test for a collision at this point.
 	 */
-	protected void cellCollision(boolean left, boolean right, boolean up, boolean down)
+	protected void cellCollision()
 	{
 		//If the cell we collided with is solid, return to our previous position.
 		if(left && world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
