@@ -27,8 +27,8 @@ public abstract class MovingEntity extends Entity
 	
 	//MovingEntities need to be able to move.
 	protected float speed;
-	public boolean up, down, left, right;
 	protected Directions last_direction;
+	public boolean up, down, left, right;
 	
 	//They will also need to attack.
 	public boolean attacking, mid_attack;
