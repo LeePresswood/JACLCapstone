@@ -55,16 +55,36 @@ public abstract class MovingEntity extends Entity
 	@Override
 	public void update(float delta)
 	{
+		//Store the current location for collision detection in the future.
+		store_x = sprite.getX();
+		store_y = sprite.getY();
+		
+		if(being_knocked_back)
+		{//During knockback, we need to update the knockback variable.
+			knockback(delta);	
+		}
 		if(!being_knocked_back)
-		{
+		{//If not being knocked back
 			move(delta);
 			attack(delta);
 			entityCollision();
 		}
 		
-		knockback(delta);
+		//Calculate invincibility frames.
 		invincible(delta);
+		
+		//Calculate solid block collision.
 		cellCollision();
+	}
+	
+	private void entityCollision()
+	{
+		//We don't want to be hit while we're invincible.
+		if(!is_invincible)
+		{
+			//Scan through all the entities that are enemies to this entity.
+			
+		}
 	}
 	
 	/**
@@ -72,7 +92,7 @@ public abstract class MovingEntity extends Entity
 	 * Go +-x% of the sprite's width/height away from the centerpoint of the side to get better collisions.
 	 * Test for a collision at this point.
 	 */
-	protected void cellCollision()
+	private void cellCollision()
 	{
 		//If the cell we collided with is solid, return to our previous position.
 		if(left && world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
@@ -91,6 +111,10 @@ public abstract class MovingEntity extends Entity
 			sprite.setY(store_y);
 		if(down && world.collision_handler.getCollisionCell(this.getCenterX() - jump_x, this.getBottom()) != null)
 			sprite.setY(store_y);
+			
+		//If we didn't end up moving, we can turn off knockback.
+		if(sprite.getX() == store_x && sprite.getY() == store_y)
+			being_knocked_back = false;
 	}
 	
 	/**
@@ -104,18 +128,29 @@ public abstract class MovingEntity extends Entity
 		
 		//Invincibility.
 		is_invincible = true;
-		invincible_time_current = 0f;
+		invincible_time_current = 0f;	
 	}
 	
 	private void knockback(float delta)
 	{
 		if(being_knocked_back)
 		{
+			//Calculate the knockback.
 			current_knockback += delta * KNOCKBACK_SPEED;
 			if(current_knockback >= KNOCKBACK_DISTANCE)
 			{
 				being_knocked_back = false;
 			}
+			
+			//Do the knockback movement. This will depend upon the last direction the entity moved.
+			if(last_direction == Direction.LEFT)
+				sprite.translateX(-delta * KNOCKBACK_SPEED);
+			if(last_direction == Direction.RIGHT)
+				sprite.translateX(delta * KNOCKBACK_SPEED);
+			if(last_direction == Direction.UP)
+				sprite.translateY(delta * KNOCKBACK_SPEED);
+			if(last_direction == Direction.DOWN)
+				sprite.translateY(-delta * KNOCKBACK_SPEED);
 		}
 	}
 	
