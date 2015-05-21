@@ -3,14 +3,28 @@ package com.jacl.capstone.world.entities;
 import com.jacl.capstone.world.World;
 
 /**
- * These are world objects that move.
- * These include enemies and players.
+ * These are world objects that move. These include enemies and players.
+ * On top of movement, however, these entities will interact with combat.
+ * Getting hit by a sword will cause knockback, for instance. Thus, they
+ * will have combat-related items like health or defense.
  * 
  * @author Lee
  *
  */
 public abstract class MovingEntity extends Entity
 {
+	//Knockback should always be the same amount for continuity throughout the game.
+	private boolean being_knocked_back;
+	private final float KNOCKBACK_BLOCKS = 1f;
+	private final float KNOCKBACK_SPEED = 1.5f;
+	private final float KNOCKBACK_DISTANCE;
+	private float current_knockback;
+	
+	//These entities will also become invincible for a period of time after being hit.
+	private boolean is_invincible;
+	private final float INVINCIBLE_TIME = 1.5f;
+	private float invincible_time_current;
+	
 	//MovingEntities need to be able to move.
 	protected float speed;
 	
@@ -22,7 +36,10 @@ public abstract class MovingEntity extends Entity
 	{
 		super(world, x, y);
 		
-		//Speed is set by the derived classes. Set in terms of tiles per second..
+		//Knockback block distance is knockback_blocks * size of blocks.
+		knockback_distance = KNOCKBACK_DISTANCE * world.map_handler.tile_size;
+		
+		//Speed is set by the derived classes. Set in terms of tiles per second.
 		speed = setSpeed() * world.map_handler.tile_size;
 		
 		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
@@ -34,8 +51,10 @@ public abstract class MovingEntity extends Entity
 	@Override
 	public void update(float delta)
 	{
-		//Move.
+		//Move and knockback.
 		move(delta);
+		knockback(delta);
+		invincible(delta);
 		
 		//Do attack if necessary.
 		attack(delta);
@@ -68,6 +87,44 @@ public abstract class MovingEntity extends Entity
 			sprite.setY(store_y);
 		if(down && world.collision_handler.getCollisionCell(this.getCenterX() - jump_x, this.getBottom()) != null)
 			sprite.setY(store_y);
+	}
+	
+	/**
+	 * Entity was hit by an enemy entity. Set knockback and invincibility.
+	 */
+	public void hit()
+	{
+		//Knockback.
+		being_knocked_back = true;
+		current_knockback = 0f;
+		
+		//Invincibility.
+		is_invincible = true;
+		invincible_time_current = 0f;
+	}
+	
+	public void knockback(float delta)
+	{
+		if(being_knocked_back)
+		{
+			current_knockback += delta * KNOCKBACK_SPEED;
+			if(current_knockback >= KNOCKBACK_DISTANCE)
+			{
+				being_knocked_back = false;
+			}
+		}
+	}
+	
+	public void invincible(float delta)
+	{
+		if(is_invincible)
+		{
+			invincible_time_current += delta;
+			if(invincible_time_current >= INVINCIBLE_TIME)
+			{
+				is_invincible = false;
+			}
+		}	
 	}
 	
 	protected abstract float setSpeed();
