@@ -10,7 +10,6 @@ import com.jacl.capstone.world.entities.npc.enemies.Enemy;
  */
 public class SampleCreep extends Enemy
 {
-
 	public SampleCreep(World world, float x, float y)
 	{
 		super(world, x, y);
@@ -25,12 +24,14 @@ public class SampleCreep extends Enemy
 	}
 
 	@Override
-	public void update(float delta)
+	public void move(float delta)
 	{
+		//We don't want this enemy to move in an AI fashion, so let's not worry about it.
 	}
 
 	@Override
 	public void draw(SpriteBatch batch)
 	{
+		sprite.draw(batch);
 	}	
 }
