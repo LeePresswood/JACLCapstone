@@ -10,7 +10,7 @@ import com.jacl.capstone.world.entities.Entity;
  * @author Lee
  *
  */
-public abstract class Enemy extends Entity
+public abstract class Enemy extends MovingEntity
 {
 	public float health;
 	public float damage_on_bump;
