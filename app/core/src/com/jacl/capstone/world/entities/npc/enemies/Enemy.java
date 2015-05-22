@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities.npc.enemies;
 
+import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
 
@@ -18,6 +19,6 @@ public abstract class Enemy extends MovingEntity
 	
 	public Enemy(World world, float x, float y)
 	{
-		super(world, x, y);
+		super(world, x, y, Alignment.ENEMY);
 	}
 }

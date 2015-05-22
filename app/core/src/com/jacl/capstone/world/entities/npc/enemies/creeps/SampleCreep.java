@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.entities.Entity;
 import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 
 /**
@@ -46,5 +47,11 @@ public class SampleCreep extends Enemy
 	@Override
 	protected void attack(float delta)
 	{
+	}
+
+	@Override
+	protected void hitBy(Entity e)
+	{
+		
 	}	
 }

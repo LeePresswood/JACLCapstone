@@ -2,6 +2,7 @@ package com.jacl.capstone.world.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 
 /**
@@ -21,11 +22,15 @@ public abstract class Entity
 {
 	public World world;
 	
+	//The alignment of entity this is will determine knockback. 
+	public Alignment alignment;
+	
 	public Sprite sprite;
 	
-	public Entity(World world, float x, float y)
+	public Entity(World world, float x, float y, Alignment alignment)
 	{
 		this.world = world;
+		this.alignment = alignment;
 		
 		sprite = makeSprite(x, y);
 	}

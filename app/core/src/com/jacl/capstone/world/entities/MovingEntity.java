@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities;
 
+import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
 
@@ -13,17 +14,17 @@ import com.jacl.capstone.world.World;
  *
  */
 public abstract class MovingEntity extends Entity
-{
+{	
 	//Knockback should always be the same amount for continuity throughout the game.
 	private boolean being_knocked_back;
-	private final float KNOCKBACK_BLOCKS = 1f;
-	private final float KNOCKBACK_SPEED = 1.5f;
+	private final float KNOCKBACK_BLOCKS = 1.5f;
+	private final float KNOCKBACK_SPEED = 15f;
 	private final float KNOCKBACK_DISTANCE;
 	private float current_knockback;
 	
 	//These entities will also become invincible for a period of time after being hit.
 	private boolean is_invincible;
-	private final float INVINCIBLE_TIME = 1.5f;
+	private final float INVINCIBLE_TIME = 0.5f;
 	private float invincible_time_current;
 	
 	//MovingEntities need to be able to move.
@@ -38,9 +39,9 @@ public abstract class MovingEntity extends Entity
 	protected float store_x, store_y;
 	protected float jump_x, jump_y;
 	
-	public MovingEntity(World world, float x, float y)
+	public MovingEntity(World world, float x, float y, Alignment alignment)
 	{
-		super(world, x, y);
+		super(world, x, y, alignment);
 		
 		//Knockback block distance is knockback_blocks * size of blocks.
 		KNOCKBACK_DISTANCE = KNOCKBACK_BLOCKS * world.map_handler.tile_size;
@@ -88,7 +89,14 @@ public abstract class MovingEntity extends Entity
 		if(!is_invincible)
 		{
 			//Scan through all the entities that are enemies to this entity.
-			
+			if(alignment == Alignment.PLAYER)
+				for(Entity e : world.entity_handler.enemies)
+					if(world.collision_handler.collidesWith(this, e))
+					{
+						//There was a collision.
+						this.hitBy(e);
+						((MovingEntity) e).hitBy(this);
+					}
 		}
 	}
 	
@@ -141,7 +149,7 @@ public abstract class MovingEntity extends Entity
 		if(being_knocked_back)
 		{
 			//Calculate the knockback.
-			current_knockback += delta * KNOCKBACK_SPEED;
+			current_knockback += delta * KNOCKBACK_SPEED * world.map_handler.tile_size;
 			if(current_knockback >= KNOCKBACK_DISTANCE)
 			{
 				being_knocked_back = false;
@@ -150,13 +158,13 @@ public abstract class MovingEntity extends Entity
 			//Do the knockback movement. This will depend upon the last direction the entity moved.
 			//Direction moved is opposite of the direction facing.
 			if(last_direction == Direction.LEFT)
-				sprite.translateX(delta * KNOCKBACK_SPEED);
+				sprite.translateX(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 			else if(last_direction == Direction.RIGHT)
-				sprite.translateX(-delta * KNOCKBACK_SPEED);
+				sprite.translateX(-delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 			else if(last_direction == Direction.UP)
-				sprite.translateY(-delta * KNOCKBACK_SPEED);
+				sprite.translateY(-delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 			else if(last_direction == Direction.DOWN)
-				sprite.translateY(delta * KNOCKBACK_SPEED);
+				sprite.translateY(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 		}
 	}
 	
@@ -175,4 +183,5 @@ public abstract class MovingEntity extends Entity
 	protected abstract float setSpeed();
 	protected abstract void move(float delta);
 	protected abstract void attack(float delta);
+	protected abstract void hitBy(Entity e);
 }

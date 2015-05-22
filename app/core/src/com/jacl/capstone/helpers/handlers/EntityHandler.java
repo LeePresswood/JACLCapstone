@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
+import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 import com.jacl.capstone.world.entities.player.Player;
 
 public class EntityHandler
@@ -19,7 +21,7 @@ public class EntityHandler
 	public Player player;
 	
 	//Enemies/NPCs
-	
+	public ArrayList<Enemy> enemies;
 	
 	//Projectiles
 	
@@ -43,6 +45,8 @@ public class EntityHandler
 		//Note: We would normally sort the array after adding an entity, but because this is the only entity, there's no need.
 		all_entities = new ArrayList<Entity>();
 		all_entities.add(player);
+		
+		enemies = new ArrayList<Enemy>();
 	}
 	
 	/**
@@ -54,11 +58,23 @@ public class EntityHandler
 		//Add and sort by Y values. Highest to lowest.
 		all_entities.add(e);
 		Collections.sort(all_entities, new EntityComparator());
+		
+		//Split this entity based upon what type it is.
+		if(e.alignment == Alignment.PLAYER)
+		{
+			
+		}
+		else if(e.alignment == Alignment.ENEMY)
+		{
+			enemies.add((Enemy) e);
+		}
 	}
 	
 	public void update(float delta)
 	{
-		player.update(delta);
+		//player.update(delta);
+		for(Entity e : all_entities)
+			e.update(delta);
 		Collections.sort(all_entities, new EntityComparator());
 	}
 	

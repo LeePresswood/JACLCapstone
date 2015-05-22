@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.data.Assets;
+import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.entities.Entity;
 import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
@@ -33,7 +35,7 @@ public class Player extends MovingEntity
 
 	public Player(World world, float x, float y)
 	{
-		super(world, x, y);
+		super(world, x, y, Alignment.PLAYER);
 	}
 
 	@Override
@@ -143,5 +145,11 @@ public class Player extends MovingEntity
 				item = null;
 			}*/
 		}
+	}
+
+	@Override
+	protected void hitBy(Entity e)
+	{
+		this.hit();
 	}
 }
