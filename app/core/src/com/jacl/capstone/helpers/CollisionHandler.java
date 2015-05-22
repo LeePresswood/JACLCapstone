@@ -1,7 +1,8 @@
-package com.jacl.capstone.world;
+package com.jacl.capstone.helpers;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
 
 /**

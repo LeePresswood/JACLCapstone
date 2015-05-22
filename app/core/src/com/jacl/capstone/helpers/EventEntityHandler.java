@@ -1,9 +1,11 @@
-package com.jacl.capstone.world.entities.events;
+package com.jacl.capstone.helpers;
 
 import java.util.HashMap;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.entities.events.EventEntity;
+import com.jacl.capstone.world.entities.events.EventEntityFactory;
 
 /**
  * Event entities will be scattered throughout the land. If one is stepped upon, we must activate it.<br><br>

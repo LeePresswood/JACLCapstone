@@ -1,4 +1,4 @@
-package com.jacl.capstone.data;
+package com.jacl.capstone.helpers;
 
 import java.util.Scanner;
 

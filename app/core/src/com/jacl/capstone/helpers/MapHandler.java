@@ -1,4 +1,4 @@
-package com.jacl.capstone.world;
+package com.jacl.capstone.helpers;
 
 import java.util.ArrayList;
 
@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.jacl.capstone.world.World;
 
 /**
  * Helper class that manages the tiled map and its properties.

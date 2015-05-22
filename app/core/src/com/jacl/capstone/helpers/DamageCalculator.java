@@ -1,7 +1,5 @@
 package com.jacl.capstone.helpers;
 
-import com.jacl.capstone.world.World;
-
 /**
 * Calculate the damage an entity takes based upon the amount
 * being affected by defense.

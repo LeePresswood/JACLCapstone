@@ -1,10 +1,11 @@
-package com.jacl.capstone.world.entities;
+package com.jacl.capstone.helpers;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.entities.Entity;
 import com.jacl.capstone.world.entities.player.Player;
 
 public class EntityHandler

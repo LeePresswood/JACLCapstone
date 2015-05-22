@@ -4,12 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.jacl.capstone.data.SaveHandler;
+import com.jacl.capstone.helpers.CameraHandler;
+import com.jacl.capstone.helpers.CollisionHandler;
+import com.jacl.capstone.helpers.EntityHandler;
+import com.jacl.capstone.helpers.EventEntityHandler;
+import com.jacl.capstone.helpers.MapHandler;
+import com.jacl.capstone.helpers.SaveHandler;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.atmosphere.GameTime;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
-import com.jacl.capstone.world.entities.EntityHandler;
-import com.jacl.capstone.world.entities.events.EventEntityHandler;
 
 /**
  * Handles the updating and rendering of game objects. Create managers to keep this class general.

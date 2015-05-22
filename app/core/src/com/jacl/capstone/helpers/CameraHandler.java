@@ -1,6 +1,7 @@
-package com.jacl.capstone.world;
+package com.jacl.capstone.helpers;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.jacl.capstone.world.World;
 
 /**
  * Idea behind the camera:
