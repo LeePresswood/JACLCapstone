@@ -1,4 +1,4 @@
-package com.jacl.capstone.world.entities;
+package com.jacl.capstone.data.enums;
 
 /**
  * This is the direction the MovingEntity is facing.<br><br>
@@ -11,5 +11,5 @@ package com.jacl.capstone.world.entities;
  */
 public enum Direction
 {
-	
+	UP, DOWN, LEFT, RIGHT
 }

@@ -1,4 +1,4 @@
-package com.jacl.capstone.helpers;
+package com.jacl.capstone.helpers.handlers;
 
 import java.util.HashMap;
 

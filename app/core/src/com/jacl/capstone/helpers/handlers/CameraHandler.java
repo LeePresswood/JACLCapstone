@@ -1,4 +1,4 @@
-package com.jacl.capstone.helpers;
+package com.jacl.capstone.helpers.handlers;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.jacl.capstone.world.World;

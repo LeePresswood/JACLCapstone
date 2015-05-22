@@ -1,4 +1,4 @@
-package com.jacl.capstone.helpers;
+package com.jacl.capstone.helpers.handlers;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;

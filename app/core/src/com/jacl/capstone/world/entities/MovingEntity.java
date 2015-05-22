@@ -1,7 +1,7 @@
 package com.jacl.capstone.world.entities;
 
+import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.entities.qualities.Directions;
 
 /**
  * These are world objects that move. These include enemies and players.
@@ -28,7 +28,7 @@ public abstract class MovingEntity extends Entity
 	
 	//MovingEntities need to be able to move.
 	protected float speed;
-	protected Directions last_direction;
+	protected Direction last_direction;
 	public boolean up, down, left, right;
 	
 	//They will also need to attack.
@@ -46,7 +46,7 @@ public abstract class MovingEntity extends Entity
 		KNOCKBACK_DISTANCE = KNOCKBACK_BLOCKS * world.map_handler.tile_size;
 		
 		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
-		last_direction = Directions.DOWN;
+		last_direction = Direction.DOWN;
 		
 		//Speed is set by the derived classes. Set in terms of tiles per second.
 		speed = setSpeed() * world.map_handler.tile_size;
@@ -149,13 +149,13 @@ public abstract class MovingEntity extends Entity
 			
 			//Do the knockback movement. This will depend upon the last direction the entity moved.
 			//Direction moved is opposite of the direction facing.
-			if(last_direction == Directions.LEFT)
+			if(last_direction == Direction.LEFT)
 				sprite.translateX(delta * KNOCKBACK_SPEED);
-			if(last_direction == Directions.RIGHT)
+			else if(last_direction == Direction.RIGHT)
 				sprite.translateX(-delta * KNOCKBACK_SPEED);
-			if(last_direction == Directions.UP)
+			else if(last_direction == Direction.UP)
 				sprite.translateY(-delta * KNOCKBACK_SPEED);
-			if(last_direction == Directions.DOWN)
+			else if(last_direction == Direction.DOWN)
 				sprite.translateY(delta * KNOCKBACK_SPEED);
 		}
 	}

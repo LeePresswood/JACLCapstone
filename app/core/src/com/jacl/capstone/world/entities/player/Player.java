@@ -4,9 +4,9 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.data.Assets;
+import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
-import com.jacl.capstone.world.entities.qualities.Directions;
 
 /**
  * This is the player that is controlled by input.There should 
@@ -81,22 +81,22 @@ public class Player extends MovingEntity
 		if(up)
 		{
 			sprite.translateY(speed * delta);
-			last_direction = Directions.UP;
+			last_direction = Direction.UP;
 		}
 		else if(down)
 		{
 			sprite.translateY(-speed * delta);
-			last_direction = Directions.DOWN;
+			last_direction = Direction.DOWN;
 		}
 		if(left)
 		{
 			sprite.translateX(-speed * delta);
-			last_direction = Directions.LEFT;
+			last_direction = Direction.LEFT;
 		}
 		else if(right)
 		{
 			sprite.translateX(speed * delta);
-			last_direction = Directions.RIGHT;
+			last_direction = Direction.RIGHT;
 		}
 		
 		//Undo correction if diagonal.

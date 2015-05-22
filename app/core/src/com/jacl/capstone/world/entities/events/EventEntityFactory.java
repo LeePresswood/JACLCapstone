@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities.events;
 
+import com.jacl.capstone.data.enums.EventTypes;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.events.navigation.GoToEventEntity;
 
