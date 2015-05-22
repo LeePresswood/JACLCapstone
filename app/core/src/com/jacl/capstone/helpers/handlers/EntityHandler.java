@@ -85,7 +85,7 @@ public class EntityHandler
 	    @Override
 	    public int compare(Entity a, Entity b) 
 	    {
-	        return a.getCenterY() < b.getCenterY() ? -1 : a.getCenterY() == b.getCenterY() ? 0 : 1;
+	        return a.getCenterY() > b.getCenterY() ? -1 : a.getCenterY() == b.getCenterY() ? 0 : 1;
 	    }
 	}
 }
