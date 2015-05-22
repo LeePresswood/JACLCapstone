@@ -46,5 +46,7 @@ public class Assets extends AssetManager
 		
 		//Textures
 		load("image.png", Texture.class);
+		
+		finishLoading();
 	}
 }

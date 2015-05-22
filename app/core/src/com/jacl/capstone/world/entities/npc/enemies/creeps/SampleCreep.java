@@ -1,7 +1,9 @@
 package com.jacl.capstone.world.entities.npc.enemies.creeps;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 
@@ -18,7 +20,7 @@ public class SampleCreep extends Enemy
 	@Override
 	protected Sprite makeSprite(float x, float y)
 	{
-		Sprite s = new Sprite(world.screen.game.assets.get(Assets.PLAYER, Texture.class);
+		Sprite s = new Sprite(world.screen.game.assets.get(Assets.PLAYER, Texture.class));
 		s.setBounds(x * world.map_handler.tile_size, y * world.map_handler.tile_size, 1f * world.map_handler.tile_size, 1f * world.map_handler.tile_size);
 		return s;
 	}
@@ -33,5 +35,16 @@ public class SampleCreep extends Enemy
 	public void draw(SpriteBatch batch)
 	{
 		sprite.draw(batch);
+	}
+
+	@Override
+	protected float setSpeed()
+	{
+		return 0;
+	}
+
+	@Override
+	protected void attack(float delta)
+	{
 	}	
 }

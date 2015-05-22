@@ -1,7 +1,6 @@
-package com.jacl.capstone.world.entities.npc.enemies.bosses;
+package com.jacl.capstone.helpers;
 
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.helpers;
 
 /**
 * Calculate the damage an entity takes based upon the amount
@@ -17,7 +16,7 @@ public class DamageCalculator
 	 * must lower the damage by a certain percentage per
 	 * point of defense the given entity has.
 	 */
-	private final float PERCENT_PER_DEFENSE_POINT = 2f;
+	private final static float PERCENT_PER_DEFENSE_POINT = 2f;
 	
 	/**
 	 * Damage is directly lowered by amount of defense player

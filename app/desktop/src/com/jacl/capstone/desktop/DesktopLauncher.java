@@ -3,7 +3,6 @@ package com.jacl.capstone.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.jacl.capstone.CapstoneGame;
-import com.jacl.capstone.data.GameConstants;
 
 public class DesktopLauncher 
 {

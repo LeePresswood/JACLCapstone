@@ -1,7 +1,7 @@
 package com.jacl.capstone.world.entities.npc.enemies;
 
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.entities.Entity;
+import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
  * Parent enemy class. All enemies will hurt the hero upon being hit, and they will

@@ -1,6 +1,7 @@
 package com.jacl.capstone.world.entities;
 
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.entities.qualities.Directions;
 
 /**
  * These are world objects that move. These include enemies and players.
@@ -42,7 +43,7 @@ public abstract class MovingEntity extends Entity
 		super(world, x, y);
 		
 		//Knockback block distance is knockback_blocks * size of blocks.
-		knockback_distance = KNOCKBACK_DISTANCE * world.map_handler.tile_size;
+		KNOCKBACK_DISTANCE = KNOCKBACK_BLOCKS * world.map_handler.tile_size;
 		
 		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
 		last_direction = Directions.DOWN;

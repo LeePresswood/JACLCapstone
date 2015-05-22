@@ -1,11 +1,12 @@
 package com.jacl.capstone.world.entities.player;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
+import com.jacl.capstone.world.entities.qualities.Directions;
 
 /**
  * This is the player that is controlled by input.There should 
@@ -44,7 +45,7 @@ public class Player extends MovingEntity
 	@Override
 	protected Sprite makeSprite(float x, float y)
 	{
-		Sprite s = new Sprite(world.screen.game.assets.get(Assets.PLAYER, Texture.class);
+		Sprite s = new Sprite(world.screen.game.assets.get(Assets.PLAYER, Texture.class));
 		s.setBounds(x * world.map_handler.tile_size, y * world.map_handler.tile_size, 1f * world.map_handler.tile_size, 1f * world.map_handler.tile_size);
 		return s;
 	}

@@ -3,6 +3,7 @@ package com.jacl.capstone.input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.jacl.capstone.screens.ScreenGame;
+import com.jacl.capstone.world.entities.npc.enemies.creeps.SampleCreep;
 
 public class InputGame implements InputProcessor
 {
