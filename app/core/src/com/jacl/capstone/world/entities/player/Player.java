@@ -31,6 +31,7 @@ public class Player extends MovingEntity
 {
 	//Rather than AI, we will use signals to define the correct time to move/attack.
 	private final float FOURTH_ROOT_FOUR = 1.189207115f;
+	public boolean up, down, left, right;
 
 	public Player(World world, float x, float y)
 	{
@@ -78,33 +79,33 @@ public class Player extends MovingEntity
 	{
 		//Correct if diagonal.
 		if(up && left || up && right || down && left || down && right)
-			speed /= FOURTH_ROOT_FOUR;
+			move_speed /= FOURTH_ROOT_FOUR;
 
 		//Do the translation.
 		if(up)
 		{
-			sprite.translateY(speed * delta);
+			sprite.translateY(move_speed * delta);
 			knockback_direction = Direction.UP;
 		}
 		else if(down)
 		{
-			sprite.translateY(-speed * delta);
+			sprite.translateY(-move_speed * delta);
 			knockback_direction = Direction.DOWN;
 		}
 		if(left)
 		{
-			sprite.translateX(-speed * delta);
+			sprite.translateX(-move_speed * delta);
 			knockback_direction = Direction.LEFT;
 		}
 		else if(right)
 		{
-			sprite.translateX(speed * delta);
+			sprite.translateX(move_speed * delta);
 			knockback_direction = Direction.RIGHT;
 		}
 		
 		//Undo correction if diagonal.
 		if(up && left || up && right || down && left || down && right)
-			speed *= FOURTH_ROOT_FOUR;
+			move_speed *= FOURTH_ROOT_FOUR;
 	}
 	
 	@Override

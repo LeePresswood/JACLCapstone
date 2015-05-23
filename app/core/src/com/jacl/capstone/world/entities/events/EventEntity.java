@@ -1,7 +1,6 @@
 package com.jacl.capstone.world.entities.events;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
 
@@ -29,7 +28,7 @@ public abstract class EventEntity extends Entity
 	
 	public EventEntity(World world, float x, float y, String... arguments)
 	{
-		super(world, x, y, Alignment.NEUTRAL);
+		super(world, x, y);
 	}
 	
 	@Override

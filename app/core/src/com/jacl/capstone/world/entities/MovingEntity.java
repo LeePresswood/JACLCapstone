@@ -15,30 +15,31 @@ import com.jacl.capstone.world.World;
  */
 public abstract class MovingEntity extends Entity
 {	
-	//Knockback should always be the same amount for continuity throughout the game.
-	private boolean being_knocked_back;
+	//Knockback should always be the same amount for continuity throughout the game regardless of entity.
 	private final float KNOCKBACK_BLOCKS = 1.25f;
 	private final float KNOCKBACK_SPEED = 15f;
 	private final float KNOCKBACK_DISTANCE;
-	public Direction knockback_direction;
-	public boolean knockback_on_collide;
-	private float current_knockback;
 	
-	//These entities will also become invincible for a period of time after being hit.
-	private boolean is_invincible;
+	//Entities will become invincible for a period of time after being hit. Part of this time will be during the knockback.
 	private final float INVINCIBLE_TIME = 0.5f;
+	private boolean is_invincible;
 	private float invincible_time_current;
 	
-	//MovingEntities need to be able to move.
-	protected float speed;
-	public boolean up, down, left, right;
+	//Knockback itself will have a flag set if happening. It also has distance and direction.
+	private boolean being_knocked_back;
+	private float current_knockback;
+	public Direction knockback_direction;
 	
-	//They will also need to attack.
+	//Living entity qualities.
+	public boolean knockback_on_collide;
+	protected float move_speed;
+	
+	//They will need to attack.
 	public boolean attacking, mid_attack;
 	
 	//Collision variables.
-	protected float store_x, store_y;
-	protected float jump_x, jump_y;
+	protected float collision_last_x, collision_last_y;
+	protected float collision_from_center_x, collision_from_center_y;
 	
 	//The alignment of entity this is will determine knockback and targetting.
 	public Alignment alignment;	
@@ -55,20 +56,20 @@ public abstract class MovingEntity extends Entity
 		knockback_direction = Direction.DOWN;
 		
 		//Speed is set by the derived classes. Set in terms of tiles per second.
-		speed = setSpeed() * world.map_handler.tile_size;
+		move_speed = setSpeed() * world.map_handler.tile_size;
 		
 		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
 		final float jump_percent = 0.40f;
-		jump_x = jump_percent * sprite.getWidth();
-		jump_y = jump_percent * sprite.getHeight();
+		collision_from_center_x = jump_percent * sprite.getWidth();
+		collision_from_center_y = jump_percent * sprite.getHeight();
 	}
 	
 	@Override
 	public void update(float delta)
 	{
 		//Store the current location for collision detection in the future.
-		store_x = sprite.getX();
-		store_y = sprite.getY();
+		collision_last_x = sprite.getX();
+		collision_last_y = sprite.getY();
 		
 		if(being_knocked_back)
 		{//During knockback, we need to update the knockback variable.
@@ -117,25 +118,25 @@ public abstract class MovingEntity extends Entity
 	private void cellCollision()
 	{
 		//If the cell we collided with is solid, return to our previous position.
-		if(left && world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() + jump_y) != null)
-			sprite.setX(store_x);
-		if(left && world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() - jump_y) != null)
-			sprite.setX(store_x);
-		if(right && world.collision_handler.getCollisionCell(this.getRight(), this.getCenterY() + jump_y) != null)
-			sprite.setX(store_x);
-		if(right && world.collision_handler.getCollisionCell(this.getRight(), this.getCenterY() - jump_y) != null)
-			sprite.setX(store_x);
-		if(up && world.collision_handler.getCollisionCell(this.getCenterX() + jump_x, this.getTop()) != null)
-			sprite.setY(store_y);
-		if(up && world.collision_handler.getCollisionCell(this.getCenterX() - jump_x, this.getTop()) != null)
-			sprite.setY(store_y);
-		if(down && world.collision_handler.getCollisionCell(this.getCenterX() + jump_x, this.getBottom()) != null)
-			sprite.setY(store_y);
-		if(down && world.collision_handler.getCollisionCell(this.getCenterX() - jump_x, this.getBottom()) != null)
-			sprite.setY(store_y);
+		if(world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() + collision_from_center_y) != null)
+			sprite.setX(collision_last_x);
+		if(world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() - collision_from_center_y) != null)
+			sprite.setX(collision_last_x);
+		if(world.collision_handler.getCollisionCell(this.getRight(), this.getCenterY() + collision_from_center_y) != null)
+			sprite.setX(collision_last_x);
+		if(world.collision_handler.getCollisionCell(this.getRight(), this.getCenterY() - collision_from_center_y) != null)
+			sprite.setX(collision_last_x);
+		if(world.collision_handler.getCollisionCell(this.getCenterX() + collision_from_center_x, this.getTop()) != null)
+			sprite.setY(collision_last_y);
+		if(world.collision_handler.getCollisionCell(this.getCenterX() - collision_from_center_x, this.getTop()) != null)
+			sprite.setY(collision_last_y);
+		if(world.collision_handler.getCollisionCell(this.getCenterX() + collision_from_center_x, this.getBottom()) != null)
+			sprite.setY(collision_last_y);
+		if(world.collision_handler.getCollisionCell(this.getCenterX() - collision_from_center_x, this.getBottom()) != null)
+			sprite.setY(collision_last_y);
 			
 		//If we didn't end up moving, we can turn off knockback.
-		if(Math.abs(sprite.getX() - store_x) < 1f && Math.abs(sprite.getY() - store_y) < 1f)
+		if(Math.abs(sprite.getX() - collision_last_x) < 1f && Math.abs(sprite.getY() - collision_last_y) < 1f)
 			being_knocked_back = false;
 	}
 	

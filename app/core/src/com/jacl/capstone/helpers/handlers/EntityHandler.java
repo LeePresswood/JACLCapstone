@@ -7,6 +7,7 @@ import java.util.Comparator;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
+import com.jacl.capstone.world.entities.MovingEntity;
 import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 import com.jacl.capstone.world.entities.player.Player;
 
@@ -60,14 +61,19 @@ public class EntityHandler
 		Collections.sort(all_entities, new EntityComparator());
 		
 		//Split this entity based upon what type it is.
-		if(e.alignment == Alignment.PLAYER)
+		if(e instanceof MovingEntity)
 		{
-			
+			MovingEntity new_e = (MovingEntity) e;
+			if(new_e.alignment == Alignment.PLAYER)
+			{
+				
+			}
+			else if(new_e.alignment == Alignment.ENEMY)
+			{
+				enemies.add((Enemy) e);
+			}
 		}
-		else if(e.alignment == Alignment.ENEMY)
-		{
-			enemies.add((Enemy) e);
-		}
+		
 	}
 	
 	public void update(float delta)
