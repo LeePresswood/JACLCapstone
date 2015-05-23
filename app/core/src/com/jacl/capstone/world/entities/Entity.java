@@ -22,10 +22,11 @@ public abstract class Entity
 {
 	public World world;
 	
-	//The alignment of entity this is will determine knockback. 
+	public Sprite sprite;
+	
+	//The alignment of entity this is will determine knockback and targetting.
 	public Alignment alignment;
 	
-	public Sprite sprite;
 	
 	public Entity(World world, float x, float y, Alignment alignment)
 	{

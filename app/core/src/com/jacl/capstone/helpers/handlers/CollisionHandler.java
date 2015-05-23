@@ -2,8 +2,11 @@ package com.jacl.capstone.helpers.handlers;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
+import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.entities.Entity;
+import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
  * Handles collision of entities.
@@ -19,9 +22,13 @@ public class CollisionHandler
 	private final int COLLISION_LAYER_INDEX = 1;
 	private Cell[][] cells;
 	
+	private Rectangle intersection;
+	
 	public CollisionHandler(World world)
 	{
 		this.world = world;
+		
+		intersection = new Rectangle();
 	}
 	
 	public void handlerInit()
@@ -52,8 +59,36 @@ public class CollisionHandler
 	 * @param b Second entity to compare to.
 	 * @return True if there is a collision. False otherwise.
 	 */
-	public boolean collidesWith(Entity a, Entity b)
+	/*public boolean collidesWith(Entity a, Entity b)
 	{
 		return a.sprite.getBoundingRectangle().overlaps(b.sprite.getBoundingRectangle());
+	}*/
+	
+	public void newCollidesWith(MovingEntity a, MovingEntity b)
+	{
+		if(Intersector.intersectRectangles(a.sprite.getBoundingRectangle(), b.sprite.getBoundingRectangle(), intersection))
+		{//There was an intersection. Determine the colliding edges.
+			Rectangle r1 = a.sprite.getBoundingRectangle();
+			if(intersection.x > r1.x && intersection.width < intersection.height)                                  
+			{
+				b.knockback_direction = Direction.LEFT;
+				a.knockback_direction = Direction.RIGHT;
+			}
+			if(intersection.y > r1.y && intersection.width >= intersection.height)
+			{
+				b.knockback_direction = Direction.DOWN;
+				a.knockback_direction = Direction.UP;
+			}
+			if(intersection.x + intersection.width < r1.x + r1.width && intersection.width < intersection.height)  
+			{
+				b.knockback_direction = Direction.RIGHT;
+				a.knockback_direction = Direction.LEFT;
+			}
+			if(intersection.y + intersection.height < r1.y + r1.height && intersection.width >= intersection.height)
+			{
+				b.knockback_direction = Direction.UP;
+				a.knockback_direction = Direction.DOWN;
+			}
+		}
 	}
 }

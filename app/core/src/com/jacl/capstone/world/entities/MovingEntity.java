@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities;
 
+import com.badlogic.gdx.math.Rectangle;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
@@ -20,6 +21,7 @@ public abstract class MovingEntity extends Entity
 	private final float KNOCKBACK_BLOCKS = 1.5f;
 	private final float KNOCKBACK_SPEED = 15f;
 	private final float KNOCKBACK_DISTANCE;
+	public Direction knockback_direction;
 	private float current_knockback;
 	
 	//These entities will also become invincible for a period of time after being hit.
@@ -29,7 +31,6 @@ public abstract class MovingEntity extends Entity
 	
 	//MovingEntities need to be able to move.
 	protected float speed;
-	protected Direction last_direction;
 	public boolean up, down, left, right;
 	
 	//They will also need to attack.
@@ -47,7 +48,7 @@ public abstract class MovingEntity extends Entity
 		KNOCKBACK_DISTANCE = KNOCKBACK_BLOCKS * world.map_handler.tile_size;
 		
 		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
-		last_direction = Direction.DOWN;
+		knockback_direction = Direction.DOWN;
 		
 		//Speed is set by the derived classes. Set in terms of tiles per second.
 		speed = setSpeed() * world.map_handler.tile_size;
@@ -90,13 +91,16 @@ public abstract class MovingEntity extends Entity
 		{
 			//Scan through all the entities that are enemies to this entity.
 			if(alignment == Alignment.PLAYER)
-				for(Entity e : world.entity_handler.enemies)
-					if(world.collision_handler.collidesWith(this, e))
-					{
-						//There was a collision.
+				for(MovingEntity e : world.entity_handler.enemies)
+				{
+					world.collision_handler.newCollidesWith(this, e);
+					if(this.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
+					{//There was a collision.
 						this.hitBy(e);
 						((MovingEntity) e).hitBy(this);
 					}
+					
+				}
 		}
 	}
 	
@@ -157,13 +161,13 @@ public abstract class MovingEntity extends Entity
 			
 			//Do the knockback movement. This will depend upon the last direction the entity moved.
 			//Direction moved is opposite of the direction facing.
-			if(last_direction == Direction.LEFT)
+			if(knockback_direction == Direction.LEFT)
 				sprite.translateX(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
-			else if(last_direction == Direction.RIGHT)
+			else if(knockback_direction == Direction.RIGHT)
 				sprite.translateX(-delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
-			else if(last_direction == Direction.UP)
+			else if(knockback_direction == Direction.UP)
 				sprite.translateY(-delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
-			else if(last_direction == Direction.DOWN)
+			else if(knockback_direction == Direction.DOWN)
 				sprite.translateY(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 		}
 	}

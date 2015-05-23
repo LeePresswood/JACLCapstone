@@ -83,22 +83,22 @@ public class Player extends MovingEntity
 		if(up)
 		{
 			sprite.translateY(speed * delta);
-			last_direction = Direction.UP;
+			knockback_direction = Direction.UP;
 		}
 		else if(down)
 		{
 			sprite.translateY(-speed * delta);
-			last_direction = Direction.DOWN;
+			knockback_direction = Direction.DOWN;
 		}
 		if(left)
 		{
 			sprite.translateX(-speed * delta);
-			last_direction = Direction.LEFT;
+			knockback_direction = Direction.LEFT;
 		}
 		else if(right)
 		{
 			sprite.translateX(speed * delta);
-			last_direction = Direction.RIGHT;
+			knockback_direction = Direction.RIGHT;
 		}
 		
 		//Undo correction if diagonal.
