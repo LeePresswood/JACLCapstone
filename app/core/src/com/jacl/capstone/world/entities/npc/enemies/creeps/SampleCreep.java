@@ -48,10 +48,4 @@ public class SampleCreep extends Enemy
 	protected void attack(float delta)
 	{
 	}
-
-	@Override
-	protected void hitBy(Entity e)
-	{
-		
-	}	
 }

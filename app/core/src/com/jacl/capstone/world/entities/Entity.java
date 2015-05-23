@@ -21,17 +21,11 @@ import com.jacl.capstone.world.World;
 public abstract class Entity
 {
 	public World world;
-	
 	public Sprite sprite;
 	
-	//The alignment of entity this is will determine knockback and targetting.
-	public Alignment alignment;
-	
-	
-	public Entity(World world, float x, float y, Alignment alignment)
+	public Entity(World world, float x, float y)
 	{
 		this.world = world;
-		this.alignment = alignment;
 		
 		sprite = makeSprite(x, y);
 	}

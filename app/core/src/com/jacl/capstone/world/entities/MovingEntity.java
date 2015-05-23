@@ -1,6 +1,5 @@
 package com.jacl.capstone.world.entities;
 
-import com.badlogic.gdx.math.Rectangle;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
@@ -18,10 +17,11 @@ public abstract class MovingEntity extends Entity
 {	
 	//Knockback should always be the same amount for continuity throughout the game.
 	private boolean being_knocked_back;
-	private final float KNOCKBACK_BLOCKS = 1.5f;
+	private final float KNOCKBACK_BLOCKS = 1.25f;
 	private final float KNOCKBACK_SPEED = 15f;
 	private final float KNOCKBACK_DISTANCE;
 	public Direction knockback_direction;
+	public boolean knockback_on_collide;
 	private float current_knockback;
 	
 	//These entities will also become invincible for a period of time after being hit.
@@ -40,9 +40,13 @@ public abstract class MovingEntity extends Entity
 	protected float store_x, store_y;
 	protected float jump_x, jump_y;
 	
+	//The alignment of entity this is will determine knockback and targetting.
+	public Alignment alignment;	
+	
 	public MovingEntity(World world, float x, float y, Alignment alignment)
 	{
-		super(world, x, y, alignment);
+		super(world, x, y);
+		this.alignment = alignment;
 		
 		//Knockback block distance is knockback_blocks * size of blocks.
 		KNOCKBACK_DISTANCE = KNOCKBACK_BLOCKS * world.map_handler.tile_size;
@@ -91,16 +95,17 @@ public abstract class MovingEntity extends Entity
 		{
 			//Scan through all the entities that are enemies to this entity.
 			if(alignment == Alignment.PLAYER)
+			{
 				for(MovingEntity e : world.entity_handler.enemies)
 				{
 					world.collision_handler.newCollidesWith(this, e);
 					if(this.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
 					{//There was a collision.
 						this.hitBy(e);
-						((MovingEntity) e).hitBy(this);
-					}
-					
+						e.hitBy(this);
+					}					
 				}
+			}
 		}
 	}
 	
@@ -130,22 +135,25 @@ public abstract class MovingEntity extends Entity
 			sprite.setY(store_y);
 			
 		//If we didn't end up moving, we can turn off knockback.
-		if(sprite.getX() == store_x && sprite.getY() == store_y)
+		if(Math.abs(sprite.getX() - store_x) < 1f && Math.abs(sprite.getY() - store_y) < 1f)
 			being_knocked_back = false;
 	}
 	
 	/**
 	 * Entity was hit by an enemy entity. Set knockback and invincibility.
 	 */
-	public void hit()
+	private void hitBy(MovingEntity e)
 	{
-		//Knockback.
-		being_knocked_back = true;
-		current_knockback = 0f;
-		
-		//Invincibility.
-		is_invincible = true;
-		invincible_time_current = 0f;	
+		if(e.knockback_on_collide)
+		{
+			//Knockback.
+			being_knocked_back = true;
+			current_knockback = 0f;
+			
+			//Invincibility.
+			is_invincible = true;
+			invincible_time_current = 0f;	
+		}
 	}
 	
 	private void knockback(float delta)
@@ -187,5 +195,4 @@ public abstract class MovingEntity extends Entity
 	protected abstract float setSpeed();
 	protected abstract void move(float delta);
 	protected abstract void attack(float delta);
-	protected abstract void hitBy(Entity e);
 }

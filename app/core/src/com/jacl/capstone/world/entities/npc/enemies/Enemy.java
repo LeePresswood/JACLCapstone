@@ -20,5 +20,7 @@ public abstract class Enemy extends MovingEntity
 	public Enemy(World world, float x, float y)
 	{
 		super(world, x, y, Alignment.ENEMY);
+		
+		knockback_on_collide = true;
 	}
 }

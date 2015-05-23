@@ -7,7 +7,6 @@ import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.entities.Entity;
 import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
@@ -36,6 +35,8 @@ public class Player extends MovingEntity
 	public Player(World world, float x, float y)
 	{
 		super(world, x, y, Alignment.PLAYER);
+		
+		knockback_on_collide = false;
 	}
 
 	@Override
@@ -145,11 +146,5 @@ public class Player extends MovingEntity
 				item = null;
 			}*/
 		}
-	}
-
-	@Override
-	protected void hitBy(Entity e)
-	{
-		this.hit();
 	}
 }
