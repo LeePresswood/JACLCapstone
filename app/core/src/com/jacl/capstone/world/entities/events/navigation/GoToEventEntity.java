@@ -43,7 +43,8 @@ public class GoToEventEntity extends EventEntity
 
 	@Override
 	public void init()
-	{//Nothing needs to be initialized here. This event is very simple.
+	{
+		//Nothing needs to be initialized here. This event is very simple.
 	}
 
 	@Override
