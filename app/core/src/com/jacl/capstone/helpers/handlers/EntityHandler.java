@@ -54,26 +54,21 @@ public class EntityHandler
 	 * Populate the world by adding the passed entity.
 	 * @param e Entity to add.
 	 */
-	public void add(Entity e)
+	public void add(MovingEntity e)
 	{
 		//Add and sort by Y values. Highest to lowest.
 		all_entities.add(e);
 		Collections.sort(all_entities, new EntityComparator());
 		
 		//Split this entity based upon what type it is.
-		if(e instanceof MovingEntity)
+		if(e.alignment == Alignment.PLAYER)
 		{
-			MovingEntity new_e = (MovingEntity) e;
-			if(new_e.alignment == Alignment.PLAYER)
-			{
-				
-			}
-			else if(new_e.alignment == Alignment.ENEMY)
-			{
-				enemies.add((Enemy) e);
-			}
+			
 		}
-		
+		else if(e.alignment == Alignment.ENEMY)
+		{
+			enemies.add((Enemy) e);
+		}
 	}
 	
 	public void update(float delta)

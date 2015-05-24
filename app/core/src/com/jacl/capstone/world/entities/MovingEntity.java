@@ -205,7 +205,6 @@ public abstract class MovingEntity extends Entity
 				}
 				
 				//Do the knockback movement. This will depend upon the last direction the entity moved.
-				//Direction moved is opposite of the direction facing.
 				if(knockback_direction == Direction.LEFT)
 					sprite.translateX(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 				else if(knockback_direction == Direction.RIGHT)
