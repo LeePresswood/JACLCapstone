@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.data.enums.Alignment;
-import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
 
@@ -35,7 +34,7 @@ public class Player extends MovingEntity
 
 	public Player(World world, float x, float y)
 	{
-		super(world, x, y, Alignment.PLAYER);
+		super(world, x, y, 5f, Alignment.PLAYER);
 		
 		knockback_on_collide = false;
 	}
@@ -52,12 +51,6 @@ public class Player extends MovingEntity
 		Sprite s = new Sprite(world.screen.game.assets.get(Assets.PLAYER, Texture.class));
 		s.setBounds(x * world.map_handler.tile_size, y * world.map_handler.tile_size, 1f * world.map_handler.tile_size, 1f * world.map_handler.tile_size);
 		return s;
-	}
-	
-	@Override
-	protected float setSpeed()
-	{
-		return 5f;
 	}
 	
 	/**

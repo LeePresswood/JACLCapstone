@@ -13,9 +13,9 @@ import com.jacl.capstone.world.entities.MovingEntity;
  */
 public abstract class Enemy extends MovingEntity
 {	
-	public Enemy(World world, float x, float y)
+	public Enemy(World world, float x, float y, float speed)
 	{
-		super(world, x, y, Alignment.ENEMY);
+		super(world, x, y, speed, Alignment.ENEMY);
 		
 		knockback_on_collide = true;
 	}

@@ -17,9 +17,9 @@ public abstract class Boss extends Enemy
 	protected int boss_phases;				//Number of phases for this boss.
 	protected int current_phase;			//Current phase number.
 	
-	public Boss(World world, float x, float y)
+	public Boss(World world, float x, float y, float speed)
 	{
-		super(world, x, y);
+		super(world, x, y, speed);
 	}
 	
 	/**

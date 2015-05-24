@@ -15,10 +15,7 @@ import com.jacl.capstone.world.World;
  */
 public abstract class MovingEntity extends Entity
 {	
-	//Knockback should always be the same amount for continuity throughout the game regardless of entity.
 	public Knockbacker knockback;
-	
-	//These entities need to be able to attack.
 	public Attacker attack;
 	
 	//Entities will become invincible for a period of time after being hit. Part of this time will be during the knockback.
@@ -40,7 +37,7 @@ public abstract class MovingEntity extends Entity
 	//The alignment of entity this is will determine knockback and targetting.
 	public Alignment alignment;	
 	
-	public MovingEntity(World world, float x, float y, Alignment alignment)
+	public MovingEntity(World world, float x, float y, float speed, Alignment alignment)
 	{
 		super(world, x, y);
 		this.alignment = alignment;
@@ -52,7 +49,7 @@ public abstract class MovingEntity extends Entity
 		knockback.knockback_direction = Direction.DOWN;
 		
 		//Speed is set by the derived classes. Set in terms of tiles per second.
-		move_speed = setSpeed() * world.map_handler.tile_size;
+		move_speed = speed * world.map_handler.tile_size;
 		
 		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
 		final float jump_percent = 0.40f;
@@ -132,7 +129,7 @@ public abstract class MovingEntity extends Entity
 			sprite.setY(collision_last_y);
 			
 		//If we didn't end up moving, we can turn off knockback.
-		if(Math.abs(sprite.getX() - collision_last_x) < 1f && Math.abs(sprite.getY() - collision_last_y) < 1f)
+		if(Math.abs(sprite.getX() - collision_last_x) < 0.5f && Math.abs(sprite.getY() - collision_last_y) < 0.5f)
 			knockback.being_knocked_back = false;
 	}
 	
@@ -165,7 +162,6 @@ public abstract class MovingEntity extends Entity
 		}	
 	}
 	
-	protected abstract float setSpeed();
 	protected abstract void move(float delta);
 	protected abstract void attack(float delta);
 	
@@ -177,9 +173,9 @@ public abstract class MovingEntity extends Entity
 	 */
 	public class Knockbacker
 	{
-		//Knockback constants.
-		private final float KNOCKBACK_BLOCKS = 1.25f;
-		private final float KNOCKBACK_SPEED = 15f;
+		//Knockback should always be the same amount for continuity throughout the game regardless of entity.
+		private final float KNOCKBACK_BLOCKS = 1.5f;
+		private final float KNOCKBACK_SPEED = 20f;
 		private final float KNOCKBACK_DISTANCE;
 		
 		//Knockback itself will have a flag set if happening. It also has distance and direction.

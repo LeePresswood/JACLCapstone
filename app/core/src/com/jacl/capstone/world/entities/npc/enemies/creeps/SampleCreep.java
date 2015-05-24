@@ -14,7 +14,7 @@ public class SampleCreep extends Enemy
 {
 	public SampleCreep(World world, float x, float y)
 	{
-		super(world, x, y);
+		super(world, x, y, 0f);
 	}
 
 	@Override
@@ -35,12 +35,6 @@ public class SampleCreep extends Enemy
 	public void draw(SpriteBatch batch)
 	{
 		sprite.draw(batch);
-	}
-
-	@Override
-	protected float setSpeed()
-	{
-		return 0;
 	}
 
 	@Override
