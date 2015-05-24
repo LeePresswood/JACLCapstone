@@ -28,15 +28,15 @@ import com.jacl.capstone.world.entities.MovingEntity;
  */
 public class Player extends MovingEntity
 {
-	//Rather than AI, we will use signals to define the correct time to move/attack.
+	//This number will be used in diagonal movement calculations.
 	private final float FOURTH_ROOT_FOUR = 1.189207115f;
+	
+	//Rather than AI, we will use signals to define the correct time to move/attack.
 	public boolean up, down, left, right;
 
 	public Player(World world, float x, float y)
 	{
 		super(world, x, y, false, 5f, 100f, 0f, Alignment.PLAYER);
-		
-		knockback_on_collide = false;
 	}
 
 	@Override

@@ -31,13 +31,11 @@ public abstract class MovingEntity extends Entity
 	public float move_speed;
 	public float health;
 	public float damage_on_bump;
+	public Alignment alignment;	
 	
 	//Collision variables.
-	protected float collision_last_x, collision_last_y;
-	protected float collision_from_center_x, collision_from_center_y;
-	
-	//The alignment of entity this is will determine knockback and targetting.
-	public Alignment alignment;	
+	private float collision_last_x, collision_last_y;
+	private float collision_from_center_x, collision_from_center_y;
 	
 	public MovingEntity(World world, float x, float y, boolean knockback_on_collide, float move_speed, float health, float damage_on_bump, Alignment alignment)
 	{
@@ -138,8 +136,8 @@ public abstract class MovingEntity extends Entity
 			sprite.setY(collision_last_y);
 			
 		//If we didn't end up moving, we can turn off knockback.
-		if(Math.abs(sprite.getX() - collision_last_x) < 0.5f && Math.abs(sprite.getY() - collision_last_y) < 0.5f)
-			knockback.being_knocked_back = false;
+		//if(Math.abs(sprite.getX() - collision_last_x) < 0.5f && Math.abs(sprite.getY() - collision_last_y) < 0.5f)
+		//	knockback.being_knocked_back = false;
 	}
 	
 	/**
