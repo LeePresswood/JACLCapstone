@@ -34,7 +34,7 @@ public class Player extends MovingEntity
 
 	public Player(World world, float x, float y)
 	{
-		super(world, x, y, 5f, Alignment.PLAYER);
+		super(world, x, y, false, 5f, 100f, 0f, Alignment.PLAYER);
 		
 		knockback_on_collide = false;
 	}

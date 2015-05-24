@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities.npc.enemies.bosses;
 
+import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 
@@ -17,9 +18,9 @@ public abstract class Boss extends Enemy
 	protected int boss_phases;				//Number of phases for this boss.
 	protected int current_phase;			//Current phase number.
 	
-	public Boss(World world, float x, float y, float speed)
+	public Boss(World world, float x, float y, boolean knockback_on_collide, float move_speed, float health, float damage_on_bump, Alignment alignment)
 	{
-		super(world, x, y, speed);
+		super(world, x, y, knockback_on_collide, move_speed, health, damage_on_bump, Alignment.ENEMY);
 	}
 	
 	/**

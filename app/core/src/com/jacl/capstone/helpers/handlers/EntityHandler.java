@@ -86,6 +86,9 @@ public class EntityHandler
 			//While drawing the entities, draw the highest Y values first. 
 			//These are the sprites that are farthest from the camera. 
 			//They are behind the lower Y values. 
+			//Because we have previously sorted the array, it is not
+			//necessary to worry about anything other than drawing
+			//in order.
 			for(Entity e : all_entities)
 				e.draw(world.screen.batch);
 		world.screen.batch.end();

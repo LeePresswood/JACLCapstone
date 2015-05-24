@@ -17,6 +17,7 @@ import com.jacl.capstone.world.World;
  */
 public abstract class MovingEntity extends Entity
 {	
+	//Helpers.
 	public Knockbacker knockback;
 	public AttackAnimator attack;
 	
@@ -25,12 +26,11 @@ public abstract class MovingEntity extends Entity
 	private boolean is_invincible;
 	private float invincible_time_current;
 	
-	//Living entity qualities.
+	//Qualities that will be manipulated throughout play.
 	public boolean knockback_on_collide;
 	public float move_speed;
 	public float health;
 	public float damage_on_bump;
-	public float damage_on_attack;
 	
 	//Collision variables.
 	protected float collision_last_x, collision_last_y;
@@ -39,7 +39,7 @@ public abstract class MovingEntity extends Entity
 	//The alignment of entity this is will determine knockback and targetting.
 	public Alignment alignment;	
 	
-	public MovingEntity(World world, float x, float y, float speed, Alignment alignment)
+	public MovingEntity(World world, float x, float y, boolean knockback_on_collide, float move_speed, float health, float damage_on_bump, Alignment alignment)
 	{
 		super(world, x, y);
 		this.alignment = alignment;
@@ -50,8 +50,11 @@ public abstract class MovingEntity extends Entity
 		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
 		knockback.knockback_direction = Direction.DOWN;
 		
-		//Speed is set by the derived classes. Set in terms of tiles per second.
-		move_speed = speed * world.map_handler.tile_size;
+		//Health, speed, damage, and knockback_on_collide are set by the derived classes.
+		this.knockback_on_collide = knockback_on_collide;
+		this.move_speed = move_speed * world.map_handler.tile_size;	//Set in terms of tiles per second.
+		this.health = health;
+		this.damage_on_bump = damage_on_bump;
 		
 		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
 		final float jump_percent = 0.40f;
@@ -101,6 +104,10 @@ public abstract class MovingEntity extends Entity
 						e.hitBy(this);
 					}					
 				}
+			}
+			else if(alignment == Alignment.ENEMY)
+			{
+				
 			}
 		}
 	}
