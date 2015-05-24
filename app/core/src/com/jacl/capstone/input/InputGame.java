@@ -38,7 +38,7 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.right = true;
 				break;
 			case Keys.SPACE:
-				screen.world.entity_handler.player.attacking = true;
+				screen.world.entity_handler.player.attack.attacking = true;
 				break;
 		}
 		
@@ -70,10 +70,10 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.right = false;
 				break;
 			case Keys.SPACE:
-				screen.world.entity_handler.player.attacking = false;
+				screen.world.entity_handler.player.attack.attacking = false;
 				break;
 			case Keys.E:
-				screen.world.entity_handler.add(new SampleCreep(screen.world, 2, 2));
+				screen.world.entity_handler.add(new SampleCreep(screen.world, 2, 4.5f));
 				break;
 		}
 		

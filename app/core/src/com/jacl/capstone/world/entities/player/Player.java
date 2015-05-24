@@ -85,22 +85,18 @@ public class Player extends MovingEntity
 		if(up)
 		{
 			sprite.translateY(move_speed * delta);
-			knockback_direction = Direction.UP;
 		}
 		else if(down)
 		{
 			sprite.translateY(-move_speed * delta);
-			knockback_direction = Direction.DOWN;
 		}
 		if(left)
 		{
 			sprite.translateX(-move_speed * delta);
-			knockback_direction = Direction.LEFT;
 		}
 		else if(right)
 		{
 			sprite.translateX(move_speed * delta);
-			knockback_direction = Direction.RIGHT;
 		}
 		
 		//Undo correction if diagonal.
@@ -123,7 +119,7 @@ public class Player extends MovingEntity
 	 */
 	protected void attack(float delta)
 	{
-		if(attacking || mid_attack)
+		if(attack.attacking || attack.mid_attack)
 		{
 			//We don't want to stop mid attack. Commit to the attack until the end by setting a mid-attack flag.
 			//mid_attack = true;

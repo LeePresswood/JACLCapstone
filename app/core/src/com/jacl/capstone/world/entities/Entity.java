@@ -2,7 +2,6 @@ package com.jacl.capstone.world.entities;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 
 /**

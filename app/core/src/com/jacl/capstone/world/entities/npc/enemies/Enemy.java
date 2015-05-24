@@ -12,11 +12,7 @@ import com.jacl.capstone.world.entities.MovingEntity;
  *
  */
 public abstract class Enemy extends MovingEntity
-{
-	public float health;
-	public float damage_on_bump;
-	public float damage_on_attack;
-	
+{	
 	public Enemy(World world, float x, float y)
 	{
 		super(world, x, y, Alignment.ENEMY);

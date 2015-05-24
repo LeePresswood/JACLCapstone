@@ -16,26 +16,22 @@ import com.jacl.capstone.world.World;
 public abstract class MovingEntity extends Entity
 {	
 	//Knockback should always be the same amount for continuity throughout the game regardless of entity.
-	private final float KNOCKBACK_BLOCKS = 1.25f;
-	private final float KNOCKBACK_SPEED = 15f;
-	private final float KNOCKBACK_DISTANCE;
+	public Knockbacker knockback;
+	
+	//These entities need to be able to attack.
+	public Attacker attack;
 	
 	//Entities will become invincible for a period of time after being hit. Part of this time will be during the knockback.
 	private final float INVINCIBLE_TIME = 0.5f;
 	private boolean is_invincible;
 	private float invincible_time_current;
 	
-	//Knockback itself will have a flag set if happening. It also has distance and direction.
-	private boolean being_knocked_back;
-	private float current_knockback;
-	public Direction knockback_direction;
-	
 	//Living entity qualities.
 	public boolean knockback_on_collide;
-	protected float move_speed;
-	
-	//They will need to attack.
-	public boolean attacking, mid_attack;
+	public float move_speed;
+	public float health;
+	public float damage_on_bump;
+	public float damage_on_attack;
 	
 	//Collision variables.
 	protected float collision_last_x, collision_last_y;
@@ -49,11 +45,11 @@ public abstract class MovingEntity extends Entity
 		super(world, x, y);
 		this.alignment = alignment;
 		
-		//Knockback block distance is knockback_blocks * size of blocks.
-		KNOCKBACK_DISTANCE = KNOCKBACK_BLOCKS * world.map_handler.tile_size;
+		knockback = new Knockbacker();
+		attack = new Attacker();
 		
 		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
-		knockback_direction = Direction.DOWN;
+		knockback.knockback_direction = Direction.DOWN;
 		
 		//Speed is set by the derived classes. Set in terms of tiles per second.
 		move_speed = setSpeed() * world.map_handler.tile_size;
@@ -71,12 +67,12 @@ public abstract class MovingEntity extends Entity
 		collision_last_x = sprite.getX();
 		collision_last_y = sprite.getY();
 		
-		if(being_knocked_back)
-		{//During knockback, we need to update the knockback variable.
-			knockback(delta);	
+		if(knockback.being_knocked_back)
+		{//During knockback, we need to update the knockback variables.
+			knockback.doKnockback(delta);
 		}
-		if(!being_knocked_back)
-		{//If not being knocked back
+		else
+		{//If not being knocked back, update normally with free movement.
 			move(delta);
 			attack(delta);
 			entityCollision();
@@ -137,7 +133,7 @@ public abstract class MovingEntity extends Entity
 			
 		//If we didn't end up moving, we can turn off knockback.
 		if(Math.abs(sprite.getX() - collision_last_x) < 1f && Math.abs(sprite.getY() - collision_last_y) < 1f)
-			being_knocked_back = false;
+			knockback.being_knocked_back = false;
 	}
 	
 	/**
@@ -148,36 +144,12 @@ public abstract class MovingEntity extends Entity
 		if(e.knockback_on_collide)
 		{
 			//Knockback.
-			being_knocked_back = true;
-			current_knockback = 0f;
+			knockback.being_knocked_back = true;
+			knockback.current_knockback = 0f;
 			
 			//Invincibility.
 			is_invincible = true;
 			invincible_time_current = 0f;	
-		}
-	}
-	
-	private void knockback(float delta)
-	{
-		if(being_knocked_back)
-		{
-			//Calculate the knockback.
-			current_knockback += delta * KNOCKBACK_SPEED * world.map_handler.tile_size;
-			if(current_knockback >= KNOCKBACK_DISTANCE)
-			{
-				being_knocked_back = false;
-			}
-			
-			//Do the knockback movement. This will depend upon the last direction the entity moved.
-			//Direction moved is opposite of the direction facing.
-			if(knockback_direction == Direction.LEFT)
-				sprite.translateX(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
-			else if(knockback_direction == Direction.RIGHT)
-				sprite.translateX(-delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
-			else if(knockback_direction == Direction.UP)
-				sprite.translateY(-delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
-			else if(knockback_direction == Direction.DOWN)
-				sprite.translateY(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 		}
 	}
 	
@@ -196,4 +168,64 @@ public abstract class MovingEntity extends Entity
 	protected abstract float setSpeed();
 	protected abstract void move(float delta);
 	protected abstract void attack(float delta);
+	
+	/**
+	 * Manages knockback.
+	 * 
+	 * @author Lee
+	 *
+	 */
+	public class Knockbacker
+	{
+		//Knockback constants.
+		private final float KNOCKBACK_BLOCKS = 1.25f;
+		private final float KNOCKBACK_SPEED = 15f;
+		private final float KNOCKBACK_DISTANCE;
+		
+		//Knockback itself will have a flag set if happening. It also has distance and direction.
+		public boolean being_knocked_back;
+		private float current_knockback;
+		public Direction knockback_direction;
+		
+		public Knockbacker()
+		{
+			//Knockback block distance is knockback_blocks * size of blocks.
+			KNOCKBACK_DISTANCE = KNOCKBACK_BLOCKS * world.map_handler.tile_size;
+		}
+		
+		public void doKnockback(float delta)
+		{
+			if(being_knocked_back)
+			{
+				//Calculate the knockback.
+				current_knockback += delta * KNOCKBACK_SPEED * world.map_handler.tile_size;
+				if(current_knockback >= KNOCKBACK_DISTANCE)
+				{
+					being_knocked_back = false;
+				}
+				
+				//Do the knockback movement. This will depend upon the last direction the entity moved.
+				//Direction moved is opposite of the direction facing.
+				if(knockback_direction == Direction.LEFT)
+					sprite.translateX(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
+				else if(knockback_direction == Direction.RIGHT)
+					sprite.translateX(-delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
+				else if(knockback_direction == Direction.UP)
+					sprite.translateY(-delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
+				else if(knockback_direction == Direction.DOWN)
+					sprite.translateY(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
+			}
+		}
+	}
+	
+	/**
+	 * Manages attack.
+	 * 
+	 * @author Lee
+	 *
+	 */
+	public class Attacker
+	{
+		public boolean attacking, mid_attack;
+	}
 }
