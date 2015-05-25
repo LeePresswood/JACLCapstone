@@ -27,11 +27,14 @@ public class Knockbacker
 	
 	public Knockbacker(MovingEntity entity)
 	{
-		this.entity = entity;
 		this.world = entity.world;
+		this.entity = entity;
 		
 		//Knockback block distance is knockback_blocks * size of blocks.
 		KNOCKBACK_DISTANCE = KNOCKBACK_BLOCKS * world.map_handler.tile_size;
+		
+		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
+		knockback_direction = Direction.DOWN;
 	}
 	
 	public void doKnockback(float delta)

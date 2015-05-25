@@ -1,8 +1,8 @@
 package com.jacl.capstone.world.entities;
 
 import com.jacl.capstone.data.enums.Alignment;
-import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.helpers.AttackAnimator;
+import com.jacl.capstone.helpers.InvincibleCounter;
 import com.jacl.capstone.helpers.Knockbacker;
 import com.jacl.capstone.world.World;
 
@@ -20,22 +20,18 @@ public abstract class MovingEntity extends Entity
 	//Helpers.
 	public Knockbacker knockback;
 	public AttackAnimator attack;
+	public InvincibleCounter invincible;	
 	
-	//Entities will become invincible for a period of time after being hit. Part of this time will be during the knockback.
-	private final float INVINCIBLE_TIME = 0.5f;
-	private boolean is_invincible;
-	private float invincible_time_current;
+	//Collision variables.
+	private float collision_last_x, collision_last_y;
+	private float collision_from_center_x, collision_from_center_y;
 	
 	//Qualities that will be manipulated throughout play.
 	public boolean knockback_on_collide;
 	public float move_speed;
 	public float health;
 	public float damage_on_bump;
-	public Alignment alignment;	
-	
-	//Collision variables.
-	private float collision_last_x, collision_last_y;
-	private float collision_from_center_x, collision_from_center_y;
+	public Alignment alignment;
 	
 	public MovingEntity(World world, float x, float y, boolean knockback_on_collide, float move_speed, float health, float damage_on_bump, Alignment alignment)
 	{
@@ -44,9 +40,7 @@ public abstract class MovingEntity extends Entity
 		
 		knockback = new Knockbacker(this);
 		attack = new AttackAnimator(this);
-		
-		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
-		knockback.knockback_direction = Direction.DOWN;
+		invincible = new InvincibleCounter(this);
 		
 		//Health, speed, damage, and knockback_on_collide are set by the derived classes.
 		this.knockback_on_collide = knockback_on_collide;
@@ -78,8 +72,8 @@ public abstract class MovingEntity extends Entity
 			entityCollision();
 		}
 		
-		//Calculate invincibility frames.
-		invincible(delta);
+		//Calculate invincibility frames if necessary.
+		invincible.doInvincible(delta);
 		
 		//Calculate solid block collision.
 		cellCollision();
@@ -88,7 +82,7 @@ public abstract class MovingEntity extends Entity
 	private void entityCollision()
 	{
 		//We don't want to be hit while we're invincible.
-		if(!is_invincible)
+		if(!invincible.is_invincible)
 		{
 			//Scan through all the entities that are enemies to this entity.
 			if(alignment == Alignment.PLAYER)
@@ -152,21 +146,9 @@ public abstract class MovingEntity extends Entity
 			knockback.current_knockback = 0f;
 			
 			//Invincibility.
-			is_invincible = true;
-			invincible_time_current = 0f;	
+			invincible.is_invincible = true;
+			invincible.invincible_time_current = 0f;	
 		}
-	}
-	
-	private void invincible(float delta)
-	{
-		if(is_invincible)
-		{
-			invincible_time_current += delta;
-			if(invincible_time_current >= INVINCIBLE_TIME)
-			{
-				is_invincible = false;
-			}
-		}	
 	}
 	
 	protected abstract void move(float delta);

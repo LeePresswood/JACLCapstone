@@ -14,11 +14,11 @@ public class AttackAnimator
 	private World world;
 	private MovingEntity entity;
 	
+	public boolean attacking, mid_attack;
+	
 	public AttackAnimator(MovingEntity entity)
 	{
 		this.world = entity.world;
 		this.entity = entity;
 	}
-
-	public boolean attacking, mid_attack;
 }
