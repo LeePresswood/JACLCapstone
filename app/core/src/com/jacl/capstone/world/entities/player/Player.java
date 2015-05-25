@@ -33,6 +33,10 @@ public class Player extends MovingEntity
 	
 	//Rather than AI, we will use signals to define the correct time to move/attack.
 	public boolean up, down, left, right;
+	
+	//Player qualities that will be manipulated throughout the game.
+	//public float move_speed = 5f;
+	//public float health = 100f;
 
 	public Player(World world, float x, float y)
 	{
