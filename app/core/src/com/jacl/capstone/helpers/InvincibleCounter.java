@@ -9,13 +9,14 @@ public class InvincibleCounter
 	private World world;
 	private MovingEntity entity;
 	
-	//Entities will become invincible for a period of time after being hit. Part of this time will be during the knockback.
-	public final float INVINCIBLE_TIME = 1f;
+	//Entities will become invincible for a period of time after being hit.
+	private final float INVINCIBLE_TIME_HIT = 1f;
+	private float invincible_time_trigger;
+	private float invincible_time_current;
 	public boolean is_invincible;
-	public float invincible_time_current;
 	
 	//This is how transparant the player will be.
-	public final float INVINCIBILITY_ALPHA = 0.3f;
+	private final float INVINCIBILITY_ALPHA = 0.6f;
 	
 	public InvincibleCounter(MovingEntity entity)
 	{
@@ -23,7 +24,26 @@ public class InvincibleCounter
 		this.entity = entity;
 	}
 
-	public void doInvincible(float delta)
+	/**
+	 * After being hit, the player will go invincible for a set period of time.
+	 */
+	public void goInvincible()
+	{
+		goInvincible(INVINCIBLE_TIME_HIT);
+	}
+	
+	/**
+	 * Some spells require the entity in question to go invincible.
+	 * @param length Time (in seconds) to be invincible.
+	 */
+	public void goInvincible(float length)
+	{
+		invincible_time_trigger = length;
+		invincible_time_current = 0f;
+		is_invincible = true;
+	}
+
+	public void invincibleTick(float delta)
 	{
 		//Only need to do invincible calculation for player.
 		if(is_invincible && entity instanceof Player)
@@ -35,7 +55,7 @@ public class InvincibleCounter
 			invincible_time_current += delta;
 			
 			//If invincibility over, end.
-			if(invincible_time_current >= INVINCIBLE_TIME)
+			if(invincible_time_current >= INVINCIBLE_TIME_HIT)
 			{
 				is_invincible = false;
 				entity.sprite.setAlpha(1f);

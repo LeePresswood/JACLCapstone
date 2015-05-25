@@ -73,7 +73,7 @@ public abstract class MovingEntity extends Entity
 		}
 		
 		//Calculate invincibility frames if necessary.
-		invincible.doInvincible(delta);
+		invincible.invincibleTick(delta);
 		
 		//Calculate solid block collision.
 		cellCollision();
@@ -146,8 +146,7 @@ public abstract class MovingEntity extends Entity
 			knockback.current_knockback = 0f;
 			
 			//Invincibility.
-			invincible.is_invincible = true;
-			invincible.invincible_time_current = 0f;	
+			invincible.goInvincible();
 		}
 	}
 	
