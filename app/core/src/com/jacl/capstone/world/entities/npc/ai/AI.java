@@ -1,5 +1,7 @@
 package com.jacl.capstone.world.entities.npc.ai;
 
+import com.jacl.capstone.world.entities.npc.NPC;
+
 /**
  * Implement this interface for all AI classes.
  * 
@@ -20,4 +22,12 @@ public interface AI
 	 * @param delta Change in time.
 	 */
 	public void updatePosition(float delta);
+	
+	/**
+	 * After moving, the AI can decide an action.
+	 * @param delta Change in time.
+	 */
+	public void updateAction(float delta);
+
+	public void init(NPC npc);
 }

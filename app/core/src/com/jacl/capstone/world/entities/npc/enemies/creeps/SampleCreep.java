@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.entities.npc.ai.NothingAI;
 import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 
 /**
@@ -15,7 +16,7 @@ public class SampleCreep extends Enemy
 {
 	public SampleCreep(World world, float x, float y)
 	{
-		super(world, x, y, true, 0f, 10f, 10f, Alignment.ENEMY);
+		super(world, x, y, true, 0f, 10f, 10f, Alignment.ENEMY, new NothingAI());
 	}
 
 	@Override
