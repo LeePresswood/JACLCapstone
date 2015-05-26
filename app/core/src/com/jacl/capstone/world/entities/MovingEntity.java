@@ -1,9 +1,9 @@
 package com.jacl.capstone.world.entities;
 
 import com.jacl.capstone.data.enums.Alignment;
-import com.jacl.capstone.helpers.AttackAnimator;
-import com.jacl.capstone.helpers.InvincibleCounter;
-import com.jacl.capstone.helpers.Knockbacker;
+import com.jacl.capstone.helpers.AttackHelper;
+import com.jacl.capstone.helpers.InvincibleHelper;
+import com.jacl.capstone.helpers.KnockbackHelper;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.player.Player;
 
@@ -19,9 +19,9 @@ import com.jacl.capstone.world.entities.player.Player;
 public abstract class MovingEntity extends Entity
 {	
 	//Helpers.
-	public Knockbacker knockback;
-	public AttackAnimator attack;
-	public InvincibleCounter invincible;	
+	public KnockbackHelper knockback;
+	public AttackHelper attack;
+	public InvincibleHelper invincible;	
 	
 	//Collision variables.
 	private float collision_last_x, collision_last_y;
@@ -39,9 +39,9 @@ public abstract class MovingEntity extends Entity
 		super(world, x, y);
 		this.alignment = alignment;
 		
-		knockback = new Knockbacker(this);
-		attack = new AttackAnimator(this);
-		invincible = new InvincibleCounter(this);
+		knockback = new KnockbackHelper(this);
+		attack = new AttackHelper(this);
+		invincible = new InvincibleHelper(this);
 		
 		//Health, speed, damage, and knockback_on_collide are set by the derived classes.
 		this.knockback_on_collide = knockback_on_collide;

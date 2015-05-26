@@ -9,14 +9,14 @@ import com.jacl.capstone.world.entities.MovingEntity;
  * @author Lee
  *
  */
-public class AttackAnimator
+public class AttackHelper
 {
 	private World world;
 	private MovingEntity entity;
 	
 	public boolean attacking, mid_attack;
 	
-	public AttackAnimator(MovingEntity entity)
+	public AttackHelper(MovingEntity entity)
 	{
 		this.world = entity.world;
 		this.entity = entity;

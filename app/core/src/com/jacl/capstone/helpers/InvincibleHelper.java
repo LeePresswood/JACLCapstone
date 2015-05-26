@@ -9,7 +9,7 @@ import com.jacl.capstone.world.entities.player.Player;
  * @author Lee
  *
  */
-public class InvincibleCounter
+public class InvincibleHelper
 {
 	private MovingEntity entity;
 
@@ -19,7 +19,7 @@ public class InvincibleCounter
 	private float invincible_time_current;
 	public boolean is_invincible;
 	
-	public InvincibleCounter(MovingEntity entity)
+	public InvincibleHelper(MovingEntity entity)
 	{
 		this.entity = entity;
 	}

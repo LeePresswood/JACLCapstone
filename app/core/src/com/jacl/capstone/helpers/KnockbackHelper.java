@@ -9,7 +9,7 @@ import com.jacl.capstone.world.entities.MovingEntity;
  * @author Lee
  *
  */
-public class Knockbacker
+public class KnockbackHelper
 {
 	private MovingEntity entity;
 	
@@ -24,7 +24,7 @@ public class Knockbacker
 	public Direction knockback_direction;
 	public boolean is_being_knocked_back;
 	
-	public Knockbacker(MovingEntity entity)
+	public KnockbackHelper(MovingEntity entity)
 	{
 		this.entity = entity;
 		
