@@ -65,23 +65,23 @@ public class CollisionHandler
 			Rectangle r1 = a.sprite.getBoundingRectangle();
 			if(intersection.x > r1.x && intersection.width < intersection.height)                                  
 			{
-				b.knockback.knockback_direction = Direction.LEFT;
 				a.knockback.knockback_direction = Direction.RIGHT;
+				b.knockback.knockback_direction = Direction.LEFT;
 			}
 			if(intersection.y > r1.y && intersection.width >= intersection.height)
 			{
-				b.knockback.knockback_direction = Direction.DOWN;
 				a.knockback.knockback_direction = Direction.UP;
+				b.knockback.knockback_direction = Direction.DOWN;
 			}
 			if(intersection.x + intersection.width < r1.x + r1.width && intersection.width < intersection.height)  
 			{
-				b.knockback.knockback_direction = Direction.RIGHT;
 				a.knockback.knockback_direction = Direction.LEFT;
+				b.knockback.knockback_direction = Direction.RIGHT;
 			}
 			if(intersection.y + intersection.height < r1.y + r1.height && intersection.width >= intersection.height)
 			{
-				b.knockback.knockback_direction = Direction.UP;
 				a.knockback.knockback_direction = Direction.DOWN;
+				b.knockback.knockback_direction = Direction.UP;
 			}
 		}
 	}
