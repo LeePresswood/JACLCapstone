@@ -5,6 +5,7 @@ import com.jacl.capstone.helpers.AttackAnimator;
 import com.jacl.capstone.helpers.InvincibleCounter;
 import com.jacl.capstone.helpers.Knockbacker;
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.entities.player.Player;
 
 /**
  * These are world objects that move. These include enemies and players.
@@ -73,7 +74,7 @@ public abstract class MovingEntity extends Entity
 		}
 		
 		//Calculate invincibility frames if necessary.
-		invincible.invincibleTick(delta);
+		invincible.update(delta);
 		
 		//Calculate solid block collision.
 		cellCollision();
@@ -139,7 +140,7 @@ public abstract class MovingEntity extends Entity
 	 */
 	private void hitBy(MovingEntity e)
 	{
-		if(e.knockback_on_collide)
+		if(e.knockback_on_collide && this instanceof Player)
 		{
 			//Knockback.
 			knockback.being_knocked_back = true;
