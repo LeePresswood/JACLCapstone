@@ -21,7 +21,7 @@ public class Knockbacker
 	private final float KNOCKBACK_DISTANCE;
 	
 	//Knockback itself will have a flag set if happening. It also has distance and direction.
-	public boolean being_knocked_back;
+	public boolean is_being_knocked_back;
 	public float current_knockback;
 	public Direction knockback_direction;
 	
@@ -40,7 +40,7 @@ public class Knockbacker
 	public void doKnockback()
 	{
 		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
-		being_knocked_back = true;
+		is_being_knocked_back = true;
 		current_knockback = 0f;
 	}
 	
@@ -56,16 +56,10 @@ public class Knockbacker
 	
 	public void update(float delta)
 	{
-		if(being_knocked_back)
+		if(is_being_knocked_back)
 		{
 			//Calculate the knockback.
 			current_knockback += delta * KNOCKBACK_SPEED * world.map_handler.tile_size;
-			if(current_knockback >= KNOCKBACK_DISTANCE)
-			{
-				being_knocked_back = false;
-			}
-			
-			//Do the knockback movement.
 			if(knockback_direction == Direction.LEFT)
 				entity.sprite.translateX(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 			else if(knockback_direction == Direction.RIGHT)
@@ -74,6 +68,12 @@ public class Knockbacker
 				entity.sprite.translateY(-delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 			else if(knockback_direction == Direction.DOWN)
 				entity.sprite.translateY(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
+			
+			//If necessary, end.
+			if(current_knockback >= KNOCKBACK_DISTANCE)
+			{
+				is_being_knocked_back = false;
+			}
 		}
 	}
 }

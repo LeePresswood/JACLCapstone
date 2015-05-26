@@ -62,7 +62,7 @@ public abstract class MovingEntity extends Entity
 		collision_last_x = sprite.getX();
 		collision_last_y = sprite.getY();
 		
-		if(knockback.being_knocked_back)
+		if(knockback.is_being_knocked_back)
 		{//During knockback, we need to update the knockback variables.
 			knockback.update(delta);
 		}
