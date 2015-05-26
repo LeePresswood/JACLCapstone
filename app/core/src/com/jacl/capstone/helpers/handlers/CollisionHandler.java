@@ -54,17 +54,11 @@ public class CollisionHandler
 	}
 	
 	/**
-	 * Do the two entities collide?
+	 * Do the two entities collide? If so, set the knockback variables.
 	 * @param a First entity to check.
 	 * @param b Second entity to compare to.
-	 * @return True if there is a collision. False otherwise.
 	 */
-	/*public boolean collidesWith(Entity a, Entity b)
-	{
-		return a.sprite.getBoundingRectangle().overlaps(b.sprite.getBoundingRectangle());
-	}*/
-	
-	public void newCollidesWith(MovingEntity a, MovingEntity b)
+	public void collidesWith(MovingEntity a, MovingEntity b)
 	{
 		if(Intersector.intersectRectangles(a.sprite.getBoundingRectangle(), b.sprite.getBoundingRectangle(), intersection))
 		{//There was an intersection. Determine the colliding edges.

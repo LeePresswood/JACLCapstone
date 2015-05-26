@@ -90,7 +90,7 @@ public abstract class MovingEntity extends Entity
 			{
 				for(MovingEntity e : world.entity_handler.enemies)
 				{
-					world.collision_handler.newCollidesWith(this, e);
+					world.collision_handler.collidesWith(this, e);
 					if(this.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
 					{//There was a collision.
 						this.hitBy(e);
