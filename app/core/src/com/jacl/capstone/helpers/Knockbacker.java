@@ -5,7 +5,7 @@ import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
- * Manages knockback.
+ * Manages knockback from hits.
  * 
  * @author Lee
  *
@@ -32,12 +32,29 @@ public class Knockbacker
 		
 		//Knockback block distance is knockback_blocks * size of blocks.
 		KNOCKBACK_DISTANCE = KNOCKBACK_BLOCKS * world.map_handler.tile_size;
-		
-		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
-		knockback_direction = Direction.DOWN;
 	}
 	
-	public void doKnockback(float delta)
+	/**
+	 * The type of knockback that hit causes. The direction is set from an earlier collision calculation.
+	 */
+	public void doKnockback()
+	{
+		//Knockback is dependent upon the direction the entity is facing. If no movement happens before being hit, no direction is set.
+		being_knocked_back = true;
+		current_knockback = 0f;
+	}
+	
+	/**
+	 * A knockback that can be used for testing or event-necessary purposes.
+	 * @param knockback_direction The direction to move toward.
+	 */
+	public void doKnockback(Direction knockback_direction)
+	{
+		this.knockback_direction = knockback_direction;
+		doKnockback();
+	}
+	
+	public void update(float delta)
 	{
 		if(being_knocked_back)
 		{
@@ -48,7 +65,7 @@ public class Knockbacker
 				being_knocked_back = false;
 			}
 			
-			//Do the knockback movement. This will depend upon the last direction the entity moved.
+			//Do the knockback movement.
 			if(knockback_direction == Direction.LEFT)
 				entity.sprite.translateX(delta * KNOCKBACK_SPEED * world.map_handler.tile_size);
 			else if(knockback_direction == Direction.RIGHT)

@@ -35,6 +35,7 @@ public class InvincibleCounter
 	/**
 	 * Some spells require the entity in question to go invincible.
 	 * @param length Time (in seconds) to be invincible.
+	 * @param change_alpha True if we should be transparent during the invincibility.
 	 */
 	public void goInvincible(float length, boolean change_alpha)
 	{

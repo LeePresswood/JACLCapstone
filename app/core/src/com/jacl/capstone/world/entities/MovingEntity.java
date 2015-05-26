@@ -64,7 +64,7 @@ public abstract class MovingEntity extends Entity
 		
 		if(knockback.being_knocked_back)
 		{//During knockback, we need to update the knockback variables.
-			knockback.doKnockback(delta);
+			knockback.update(delta);
 		}
 		else
 		{//If not being knocked back, update normally with free movement.
@@ -143,8 +143,7 @@ public abstract class MovingEntity extends Entity
 		if(e.knockback_on_collide && this instanceof Player)
 		{
 			//Knockback.
-			knockback.being_knocked_back = true;
-			knockback.current_knockback = 0f;
+			knockback.doKnockback();
 			
 			//Invincibility.
 			invincible.goInvincible();
