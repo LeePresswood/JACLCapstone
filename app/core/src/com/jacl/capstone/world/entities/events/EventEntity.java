@@ -3,6 +3,7 @@ package com.jacl.capstone.world.entities.events;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
+import com.jacl.capstone.world.entities.events.navigation.GoToEventEntity;
 
 /**
  * Event entities will be scattered throughout the land. If one is stepped upon, we must activate it.<br><br>
@@ -34,9 +35,52 @@ public abstract class EventEntity extends Entity
 	protected Sprite makeSprite(float x, float y)
 	{
 		Sprite s = new Sprite();
-		s.setSize(SHRINK_SIZE_BY * world.map_handler.tile_size, SHRINK_SIZE_BY * world.map_handler.tile_size);
-		s.setPosition(x + world.map_handler.tile_size / 2f - s.getWidth() / 2f, y + world.map_handler.tile_size / 2f - s.getHeight() / 2f);
+		
+		//We want to check the number of GoTo Events around this block and morph the sprite to correctly display bounds.
+		float i, j, width, height;
+		
+		int new_x = (int) (x / world.event_handler.event_layer.getTileWidth());
+		int new_y = (int) (y / world.event_handler.event_layer.getTileHeight());
+		
+		//Right
+		new_x++;
+		if(contains(new_x, new_y) && contains(new_x - 2, new_y))
+			width = world.map_handler.tile_size;
+		else if(contains(new_x, new_y))
+			width = world.map_handler.tile_size / 2f;
+		else
+			width = SHRINK_SIZE_BY * world.map_handler.tile_size;	
+			
+		//Left
+		new_x -= 2;
+		if(contains(new_x, new_y))
+			i = x;
+		else
+			i = x + world.map_handler.tile_size / 2f - width / 2f;	
+			
+		//Top
+		new_y++;
+		if(contains(new_x, new_y) && contains(new_x, new_y - 2))
+			height = world.map_handler.tile_size;
+		else if(contains(new_x, new_y))
+			height = world.map_handler.tile_size / 2f;
+		else
+			height = SHRINK_SIZE_BY * world.map_handler.tile_size;	
+			
+		//Bottom
+		new_y -= 2;
+		if(contains(new_x, new_y))
+			j = y;
+		else
+			j = y + world.map_handler.tile_size / 2f - height / 2f;	
+		
+		s.setBounds(i, j, width, height);
 		return s;
+	}
+	
+	private boolean contains(int x, int y)
+	{
+		return world.event_handler.event_map.containsKey(x + "," + y) && world.event_handler.event_map.get(x + "," + y) instanceof GoToEventEntity;
 	}
 	
 	/**
