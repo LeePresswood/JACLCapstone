@@ -60,7 +60,6 @@ public abstract class MovingEntity extends Entity
 		else
 		{//If not being knocked back, update normally with free movement.
 			move(delta);
-			
 			attack(delta);
 			entityCollision();
 		}

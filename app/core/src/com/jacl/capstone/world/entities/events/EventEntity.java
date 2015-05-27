@@ -24,7 +24,7 @@ public abstract class EventEntity extends Entity
 	//Instead, we want to be within the event entity tile before we start it.
 	//To cause this effect, create a smaller rectangle from the event entity cell's
 	//collision rectangle.
-	protected final float SHRINK_SIZE_BY = 0.05f;
+	protected final float SHRINK_SIZE_BY = 0.15f;
 	
 	public EventEntity(World world, float x, float y, String... arguments)
 	{

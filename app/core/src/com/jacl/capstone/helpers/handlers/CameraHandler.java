@@ -64,6 +64,10 @@ public class CameraHandler extends OrthographicCamera
 		//Define camera width and height in terms of tiles. 
 		//This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
 		setToOrtho(false, TILE_SIZE * TILES_HORIZONTAL, TILE_SIZE * TILES_VERTICAL);
+		
+		//Initialize camera to player's position.
+		position.x = world.entity_handler.player.getCenterX();
+		position.y = world.entity_handler.player.getCenterY();
 		updateCamera();
 	}
 	

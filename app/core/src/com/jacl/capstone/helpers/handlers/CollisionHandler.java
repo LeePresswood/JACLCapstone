@@ -1,11 +1,9 @@
 package com.jacl.capstone.helpers.handlers;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.jacl.capstone.data.enums.Direction;
