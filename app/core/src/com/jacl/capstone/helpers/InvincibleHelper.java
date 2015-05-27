@@ -14,7 +14,7 @@ public class InvincibleHelper
 	private MovingEntity entity;
 
 	private final float INVINCIBLE_TIME_HIT = 0.75f;
-	private final float INVINCIBILITY_ALPHA = 0.6f;
+	private final float INVINCIBILITY_ALPHA = 0.4f;
 	private float invincible_time_trigger;
 	private float invincible_time_current;
 	public boolean is_invincible;

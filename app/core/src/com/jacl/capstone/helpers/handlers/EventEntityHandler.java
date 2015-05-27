@@ -25,8 +25,8 @@ public class EventEntityHandler
 	public World world;
 	
 	//Map-related items.
-	private TiledMapTileLayer event_layer;
-	private HashMap<String, EventEntity> event_map;
+	public TiledMapTileLayer event_layer;
+	public HashMap<String, EventEntity> event_map;
 	
 	//Currently selected event.
 	public EventEntity event;
@@ -67,7 +67,7 @@ public class EventEntityHandler
 	{
 		//First, determine if there is an event in this location.
 		int new_x = (int) (x / event_layer.getTileWidth());
-		int new_y = (int) (y / event_layer.getTileHeight());		
+		int new_y = (int) (y / event_layer.getTileHeight());
 		if(event_map.containsKey(new_x + "," + new_y))
 		{
 			//Now we need to determine if we have collided with the event.
