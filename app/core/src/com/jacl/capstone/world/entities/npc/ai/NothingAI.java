@@ -9,12 +9,11 @@ import com.jacl.capstone.world.entities.npc.NPC;
  * @author Lee
  *
  */
-public class NothingAI implements AI
+public class NothingAI extends AI
 {
-	@Override
-	public void init(NPC npc)
+	public NothingAI(NPC npc)
 	{
-		
+		super(npc);
 	}
 
 	@Override

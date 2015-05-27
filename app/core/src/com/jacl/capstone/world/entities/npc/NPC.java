@@ -16,11 +16,13 @@ public abstract class NPC extends MovingEntity
 {
 	protected AI ai;
 	
-	public NPC(World world, float x, float y, boolean knockback_on_collide,	float move_speed, float health, float damage_on_bump,	Alignment alignment, AI ai)
+	public NPC(World world, float x, float y, boolean knockback_on_collide,	float move_speed, float health, float damage_on_bump,	Alignment alignment)
 	{
 		super(world, x, y, knockback_on_collide, move_speed, health, damage_on_bump, alignment);
-		this.ai = ai;
+		ai = initAI();
 	}
+	
+	protected abstract AI initAI();
 	
 	@Override
 	/**
@@ -36,7 +38,8 @@ public abstract class NPC extends MovingEntity
 	@Override
 	/**
 	 * Attacking will be an action done through AI's updateAction.
-	 * Thus, this attack method is not required for AI.
+	 * Thus, this attack method is not required for AI. Let's use
+	 * it here to remove necessity for it in derivative classes.
 	 */
 	protected void attack(float delta)
 	{

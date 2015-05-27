@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.entities.npc.ai.AI;
 import com.jacl.capstone.world.entities.npc.ai.NothingAI;
 import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 
@@ -16,7 +17,7 @@ public class SampleCreep extends Enemy
 {
 	public SampleCreep(World world, float x, float y)
 	{
-		super(world, x, y, true, 0f, 10f, 10f, Alignment.ENEMY, new NothingAI());
+		super(world, x, y, true, 0f, 10f, 10f, Alignment.ENEMY);
 	}
 
 	@Override
@@ -26,11 +27,11 @@ public class SampleCreep extends Enemy
 		s.setBounds(x * world.map_handler.tile_size, y * world.map_handler.tile_size, 1f * world.map_handler.tile_size, 1f * world.map_handler.tile_size);
 		return s;
 	}
-
+	
 	@Override
-	public void move(float delta)
+	protected AI initAI()
 	{
-		//We don't want this enemy to move in an AI fashion, so let's not worry about it.
+		return new NothingAI(this);
 	}
 
 	@Override
