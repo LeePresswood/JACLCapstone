@@ -39,9 +39,4 @@ public class SampleCreep extends Enemy
 	{
 		sprite.draw(batch);
 	}
-
-	@Override
-	protected void attack(float delta)
-	{
-	}
 }

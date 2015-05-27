@@ -33,7 +33,12 @@ public class MapHandler
 	public int tiles_total_horizontal, tiles_total_vertical;
 	
 	//Other map qualities.
-	public boolean isOutside;
+	public boolean is_outside;
+	
+	/*
+	 * Note for future Lee:
+	 * ***********************************http://stackoverflow.com/questions/23144367/why-do-i-have-lines-going-across-my-libgdx-game-using-tiled**********************************************
+	 */
 	
 	public MapHandler(World world)
 	{
@@ -56,7 +61,7 @@ public class MapHandler
 		tiles_total_vertical = map.getProperties().get("height", Integer.class);
 		
 		//Read other map qualties
-		isOutside = Boolean.parseBoolean(map.getProperties().get("outside", String.class));
+		is_outside = Boolean.parseBoolean(map.getProperties().get("outside", String.class));
 		
 		//Separate the map layers.
 		separateLayers();

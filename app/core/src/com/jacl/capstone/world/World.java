@@ -120,7 +120,7 @@ public class World
 		map_handler.tiled_map_renderer.render(map_handler.layers_over_player);
 		
 		//Draw the day/night overlay if we are outside.
-		if(map_handler.isOutside)
+		if(map_handler.is_outside)
 		{
 			Gdx.gl.glEnable(GL20.GL_BLEND);
 			screen.renderer.setColor(time_color);
