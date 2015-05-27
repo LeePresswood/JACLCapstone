@@ -17,7 +17,7 @@ public class SampleCreep extends Enemy
 {
 	public SampleCreep(World world, float x, float y)
 	{
-		super(world, x, y, true, 0f, 10f, 10f, Alignment.ENEMY);
+		super(world, x, y, true, 3f, 10f, 10f, Alignment.ENEMY);
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities.npc.ai;
 
+import com.jacl.capstone.helpers.handlers.EntityHandler;
 import com.jacl.capstone.world.entities.npc.NPC;
 
 /**
@@ -10,11 +11,13 @@ import com.jacl.capstone.world.entities.npc.NPC;
  */
 public abstract class AI
 {
-	public final NPC npc;
+	public NPC npc;
+	public EntityHandler handler; 
 	
 	public AI(NPC npc)
 	{
 		this.npc = npc;
+		handler = npc.world.entity_handler;
 	}
 	
 	/**
