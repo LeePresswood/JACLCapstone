@@ -1,6 +1,8 @@
 package com.jacl.capstone.helpers.handlers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Vector3;
 import com.jacl.capstone.world.World;
 
 /**
@@ -31,6 +33,8 @@ public class CameraHandler extends OrthographicCamera
 
 	//The map will also define the width and height of the map in tiles.
 	private int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
+	
+	private final float LERP = 2f;
 	
 	public CameraHandler(World world)
 	{
@@ -64,8 +68,12 @@ public class CameraHandler extends OrthographicCamera
 	public void updateCamera(World world)
 	{
 		//Look at player.
-		position.set(world.entity_handler.player.getCenterX(), world.entity_handler.player.getCenterY(), 0);
-				
+		//position.set(world.entity_handler.player.getCenterX(), world.entity_handler.player.getCenterY(), 0);
+			
+		//Look at player's position, but add a delay if just recently moved to make the camera smoother.
+		position.x += (world.entity_handler.player.getCenterX() - position.x) * Gdx.graphics.getDeltaTime() * LERP;
+		position.y += (world.entity_handler.player.getCenterY() - position.y) * Gdx.graphics.getDeltaTime() * LERP;
+		
 		//Adjust bounds in accordance with the world's bounds.
 		//Left side
 		if(position.x < viewportWidth / 2f)
