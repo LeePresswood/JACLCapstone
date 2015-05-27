@@ -1,6 +1,5 @@
 package com.jacl.capstone.world.entities.events;
 
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
 import com.jacl.capstone.world.entities.events.navigation.GoToEventEntity;
@@ -28,17 +27,9 @@ public abstract class EventEntity extends Entity
 	
 	public EventEntity(World world, float x, float y, String... arguments)
 	{
-		super(world, x, y);
-	}
-	
-	@Override
-	/**
-	 * We want to check the number of GoTo Events around this block and morph the sprite to correctly display bounds.
-	 */
-	protected Sprite makeSprite(float x, float y)
-	{
-		Sprite s = new Sprite();
+		super(world, x, y, null);
 		
+		//We want to correctly shape the collision sprite for events to avoid the example from above.
 		float i, j, width, height;
 		int new_x = (int) (x / world.event_handler.event_layer.getTileWidth());
 		int new_y = (int) (y / world.event_handler.event_layer.getTileHeight());
@@ -75,8 +66,7 @@ public abstract class EventEntity extends Entity
 		else
 			j = y + world.map_handler.tile_size / 2f - height / 2f;	
 		
-		s.setBounds(i, j, width, height);
-		return s;
+		sprite.setBounds(i, j, width, height);
 	}
 	
 	/**

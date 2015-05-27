@@ -2,12 +2,13 @@ package com.jacl.capstone.input;
 
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
+import com.jacl.capstone.data.enums.EnemyType;
 import com.jacl.capstone.screens.ScreenGame;
-import com.jacl.capstone.world.entities.npc.enemies.creeps.SampleCreep;
+import com.jacl.capstone.world.entities.npc.enemies.EnemyFactory;
 
 public class InputGame implements InputProcessor
 {
-	ScreenGame screen;
+	public ScreenGame screen;
 	
 	public InputGame(ScreenGame screen)
 	{
@@ -73,7 +74,7 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.attack.attacking = false;
 				break;
 			case Keys.E:
-				screen.world.entity_handler.add(new SampleCreep(screen.world, 2, 4.5f));
+				screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));
 				break;
 		}
 		

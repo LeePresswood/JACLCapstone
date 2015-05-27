@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities.npc;
 
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
@@ -16,9 +17,9 @@ public abstract class NPC extends MovingEntity
 {
 	protected AI ai;
 	
-	public NPC(World world, float x, float y, boolean knockback_on_collide,	float move_speed, float health, float damage_on_bump,	Alignment alignment)
+	public NPC(World world, float x, float y, Element data, Alignment alignment)
 	{
-		super(world, x, y, knockback_on_collide, move_speed, health, damage_on_bump, alignment);
+		super(world, x, y, data, alignment);
 		ai = initAI();
 	}
 	

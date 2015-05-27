@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Enemies are sorted alphabetically.-->
 <spells>
-	<skeleton>
-	    <name>Skeleton</name>
-	    <texture>hold</texture>
+	<sample_creep>
+	    <name>Sample Creep</name>
+	    <texture>image.png</texture>
 	</skeleton>
 </spells>

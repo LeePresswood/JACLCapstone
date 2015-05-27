@@ -1,9 +1,7 @@
 package com.jacl.capstone.world.entities.player;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.jacl.capstone.data.Assets;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
@@ -38,23 +36,15 @@ public class Player extends MovingEntity
 	//public float move_speed = 5f;
 	//public float health = 100f;
 
-	public Player(World world, float x, float y)
+	public Player(World world, float x, float y, Element data)
 	{
-		super(world, x, y, false, 5f, 100f, 0f, Alignment.PLAYER);
+		super(world, x, y, data, Alignment.PLAYER);
 	}
 
 	@Override
 	public void draw(SpriteBatch batch)
 	{
 		sprite.draw(batch);
-	}
-	
-	@Override
-	protected Sprite makeSprite(float x, float y)
-	{
-		Sprite s = new Sprite(world.screen.game.assets.get(Assets.PLAYER, Texture.class));
-		s.setBounds(x * world.map_handler.tile_size, y * world.map_handler.tile_size, 1f * world.map_handler.tile_size, 1f * world.map_handler.tile_size);
-		return s;
 	}
 	
 	/**

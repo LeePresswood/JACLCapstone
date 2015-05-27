@@ -1,7 +1,10 @@
 package com.jacl.capstone.world.entities;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.XmlReader.Element;
+import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.world.World;
 
 /**
@@ -22,11 +25,24 @@ public abstract class Entity
 	public World world;
 	public Sprite sprite;
 	
-	public Entity(World world, float x, float y)
+	public Entity(World world, float x, float y, Element data)
 	{
 		this.world = world;
 		
-		sprite = makeSprite(x, y);
+		//Events will not pass a data element up the tree. Other entities will. Watch for this.
+		if(data != null)
+			makeSprite(x, y, data.getFloat("width"), data.getFloat("height"), world.screen.game.assets.get(data.get("texture"), Texture.class));
+		else
+			makeSprite(x, y, 1f, 1f);
+	}
+	
+	public void makeSprite(float x, float y, float width, float height, Texture... texture)
+	{
+		if(texture.length != 0)
+			sprite = new Sprite(world.screen.game.assets.get(Assets.PLAYER, Texture.class));
+		else
+			sprite = new Sprite();
+		sprite.setBounds(x * world.map_handler.tile_size, y * world.map_handler.tile_size, width * world.map_handler.tile_size, height * world.map_handler.tile_size);
 	}
 	
 	//These methods will be very helpful in checking bounds of/moving toward an entity.
@@ -80,15 +96,6 @@ public abstract class Entity
 		return (int) (getCenterY() / world.map_handler.tile_size);
 	}
 	
-	/**
-	 * The constructor will automatically call this method to create the sprite.
-	 * This method should define the sprite's location, size, texture, rotation,
-	 * and any other qualities that may be useful here.
-	 * @param y 
-	 * @param x 
-	 * @return An instance of the sprite that we will use.
-	 */
-	protected abstract Sprite makeSprite(float x, float y);	
 	public abstract void update(float delta);
 	public abstract void draw(SpriteBatch batch);
 }

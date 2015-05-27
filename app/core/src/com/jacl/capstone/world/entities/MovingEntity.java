@@ -1,6 +1,7 @@
 package com.jacl.capstone.world.entities;
 
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
 import com.jacl.capstone.helpers.InvincibleHelper;
@@ -34,9 +35,9 @@ public abstract class MovingEntity extends Entity
 	public float damage_on_bump;
 	public Alignment alignment;
 	
-	public MovingEntity(World world, float x, float y, boolean knockback_on_collide, float move_speed, float health, float damage_on_bump, Alignment alignment)
+	public MovingEntity(World world, float x, float y, Element data, Alignment alignment)
 	{
-		super(world, x, y);
+		super(world, x, y, data);
 		this.alignment = alignment;
 		
 		knockback = new KnockbackHelper(this);
@@ -44,7 +45,7 @@ public abstract class MovingEntity extends Entity
 		invincible = new InvincibleHelper(this);
 		
 		//Health, speed, damage, and knockback_on_collide are set by the derived classes.
-		this.knockback_on_collide = knockback_on_collide;
+		this.knockback_on_collide = data.getBoolean("knockback_on_collide");
 		this.move_speed = move_speed * world.map_handler.tile_size;	//Set in terms of tiles per second.
 		this.health = health;
 		this.damage_on_bump = damage_on_bump;
