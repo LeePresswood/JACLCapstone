@@ -99,7 +99,7 @@ public class World
 		entity_handler.update(delta);
 		
 		//Update camera onto player.
-		camera_handler.updateCamera(this);
+		camera_handler.updateCamera();
 	}
 	
 	/**

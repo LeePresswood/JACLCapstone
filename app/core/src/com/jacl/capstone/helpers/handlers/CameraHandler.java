@@ -2,7 +2,6 @@ package com.jacl.capstone.helpers.handlers;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Vector3;
 import com.jacl.capstone.world.World;
 
 /**
@@ -34,6 +33,18 @@ public class CameraHandler extends OrthographicCamera
 	//The map will also define the width and height of the map in tiles.
 	private int TILES_TOTAL_HORIZONTAL, TILES_TOTAL_VERTICAL;
 	
+	/*
+	 * This value can be used to have the camera follow the player in an imperfect
+	 * fashion.
+	 * 
+	 * Lower values = Less responsive camera, and 0 = No movement.
+	 * Higher values = More responsive camera. Infinity = Perfect response, but 
+	 * good luck getting there.
+	 * 
+	 * Any value between 2 and 5 should be fine for everyday camera activity. Might 
+	 * be able to add a drunk/drugged/dizzy effect by lowering the value to less
+	 * than 1.
+	 */
 	private final float LERP = 2f;
 	
 	public CameraHandler(World world)
@@ -53,7 +64,7 @@ public class CameraHandler extends OrthographicCamera
 		//Define camera width and height in terms of tiles. 
 		//This is done by multiplying how many tiles we want to see in each direction by the size of each tile. 
 		setToOrtho(false, TILE_SIZE * TILES_HORIZONTAL, TILE_SIZE * TILES_VERTICAL);
-		updateCamera(world);
+		updateCamera();
 	}
 	
 	/**
@@ -63,13 +74,9 @@ public class CameraHandler extends OrthographicCamera
 	 * Main idea here is that the world's bounds have a greater priority than the player's position.
 	 * To represent this, move to the player's position first. Afterward, readjust the camera to 
 	 * fit with the world's bounds.
-	 * @param world
 	 */
-	public void updateCamera(World world)
+	public void updateCamera()
 	{
-		//Look at player.
-		//position.set(world.entity_handler.player.getCenterX(), world.entity_handler.player.getCenterY(), 0);
-			
 		//Look at player's position, but add a delay if just recently moved to make the camera smoother.
 		position.x += (world.entity_handler.player.getCenterX() - position.x) * Gdx.graphics.getDeltaTime() * LERP;
 		position.y += (world.entity_handler.player.getCenterY() - position.y) * Gdx.graphics.getDeltaTime() * LERP;
