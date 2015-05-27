@@ -11,7 +11,7 @@ import com.jacl.capstone.world.entities.npc.enemies.Enemy;
  * the boss is dead.
  * 
  * @author Lee
- *
+ * 
  */
 public abstract class Boss extends Enemy
 {
