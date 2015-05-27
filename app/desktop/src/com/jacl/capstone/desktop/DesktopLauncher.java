@@ -18,12 +18,13 @@ public class DesktopLauncher
 	 * number only when a major feature addition has been made.
 	 * Version number should be 0 until first working version
 	 * of the game has been produced. Another name for this is "Alpha".
-	 * Also note that "0.1" and "0.10" are different versions.
+	 * Also note that "1.1" and "1.10" are different versions despite
+	 * what the rule of mathematics may say.
 	 * 
-	 * Until the game is beyond testing stages, Alpha/Beta will be
-	 * appended.
+	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
+	 * be appended to the version number.
 	 */
-	public static final String GAME_VERSION = "0.2 Alpha";
+	public static final String GAME_VERSION = "0.3 Alpha";
 	
 	/**
 	 * Game width will be a constant. Game height will be directly
