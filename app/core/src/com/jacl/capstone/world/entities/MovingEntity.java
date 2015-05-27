@@ -1,9 +1,6 @@
 package com.jacl.capstone.world.entities;
 
-import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
 import com.jacl.capstone.helpers.InvincibleHelper;
@@ -27,12 +24,8 @@ public abstract class MovingEntity extends Entity
 	public AttackHelper attack;
 	public InvincibleHelper invincible;	
 	
-	//Collision variables.
+	//Collision variable.
 	private Rectangle cell;
-	private Circle circle;
-	private float circle_shrink = 0.8f;
-	private float collision_last_x, collision_last_y;
-	private float collision_from_center_x, collision_from_center_y;
 	
 	//Qualities that will be manipulated throughout play.
 	public boolean knockback_on_collide;
@@ -55,22 +48,11 @@ public abstract class MovingEntity extends Entity
 		this.move_speed = move_speed * world.map_handler.tile_size;	//Set in terms of tiles per second.
 		this.health = health;
 		this.damage_on_bump = damage_on_bump;
-		
-		//Block collision detection should only happen at x% of the block's size from the midpoints of the sides.
-		final float jump_percent = 0.40f;
-		collision_from_center_x = jump_percent * sprite.getWidth();
-		collision_from_center_y = jump_percent * sprite.getHeight();
-		
-		circle = new Circle(getCenterX(), getCenterY(), sprite.getWidth() / 2f * circle_shrink);
 	}
 	
 	@Override
 	public void update(float delta)
 	{
-		//Store the current location for collision detection in the future.
-		collision_last_x = sprite.getX();
-		collision_last_y = sprite.getY();
-		
 		if(knockback.is_being_knocked_back)
 		{//During knockback, we need to update the knockback variables.
 			knockback.update(delta);
@@ -78,6 +60,7 @@ public abstract class MovingEntity extends Entity
 		else
 		{//If not being knocked back, update normally with free movement.
 			move(delta);
+			
 			attack(delta);
 			entityCollision();
 		}
@@ -87,9 +70,6 @@ public abstract class MovingEntity extends Entity
 		
 		//Calculate solid block collision.
 		cellCollision();
-		
-		//Reset collision circle.
-		circle.setPosition(getCenterX(), getCenterY());
 	}
 	
 	private void entityCollision()
@@ -119,45 +99,28 @@ public abstract class MovingEntity extends Entity
 	
 	/**
 	 * Do the sprite collision detection with solid blocks.
-	 * Go +-x% of the sprite's width/height away from the centerpoint of the side to get better collisions.
-	 * Test for a collision at this point.
 	 */
 	private void cellCollision()
 	{
-		//If the cell we collided with is solid, return to our previous position.
-		cell = world.collision_handler.collidesWithTile(circle);
+		//Right
+		cell = world.collision_handler.getRectangle(this.getLeft(), this.getCenterY());
 		if(cell != null)
-		{
-			Vector2 segment1 = new Vector2();
-			Vector2 segment2 = new Vector2();
-			Vector2 circle_center = new Vector2(circle.x, circle.y);
-			
-			//Bottom of cell.
-			segment1.set(cell.x, cell.x);
-			segment2.set(cell.x, cell.x + cell.width);
-			if(Intersector.intersectSegmentCircle(segment1, segment2, circle_center, circle.radius * circle.radius))
-				sprite.setPosition(collision_last_x, collision_last_y);
-		}
+			sprite.setX(cell.x + cell.width);
 		
+		//Left
+		cell = world.collision_handler.getRectangle(this.getRight(), this.getCenterY());
+		if(cell != null)
+			sprite.setX(cell.x - sprite.getWidth());
 		
+		//Up
+		cell = world.collision_handler.getRectangle(this.getCenterX(), this.getTop());
+		if(cell != null)
+			sprite.setY(cell.y - sprite.getHeight());
 		
-		
-		/*if(world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() + collision_from_center_y) != null)
-			sprite.setX(collision_last_x);
-		if(world.collision_handler.getCollisionCell(this.getLeft(), this.getCenterY() - collision_from_center_y) != null)
-			sprite.setX(collision_last_x);
-		if(world.collision_handler.getCollisionCell(this.getRight(), this.getCenterY() + collision_from_center_y) != null)
-			sprite.setX(collision_last_x);
-		if(world.collision_handler.getCollisionCell(this.getRight(), this.getCenterY() - collision_from_center_y) != null)
-			sprite.setX(collision_last_x);
-		if(world.collision_handler.getCollisionCell(this.getCenterX() + collision_from_center_x, this.getTop()) != null)
-			sprite.setY(collision_last_y);
-		if(world.collision_handler.getCollisionCell(this.getCenterX() - collision_from_center_x, this.getTop()) != null)
-			sprite.setY(collision_last_y);
-		if(world.collision_handler.getCollisionCell(this.getCenterX() + collision_from_center_x, this.getBottom()) != null)
-			sprite.setY(collision_last_y);
-		if(world.collision_handler.getCollisionCell(this.getCenterX() - collision_from_center_x, this.getBottom()) != null)
-			sprite.setY(collision_last_y);*/
+		//Down
+		cell = world.collision_handler.getRectangle(this.getCenterX(), this.getBottom());
+		if(cell != null)
+			sprite.setY(cell.y + cell.height);
 	}
 	
 	/**

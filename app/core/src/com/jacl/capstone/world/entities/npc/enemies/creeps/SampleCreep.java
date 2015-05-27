@@ -8,7 +8,6 @@ import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.npc.ai.AI;
 import com.jacl.capstone.world.entities.npc.ai.LerpAI;
-import com.jacl.capstone.world.entities.npc.ai.NothingAI;
 import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 
 /**
@@ -32,7 +31,7 @@ public class SampleCreep extends Enemy
 	@Override
 	protected AI initAI()
 	{
-		return new NothingAI(this);
+		return new LerpAI(this);
 	}
 
 	@Override
