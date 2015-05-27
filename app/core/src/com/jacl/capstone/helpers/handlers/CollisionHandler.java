@@ -1,7 +1,10 @@
 package com.jacl.capstone.helpers.handlers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.jacl.capstone.data.enums.Direction;
@@ -24,6 +27,9 @@ public class CollisionHandler
 	
 	private Rectangle intersection;
 	
+	
+	private ArrayList<Rectangle> rectangles;
+	
 	public CollisionHandler(World world)
 	{
 		this.world = world;
@@ -35,11 +41,35 @@ public class CollisionHandler
 	{
 		collision_layer = (TiledMapTileLayer) world.map_handler.map.getLayers().get(COLLISION_LAYER_INDEX);
 		
+		rectangles = new ArrayList<Rectangle>();
+		
 		//Get cells.
 		cells = new Cell[collision_layer.getHeight()][collision_layer.getWidth()];
 		for(int y = 0; y < collision_layer.getHeight(); y++)
 			for(int x = 0; x < collision_layer.getWidth(); x++)
+			{
 				cells[y][x] = collision_layer.getCell(x, y);
+				if(cells[y][x] != null)
+					rectangles.add(new Rectangle(x * world.map_handler.tile_size, y * world.map_handler.tile_size, world.map_handler.tile_size, world.map_handler.tile_size));
+			}
+	}
+	
+	/**
+	 * Check collision with the tile in the specified direction.
+	 * @param player
+	 * @param up 
+	 * @param down
+	 * @param left
+	 * @param right
+	 * @return True if collided and cannot move. False otherwise.
+	 */
+	public Rectangle collidesWithTile(Circle player)
+	{
+		for(Rectangle r : rectangles)
+			if(Intersector.overlaps(player, r))
+				return r;
+		
+		return null;
 	}
 	
 	/**

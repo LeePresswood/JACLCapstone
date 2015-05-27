@@ -45,7 +45,7 @@ public class CameraHandler extends OrthographicCamera
 	 * be able to add a drunk/drugged/dizzy effect by lowering the value to less
 	 * than 1.
 	 */
-	private final float LERP = 2f;
+	private final float LERP = 3f;
 	
 	public CameraHandler(World world)
 	{

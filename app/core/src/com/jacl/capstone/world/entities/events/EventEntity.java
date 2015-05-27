@@ -32,44 +32,45 @@ public abstract class EventEntity extends Entity
 	}
 	
 	@Override
+	/**
+	 * We want to check the number of GoTo Events around this block and morph the sprite to correctly display bounds.
+	 */
 	protected Sprite makeSprite(float x, float y)
 	{
 		Sprite s = new Sprite();
 		
-		//We want to check the number of GoTo Events around this block and morph the sprite to correctly display bounds.
 		float i, j, width, height;
-		
 		int new_x = (int) (x / world.event_handler.event_layer.getTileWidth());
 		int new_y = (int) (y / world.event_handler.event_layer.getTileHeight());
 		
 		//Right
 		new_x++;
-		if(contains(new_x, new_y) && contains(new_x - 2, new_y))
+		if(eventExists(new_x, new_y) && eventExists(new_x - 2, new_y))
 			width = world.map_handler.tile_size;
-		else if(contains(new_x, new_y))
+		else if(eventExists(new_x, new_y))
 			width = world.map_handler.tile_size / 2f;
 		else
 			width = SHRINK_SIZE_BY * world.map_handler.tile_size;	
 			
 		//Left
 		new_x -= 2;
-		if(contains(new_x, new_y))
+		if(eventExists(new_x, new_y))
 			i = x;
 		else
 			i = x + world.map_handler.tile_size / 2f - width / 2f;	
 			
 		//Top
 		new_y++;
-		if(contains(new_x, new_y) && contains(new_x, new_y - 2))
+		if(eventExists(new_x, new_y) && eventExists(new_x, new_y - 2))
 			height = world.map_handler.tile_size;
-		else if(contains(new_x, new_y))
+		else if(eventExists(new_x, new_y))
 			height = world.map_handler.tile_size / 2f;
 		else
 			height = SHRINK_SIZE_BY * world.map_handler.tile_size;	
 			
 		//Bottom
 		new_y -= 2;
-		if(contains(new_x, new_y))
+		if(eventExists(new_x, new_y))
 			j = y;
 		else
 			j = y + world.map_handler.tile_size / 2f - height / 2f;	
@@ -78,7 +79,14 @@ public abstract class EventEntity extends Entity
 		return s;
 	}
 	
-	private boolean contains(int x, int y)
+	/**
+	 * Does an event exist at the passed point? Used in creating the collision
+	 * box of the event.
+	 * @param x X coordinate (in tiles).
+	 * @param y Y coordinate (in tiles).
+	 * @return True if an event exists at that tile. False otherwise.
+	 */
+	private boolean eventExists(int x, int y)
 	{
 		return world.event_handler.event_map.containsKey(x + "," + y) && world.event_handler.event_map.get(x + "," + y) instanceof GoToEventEntity;
 	}
