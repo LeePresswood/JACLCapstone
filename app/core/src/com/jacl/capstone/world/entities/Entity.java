@@ -40,6 +40,16 @@ public abstract class Entity
 		return sprite.getY() + sprite.getHeight() / 2f;
 	}
 	
+	public void setCenterX(float x)
+	{
+		sprite.setX(x - sprite.getWidth() / 2f);
+	}
+	
+	public void setCenterY(float y)
+	{
+		sprite.setY(y - sprite.getHeight() / 2f);
+	}
+	
 	public float getLeft()
 	{
 		return sprite.getX();
