@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jacl.capstone.helpers.handlers.CameraHandler;
 import com.jacl.capstone.helpers.handlers.CollisionHandler;
+import com.jacl.capstone.helpers.handlers.DataHandler;
 import com.jacl.capstone.helpers.handlers.EntityHandler;
 import com.jacl.capstone.helpers.handlers.EventEntityHandler;
 import com.jacl.capstone.helpers.handlers.MapHandler;
@@ -30,6 +31,7 @@ public class World
 	public EntityHandler entity_handler;
 	public CollisionHandler collision_handler;	
 	public EventEntityHandler event_handler;
+	public DataHandler data_handler;
 	
 	//Atmosphere.
 	public GameTime time;
@@ -46,6 +48,7 @@ public class World
 		collision_handler = new CollisionHandler(this);
 		event_handler = new EventEntityHandler(this);
 		camera_handler = new CameraHandler(this);
+		data_handler = new DataHandler(this);
 	}
 	
 	/**
@@ -61,6 +64,7 @@ public class World
 		camera_handler.handlerInit();
 		collision_handler.handlerInit();
 		event_handler.handlerInit();
+		data_handler.handlerInit();
 	}
 
 	public void update(float delta)

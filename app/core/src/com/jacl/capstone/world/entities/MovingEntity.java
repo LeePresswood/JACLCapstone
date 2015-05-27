@@ -127,13 +127,14 @@ public abstract class MovingEntity extends Entity
 	 */
 	private void hitBy(MovingEntity e)
 	{
-		if(e.knockback_on_collide && this instanceof Player)
+		if(e.knockback_on_collide)
 		{
 			//Knockback.
 			knockback.doKnockback();
 			
-			//Invincibility.
-			invincible.goInvincible();
+			//Invincibility upon hit is only for players.
+			if(this instanceof Player)
+				invincible.goInvincible();
 		}
 	}
 	
