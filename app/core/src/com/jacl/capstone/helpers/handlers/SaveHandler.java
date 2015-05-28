@@ -2,7 +2,9 @@ package com.jacl.capstone.helpers.handlers;
 
 import java.io.IOException;
 import java.io.StringWriter;
+
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.XmlWriter;
 import com.jacl.capstone.world.World;
 
@@ -16,6 +18,7 @@ import com.jacl.capstone.world.World;
 public class SaveHandler
 {
 	private final String SAVE_DIR = "saves/";
+	private final String SAVE_FILE = "test.xml";
 	public World world;
 	
 	public SaveHandler(World world)
@@ -23,7 +26,7 @@ public class SaveHandler
 		this.world = world;
 		
 		//Make the saves/ directory if it does not exist.
-		if(!Gdx.files.local(SAVE_DIR).exists() || !Gdx.files.local(SAVE_DIR).isDirectory())
+		if(!Gdx.files.local(SAVE_DIR).exists() || !Gdx.files.local(SAVE_DIR).isDirectory() || !Gdx.files.local(SAVE_DIR + SAVE_FILE).exists())
 			init();
 	}
 	
@@ -90,7 +93,7 @@ public class SaveHandler
 		}
 		
 		//Save our new file.
-		Gdx.files.local(SAVE_DIR + "test.xml").writeString(writer.toString(), false);
+		Gdx.files.local(SAVE_DIR + SAVE_FILE).writeString(writer.toString(), false);
 	}
 	
 	/**
@@ -98,10 +101,19 @@ public class SaveHandler
 	 */
 	public void write()
 	{
-		//Create a new file for save.
-		/*FileHandle file = Gdx.files.local(SAVE_DIR + "test_save.txt");
-		file.writeString("time " + world.time.toString() + "\n", false);
-		file.writeString("player_location " + world.entity_handler.player.getTileX() + " " + world.entity_handler.player.getTileY() + "\n", true);
-		file.writeString("map " + world.map_handler.map_name + "\n", true);*/
+		System.out.print("\nWriting save file... ");
+		
+		//Write to the XML file for saving.
+		FileHandle file = Gdx.files.local(SAVE_DIR + SAVE_FILE);
+		String file_string = file.readString();
+		
+		file_string = file_string.replaceFirst("<time>.*</time>", "<time>" + world.time.toString() + "</time>");
+		file_string = file_string.replaceFirst("<x>.*</x>", "<x>" + world.entity_handler.player.getTileX() + "</x>");
+		file_string = file_string.replaceFirst("<y>.*</y>", "<y>" + world.entity_handler.player.getTileY() + "</y>");
+		file_string = file_string.replaceFirst("<map>.*</map>", "<map>" + world.map_handler.map_name + "</map>");
+		
+		file.writeString(file_string, false);
+		
+		System.out.print("Done!");
 	}
 }
