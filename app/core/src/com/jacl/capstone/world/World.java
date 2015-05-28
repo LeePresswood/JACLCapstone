@@ -1,9 +1,13 @@
 package com.jacl.capstone.world;
 
+import java.io.IOException;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.utils.XmlReader;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.helpers.handlers.CameraHandler;
 import com.jacl.capstone.helpers.handlers.CollisionHandler;
 import com.jacl.capstone.helpers.handlers.DataHandler;
@@ -49,6 +53,42 @@ public class World
 		event_handler = new EventEntityHandler(this);
 		camera_handler = new CameraHandler(this);
 		data_handler = new DataHandler(this);
+		
+		getFromSave();
+	}
+	
+	/**
+	 * Read from the save file into the world.
+	 */
+	public void getFromSave()
+	{
+		//Read from save file.
+		Element root;
+		try
+		{
+			root = new XmlReader().parse(Gdx.files.local("saves/test.xml")).getChildByName("save");
+			
+			//Read the time.
+			String time_line = root.get("time");
+			
+			//Read player's location.
+			int x = root.getChildByName("player_location").getInt("x");//Integer.parseInt(location_line[1]);
+			int y = root.getChildByName("player_location").getInt("y");//Integer.parseInt(location_line[2]);
+			
+			//Read map.
+			String map = root.get("map");
+			
+			//Push these into the game's world.
+			//Time.
+			time = new GameTime(time_line);
+			time_color = TimeColorer.getColor(time);
+			
+			init(map, x, y);
+		}
+		catch(IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -58,7 +98,7 @@ public class World
 	 * @param start_y Player's starting Y location (in blocks). 
 	 */
 	public void init(String map_name, int start_x, int start_y)
-	{		
+	{
 		map_handler.handlerInit(map_name);
 		entity_handler.handlerInit(start_x, start_y);
 		camera_handler.handlerInit();

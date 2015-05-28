@@ -17,6 +17,7 @@ public class DataHandler
 {
 	public World world;
 	
+	public Element player_root;
 	public Element entity_root;
 	
 	public DataHandler(World world)
@@ -27,7 +28,8 @@ public class DataHandler
 		XmlReader reader = new XmlReader();
 		try
 		{
-			entity_root = reader.parse(Gdx.files.internal("data/enemies.xml"));
+			player_root = reader.parse(Gdx.files.local("saves/test.xml"));
+			entity_root = reader.parse(Gdx.files.internal("data/entities.xml"));
 		}
 		catch(IOException e)
 		{

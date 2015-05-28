@@ -1,12 +1,10 @@
 package com.jacl.capstone.helpers.handlers;
 
-import java.util.Scanner;
-
+import java.io.IOException;
+import java.io.StringWriter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.XmlWriter;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.atmosphere.GameTime;
-import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
  * Once the game is opened, read from the save state. Once it is
@@ -38,42 +36,61 @@ public class SaveHandler
 		Gdx.files.local(SAVE_DIR).mkdirs();
 		
 		//Write a file with the initial information.
-		FileHandle file = Gdx.files.local(SAVE_DIR + "test_save.txt");
-		file.writeString("time 00:00\n", false);
-		file.writeString("player_location 0 1\n", true);
-		file.writeString("map test.tmx\n", true);
-	}
-	
-	/**
-	 * Read from the save file and push to the world. This happens upon the world
-	 * loading.
-	 */
-	public void read()
-	{
-		//Read from save file.
-		FileHandle file = Gdx.files.local(SAVE_DIR + "test_save.txt");
-		Scanner scanner = new Scanner(file.read());
+		StringWriter writer = new StringWriter();
+		XmlWriter xml = new XmlWriter(writer);
+		try{
+			xml.element("player")
+				.element("save")
+					.element("time")
+						.text("00:00")
+					.pop()
+					.element("player_location")
+						.element("x")
+							.text("0")
+						.pop()
+						.element("y")
+							.text("0")
+						.pop()
+					.pop()
+					.element("map")
+						.text("test.tmx")
+					.pop()
+					.element("progress_flag")
+						.text("0")
+					.pop()
+				.pop()
+				.element("texture")
+					.text("image.png")
+				.pop()
+				.element("width")
+					.text("1.0")
+				.pop()
+				.element("height")
+					.text("1.0")
+				.pop()
+				.element("health")
+					.text("100.0")
+				.pop()
+				.element("knockback_on_collide")
+					.text(new Boolean(false))
+				.pop()
+				.element("damage_on_collide")
+					.text("0.0")
+				.pop()
+				.element("move_speed")
+					.text("5.0")
+				.pop()
+			.pop();
+			
+			xml.close();
+			writer.close();
+		}
+		catch(IOException e){
+			e.printStackTrace();
+		}
 		
-		//Read the time.
-		String time_line = scanner.nextLine().split(" ")[1];
-		
-		//Read player's location.
-		String location_line[] = scanner.nextLine().split(" ");
-		int x = Integer.parseInt(location_line[1]);
-		int y = Integer.parseInt(location_line[2]);
-		
-		//Read map.
-		String map = scanner.nextLine().split(" ")[1];
-		
-		//Push these into the game's world.
-		//Time.
-		world.time = new GameTime(time_line);
-		world.time_color = TimeColorer.getColor(world.time);
-		
-		//Map.
-		world.init(map, x, y);
-		
-		scanner.close();
+		//Save our new file.
+		Gdx.files.local(SAVE_DIR + "test.xml").writeString(writer.toString(), false);
 	}
 	
 	/**
@@ -82,9 +99,9 @@ public class SaveHandler
 	public void write()
 	{
 		//Create a new file for save.
-		FileHandle file = Gdx.files.local(SAVE_DIR + "test_save.txt");
+		/*FileHandle file = Gdx.files.local(SAVE_DIR + "test_save.txt");
 		file.writeString("time " + world.time.toString() + "\n", false);
 		file.writeString("player_location " + world.entity_handler.player.getTileX() + " " + world.entity_handler.player.getTileY() + "\n", true);
-		file.writeString("map " + world.map_handler.map_name + "\n", true);
+		file.writeString("map " + world.map_handler.map_name + "\n", true);*/
 	}
 }

@@ -40,14 +40,14 @@ public class EntityHandler
 	public void handlerInit(int start_x, int start_y)
 	{
 		//We will eventually have an EntityManager here to complete the set.
-		player = new Player(world, start_x, start_y, );
-		
-		//Because this is when we are first creating the EnitityHandler, there should be no items in the all_entities array. Let's make it and add the player.
-		//Note: We would normally sort the array after adding an entity, but because this is the only entity, there's no need.
-		all_entities = new ArrayList<Entity>();
-		all_entities.add(player);
+		player = new Player(world, start_x, start_y, world.data_handler.player_root);
 		
 		enemies = new ArrayList<Enemy>();
+		
+		//Because this is when we are recreating the EnitityHandler, there should be no items in the all_entities array. Let's make it and add the player.
+		//Note: We would normally sort the array after adding an entity, but because this is the only entity, there's no need.
+		all_entities = new ArrayList<Entity>();
+		all_entities.add(player);		
 	}
 	
 	/**

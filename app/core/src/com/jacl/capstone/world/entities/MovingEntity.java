@@ -32,7 +32,7 @@ public abstract class MovingEntity extends Entity
 	public boolean knockback_on_collide;
 	public float move_speed;
 	public float health;
-	public float damage_on_bump;
+	public float damage_on_collide;
 	public Alignment alignment;
 	
 	public MovingEntity(World world, float x, float y, Element data, Alignment alignment)
@@ -44,11 +44,11 @@ public abstract class MovingEntity extends Entity
 		attack = new AttackHelper(this);
 		invincible = new InvincibleHelper(this);
 		
-		//Health, speed, damage, and knockback_on_collide are set by the derived classes.
+		//Health, speed, damage, and knockback_on_collide are set by the entity list.
 		this.knockback_on_collide = data.getBoolean("knockback_on_collide");
-		this.move_speed = move_speed * world.map_handler.tile_size;	//Set in terms of tiles per second.
-		this.health = health;
-		this.damage_on_bump = damage_on_bump;
+		this.move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;	//Set in terms of tiles per second.
+		this.health = data.getFloat("health");
+		this.damage_on_collide = data.getFloat("damage_on_collide");
 	}
 	
 	@Override

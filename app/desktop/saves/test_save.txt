@@ -1,3 +1,0 @@
-time 09:50
-player_location 23 28
-map test.tmx
