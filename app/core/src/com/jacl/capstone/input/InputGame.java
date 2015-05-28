@@ -76,6 +76,9 @@ public class InputGame implements InputProcessor
 			case Keys.E:
 				screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));
 				break;
+			case Keys.PLUS:
+				screen.world.time.hours++;
+				break;
 		}
 		
 		//Always return true on input methods you use. This tells LibGDX that it is in use and should be reading for it.

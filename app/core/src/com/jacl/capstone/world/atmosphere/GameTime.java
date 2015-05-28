@@ -9,7 +9,7 @@ package com.jacl.capstone.world.atmosphere;
 public class GameTime
 {
 	public int hours, minutes;
-	public boolean recently_updated_hour;
+	public boolean recently_updated_minute;
 	private float buffer;
 	
 	/**
@@ -77,26 +77,25 @@ public class GameTime
 	 */
 	private void updateTime()
 	{
-		recently_updated_hour = false;
+		recently_updated_minute = false;
 		
 		if(buffer >= 1f)
 		{
 			buffer -= 1f;		
 			minutes++;
-			
-			if(minutes >= 60)
-			{
-				minutes -= 60;
-				hours++;
-				recently_updated_hour = true;
-				
-				if(hours >= 24)
-				{
-					hours -= 24;
-				}
-			}
-			
-			System.out.println(this);
+			recently_updated_minute = true;
 		}
+		if(minutes >= 60)
+		{
+			minutes -= 60;
+			hours++;
+		}
+		if(hours >= 24)
+		{
+			hours = 0;
+		}
+		
+		if(recently_updated_minute)
+			System.out.println(this);
 	}
 }

@@ -5,8 +5,12 @@ import java.io.StringWriter;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.atmosphere.GameTime;
+import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
  * Once the game is opened, read from the save state. Once it is
@@ -93,13 +97,45 @@ public class SaveHandler
 				.pop()
 			.pop();
 			
+			//Save our new file and end.
+			Gdx.files.local(SAVE_DIR + SAVE_FILE).writeString(writer.toString(), false);
 			xml.close();
 			writer.close();
-			
-			//Save our new file.
-			Gdx.files.local(SAVE_DIR + SAVE_FILE).writeString(writer.toString(), false);
 		}
 		catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * Read from the save file into the world.
+	 */
+	public void getFromSave()
+	{
+		try
+		{
+			//Read from save file.
+			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + SAVE_FILE)).getChildByName("save");
+			
+			//Read the time.
+			String time_line = root.get("time");
+			
+			//Read player's location.
+			int x = root.getChildByName("player_location").getInt("x");
+			int y = root.getChildByName("player_location").getInt("y");
+			
+			//Read map.
+			String map = root.get("map");
+			
+			//Push these into the game's world.
+			//Time.
+			world.time = new GameTime(time_line);
+			world.time_color = TimeColorer.getColor(world.time);
+			
+			world.init(map, x, y);
+		}
+		catch(IOException e)
+		{
 			e.printStackTrace();
 		}
 	}
