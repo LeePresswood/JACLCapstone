@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.Assets;
+import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 
 /**
@@ -23,11 +24,14 @@ import com.jacl.capstone.world.World;
 public abstract class Entity
 {
 	public World world;
-	public Sprite sprite;
+	public Alignment alignment;
 	
-	public Entity(World world, float x, float y, Element data)
+	public Sprite sprite;
+		
+	public Entity(World world, float x, float y, Element data, Alignment alignment)
 	{
 		this.world = world;
+		this.alignment = alignment;
 		
 		//Events will not pass a data element up the tree. Other entities will. Watch for this.
 		if(data != null)

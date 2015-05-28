@@ -3,8 +3,11 @@ package com.jacl.capstone.world.entities.player;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
+import com.jacl.capstone.data.enums.Direction;
+import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
+import com.jacl.capstone.world.entities.player.items.ItemFactory;
 
 /**
  * This is the player that is controlled by input.There should 
@@ -31,10 +34,7 @@ public class Player extends MovingEntity
 	
 	//Rather than AI, we will use signals to define the correct time to move/attack.
 	public boolean up, down, left, right;
-	
-	//Player qualities that will be manipulated throughout the game.
-	//public float move_speed = 5f;
-	//public float health = 100f;
+	public Direction last_direction;
 
 	public Player(World world, float x, float y, Element data)
 	{
@@ -72,18 +72,22 @@ public class Player extends MovingEntity
 		if(up)
 		{
 			sprite.translateY(move_speed * delta);
+			last_direction = Direction.UP;
 		}
 		else if(down)
 		{
 			sprite.translateY(-move_speed * delta);
+			last_direction = Direction.DOWN;
 		}
 		if(left)
 		{
 			sprite.translateX(-move_speed * delta);
+			last_direction = Direction.LEFT;
 		}
 		else if(right)
 		{
 			sprite.translateX(move_speed * delta);
+			last_direction = Direction.RIGHT;
 		}
 		
 		//Undo correction if diagonal.
@@ -105,9 +109,11 @@ public class Player extends MovingEntity
 	 * See if player requested an attack. If so, get selected item and do its motion and effect.
 	 */
 	protected void attack(float delta)
-	{
+	{		
 		if(attack.attacking || attack.mid_attack)
 		{
+			world.entity_handler.add(ItemFactory.spawn(ItemSelection.SWORD, world));
+			
 			//We don't want to stop mid attack. Commit to the attack until the end by setting a mid-attack flag.
 			//mid_attack = true;
 			

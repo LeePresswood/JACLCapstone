@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities.events;
 
+import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
 import com.jacl.capstone.world.entities.events.navigation.GoToEventEntity;
@@ -27,7 +28,7 @@ public abstract class EventEntity extends Entity
 	
 	public EventEntity(World world, float x, float y, String... arguments)
 	{
-		super(world, x, y, null);
+		super(world, x, y, null, Alignment.NEUTRAL);
 		
 		//We want to correctly shape the collision sprite for events to avoid the example from above.
 		float i, j, width, height;

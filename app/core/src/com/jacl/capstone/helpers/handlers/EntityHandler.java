@@ -7,7 +7,6 @@ import java.util.Comparator;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
-import com.jacl.capstone.world.entities.MovingEntity;
 import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 import com.jacl.capstone.world.entities.player.Player;
 
@@ -54,7 +53,7 @@ public class EntityHandler
 	 * Populate the world by adding the passed entity.
 	 * @param e Entity to add.
 	 */
-	public void add(MovingEntity e)
+	public void add(Entity e)
 	{
 		//Add and sort by Y values. Highest to lowest.
 		all_entities.add(e);

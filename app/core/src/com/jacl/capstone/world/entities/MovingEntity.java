@@ -33,12 +33,10 @@ public abstract class MovingEntity extends Entity
 	public float health;
 	public boolean knockback_on_collide;
 	public float damage_on_collide;
-	public Alignment alignment;
 	
 	public MovingEntity(World world, float x, float y, Element data, Alignment alignment)
 	{
-		super(world, x, y, data);
-		this.alignment = alignment;
+		super(world, x, y, data, alignment);
 		
 		knockback = new KnockbackHelper(this);
 		attack = new AttackHelper(this);
