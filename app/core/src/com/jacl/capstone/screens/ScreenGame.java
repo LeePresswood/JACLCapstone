@@ -59,7 +59,7 @@ public class ScreenGame extends ScreenParent
 	 */	
 	public void show()
 	{
-		//world.save_handler.read();
+		world.save_handler.getFromSave();
 	}
 	
 	@Override

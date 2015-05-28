@@ -1,4 +1,4 @@
-package com.jacl.capstone.world.entities.player.items;
+package com.jacl.capstone.data.enums;
 
 /**
  * This is the selected item for the player.<br><br>
@@ -11,5 +11,5 @@ package com.jacl.capstone.world.entities.player.items;
  */
 public enum ItemSelection
 {
-	
+	SWORD
 }
