@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--Entities are sorted alphabetically.-->
-<entities>
+<enemies>
 	<sample_creep>
 		<name>Sample Creep</name>
 		<texture>image.png</texture>
@@ -11,4 +11,4 @@
 		<damage_on_collide>1.0</damage_on_collide>
 		<move_speed>5.0</move_speed>
 	</sample_creep>
-</entities>
+</enemies>

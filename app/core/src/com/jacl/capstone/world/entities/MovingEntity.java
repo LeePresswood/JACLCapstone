@@ -29,9 +29,9 @@ public abstract class MovingEntity extends Entity
 	private Rectangle cell;
 	
 	//Qualities that will be manipulated throughout play.
-	public boolean knockback_on_collide;
 	public float move_speed;
 	public float health;
+	public boolean knockback_on_collide;
 	public float damage_on_collide;
 	public Alignment alignment;
 	

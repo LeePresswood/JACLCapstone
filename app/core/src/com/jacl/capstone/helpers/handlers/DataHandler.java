@@ -29,7 +29,7 @@ public class DataHandler
 		try
 		{
 			player_root = reader.parse(Gdx.files.local("saves/test.xml"));
-			entity_root = reader.parse(Gdx.files.internal("data/entities.xml"));
+			entity_root = reader.parse(Gdx.files.internal("data/enemies.xml"));
 		}
 		catch(IOException e)
 		{
