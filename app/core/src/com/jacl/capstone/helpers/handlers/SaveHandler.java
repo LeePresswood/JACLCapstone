@@ -17,9 +17,16 @@ import com.jacl.capstone.world.World;
  */
 public class SaveHandler
 {
+	public World world;
+	
 	private final String SAVE_DIR = "saves/";
 	private final String SAVE_FILE = "test.xml";
-	public World world;
+	
+	private final String INIT_TIME = "00:00";
+	private final String INIT_X = "0";
+	private final String INIT_Y = "0";
+	private final String INIT_MAP = "test.tmx";
+	private final String INIT_PROGRESS_FLAG = "0";
 	
 	public SaveHandler(World world)
 	{
@@ -38,28 +45,29 @@ public class SaveHandler
 		//Make the save directory.
 		Gdx.files.local(SAVE_DIR).mkdirs();
 		
-		//Write a file with the initial information.
-		StringWriter writer = new StringWriter();
-		XmlWriter xml = new XmlWriter(writer);
 		try{
+			//Write a file with the initial information.
+			StringWriter writer = new StringWriter();
+			XmlWriter xml = new XmlWriter(writer);
+			
 			xml.element("player")
 				.element("save")
 					.element("time")
-						.text("00:00")
+						.text(INIT_TIME)
 					.pop()
 					.element("player_location")
 						.element("x")
-							.text("0")
+							.text(INIT_X)
 						.pop()
 						.element("y")
-							.text("0")
+							.text(INIT_Y)
 						.pop()
 					.pop()
 					.element("map")
-						.text("test.tmx")
+						.text(INIT_MAP)
 					.pop()
 					.element("progress_flag")
-						.text("0")
+						.text(INIT_PROGRESS_FLAG)
 					.pop()
 				.pop()
 				.element("texture")
@@ -87,13 +95,13 @@ public class SaveHandler
 			
 			xml.close();
 			writer.close();
+			
+			//Save our new file.
+			Gdx.files.local(SAVE_DIR + SAVE_FILE).writeString(writer.toString(), false);
 		}
 		catch(IOException e){
 			e.printStackTrace();
 		}
-		
-		//Save our new file.
-		Gdx.files.local(SAVE_DIR + SAVE_FILE).writeString(writer.toString(), false);
 	}
 	
 	/**
