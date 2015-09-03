@@ -53,9 +53,9 @@ public class LerpAI extends AI
 		 * the fact that, because our distance is squared, our
 		 * attack radius must also be squared to compensate. 
 		 */
-		if(Vector2.dst2(npc.getCenterX(), npc.getCenterY(), handler.player.getCenterX(), handler.player.getCenterY()) <= ATTACK_RADIUS)
+		/*if(Vector2.dst2(npc.getCenterX(), npc.getCenterY(), handler.player.getCenterX(), handler.player.getCenterY()) <= ATTACK_RADIUS)
 			System.out.println("Can attack.");
 		else
-			System.out.println("Can't attack.");
+			System.out.println("Can't attack.");*/
 	}
 }

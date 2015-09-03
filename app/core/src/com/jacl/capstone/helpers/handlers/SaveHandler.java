@@ -131,7 +131,6 @@ public class SaveHandler
 			//Time.
 			world.time = new GameTime(time_line);
 			world.time_color = TimeColorer.getColor(world.time);
-			
 			world.init(map, x, y);
 		}
 		catch(IOException e)
@@ -145,19 +144,18 @@ public class SaveHandler
 	 */
 	public void write()
 	{
-		System.out.print("\nWriting save file... ");
-		
-		//Write to the XML file for saving.
+		System.out.print("\nWriting save file...");
 		FileHandle file = Gdx.files.local(SAVE_DIR + SAVE_FILE);
 		String file_string = file.readString();
 		
+		//Build an XML string.
 		file_string = file_string.replaceFirst("<time>.*</time>", "<time>" + world.time.toString() + "</time>");
 		file_string = file_string.replaceFirst("<x>.*</x>", "<x>" + world.entity_handler.player.getTileX() + "</x>");
 		file_string = file_string.replaceFirst("<y>.*</y>", "<y>" + world.entity_handler.player.getTileY() + "</y>");
 		file_string = file_string.replaceFirst("<map>.*</map>", "<map>" + world.map_handler.map_name + "</map>");
 		
+		//Write to the XML file for saving.
 		file.writeString(file_string, false);
-		
 		System.out.print("Done!");
 	}
 }

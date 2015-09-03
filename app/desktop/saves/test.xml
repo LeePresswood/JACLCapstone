@@ -1,9 +1,9 @@
 <player>
 	<save>
-		<time>00:11</time>
+		<time>00:58</time>
 		<player_location>
-			<x>11</x>
-			<y>6</y>
+			<x>13</x>
+			<y>12</y>
 		</player_location>
 		<map>test.tmx</map>
 		<progress_flag>0</progress_flag>
