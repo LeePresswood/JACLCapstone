@@ -4,7 +4,10 @@ import com.badlogic.gdx.utils.BinaryHeap;
 import com.badlogic.gdx.utils.BinaryHeap.Node;
 import com.badlogic.gdx.utils.IntArray;
 
-/** @author Nathan Sweet */
+/** 
+ * @author Nathan Sweet
+ * @source  https://gist.github.com/NathanSweet/7587981
+ */
 public class AStar {
 	private final int width, height;
 	private final BinaryHeap<PathNode> open;
