@@ -29,13 +29,17 @@ public class PathfindingAI extends AI
 	@Override
 	public void updatePosition(float delta)
 	{
-		float dx = path.get(0) * delta * delta * npc.move_speed;
-		float dy = path.get(1) * delta * delta * npc.move_speed;
+		float dx = delta * npc.move_speed;
+		if(npc.getTileX() > path.pop())
+			dx *= -1;
+		float dy = delta * npc.move_speed;
+		if(npc.getTileY() > path.pop())
+			dy *= -1;
 		
 		//System.out.println(dx + " " + dy);
 		//for (int i = 0, n = path.size; i < n; i += 2)
-			System.out.println(path.first());
-		//System.exit(0);
+			System.out.println(path.peek());
+		
 		npc.sprite.translate(dx, dy);
 	}
 	
