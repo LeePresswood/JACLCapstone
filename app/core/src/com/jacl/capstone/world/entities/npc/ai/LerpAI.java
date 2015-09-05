@@ -28,7 +28,6 @@ public class LerpAI extends AI
 	@Override
 	public void updateThinking(float delta)
 	{
-		
 		//Get player's position (referencing the center).
 		player_position.set(handler.player.getCenterX() - npc.getCenterX(), handler.player.getCenterY() - npc.getCenterY());
 	}
