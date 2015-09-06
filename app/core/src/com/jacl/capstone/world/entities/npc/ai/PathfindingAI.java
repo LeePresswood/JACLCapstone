@@ -24,21 +24,63 @@ public class PathfindingAI extends AI
 		player_position.set(handler.player.getCenterX() - npc.getCenterX(), handler.player.getCenterY() - npc.getCenterY());
 		
 		path = astar.getPath(npc.getTileX(), npc.getTileY(), handler.player.getTileX(), handler.player.getTileY());
+		
+		//After getting the path, we have to prune doubles.
+		System.out.println("Current Location: " + npc.getTileX() + "," + npc.getTileY());
+		System.out.print("Path: ");
+		for(int i = 0; i < path.size; i += 2)
+			System.out.print(path.get(i) + "," + path.get(i + 1) + " ");
+		System.out.println("");
 	}
 	
 	@Override
 	public void updatePosition(float delta)
 	{
-		float dx = delta * npc.move_speed;
-		if(npc.getTileX() > path.pop())
-			dx *= -1;
-		float dy = delta * npc.move_speed;
-		if(npc.getTileY() > path.pop())
-			dy *= -1;
+		/* Note about the path:
+		 * Path is in a single-dimensional representation of points.
+		 * That is to say that for every tile (x,y) the NPC is to cross
+		 * over, the tile will do X first and then Y second. The first and
+		 * second values are the final location of the search. The second
+		 * two become the second. So on and so on.
+		 * Also note that the x,y,x,y... pattern will lead to the last Y value
+		 * being at the end of the list. Because the last X and Y values will
+		 * make up the next place we're aiming, grabbing that will lead to
+		 * our next location. We have to grab Y before X, however. 
+		 * 
+		 * Example:
+		 * Current Location: 10,14
+		 * Path: 9,11 10,12 10,13
+		 * Grab Y and X (in that order) from the end of the list. Our next location should be 10,13.
+		 */
 		
-		//System.out.println(dx + " " + dy);
-		//for (int i = 0, n = path.size; i < n; i += 2)
-			System.out.println(path.peek());
+		
+		
+		float dx = delta * npc.move_speed;
+		float dy = delta * npc.move_speed;
+		int next_y = path.pop();
+		int next_x = path.pop();
+		
+		if(npc.getTileY() == next_y)
+		{
+			System.out.println("npc.getTileY() == next_y");
+			dy = 0;
+		}
+		if(npc.getTileX() == next_x)
+		{
+			System.out.println("npc.getTileX() == next_x");
+			dy = 0;
+		}
+		if(npc.getTileY() > next_y)
+		{
+			dy *= -1;
+		}
+		if(npc.getTileX() > next_x)
+		{
+			dx *= -1;
+		}
+			
+		System.out.println(dx + " " + dy);
+		
 		
 		npc.sprite.translate(dx, dy);
 	}
