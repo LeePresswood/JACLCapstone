@@ -13,6 +13,9 @@ public class PathfindingAI extends AI
 	private int start_move_x;
 	private int start_move_y;
 	
+	//This number will be used in diagonal movement calculations.
+	private final float FOURTH_ROOT_FOUR = 1.189207115f;
+	
 	public PathfindingAI(NPC npc)
 	{
 		super(npc);
@@ -22,10 +25,10 @@ public class PathfindingAI extends AI
 	@Override
 	public void updateThinking(float delta)
 	{
-		if(!is_mid_movement)
+		//if(!is_mid_movement)
 		{
 			//Start movement.
-			is_mid_movement = true;
+			//is_mid_movement = true;
 			start_move_x = npc.getTileX();
 			start_move_y = npc.getTileY();
 			
@@ -63,7 +66,7 @@ public class PathfindingAI extends AI
 		 * Path: 9,11 10,12 10,13
 		 * Grab Y and X (in that order) from the end of the list. Our next location should be 10,13.
 		 */
-		if(is_mid_movement)
+		if(!is_mid_movement && path.size > 0)
 		{
 			//Determine if we're on a new tile yet.
 			if(npc.getTileX() != start_move_x || npc.getTileY() != start_move_y)
@@ -76,18 +79,30 @@ public class PathfindingAI extends AI
 			float dy = delta * npc.move_speed;
 			int next_y = path.pop();
 			int next_x = path.pop();
+			boolean diag_flag = true;
 			
 			//Otherwise, we need to keep moving.
 			if(npc.getTileY() == next_y)
 			{
 				System.out.println("npc.getTileY() == next_y");
 				dy = 0;
+				diag_flag = false;
 			}
 			if(npc.getTileX() == next_x)
 			{
 				System.out.println("npc.getTileX() == next_x");
 				dx = 0;
+				diag_flag = false;
 			}
+			
+			//If a diagonal flag is set, we need to limit the diagonal speed to avoid moving faster while going diagonally.
+			if(diag_flag)
+			{
+				dx /= FOURTH_ROOT_FOUR;
+				dy /= FOURTH_ROOT_FOUR;
+				System.out.println("Diag set.");
+			}
+			
 			if(npc.getTileY() > next_y)
 			{
 				dy *= -1;

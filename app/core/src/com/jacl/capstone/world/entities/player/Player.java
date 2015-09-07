@@ -54,7 +54,7 @@ public class Player extends MovingEntity
 	 * works for the 4 main directions, but if this method is used for the 4 corners,
 	 * the player will be moving at (player_speed) * (root(2)). To correct this, we 
 	 * will translate the player in both directions by the sprite's speed divided by 
-	 * the 2^(1/4), or (root(root(2))). Doing the theorem will get a final speed magnitude 
+	 * the 2^(1/4), or (root(root(2))). Doing this will get a final speed magnitude 
 	 * of x * root(2) / root(2), or x.<br><br>
 	 * 
 	 * Rather than calculating the fourth root of two every time, let's just store it here as 
