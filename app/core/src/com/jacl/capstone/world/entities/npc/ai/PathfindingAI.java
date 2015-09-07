@@ -6,36 +6,42 @@ import com.jacl.capstone.world.entities.npc.NPC;
 
 public class PathfindingAI extends AI
 {
-	private Vector2 player_position;
 	private AStar astar;
 	private IntArray path;
 	
-	private boolean moving;
+	private boolean is_mid_movement;
+	private int start_move_x;
+	private int start_move_y;
 	
 	public PathfindingAI(NPC npc)
 	{
 		super(npc);
-		
-		player_position = new Vector2();
 		astar = new AStar(npc.world.map_handler.tiles_total_horizontal, npc.world.map_handler.tiles_total_vertical);
 	}
 
 	@Override
 	public void updateThinking(float delta)
 	{
-		player_position.set(handler.player.getCenterX() - npc.getCenterX(), handler.player.getCenterY() - npc.getCenterY());
-		
-		path = astar.getPath(npc.getTileX(), npc.getTileY(), handler.player.getTileX(), handler.player.getTileY());
-		
-		//After getting the path, we have to prune doubles.
-		System.out.println("Current Location: " + npc.getTileX() + "," + npc.getTileY());
-		System.out.println("Target Location: " + handler.player.getTileX() + "," + handler.player.getTileY());
-		System.out.print("Path: ");
-		for(int i = 0; i < path.size; i += 2)
+		if(!is_mid_movement)
 		{
-			System.out.print(path.get(i) + "," + path.get(i + 1) + " ");
+			//Start movement.
+			is_mid_movement = true;
+			start_move_x = npc.getTileX();
+			start_move_y = npc.getTileY();
+			
+			//Get a path to the player.
+			path = astar.getPath(npc.getTileX(), npc.getTileY(), handler.player.getTileX(), handler.player.getTileY());
+			
+			//After getting the path, we have to prune doubles.
+			System.out.println("Current Location: " + npc.getTileX() + "," + npc.getTileY());
+			System.out.println("Target Location: " + handler.player.getTileX() + "," + handler.player.getTileY());
+			System.out.print("Path: ");
+			for(int i = 0; i < path.size; i += 2)
+			{
+				System.out.print(path.get(i) + "," + path.get(i + 1) + " ");
+			}
+			System.out.println("");
 		}
-		System.out.println("");
 	}
 	
 	@Override
@@ -57,37 +63,50 @@ public class PathfindingAI extends AI
 		 * Path: 9,11 10,12 10,13
 		 * Grab Y and X (in that order) from the end of the list. Our next location should be 10,13.
 		 */
-		
-		
-		
-		float dx = delta * npc.move_speed;
-		float dy = delta * npc.move_speed;
-		int next_y = path.pop();
-		int next_x = path.pop();
-		
-		if(npc.getTileY() == next_y)
+		if(is_mid_movement)
 		{
-			System.out.println("npc.getTileY() == next_y");
-			dy = 0;
-		}
-		if(npc.getTileX() == next_x)
-		{
-			System.out.println("npc.getTileX() == next_x");
-			dy = 0;
-		}
-		if(npc.getTileY() > next_y)
-		{
-			dy *= -1;
-		}
-		if(npc.getTileX() > next_x)
-		{
-			dx *= -1;
-		}
+			//Determine if we're on a new tile yet.
+			if(npc.getTileX() != start_move_x || npc.getTileY() != start_move_y)
+			{//We're on a new tile.
+				is_mid_movement = false;
+				return;
+			}
 			
-		System.out.println(dx + " " + dy + "\n");
-		
-		
-		npc.sprite.translate(dx, dy);
+			if(path.size <= 0)
+			{
+				is_mid_movement = false;
+				return;
+			}
+			float dx = delta * npc.move_speed;
+			float dy = delta * npc.move_speed;
+			int next_y = path.pop();
+			int next_x = path.pop();
+			
+			//Otherwise, we need to keep moving.
+			if(npc.getTileY() == next_y)
+			{
+				System.out.println("npc.getTileY() == next_y");
+				dx = 0;
+			}
+			if(npc.getTileX() == next_x)
+			{
+				System.out.println("npc.getTileX() == next_x");
+				dy = 0;
+			}
+			if(npc.getTileY() > next_y)
+			{
+				dy *= -1;
+			}
+			if(npc.getTileX() > next_x)
+			{
+				dx *= -1;
+			}
+				
+			System.out.println(dx + " " + dy + "\n");
+			
+			
+			npc.sprite.translate(dx, dy);
+		}
 	}
 	
 	@Override
