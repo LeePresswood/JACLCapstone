@@ -72,11 +72,6 @@ public class PathfindingAI extends AI
 				return;
 			}
 			
-			if(path.size <= 0)
-			{
-				is_mid_movement = false;
-				return;
-			}
 			float dx = delta * npc.move_speed;
 			float dy = delta * npc.move_speed;
 			int next_y = path.pop();
@@ -86,12 +81,12 @@ public class PathfindingAI extends AI
 			if(npc.getTileY() == next_y)
 			{
 				System.out.println("npc.getTileY() == next_y");
-				dx = 0;
+				dy = 0;
 			}
 			if(npc.getTileX() == next_x)
 			{
 				System.out.println("npc.getTileX() == next_x");
-				dy = 0;
+				dx = 0;
 			}
 			if(npc.getTileY() > next_y)
 			{
@@ -101,11 +96,15 @@ public class PathfindingAI extends AI
 			{
 				dx *= -1;
 			}
-				
-			System.out.println(dx + " " + dy + "\n");
-			
 			
 			npc.sprite.translate(dx, dy);
+			
+			if(path.size <= 0)
+			{
+				System.out.println("Path empty");
+				is_mid_movement = false;
+				return;
+			}
 		}
 	}
 	
