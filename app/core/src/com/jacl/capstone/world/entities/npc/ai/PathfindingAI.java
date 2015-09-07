@@ -10,6 +10,8 @@ public class PathfindingAI extends AI
 	private AStar astar;
 	private IntArray path;
 	
+	private boolean moving;
+	
 	public PathfindingAI(NPC npc)
 	{
 		super(npc);
