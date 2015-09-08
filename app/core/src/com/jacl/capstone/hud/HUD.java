@@ -9,13 +9,13 @@ import com.jacl.capstone.screens.ScreenGame;
  * @author Lee
  *
  */
-public class HUDManager
+public class HUD
 {
 	public ScreenGame screen;
 	
 	public OrthographicCamera camera;
 	
-	public HUDManager(ScreenGame screen)
+	public HUD(ScreenGame screen)
 	{
 		this.screen = screen;
 		
