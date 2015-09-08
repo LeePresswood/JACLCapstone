@@ -1,5 +1,7 @@
 package com.jacl.capstone.world.entities.npc.ai;
 
+import java.util.Random;
+
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.IntArray;
 import com.jacl.capstone.world.entities.npc.NPC;
@@ -25,10 +27,10 @@ public class PathfindingAI extends AI
 	@Override
 	public void updateThinking(float delta)
 	{
-		//if(!is_mid_movement)
+		if(!is_mid_movement)
 		{
 			//Start movement.
-			//is_mid_movement = true;
+			is_mid_movement = true;
 			start_move_x = npc.getTileX();
 			start_move_y = npc.getTileY();
 			
@@ -66,7 +68,7 @@ public class PathfindingAI extends AI
 		 * Path: 9,11 10,12 10,13
 		 * Grab Y and X (in that order) from the end of the list. Our next location should be 10,13.
 		 */
-		if(!is_mid_movement && path.size > 0)
+		if(is_mid_movement && path.size > 0)
 		{
 			//Determine if we're on a new tile yet.
 			if(npc.getTileX() != start_move_x || npc.getTileY() != start_move_y)
@@ -75,8 +77,8 @@ public class PathfindingAI extends AI
 				return;
 			}
 			
-			float dx = delta * npc.move_speed;
-			float dy = delta * npc.move_speed;
+			float dx = delta * npc.move_speed;// * (1f - new Random().nextInt(0) * 0.05f);
+			float dy = delta * npc.move_speed;// * (1f - new Random().nextInt(0) * 0.05f);
 			int next_y = path.pop();
 			int next_x = path.pop();
 			boolean diag_flag = true;
