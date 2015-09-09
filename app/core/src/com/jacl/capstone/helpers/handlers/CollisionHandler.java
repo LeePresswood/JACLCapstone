@@ -2,6 +2,7 @@ package com.jacl.capstone.helpers.handlers;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -23,25 +24,22 @@ public class CollisionHandler
 {
 	public World world;
 	
-	private TiledMapTileLayer collision_layer;
-	private final String COLLISION_LAYER = "collision_objects";
-	private Cell[][] cells;
-	
-	private Rectangle intersection;
-	
+	private MapLayer collision_layer;
+	private final String COLLISION_LAYER = "collisionobjects";
+	private Cell[][] cells;	
+	public Array<Polygon> polygons;
 	
 	private HashMap<Cell, Rectangle> rectangles;
 	
 	public CollisionHandler(World world)
 	{
 		this.world = world;
-		
-		intersection = new Rectangle();
 	}
 	
 	public void handlerInit()
 	{
-		collision_layer = (TiledMapTileLayer) world.map_handler.map.getLayers().get(COLLISION_LAYER);
+		collision_layer = world.map_handler.map.getLayers().get(COLLISION_LAYER);
+		System.out.println(world.map_handler.map.getLayers().get(4).getName());
 		MapObjects objects = collision_layer.getObjects();
 		Array<Polygon> polygons = new Array<Polygon>();
 		float tile_width = world.map_handler.tile_size;
@@ -66,27 +64,6 @@ public class CollisionHandler
 				if(cells[y][x] != null)
 					rectangles.put(cells[y][x], new Rectangle(x * world.map_handler.tile_size, y * world.map_handler.tile_size, world.map_handler.tile_size, world.map_handler.tile_size));
 			}
-	}
-	
-	/**
-	 * Get the rectangular bounds of the passed cell.
-	 * @param c The cell whose bounds we want.
-	 * @return The rectangle we need.
-	 */
-	public Rectangle getRectangle(float x, float y)
-	{
-		return rectangles.containsKey(getCollisionCell(x, y)) ? rectangles.get(getCollisionCell(x, y)) : null;
-	}
-	
-	/**
-	 * Using the given X and Y values, determine if there was a collision in this location.
-	 * @param x X location to check.
-	 * @param y Y location to check.
-	 * @return The cell in that location, or null if nothing is there.
-	 */
-	private Cell getCollisionCell(float x, float y)
-	{
-		return cells[(int) (y / collision_layer.getTileHeight())][(int) (x / collision_layer.getTileWidth())];
 	}
 	
 	/**
