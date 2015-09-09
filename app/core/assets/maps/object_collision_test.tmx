@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="23">
+ <tileset firstgid="1" name="terrain" tilewidth="32" tileheight="32">
+  <image source="../terrain.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="terrain" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMA6A9zPpXXI+jYC+pqqqq+voAg0+YAQ==
+  </data>
+ </layer>
+ <layer name="background" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzsEJwCAMRuEEqpNIJ2mdxHT/EcxBLw4Qi7wPfsjtRQQAAADAH1wqkpZljesXbzXf57Nx38H92d7Vt/FD29B/vPUuq4F9nK8DhQMHcw==
+  </data>
+ </layer>
+ <layer name="collision" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztkMENQEAUBZcWcVYEDogqcEAUgkrQjDk6IqyIN8lkN/8yf9cYIYQQQgjxRwr32Owpeloep4/BbmaTCGNM7GZNyjszLLlXWFvuN7Tbi3+dOuyOuXPfPuGJXRq6LXY39s8w0B1xeqk/011wfakvvs0G5UUQ5A==
+  </data>
+ </layer>
+ <layer name="foreground" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzsEJADAMxLDLmE3336PdIgQk8N8JAACwxamkf7emT4BtHpQtARI=
+  </data>
+ </layer>
+ <objectgroup name="collision">
+  <object id="1" x="114" y="685" width="62" height="68.5">
+   <ellipse/>
+  </object>
+  <object id="2" x="239.5" y="684.5"/>
+  <object id="4" x="243" y="665.5"/>
+  <object id="6" x="84" y="662.5"/>
+  <object id="7" x="79.5" y="682.5"/>
+  <object id="8" x="49.5" y="761.5"/>
+  <object id="9" x="64.5" y="762.5"/>
+  <object id="10" x="74.5" y="770"/>
+  <object id="11" x="80" y="774.5"/>
+  <object id="12" x="75" y="783"/>
+  <object id="13" x="57" y="777"/>
+  <object id="14" x="43.5" y="781.5"/>
+  <object id="16" x="171.5" y="810.5"/>
+  <object id="17" x="177.5" y="814.5"/>
+  <object id="18" x="181" y="821"/>
+  <object id="19" x="169.5" y="821"/>
+  <object id="22" x="531.5" y="872.5">
+   <polyline points="0,0 2,-22.5 -5.5,-32 1.5,-56.5 -1,-66.5 3,-76 -5.5,-95.5 4.5,-108 14,-119 25.5,-119 32.5,-122 38.5,-120 46,-118.5 55.5,-109 58,-98 55.5,-93.5 61,-88.5 59.5,-81 56.5,-67 55.5,-36.5 59,-24 58.5,-17 61,-14.5 53.5,-3.5 53.5,2 29.5,0 0.5,1"/>
+  </object>
+ </objectgroup>
+</map>
