@@ -1,6 +1,10 @@
 package com.jacl.capstone.world.entities;
 
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
@@ -100,6 +104,14 @@ public abstract class MovingEntity extends Entity
 	 */
 	private void cellCollision()
 	{
+		for(Polygon obj : world.collision_handler.polygons)
+		{
+			if(Intersector.intersectSegmentPolygon(new Vector2(1,1), new Vector2(2,2 ), obj))
+			{
+				System.out.println("Collision");
+			}
+		}
+		/*
 		//Right
 		cell = world.collision_handler.getRectangle(this.getLeft(), this.getCenterY());
 		if(cell != null)
@@ -118,7 +130,7 @@ public abstract class MovingEntity extends Entity
 		//Down
 		cell = world.collision_handler.getRectangle(this.getCenterX(), this.getBottom());
 		if(cell != null)
-			sprite.setY(cell.y + cell.height);
+			sprite.setY(cell.y + cell.height);*/
 	}
 	
 	/**
