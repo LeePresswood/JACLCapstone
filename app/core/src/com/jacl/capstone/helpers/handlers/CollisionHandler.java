@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
@@ -26,11 +27,12 @@ public class CollisionHandler
 	
 	private MapLayer collision_layer;
 	private final String COLLISION_LAYER = "collisionobjects";
-	private Cell[][] cells;	
+	private Cell[][] cells;
+	
+	public Array<Ellipse> ellipses;
+	public Array<Rectangle> rectangles;
 	public Array<Polygon> polygons;
-	
-	private HashMap<Cell, Rectangle> rectangles;
-	
+		
 	public CollisionHandler(World world)
 	{
 		this.world = world;
@@ -39,9 +41,13 @@ public class CollisionHandler
 	public void handlerInit()
 	{
 		collision_layer = world.map_handler.map.getLayers().get(COLLISION_LAYER);
-		System.out.println(world.map_handler.map.getLayers().get(4).getName());
 		MapObjects objects = collision_layer.getObjects();
+		
+		//Collision object shapes.
+		Array<Ellipse> ellipses = new Array<Ellipse>();
+		Array<Rectangle> rectangles = new Array<Rectangle>();
 		Array<Polygon> polygons = new Array<Polygon>();
+		
 		float tile_width = world.map_handler.tile_size;
 		float tile_height = world.map_handler.tile_size;
 		for(int i = 0; i < objects.getCount(); i++)
@@ -50,20 +56,6 @@ public class CollisionHandler
 			Polygon p = obj.getPolygon();
 			polygons.add(p);
 		}
-		
-		
-		
-		rectangles = new HashMap<Cell, Rectangle>();
-		
-		//Get cells.
-		cells = new Cell[collision_layer.getHeight()][collision_layer.getWidth()];
-		for(int y = 0; y < collision_layer.getHeight(); y++)
-			for(int x = 0; x < collision_layer.getWidth(); x++)
-			{
-				cells[y][x] = collision_layer.getCell(x, y);
-				if(cells[y][x] != null)
-					rectangles.put(cells[y][x], new Rectangle(x * world.map_handler.tile_size, y * world.map_handler.tile_size, world.map_handler.tile_size, world.map_handler.tile_size));
-			}
 	}
 	
 	/**
