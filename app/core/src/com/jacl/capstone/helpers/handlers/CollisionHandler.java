@@ -2,26 +2,29 @@ package com.jacl.capstone.helpers.handlers;
 
 import java.util.HashMap;
 
+import com.badlogic.gdx.maps.MapObjects;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.utils.Array;
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
  * Handles collision of entities.
- * 
  * @author Lee
- *
  */
 public class CollisionHandler
 {
 	public World world;
 	
 	private TiledMapTileLayer collision_layer;
-	private final int COLLISION_LAYER_INDEX = 1;
+	private final String COLLISION_LAYER = "collision_objects";
 	private Cell[][] cells;
 	
 	private Rectangle intersection;
@@ -38,7 +41,19 @@ public class CollisionHandler
 	
 	public void handlerInit()
 	{
-		collision_layer = (TiledMapTileLayer) world.map_handler.map.getLayers().get(COLLISION_LAYER_INDEX);
+		collision_layer = (TiledMapTileLayer) world.map_handler.map.getLayers().get(COLLISION_LAYER);
+		MapObjects objects = collision_layer.getObjects();
+		Array<Polygon> polygons = new Array<Polygon>();
+		float tile_width = world.map_handler.tile_size;
+		float tile_height = world.map_handler.tile_size;
+		for(int i = 0; i < objects.getCount(); i++)
+		{
+			PolygonMapObject obj = (PolygonMapObject) objects.get(i);
+			Polygon p = obj.getPolygon();
+			polygons.add(p);
+		}
+		
+		
 		
 		rectangles = new HashMap<Cell, Rectangle>();
 		
