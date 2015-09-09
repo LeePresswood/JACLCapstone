@@ -23,7 +23,7 @@
    eJztzsEJADAMxLDLmE3336PdIgQk8N8JAACwxamkf7emT4BtHpQtARI=
   </data>
  </layer>
- <objectgroup name="collision">
+ <objectgroup name="collisionobjects">
   <object id="1" x="114" y="685" width="62" height="68.5">
    <ellipse/>
   </object>
