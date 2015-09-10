@@ -26,7 +26,8 @@ public class MapHandler
 	//Map and layers.
 	public TiledMap map;
 	public TiledMapRenderer tiled_map_renderer;
-	public int[] layers_under_player, layers_over_player;
+	ArrayList<MapLayer> under;
+	ArrayList<MapLayer> over;
 	
 	//Each tile will be a certain width/height. This is defined in the map file. The map will also define the width and height of the map in tiles.
 	public float tile_size;
@@ -76,28 +77,20 @@ public class MapHandler
 	 */
 	private void separateLayers()
 	{		
-		ArrayList<Integer> under = new ArrayList<Integer>();
-		ArrayList<Integer> over = new ArrayList<Integer>();
+		under = new ArrayList<MapLayer>();
+		over = new ArrayList<MapLayer>();
 		
 		//Loop through all the map's layers and put them into one of these two categories.
-		int layer_counter = 0;
-		for(MapLayer m : map.getLayers())
+		for(int i = 0; i < map.getLayers().getCount(); i++)
 		{
-			if(m.getName().charAt(0) <= '1' || m.getName().charAt(0) == '-')
-				under.add(layer_counter++);
+			if(i <= 3)
+			{
+				under.add(map.getLayers().get(i));
+			}
 			else
-				over.add(layer_counter++);
+			{
+				over.add(map.getLayers().get(i));
+			}
 		}
-		
-		//Add these to the arrays.
-		int array_counter = 0;
-		layers_under_player = new int[under.size()];
-		for(Integer i : under)
-			layers_under_player[array_counter++] = i;
-		
-		array_counter = 0;
-		layers_over_player = new int[over.size()];
-		for(Integer i : over)
-			layers_over_player[array_counter++] = i;
 	}
 }
