@@ -3,6 +3,7 @@ package com.jacl.capstone.helpers.handlers;
 import java.util.HashMap;
 
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
@@ -29,6 +30,7 @@ public class CollisionHandler
 	private final String COLLISION_LAYER = "collisionobjects";
 	private Cell[][] cells;
 	
+	public Array<MapObject> collision_objects;
 	public Array<Ellipse> ellipses;
 	public Array<Rectangle> rectangles;
 	public Array<Polygon> polygons;
@@ -44,17 +46,13 @@ public class CollisionHandler
 		MapObjects objects = collision_layer.getObjects();
 		
 		//Collision object shapes.
-		Array<Ellipse> ellipses = new Array<Ellipse>();
-		Array<Rectangle> rectangles = new Array<Rectangle>();
-		Array<Polygon> polygons = new Array<Polygon>();
+		collision_objects = new Array<MapObject>();
 		
 		float tile_width = world.map_handler.tile_size;
 		float tile_height = world.map_handler.tile_size;
 		for(int i = 0; i < objects.getCount(); i++)
-		{
-			PolygonMapObject obj = (PolygonMapObject) objects.get(i);
-			Polygon p = obj.getPolygon();
-			polygons.add(p);
+		{//Get the map object and put it into the arrays.
+			collision_objects.add(objects.get(i));
 		}
 	}
 	
