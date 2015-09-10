@@ -107,7 +107,7 @@ public abstract class MovingEntity extends Entity
 	{
 		for(RectangleMapObject obj : world.collision_handler.collision_objects)
 		{
-			if(Intersector.intersectRectangles(sprite.getBoundingRectangle(), obj.getRectangle(), new Rectangle()))
+			if(sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
 			{//There was a collision. Stop further checking and return to last location.
 				sprite.setPosition(last_location.x, last_location.y);
 				return;
