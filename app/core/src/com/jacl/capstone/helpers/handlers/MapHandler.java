@@ -81,7 +81,7 @@ public class MapHandler
 		//Loop through all the map's layers and put them into one of these two categories.
 		for(int i = 0; i < map.getLayers().getCount(); i++)
 		{
-			if(i <= 3)
+			if(i < 2)
 			{
 				under.add(i);
 			}
