@@ -25,15 +25,8 @@ import com.jacl.capstone.world.entities.MovingEntity;
 public class CollisionHandler
 {
 	public World world;
-	
-	private MapLayer collision_layer;
-	private final String COLLISION_LAYER = "collisionobjects";
-	private Cell[][] cells;
-	
-	public Array<MapObject> collision_objects;
-	public Array<Ellipse> ellipses;
-	public Array<Rectangle> rectangles;
-	public Array<Polygon> polygons;
+	public final String COLLISION_LAYER = "collisionobjects";	
+	public Array<RectangleMapObject> collision_objects;
 		
 	public CollisionHandler(World world)
 	{
@@ -42,17 +35,14 @@ public class CollisionHandler
 	
 	public void handlerInit()
 	{
-		collision_layer = world.map_handler.map.getLayers().get(COLLISION_LAYER);
-		MapObjects objects = collision_layer.getObjects();
+		MapObjects objects = world.map_handler.map.getLayers().get(COLLISION_LAYER).getObjects();
 		
 		//Collision object shapes.
-		collision_objects = new Array<MapObject>();
-		
-		float tile_width = world.map_handler.tile_size;
-		float tile_height = world.map_handler.tile_size;
+		collision_objects = new Array<RectangleMapObject>();
 		for(int i = 0; i < objects.getCount(); i++)
 		{//Get the map object and put it into the arrays.
-			collision_objects.add(objects.get(i));
+			collision_objects.add((RectangleMapObject) objects.get(i));
+			//System.out.println(objects.get(i) instanceof RectangleMapObject);
 		}
 	}
 	

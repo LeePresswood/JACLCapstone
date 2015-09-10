@@ -1,7 +1,9 @@
 package com.jacl.capstone.world.entities;
 
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.objects.EllipseMapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
+import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
@@ -105,14 +107,11 @@ public abstract class MovingEntity extends Entity
 	 */
 	private void cellCollision()
 	{
-		for(MapObject obj : world.collision_handler.collision_objects)
+		for(RectangleMapObject obj : world.collision_handler.collision_objects)
 		{
-			if(obj instanceof PolygonMapObject)
+			if(Intersector.intersectRectangles(sprite.getBoundingRectangle(), obj.getRectangle(), new Rectangle()))
 			{
-				if(Intersector.intersectSegmentPolygon(new Vector2(1,1), new Vector2(2,2), PolygonMapObject.class.cast(obj).getPolygon()))
-				{
-					System.out.println("Collision");
-				}
+				System.out.println("Collision with Rectangle.");
 			}
 		}
 		/*
