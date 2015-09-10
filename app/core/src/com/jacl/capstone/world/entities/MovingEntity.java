@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities;
 
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Polygon;
@@ -104,11 +105,14 @@ public abstract class MovingEntity extends Entity
 	 */
 	private void cellCollision()
 	{
-		for(Polygon obj : world.collision_handler.polygons)
+		for(MapObject obj : world.collision_handler.collision_objects)
 		{
-			if(Intersector.intersectSegmentPolygon(new Vector2(1,1), new Vector2(2,2 ), obj))
+			if(obj instanceof PolygonMapObject)
 			{
-				System.out.println("Collision");
+				if(Intersector.intersectSegmentPolygon(new Vector2(1,1), new Vector2(2,2), PolygonMapObject.class.cast(obj).getPolygon()))
+				{
+					System.out.println("Collision");
+				}
 			}
 		}
 		/*
