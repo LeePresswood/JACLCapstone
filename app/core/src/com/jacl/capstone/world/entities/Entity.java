@@ -3,6 +3,7 @@ package com.jacl.capstone.world.entities;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.data.enums.Alignment;
@@ -27,6 +28,7 @@ public abstract class Entity
 	public Alignment alignment;
 	
 	public Sprite sprite;
+	public Vector2 last_location;
 		
 	public Entity(World world, float x, float y, Element data, Alignment alignment)
 	{
@@ -56,6 +58,7 @@ public abstract class Entity
 		}
 		
 		sprite.setBounds(x * world.map_handler.tile_size, y * world.map_handler.tile_size, width * world.map_handler.tile_size, height * world.map_handler.tile_size);
+		last_location = new Vector2(sprite.getX(), sprite.getY());
 	}
 	
 	//These methods will be very helpful in checking bounds of/moving toward an entity.

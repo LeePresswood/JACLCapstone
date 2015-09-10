@@ -1,11 +1,7 @@
 package com.jacl.capstone.world.entities;
 
-import com.badlogic.gdx.maps.MapObject;
-import com.badlogic.gdx.maps.objects.EllipseMapObject;
-import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
@@ -32,9 +28,6 @@ public abstract class MovingEntity extends Entity
 	public AttackHelper attack;
 	public InvincibleHelper invincible;	
 	
-	//Collision variable.
-	private Rectangle cell;
-	
 	//Qualities that will be manipulated throughout play.
 	public float move_speed;
 	public float health;
@@ -54,6 +47,8 @@ public abstract class MovingEntity extends Entity
 		this.move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;	//Set in terms of tiles per second.
 		this.health = data.getFloat("health");
 		this.damage_on_collide = data.getFloat("damage_on_collide");
+		
+		
 	}
 	
 	@Override
