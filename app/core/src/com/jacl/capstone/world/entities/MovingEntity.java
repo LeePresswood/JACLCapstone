@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
@@ -109,6 +110,28 @@ public abstract class MovingEntity extends Entity
 		{
 			if(sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
 			{//There was a collision. Stop further checking and return to last location.
+				//To avoid a sticky feeling near walls, turn off the direction that caused the collision.
+				if(this instanceof Player)
+				{
+					if(obj.getRectangle().y > sprite.getBoundingRectangle().y)
+					{
+						Player.class.cast(this).up = false;
+					}
+					else if(obj.getRectangle().y < sprite.getBoundingRectangle().y)
+					{
+						Player.class.cast(this).down = false;
+					}
+					else if(obj.getRectangle().x > sprite.getBoundingRectangle().x)
+					{
+						Player.class.cast(this).right = false;
+					}
+					else if(obj.getRectangle().x < sprite.getBoundingRectangle().x)
+					{
+						Player.class.cast(this).left = false;
+					}
+				}
+				
+				//Return to last_location and end checking.
 				sprite.setPosition(last_location.x, last_location.y);
 				return;
 			}
