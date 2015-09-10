@@ -114,26 +114,6 @@ public abstract class MovingEntity extends Entity
 				System.out.println("Collision with Rectangle.");
 			}
 		}
-		/*
-		//Right
-		cell = world.collision_handler.getRectangle(this.getLeft(), this.getCenterY());
-		if(cell != null)
-			sprite.setX(cell.x + cell.width);
-		
-		//Left
-		cell = world.collision_handler.getRectangle(this.getRight(), this.getCenterY());
-		if(cell != null)
-			sprite.setX(cell.x - sprite.getWidth());
-		
-		//Up
-		cell = world.collision_handler.getRectangle(this.getCenterX(), this.getTop());
-		if(cell != null)
-			sprite.setY(cell.y - sprite.getHeight());
-		
-		//Down
-		cell = world.collision_handler.getRectangle(this.getCenterX(), this.getBottom());
-		if(cell != null)
-			sprite.setY(cell.y + cell.height);*/
 	}
 	
 	/**
