@@ -10,17 +10,12 @@
  </layer>
  <layer name="background" width="32" height="32">
   <data encoding="base64" compression="zlib">
-   eJztzsEJwCAMRuEEqpNIJ2mdxHT/EcxBLw4Qi7wPfsjtRQQAAADAH1wqkpZljesXbzXf57Nx38H92d7Vt/FD29B/vPUuq4F9nK8DhQMHcw==
-  </data>
- </layer>
- <layer name="collision" width="32" height="32">
-  <data encoding="base64" compression="zlib">
-   eJztkMENQEAUBZcWcVYEDogqcEAUgkrQjDk6IqyIN8lkN/8yf9cYIYQQQgjxRwr32Owpeloep4/BbmaTCGNM7GZNyjszLLlXWFvuN7Tbi3+dOuyOuXPfPuGJXRq6LXY39s8w0B1xeqk/011wfakvvs0G5UUQ5A==
+   eJztkEEOwUAYRv82OEnjJLgA1jb0Ali04hRYtNKD4CS4jLcYIZNKLDpd8L3kpfP/i752zIQQQgghxD+yjb/bhaKiNeY5wenbrk2WuMJ1u1nL+M8cd5z3eHD7TmTW9exFzfcL2mXNXSe05pjiwp37Xj9jznHT4HfN4lf/2f7UL5hLPAa4l8R1U9eu65+Yz3gJ0B/wzqHnyOtcmW94D9AXv88DWlcYVg==
   </data>
  </layer>
  <layer name="foreground" width="32" height="32">
   <data encoding="base64" compression="zlib">
-   eJztzsEJADAMxLDLmE3336PdIgQk8N8JAACwxamkf7emT4BtHpQtARI=
+   eJztzsERQEAAQ9HsbCeoBE3ghkqWwqUA9zDz30zOPxIAAADedFXqvaFm+qO7kzeH+ru7h3eG+s3dy7tD/a9airR6W0k/AfA3DyXxBRo=
   </data>
  </layer>
  <objectgroup name="collisionobjects">
@@ -39,7 +34,7 @@
   <object id="17" x="177.5" y="814.5"/>
   <object id="18" x="181" y="821"/>
   <object id="19" x="169.5" y="821"/>
-  <object id="25" x="117" y="685" width="63" height="68"/>
-  <object id="27" x="529" y="765" width="59" height="106"/>
+  <object id="25" x="117" y="686" width="57" height="60"/>
+  <object id="27" x="534" y="760" width="50" height="97"/>
  </objectgroup>
 </map>
