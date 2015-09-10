@@ -70,6 +70,9 @@ public abstract class MovingEntity extends Entity
 		
 		//Calculate solid block collision.
 		cellCollision();
+		
+		//Now that all movement is done, we can reset the last_location variable.
+		last_location.set(sprite.getX(), sprite.getY());
 	}
 	
 	private void entityCollision()
@@ -87,7 +90,7 @@ public abstract class MovingEntity extends Entity
 					{//There was a collision.
 						this.hitBy(e);
 						e.hitBy(this);
-					}					
+					}
 				}
 			}
 			else if(alignment == Alignment.ENEMY)
@@ -105,8 +108,9 @@ public abstract class MovingEntity extends Entity
 		for(RectangleMapObject obj : world.collision_handler.collision_objects)
 		{
 			if(Intersector.intersectRectangles(sprite.getBoundingRectangle(), obj.getRectangle(), new Rectangle()))
-			{
-				System.out.println("Collision with Rectangle.");
+			{//There was a collision. Stop further checking and return to last location.
+				sprite.setPosition(last_location.x, last_location.y);
+				return;
 			}
 		}
 	}
