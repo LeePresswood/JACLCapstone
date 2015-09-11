@@ -120,10 +120,19 @@ public abstract class MovingEntity extends Entity
 					//Don't stop trapped players from walking away if they get stuck.
 					if(this instanceof Player)
 					{
-						
+						if(r.y > obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(this).up != true)
+						{
+							sprite.setY(last_location.y);
+						}
+						else if(r.y < obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(this).down != true)
+						{
+							sprite.setY(last_location.y);
+						}
 					}
-					
-					sprite.setY(last_location.y);
+					else
+					{
+						sprite.setY(last_location.y);
+					}
 				}
 				else
 				{//Reset X.
