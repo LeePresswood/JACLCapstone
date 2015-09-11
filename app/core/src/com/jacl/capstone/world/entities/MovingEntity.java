@@ -113,8 +113,6 @@ public abstract class MovingEntity extends Entity
 				//We want to do the return by getting a better view of the overlap.
 				Rectangle r = new Rectangle();
 				Intersector.intersectRectangles(sprite.getBoundingRectangle(), obj.getRectangle(), r);
-				
-				System.out.println(r);
 				if(r.width > r.height)
 				{//Reset Y.
 					//Don't stop trapped players from walking away if they get stuck.
@@ -154,29 +152,6 @@ public abstract class MovingEntity extends Entity
 					}
 				}
 				
-				//Avoid a sticky feeling near walls.
-				/*if(this instanceof Player)
-				{
-					if(obj.getRectangle().y + obj.getRectangle().getHeight() > sprite.getBoundingRectangle().y)
-					{
-						sprite.setY(last_location.y);
-					}
-					else if(obj.getRectangle().y < sprite.getBoundingRectangle().y + sprite.getBoundingRectangle().height)
-					{
-						sprite.setY(last_location.y);
-					}
-					else if(obj.getRectangle().x + obj.getRectangle().getWidth() > sprite.getBoundingRectangle().x)
-					{
-						sprite.setX(last_location.x);
-					}
-					else if(obj.getRectangle().x < sprite.getBoundingRectangle().x + sprite.getBoundingRectangle().width)
-					{
-						sprite.setX(last_location.x);
-					}
-				}*/
-				
-				//Return to last_location and end checking.
-				//sprite.setPosition(last_location.x, last_location.y);
 				return;
 			}
 		}

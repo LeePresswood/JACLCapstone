@@ -1,9 +1,9 @@
 <player>
 	<save>
-		<time>04:00</time>
+		<time>04:43</time>
 		<player_location>
-			<x>15</x>
-			<y>8</y>
+			<x>8</x>
+			<y>12</y>
 		</player_location>
 		<map>object_collision_test.tmx</map>
 		<progress_flag>0</progress_flag>
