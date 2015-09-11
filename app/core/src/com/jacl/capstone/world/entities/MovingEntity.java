@@ -110,29 +110,36 @@ public abstract class MovingEntity extends Entity
 		{
 			if(sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
 			{//There was a collision. Stop further checking and return to last location.
-				//To avoid a sticky feeling near walls, turn off the direction that caused the collision.
-				if(this instanceof Player)
+				//We want to do the return by getting a better view of the overlap.
+				Rectangle r = new Rectangle();
+				Intersector.intersectRectangles(sprite.getBoundingRectangle(), obj.getRectangle(), r);
+				
+				System.out.println(r);
+				
+				//Avoid a sticky feeling near walls.
+				//if(this instanceof Player)
 				{
-					if(obj.getRectangle().y > sprite.getBoundingRectangle().y)
+					if(obj.getRectangle().y + obj.getRectangle().getHeight() > sprite.getBoundingRectangle().y)
 					{
-						Player.class.cast(this).up = false;
+						sprite.setY(last_location.y);
 					}
-					else if(obj.getRectangle().y < sprite.getBoundingRectangle().y)
+					else if(obj.getRectangle().y < sprite.getBoundingRectangle().y + sprite.getBoundingRectangle().height)
 					{
-						Player.class.cast(this).down = false;
+						sprite.setY(last_location.y);
 					}
-					else if(obj.getRectangle().x > sprite.getBoundingRectangle().x)
+					else if(obj.getRectangle().x + obj.getRectangle().getWidth() > sprite.getBoundingRectangle().x)
 					{
-						Player.class.cast(this).right = false;
+						sprite.setX(last_location.x);
 					}
-					else if(obj.getRectangle().x < sprite.getBoundingRectangle().x)
+					else if(obj.getRectangle().x < sprite.getBoundingRectangle().x + sprite.getBoundingRectangle().width)
 					{
-						Player.class.cast(this).left = false;
+						//Player.class.cast(this).left = false;
+						sprite.setX(last_location.x);
 					}
 				}
 				
 				//Return to last_location and end checking.
-				sprite.setPosition(last_location.x, last_location.y);
+				//sprite.setPosition(last_location.x, last_location.y);
 				return;
 			}
 		}
