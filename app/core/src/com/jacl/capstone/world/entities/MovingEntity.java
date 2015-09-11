@@ -115,9 +115,23 @@ public abstract class MovingEntity extends Entity
 				Intersector.intersectRectangles(sprite.getBoundingRectangle(), obj.getRectangle(), r);
 				
 				System.out.println(r);
+				if(r.width > r.height)
+				{//Reset Y.
+					//Don't stop trapped players from walking away if they get stuck.
+					if(this instanceof Player)
+					{
+						
+					}
+					
+					sprite.setY(last_location.y);
+				}
+				else
+				{//Reset X.
+					sprite.setX(last_location.x);
+				}
 				
 				//Avoid a sticky feeling near walls.
-				//if(this instanceof Player)
+				/*if(this instanceof Player)
 				{
 					if(obj.getRectangle().y + obj.getRectangle().getHeight() > sprite.getBoundingRectangle().y)
 					{
@@ -133,10 +147,9 @@ public abstract class MovingEntity extends Entity
 					}
 					else if(obj.getRectangle().x < sprite.getBoundingRectangle().x + sprite.getBoundingRectangle().width)
 					{
-						//Player.class.cast(this).left = false;
 						sprite.setX(last_location.x);
 					}
-				}
+				}*/
 				
 				//Return to last_location and end checking.
 				//sprite.setPosition(last_location.x, last_location.y);
