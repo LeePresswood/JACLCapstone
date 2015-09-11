@@ -37,4 +37,9 @@
   <object id="25" x="117" y="686" width="57" height="60"/>
   <object id="27" x="534" y="760" width="50" height="97"/>
  </objectgroup>
+ <layer name="events" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
 </map>

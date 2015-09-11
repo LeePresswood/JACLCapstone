@@ -20,7 +20,7 @@ public class CollisionHandler
 	public World world;
 	
 	//Collision objects will be contained on a collision layer.
-	public final String COLLISION_LAYER = "collisionobjects";	
+	public final String COLLISION_LAYER = "collisionobjects";
 	public Array<RectangleMapObject> collision_objects;
 	
 	//Intersection will require further analysis.
@@ -34,9 +34,8 @@ public class CollisionHandler
 	
 	public void handlerInit()
 	{
+		//Get collision object shapes.
 		MapObjects objects = world.map_handler.map.getLayers().get(COLLISION_LAYER).getObjects();
-		
-		//Collision object shapes.
 		collision_objects = new Array<RectangleMapObject>();
 		for(int i = 0; i < objects.getCount(); i++)
 		{//Get the map object and put it into the arrays.
