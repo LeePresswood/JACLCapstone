@@ -101,7 +101,7 @@ public class Player extends MovingEntity
 		super.update(delta);
 		
 		//Check for entities we may have started.
-		//world.event_handler.doEventEntity(getCenterX(), getCenterY());
+		world.event_handler.doEventEntity(getCenterX(), getCenterY());
 	}
 	
 	@Override

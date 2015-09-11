@@ -50,6 +50,7 @@ public class World
 		camera_handler = new CameraHandler(this);
 		data_handler = new DataHandler(this);
 		
+		//Load from save.
 		save_handler.getFromSave();
 	}
 	

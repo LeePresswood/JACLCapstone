@@ -18,8 +18,12 @@ import com.jacl.capstone.world.entities.player.Player;
 public class CollisionHandler
 {
 	public World world;
+	
+	//Collision objects will be contained on a collision layer.
 	public final String COLLISION_LAYER = "collisionobjects";	
 	public Array<RectangleMapObject> collision_objects;
+	
+	//Intersection will require further analysis.
 	public Rectangle intersector;
 		
 	public CollisionHandler(World world)

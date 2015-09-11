@@ -25,6 +25,7 @@ public class EventEntityHandler
 	public World world;
 	
 	//Map-related items.
+	public final String COLLISION_LAYER = "events";
 	public TiledMapTileLayer event_layer;
 	public HashMap<String, EventEntity> event_map;
 	
@@ -38,7 +39,7 @@ public class EventEntityHandler
 	
 	public void handlerInit()
 	{
-		event_layer = (TiledMapTileLayer) world.map_handler.map.getLayers().get("Events");
+		event_layer = (TiledMapTileLayer) world.map_handler.map.getLayers().get(COLLISION_LAYER);
 				
 		//Get cells.
 		if(event_layer != null)
