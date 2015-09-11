@@ -74,7 +74,9 @@ public class EntityHandler
 	{
 		//player.update(delta);
 		for(Entity e : all_entities)
+		{
 			e.update(delta);
+		}
 		Collections.sort(all_entities, new EntityComparator());
 	}
 	
@@ -89,22 +91,22 @@ public class EntityHandler
 			//necessary to worry about anything other than drawing
 			//in order.
 			for(Entity e : all_entities)
+			{
 				e.draw(world.screen.batch);
+			}
 		world.screen.batch.end();
 	}
 	
 	/**
 	 * Used in sorting the items by Y values. Sort by the top value of the sprite
-	 * 
 	 * @author Lee
-	 *
 	 */
 	private class EntityComparator implements Comparator<Entity> 
 	{
-	    @Override
-	    public int compare(Entity a, Entity b) 
-	    {
-	        return a.getCenterY() > b.getCenterY() ? -1 : a.getCenterY() == b.getCenterY() ? 0 : 1;
-	    }
+		@Override
+		public int compare(Entity a, Entity b) 
+		{
+			return a.getCenterY() > b.getCenterY() ? -1 : a.getCenterY() == b.getCenterY() ? 0 : 1;
+		}
 	}
 }

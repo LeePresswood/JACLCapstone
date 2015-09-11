@@ -40,7 +40,7 @@ public class EventEntityHandler
 	public void handlerInit()
 	{
 		event_layer = (TiledMapTileLayer) world.map_handler.map.getLayers().get(COLLISION_LAYER);
-				
+		
 		//Get cells.
 		if(event_layer != null)
 		{
@@ -56,7 +56,7 @@ public class EventEntityHandler
 					}
 				}
 			}
-		}		
+		}
 	}
 	
 	/**
