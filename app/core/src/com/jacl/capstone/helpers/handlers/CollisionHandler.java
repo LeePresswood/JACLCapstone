@@ -65,11 +65,11 @@ public class CollisionHandler
 					//Don't stop trapped players from walking away if they get stuck.
 					if(entity instanceof Player)
 					{
-						if(intersector.y > obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(this).up != true)
+						if(intersector.y > obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(entity).up != true)
 						{
 							entity.sprite.setY(last_location.y);
 						}
-						else if(intersector.y < obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(this).down != true)
+						else if(intersector.y < obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(entity).down != true)
 						{
 							entity.sprite.setY(last_location.y);
 						}
@@ -84,11 +84,11 @@ public class CollisionHandler
 					//Don't stop trapped players from walking away if they get stuck.
 					if(entity instanceof Player)
 					{
-						if(intersector.x > obj.getRectangle().getX() + obj.getRectangle().getWidth() / 2f && Player.class.cast(this).right != true)
+						if(intersector.x > obj.getRectangle().getX() + obj.getRectangle().getWidth() / 2f && Player.class.cast(entity).right != true)
 						{
 							entity.sprite.setX(last_location.x);
 						}
-						else if(intersector.x < obj.getRectangle().getX() + obj.getRectangle().getWidth() / 2f && Player.class.cast(this).left != true)
+						else if(intersector.x < obj.getRectangle().getX() + obj.getRectangle().getWidth() / 2f && Player.class.cast(entity).left != true)
 						{
 							entity.sprite.setX(last_location.x);
 						}
