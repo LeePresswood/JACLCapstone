@@ -59,13 +59,21 @@ public class KnockbackHelper
 			//Calculate the knockback.
 			current_knockback += delta * KNOCKBACK_SPEED_TICK;
 			if(knockback_direction == Direction.LEFT)
+			{
 				entity.sprite.translateX(delta * KNOCKBACK_SPEED_TICK);
+			}
 			else if(knockback_direction == Direction.RIGHT)
+			{
 				entity.sprite.translateX(-delta * KNOCKBACK_SPEED_TICK);
+			}
 			else if(knockback_direction == Direction.UP)
+			{
 				entity.sprite.translateY(-delta * KNOCKBACK_SPEED_TICK);
+			}
 			else
+			{
 				entity.sprite.translateY(delta * KNOCKBACK_SPEED_TICK);
+			}
 			
 			//If knockback is over, end.
 			if(current_knockback >= KNOCKBACK_DISTANCE)

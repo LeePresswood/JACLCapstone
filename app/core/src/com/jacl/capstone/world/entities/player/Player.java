@@ -66,7 +66,9 @@ public class Player extends MovingEntity
 	{
 		//Correct if diagonal.
 		if(up && left || up && right || down && left || down && right)
+		{
 			move_speed /= FOURTH_ROOT_FOUR;
+		}
 
 		//Do the translation.
 		if(up)
@@ -92,15 +94,15 @@ public class Player extends MovingEntity
 		
 		//Undo correction if diagonal.
 		if(up && left || up && right || down && left || down && right)
+		{
 			move_speed *= FOURTH_ROOT_FOUR;
+		}
 	}
 	
 	@Override
 	public void update(float delta)
-	{
+	{//On top of normal updating, check for events we may have started.
 		super.update(delta);
-		
-		//Check for entities we may have started.
 		world.event_handler.doEventEntity(getCenterX(), getCenterY());
 	}
 	

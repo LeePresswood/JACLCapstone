@@ -59,6 +59,6 @@ public class InvincibleHelper
 				is_invincible = false;
 				entity.sprite.setAlpha(1f);
 			}
-		}	
+		}
 	}
 }

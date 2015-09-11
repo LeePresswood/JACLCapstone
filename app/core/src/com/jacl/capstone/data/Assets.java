@@ -14,9 +14,7 @@ import com.badlogic.gdx.graphics.Texture;
  * 
  * Various String constants will be added to allow
  * for calling of file names in a cleaner fashion.
- * 
  * @author Lee
- *
  */
 public class Assets extends AssetManager
 {

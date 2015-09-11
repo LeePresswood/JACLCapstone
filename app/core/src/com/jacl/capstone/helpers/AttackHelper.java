@@ -4,10 +4,8 @@ import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
- * Manages attack.
- * 
+ * Manages attacking.
  * @author Lee
- *
  */
 public class AttackHelper
 {
