@@ -73,18 +73,26 @@ public class World
 	{
 		//If there is an active event, play it. Otherwise, update normally.
 		if(event_handler.event != null)
+		{
 			event_handler.event.update(delta);
+		}
 		else
+		{
 			worldUpdate(delta);
+		}
 	}
 	
 	public void draw()
 	{
 		//If there is an active event, draw it. Otherwise, draw normally.
 		if(event_handler.event != null)
+		{
 			event_handler.event.draw(screen.batch);
+		}
 		else
+		{
 			worldDraw();
+		}
 	}
 	
 	/**
@@ -99,7 +107,9 @@ public class World
 		
 		//If the hour changed, update color.
 		if(time.recently_updated_minute)
+		{
 			time_color = TimeColorer.getColor(time);
+		}
 		
 		//Update entities.
 		entity_handler.update(delta);
