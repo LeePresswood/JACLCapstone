@@ -1,10 +1,5 @@
 package com.jacl.capstone.world.entities;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
@@ -70,7 +65,7 @@ public abstract class MovingEntity extends Entity
 		invincible.update(delta);
 		
 		//Calculate solid block collision.
-		cellCollision();
+		world.collision_handler.cellCollision(this, last_location);
 		
 		//Now that all movement is done, we can reset the last_location variable.
 		last_location.set(sprite.getX(), sprite.getY());
@@ -97,62 +92,6 @@ public abstract class MovingEntity extends Entity
 			else if(alignment == Alignment.ENEMY)
 			{
 				
-			}
-		}
-	}
-	
-	/**
-	 * Do the sprite collision detection with solid blocks.
-	 */
-	private void cellCollision()
-	{
-		for(RectangleMapObject obj : world.collision_handler.collision_objects)
-		{
-			if(sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
-			{//There was a collision. Stop further checking and return to last location.
-				//We want to do the return by getting a better view of the overlap.
-				Rectangle r = new Rectangle();
-				Intersector.intersectRectangles(sprite.getBoundingRectangle(), obj.getRectangle(), r);
-				if(r.width > r.height)
-				{//Reset Y.
-					//Don't stop trapped players from walking away if they get stuck.
-					if(this instanceof Player)
-					{
-						if(r.y > obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(this).up != true)
-						{
-							sprite.setY(last_location.y);
-						}
-						else if(r.y < obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(this).down != true)
-						{
-							sprite.setY(last_location.y);
-						}
-					}
-					else
-					{
-						sprite.setY(last_location.y);
-					}
-				}
-				else
-				{//Reset X.
-					//Don't stop trapped players from walking away if they get stuck.
-					if(this instanceof Player)
-					{
-						if(r.x > obj.getRectangle().getX() + obj.getRectangle().getWidth() / 2f && Player.class.cast(this).right != true)
-						{
-							sprite.setX(last_location.x);
-						}
-						else if(r.x < obj.getRectangle().getX() + obj.getRectangle().getWidth() / 2f && Player.class.cast(this).left != true)
-						{
-							sprite.setX(last_location.x);
-						}
-					}
-					else
-					{
-						sprite.setX(last_location.x);
-					}
-				}
-				
-				return;
 			}
 		}
 	}
