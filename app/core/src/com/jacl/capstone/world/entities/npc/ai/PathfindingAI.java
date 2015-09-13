@@ -1,8 +1,5 @@
 package com.jacl.capstone.world.entities.npc.ai;
 
-import java.util.Random;
-
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.IntArray;
 import com.jacl.capstone.world.entities.npc.NPC;
 
@@ -102,7 +99,6 @@ public class PathfindingAI extends AI
 			{
 				dx /= FOURTH_ROOT_FOUR;
 				dy /= FOURTH_ROOT_FOUR;
-				System.out.println("Diag set.");
 			}
 			
 			if(npc.getTileY() > next_y)
@@ -118,9 +114,7 @@ public class PathfindingAI extends AI
 			
 			if(path.size <= 0)
 			{
-				System.out.println("Path empty");
 				is_mid_movement = false;
-				return;
 			}
 		}
 	}
