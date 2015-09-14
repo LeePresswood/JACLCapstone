@@ -9,7 +9,7 @@ https://www.youtube.com/watch?v=_rVS1zHThZ0
 
 Artwork
 =======
-http://www.reddit.com/r/freegameassets/top/
+http://www.reddit.com/r/freegameassets/
 	(Subreddit containing assets for developers. Must use correct licensing.)
 http://opengameart.org/
   (Free game art. Must use correct licensing.)
@@ -19,3 +19,7 @@ http://99sounds.org/free-sound-effects/
   (3GB of free game sound effects. Royalty-free.)
 http://www.kenney.nl/assets/roguelike-rpg-pack
   (RPG tileset by Kenney, a well-known public-domain asset creator.)
+  
+  
+http://opengameart.org/content/tiled-terrains
+  (Better tileset than what we're using.)

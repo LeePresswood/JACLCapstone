@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="32" tileheight="32" nextobjectid="28">
+ <tileset firstgid="1" name="terrain" tilewidth="32" tileheight="32">
+  <image source="../terrain.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="terrain" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMA6A9zPpXXI+jYC+pqqqq+voAg0+YAQ==
+  </data>
+ </layer>
+ <layer name="background" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztkEEOwUAYRv82OEnjJLgA1jb0Ali04hRYtNKD4CS4jLcYIZNKLDpd8L3kpfP/i752zIQQQgghxD+yjb/bhaKiNeY5wenbrk2WuMJ1u1nL+M8cd5z3eHD7TmTW9exFzfcL2mXNXSe05pjiwp37Xj9jznHT4HfN4lf/2f7UL5hLPAa4l8R1U9eu65+Yz3gJ0B/wzqHnyOtcmW94D9AXv88DWlcYVg==
+  </data>
+ </layer>
+ <layer name="foreground" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztzsERQEAAQ9HsbCeoBE3ghkqWwqUA9zDz30zOPxIAAADedFXqvaFm+qO7kzeH+ru7h3eG+s3dy7tD/a9airR6W0k/AfA3DyXxBRo=
+  </data>
+ </layer>
+ <objectgroup name="collisionobjects">
+  <object id="2" x="239.5" y="684.5"/>
+  <object id="4" x="243" y="665.5"/>
+  <object id="6" x="84" y="662.5"/>
+  <object id="7" x="79.5" y="682.5"/>
+  <object id="8" x="49.5" y="761.5"/>
+  <object id="9" x="64.5" y="762.5"/>
+  <object id="10" x="74.5" y="770"/>
+  <object id="11" x="80" y="774.5"/>
+  <object id="12" x="75" y="783"/>
+  <object id="13" x="57" y="777"/>
+  <object id="14" x="43.5" y="781.5"/>
+  <object id="16" x="171.5" y="810.5"/>
+  <object id="17" x="177.5" y="814.5"/>
+  <object id="18" x="181" y="821"/>
+  <object id="19" x="169.5" y="821"/>
+  <object id="25" x="117" y="686" width="57" height="60"/>
+  <object id="27" x="534" y="760" width="50" height="97"/>
+ </objectgroup>
+ <layer name="events" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+</map>
