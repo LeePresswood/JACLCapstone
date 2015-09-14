@@ -79,7 +79,7 @@ public class CollisionHandler
 						}
 						else
 						{
-							System.out.println(intersector.y);
+							//System.out.println(intersector.y);
 						}
 					}
 					else
@@ -102,7 +102,11 @@ public class CollisionHandler
 						}
 						else
 						{
-							System.out.println(last_location.x);
+							if(obj.getRectangle().width < entity.sprite.getWidth())
+							{
+								entity.sprite.setPosition(last_location.x, last_location.y);
+							}
+							//System.out.println(last_location.x);
 						}
 					}
 					else
