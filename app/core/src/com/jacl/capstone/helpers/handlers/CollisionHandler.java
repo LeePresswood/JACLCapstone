@@ -63,23 +63,19 @@ public class CollisionHandler
 			if(center_holder1.dst2(center_holder2) < COMPARE_DISTANCE && entity.sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
 			{//There was a collision. Stop further checking and return to last location.
 				//Because we made it here, we've overlapped. We want to get the intersection of the overlap.
-				Intersector.intersectRectangles(entity.sprite.getBoundingRectangle(), obj.getRectangle(), intersector);
+				Intersector.intersectRectangles(entity.sprite.getBoundingRectangle(), obj.getRectangle(), intersector);System.out.println(obj.getRectangle() + " ----- " + intersector);
 				if(intersector.width > intersector.height)
 				{//Reset Y.
 					//Don't stop trapped players from walking away if they get stuck.
 					if(entity instanceof Player)
 					{
-						if(intersector.y > obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(entity).up != true)
+						if(intersector.y > obj.getRectangle().getY() && Player.class.cast(entity).up != true)
 						{
 							entity.sprite.setY(last_location.y);
 						}
-						else if(intersector.y < obj.getRectangle().getY() + obj.getRectangle().getHeight() / 2f && Player.class.cast(entity).down != true)
+						else if(intersector.y < obj.getRectangle().getY() + obj.getRectangle().getHeight() && Player.class.cast(entity).down != true)
 						{
 							entity.sprite.setY(last_location.y);
-						}
-						else
-						{
-							//System.out.println(intersector.y);
 						}
 					}
 					else
@@ -92,21 +88,13 @@ public class CollisionHandler
 					//Don't stop trapped players from walking away if they get stuck.
 					if(entity instanceof Player)
 					{
-						if(intersector.x > obj.getRectangle().getX() + obj.getRectangle().getWidth() / 2f && Player.class.cast(entity).right != true)
+						if(intersector.x > obj.getRectangle().getX() && Player.class.cast(entity).right != true)
 						{
 							entity.sprite.setX(last_location.x);
 						}
-						else if(intersector.x < obj.getRectangle().getX() + obj.getRectangle().getWidth() / 2f && Player.class.cast(entity).left != true)
+						else if(intersector.x < obj.getRectangle().getX() + obj.getRectangle().getWidth() && Player.class.cast(entity).left != true)
 						{
 							entity.sprite.setX(last_location.x);
-						}
-						else
-						{
-							if(obj.getRectangle().width < entity.sprite.getWidth())
-							{
-								entity.sprite.setPosition(last_location.x, last_location.y);
-							}
-							//System.out.println(last_location.x);
 						}
 					}
 					else
