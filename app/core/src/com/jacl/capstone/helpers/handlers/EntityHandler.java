@@ -37,7 +37,7 @@ public class EntityHandler
 		//Because this is when we are recreating the EnitityHandler, there should be no items in the all_entities array. Let's make it and add the player.
 		//Note: We would normally sort the array after adding an entity, but because this is the only entity, there's no need.
 		all_entities = new ArrayList<Entity>();
-		all_entities.add(player);		
+		all_entities.add(player);
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class EntityHandler
 			e.update(delta);
 		}
 		
-		//Determine if it's time to sort the entities. This is done slower than our update rate because sorting takes a long time.
+		//Determine if it's time to sort the entities. This is done slower than our update rate because sorting takes a long time relative to the other logic in the update step.
 		array_sort_counter_current += delta;
 		if(array_sort_counter_current >= ARRAY_SORT_COUNTER_TICK)
 		{
