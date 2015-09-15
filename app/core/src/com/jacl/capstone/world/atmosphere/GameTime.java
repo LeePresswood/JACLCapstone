@@ -95,7 +95,7 @@ public class GameTime
 			hours = 0;
 		}
 		
-		if(recently_updated_minute)
-			System.out.println(this);
+		//if(recently_updated_minute)
+		//	System.out.println(this);
 	}
 }
