@@ -94,7 +94,7 @@ public abstract class MovingEntity extends Entity
 		enemies.clear();
 		for(Entity e : world.entity_handler.all_entities)
 		{
-			if(e instanceof MovingEntity && this.alignment != e.alignment && e.alignment != Alignment.NEUTRAL)
+			if(e instanceof MovingEntity && e.alignment != Alignment.NEUTRAL && this.alignment != e.alignment)
 			{
 				enemies.add((MovingEntity) e);
 			}
