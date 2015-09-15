@@ -79,9 +79,10 @@ public abstract class MovingEntity extends Entity
 		{
 			//The main logic happens in the CollisionHandler. Get a list of this entity's enemies and send it there.
 			getEnemies();
+			world.collision_handler.entityCollision(this, enemies);
 			
 			//Scan through all the entities that are enemies to this entity.
-			if(alignment == Alignment.PLAYER)
+			/*if(alignment == Alignment.PLAYER)
 			{
 				for(MovingEntity e : world.entity_handler.enemies)
 				{
@@ -96,7 +97,7 @@ public abstract class MovingEntity extends Entity
 			else if(alignment == Alignment.ENEMY)
 			{
 				
-			}
+			}*/
 		}
 	}
 	

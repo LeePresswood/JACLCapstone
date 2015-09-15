@@ -58,13 +58,13 @@ public class CollisionHandler
 	public void cellCollision(MovingEntity entity, Vector2 last_location)
 	{
 		entity.sprite.getBoundingRectangle().getCenter(center_holder2);
-		
 		for(RectangleMapObject obj : world.collision_handler.collision_objects)
-		{//We want to speed up this search by only looking at objects within a small distance of the sprite.
+		{
+			//We want to speed up this search by only looking at objects within a small distance of the sprite.
 			obj.getRectangle().getCenter(center_holder1);
 			if(center_holder1.dst2(center_holder2) < COMPARE_DISTANCE && entity.sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
-			{//There was a collision. Stop further checking and return to last location.
-				//Because we made it here, we've overlapped. We want to get the intersection of the overlap.
+			{
+				//There was a collision. Stop further checking and return to last location. Because we made it here, we've overlapped. We want to get the intersection of the overlap.
 				Intersector.intersectRectangles(entity.sprite.getBoundingRectangle(), obj.getRectangle(), intersector);
 				if(intersector.width > intersector.height)
 				{//Reset Y.
@@ -117,84 +117,47 @@ public class CollisionHandler
 	 */
 	public void collidesWith(MovingEntity a, MovingEntity b)
 	{
-		if(Intersector.intersectRectangles(a.sprite.getBoundingRectangle(), b.sprite.getBoundingRectangle(), intersector))
-		{//There was an intersection. Determine the colliding edges.
-			Rectangle r1 = a.sprite.getBoundingRectangle();
-			if(intersector.x > r1.x && intersector.width < intersector.height)
-			{
-				a.knockback.knockback_direction = Direction.RIGHT;
-				b.knockback.knockback_direction = Direction.LEFT;
-			}
-			if(intersector.y > r1.y && intersector.width >= intersector.height)
-			{
-				a.knockback.knockback_direction = Direction.UP;
-				b.knockback.knockback_direction = Direction.DOWN;
-			}
-			if(intersector.x + intersector.width < r1.x + r1.width && intersector.width < intersector.height)  
-			{
-				a.knockback.knockback_direction = Direction.LEFT;
-				b.knockback.knockback_direction = Direction.RIGHT;
-			}
-			if(intersector.y + intersector.height < r1.y + r1.height && intersector.width >= intersector.height)
-			{
-				a.knockback.knockback_direction = Direction.DOWN;
-				b.knockback.knockback_direction = Direction.UP;
-			}
-		}
+		
 	}
 	
 	/**
 	 * Scan all the enemies of this entity. Look for collisions.
-	 * @param entity
-	 * @param enemies
+	 * @param entity Entity to compare to.
+	 * @param enemies List of enemies to this entity.
 	 */
 	public void entityCollision(MovingEntity entity, ArrayList<MovingEntity> enemies)
 	{
 		entity.sprite.getBoundingRectangle().getCenter(center_holder2);
-		
-		for(RectangleMapObject obj : world.collision_handler.collision_objects)
-		{//We want to speed up this search by only looking at objects within a small distance of the sprite.
-			obj.getRectangle().getCenter(center_holder1);
-			if(center_holder1.dst2(center_holder2) < COMPARE_DISTANCE && entity.sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
-			{//There was a collision. Stop further checking and return to last location.
-				//Because we made it here, we've overlapped. We want to get the intersection of the overlap.
-				Intersector.intersectRectangles(entity.sprite.getBoundingRectangle(), obj.getRectangle(), intersector);
-				if(intersector.width > intersector.height)
-				{//Reset Y.
-					//Don't stop trapped players from walking away if they get stuck.
-					if(entity instanceof Player)
+		for(MovingEntity e : enemies)
+		{
+			//We want to speed up this search by only looking at objects within a small distance of the sprite.
+			e.sprite.getBoundingRectangle().getCenter(center_holder1);
+			if(center_holder1.dst2(center_holder2) < COMPARE_DISTANCE && entity.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
+			{
+				//There was a collision. Stop further checking and return to last location. Because we made it here, we've overlapped. We want to get the intersection of the overlap.
+				if(Intersector.intersectRectangles(entity.sprite.getBoundingRectangle(), e.sprite.getBoundingRectangle(), intersector))
+				{
+					//Determine the colliding edges.
+					Rectangle r1 = entity.sprite.getBoundingRectangle();
+					if(intersector.x > r1.x && intersector.width < intersector.height)
 					{
-						if(entity.sprite.getY() + entity.sprite.getHeight() > obj.getRectangle().getY() + obj.getRectangle().getHeight() && Player.class.cast(entity).up != true)
-						{
-							entity.sprite.setY(last_location.y);
-						}
-						if(entity.sprite.getY() < obj.getRectangle().getY() && Player.class.cast(entity).down != true)
-						{
-							entity.sprite.setY(last_location.y);
-						}
+						entity.knockback.knockback_direction = Direction.RIGHT;
+						e.knockback.knockback_direction = Direction.LEFT;
 					}
-					else
+					if(intersector.y > r1.y && intersector.width >= intersector.height)
 					{
-						entity.sprite.setY(last_location.y);
+						entity.knockback.knockback_direction = Direction.UP;
+						e.knockback.knockback_direction = Direction.DOWN;
 					}
-				}
-				else
-				{//Reset X.
-					//Don't stop trapped players from walking away if they get stuck.
-					if(entity instanceof Player)
+					if(intersector.x + intersector.width < r1.x + r1.width && intersector.width < intersector.height)  
 					{
-						if(entity.sprite.getX() + entity.sprite.getWidth() > obj.getRectangle().getX() + obj.getRectangle().getWidth() && Player.class.cast(entity).right != true)
-						{
-							entity.sprite.setX(last_location.x);
-						}
-						if(entity.sprite.getX() < obj.getRectangle().getX() && Player.class.cast(entity).left != true)
-						{
-							entity.sprite.setX(last_location.x);
-						}
+						entity.knockback.knockback_direction = Direction.LEFT;
+						e.knockback.knockback_direction = Direction.RIGHT;
 					}
-					else
+					if(intersector.y + intersector.height < r1.y + r1.height && intersector.width >= intersector.height)
 					{
-						entity.sprite.setX(last_location.x);
+						entity.knockback.knockback_direction = Direction.DOWN;
+						e.knockback.knockback_direction = Direction.UP;
 					}
 				}
 				

@@ -15,7 +15,7 @@ public class EntityHandler
 	//We will have an all entities array that will be used for drawing. We can sort this array by the Y-values to give an effect of being in front of/behind each other.
 	public ArrayList<Entity> all_entities;
 	public float array_sort_counter_current;
-	public final float ARRAY_SORT_COUNTER_TICK = 1.0f;
+	public final float ARRAY_SORT_COUNTER_TICK = 0.75f;
 	
 	public Player player;
 	
