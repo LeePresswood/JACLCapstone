@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
-import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 import com.jacl.capstone.world.entities.player.Player;
 
 public class EntityHandler
@@ -16,15 +14,7 @@ public class EntityHandler
 	
 	//We will have an all entities array that will be used for drawing. We can sort this array by the Y-values to give an effect of being in front of/behind each other.
 	public ArrayList<Entity> all_entities;
-	
-	//Players
 	public Player player;
-	
-	//Enemies/NPCs
-	public ArrayList<Enemy> enemies;
-	
-	//Projectiles
-	
 	
 	public EntityHandler(World world)
 	{
@@ -41,8 +31,6 @@ public class EntityHandler
 		//We will eventually have an EntityManager here to complete the set.
 		player = new Player(world, start_x, start_y, world.data_handler.player_root);
 		
-		enemies = new ArrayList<Enemy>();
-		
 		//Because this is when we are recreating the EnitityHandler, there should be no items in the all_entities array. Let's make it and add the player.
 		//Note: We would normally sort the array after adding an entity, but because this is the only entity, there's no need.
 		all_entities = new ArrayList<Entity>();
@@ -58,25 +46,15 @@ public class EntityHandler
 		//Add and sort by Y values. Highest to lowest.
 		all_entities.add(e);
 		Collections.sort(all_entities, new EntityComparator());
-		
-		//Split this entity based upon what type it is.
-		if(e.alignment == Alignment.PLAYER)
-		{
-			
-		}
-		else if(e.alignment == Alignment.ENEMY)
-		{
-			enemies.add((Enemy) e);
-		}
 	}
 	
 	public void update(float delta)
 	{
-		//player.update(delta);
 		for(Entity e : all_entities)
 		{
 			e.update(delta);
 		}
+		
 		Collections.sort(all_entities, new EntityComparator());
 	}
 	
