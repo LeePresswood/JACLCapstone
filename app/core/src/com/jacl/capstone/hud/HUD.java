@@ -30,6 +30,7 @@ public class HUD
 		camera.update();
 		
 		font = screen.game.assets.get("fonts/font.fnt", BitmapFont.class);
+		font.setScale(0.75f);
 	}
 	
 	public void update(float delta)
