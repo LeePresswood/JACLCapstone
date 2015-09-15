@@ -26,11 +26,11 @@ public class HUD
 		//Set the dimensions of the camera equal to the size of the screen and center the camera on the middle.
 		//Draw items as a percentage of the screen.
 		camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f);
 		camera.update();
 		
 		font = screen.game.assets.get("fonts/font.fnt", BitmapFont.class);
-		font.setScale(0.75f);
+		font.setScale(0.85f);
 	}
 	
 	public void update(float delta)
