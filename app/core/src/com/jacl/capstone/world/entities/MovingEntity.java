@@ -1,5 +1,7 @@
 package com.jacl.capstone.world.entities;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
@@ -28,6 +30,9 @@ public abstract class MovingEntity extends Entity
 	public boolean knockback_on_collide;
 	public float damage_on_collide;
 	
+	//Enemy list.
+	public ArrayList<MovingEntity> enemies;
+	
 	public MovingEntity(World world, float x, float y, Element data, Alignment alignment)
 	{
 		super(world, x, y, data, alignment);
@@ -41,6 +46,8 @@ public abstract class MovingEntity extends Entity
 		this.move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;	//Set in terms of tiles per second.
 		this.health = data.getFloat("health");
 		this.damage_on_collide = data.getFloat("damage_on_collide");
+		
+		enemies = new ArrayList<MovingEntity>();
 	}
 	
 	@Override

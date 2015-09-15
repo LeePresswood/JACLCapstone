@@ -1,5 +1,7 @@
 package com.jacl.capstone.helpers.handlers;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.math.Intersector;
@@ -137,6 +139,66 @@ public class CollisionHandler
 			{
 				a.knockback.knockback_direction = Direction.DOWN;
 				b.knockback.knockback_direction = Direction.UP;
+			}
+		}
+	}
+	
+	/**
+	 * Scan all the enemies of this entity. Look for collisions.
+	 * @param entity
+	 * @param enemies
+	 */
+	public void entityCollision(MovingEntity entity, ArrayList<MovingEntity> enemies)
+	{
+		entity.sprite.getBoundingRectangle().getCenter(center_holder2);
+		
+		for(RectangleMapObject obj : world.collision_handler.collision_objects)
+		{//We want to speed up this search by only looking at objects within a small distance of the sprite.
+			obj.getRectangle().getCenter(center_holder1);
+			if(center_holder1.dst2(center_holder2) < COMPARE_DISTANCE && entity.sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
+			{//There was a collision. Stop further checking and return to last location.
+				//Because we made it here, we've overlapped. We want to get the intersection of the overlap.
+				Intersector.intersectRectangles(entity.sprite.getBoundingRectangle(), obj.getRectangle(), intersector);
+				if(intersector.width > intersector.height)
+				{//Reset Y.
+					//Don't stop trapped players from walking away if they get stuck.
+					if(entity instanceof Player)
+					{
+						if(entity.sprite.getY() + entity.sprite.getHeight() > obj.getRectangle().getY() + obj.getRectangle().getHeight() && Player.class.cast(entity).up != true)
+						{
+							entity.sprite.setY(last_location.y);
+						}
+						if(entity.sprite.getY() < obj.getRectangle().getY() && Player.class.cast(entity).down != true)
+						{
+							entity.sprite.setY(last_location.y);
+						}
+					}
+					else
+					{
+						entity.sprite.setY(last_location.y);
+					}
+				}
+				else
+				{//Reset X.
+					//Don't stop trapped players from walking away if they get stuck.
+					if(entity instanceof Player)
+					{
+						if(entity.sprite.getX() + entity.sprite.getWidth() > obj.getRectangle().getX() + obj.getRectangle().getWidth() && Player.class.cast(entity).right != true)
+						{
+							entity.sprite.setX(last_location.x);
+						}
+						if(entity.sprite.getX() < obj.getRectangle().getX() && Player.class.cast(entity).left != true)
+						{
+							entity.sprite.setX(last_location.x);
+						}
+					}
+					else
+					{
+						entity.sprite.setX(last_location.x);
+					}
+				}
+				
+				return;
 			}
 		}
 	}

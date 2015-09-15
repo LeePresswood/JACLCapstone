@@ -81,6 +81,7 @@ public class Player extends MovingEntity
 			sprite.translateY(-move_speed * delta);
 			last_direction = Direction.DOWN;
 		}
+		
 		if(left)
 		{
 			sprite.translateX(-move_speed * delta);
