@@ -80,24 +80,6 @@ public abstract class MovingEntity extends Entity
 			//The main logic happens in the CollisionHandler. Get a list of this entity's enemies and send it there.
 			getEnemies();
 			world.collision_handler.entityCollision(this, enemies);
-			
-			//Scan through all the entities that are enemies to this entity.
-			/*if(alignment == Alignment.PLAYER)
-			{
-				for(MovingEntity e : world.entity_handler.enemies)
-				{
-					world.collision_handler.collidesWith(this, e);
-					if(this.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
-					{//There was a collision.
-						this.hitBy(e);
-						e.hitBy(this);
-					}
-				}
-			}
-			else if(alignment == Alignment.ENEMY)
-			{
-				
-			}*/
 		}
 	}
 	
@@ -121,8 +103,9 @@ public abstract class MovingEntity extends Entity
 	
 	/**
 	 * Entity was hit by an enemy entity. Set knockback and invincibility.
+	 * @param e The enemy this collided with.
 	 */
-	private void hitBy(MovingEntity e)
+	public void hitBy(MovingEntity e)
 	{
 		if(e.knockback_on_collide)
 		{

@@ -34,6 +34,7 @@ public class CollisionHandler
 	public CollisionHandler(World world)
 	{
 		this.world = world;
+		
 		intersector = new Rectangle();
 		center_holder1 = new Vector2();
 		center_holder2 = new Vector2();
@@ -111,16 +112,6 @@ public class CollisionHandler
 	}
 	
 	/**
-	 * Do the two entities collide? If so, set the knockback variables.
-	 * @param a First entity to check.
-	 * @param b Second entity to compare to.
-	 */
-	public void collidesWith(MovingEntity a, MovingEntity b)
-	{
-		
-	}
-	
-	/**
 	 * Scan all the enemies of this entity. Look for collisions.
 	 * @param entity Entity to compare to.
 	 * @param enemies List of enemies to this entity.
@@ -137,7 +128,7 @@ public class CollisionHandler
 				//There was a collision. Stop further checking and return to last location. Because we made it here, we've overlapped. We want to get the intersection of the overlap.
 				if(Intersector.intersectRectangles(entity.sprite.getBoundingRectangle(), e.sprite.getBoundingRectangle(), intersector))
 				{
-					//Determine the colliding edges.
+					//Determine the colliding edges for knockback calculation.
 					Rectangle r1 = entity.sprite.getBoundingRectangle();
 					if(intersector.x > r1.x && intersector.width < intersector.height)
 					{
@@ -159,9 +150,13 @@ public class CollisionHandler
 						entity.knockback.knockback_direction = Direction.DOWN;
 						e.knockback.knockback_direction = Direction.UP;
 					}
+					
+					//Do the collision effects. This includes damage, knockback, and other residual effects.
+					entity.hitBy(e);
+					e.hitBy(entity);
+					
+					return;
 				}
-				
-				return;
 			}
 		}
 	}
