@@ -63,13 +63,21 @@ public class GameTime
 	public String toString()
 	{
 		if(hours < 10 && minutes < 10)
+		{
 			return "0" + hours + ":0" + minutes;
+		}
 		else if(hours < 10)
+		{
 			return "0" + hours + ":" + minutes;
+		}
 		else if(minutes < 10)
+		{
 			return hours + ":0" + minutes;
+		}
 		else
+		{
 			return hours + ":" + minutes;
+		}
 	}
 	
 	/**
@@ -78,7 +86,6 @@ public class GameTime
 	private void updateTime()
 	{
 		recently_updated_minute = false;
-		
 		if(buffer >= 1f)
 		{
 			buffer -= 1f;		
@@ -94,8 +101,5 @@ public class GameTime
 		{
 			hours = 0;
 		}
-		
-		//if(recently_updated_minute)
-		//	System.out.println(this);
 	}
 }
