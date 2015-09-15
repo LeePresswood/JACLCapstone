@@ -14,6 +14,9 @@ public class EntityHandler
 	
 	//We will have an all entities array that will be used for drawing. We can sort this array by the Y-values to give an effect of being in front of/behind each other.
 	public ArrayList<Entity> all_entities;
+	public float array_sort_counter_current;
+	public final float ARRAY_SORT_COUNTER_TICK = 1.0f;
+	
 	public Player player;
 	
 	public EntityHandler(World world)
@@ -55,7 +58,13 @@ public class EntityHandler
 			e.update(delta);
 		}
 		
-		Collections.sort(all_entities, new EntityComparator());
+		//Determine if it's time to sort the entities. This is done slower than our update rate because sorting takes a long time.
+		array_sort_counter_current += delta;
+		if(array_sort_counter_current >= ARRAY_SORT_COUNTER_TICK)
+		{
+			array_sort_counter_current -= ARRAY_SORT_COUNTER_TICK;
+			Collections.sort(all_entities, new EntityComparator());
+		}
 	}
 	
 	public void draw()
