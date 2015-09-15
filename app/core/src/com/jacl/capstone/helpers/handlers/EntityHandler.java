@@ -15,7 +15,7 @@ public class EntityHandler
 	public World world;
 	
 	//We will have an all entities array that will be used for drawing. We can sort this array by the Y-values to give an effect of being in front of/behind each other.
-	private ArrayList<Entity> all_entities;
+	public ArrayList<Entity> all_entities;
 	
 	//Players
 	public Player player;

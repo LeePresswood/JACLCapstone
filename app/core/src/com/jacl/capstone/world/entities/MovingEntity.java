@@ -46,8 +46,6 @@ public abstract class MovingEntity extends Entity
 		this.move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;	//Set in terms of tiles per second.
 		this.health = data.getFloat("health");
 		this.damage_on_collide = data.getFloat("damage_on_collide");
-		
-		enemies = new ArrayList<MovingEntity>();
 	}
 	
 	@Override
@@ -76,9 +74,12 @@ public abstract class MovingEntity extends Entity
 	
 	private void entityCollision()
 	{
-		//We don't want to be hit while we're invincible.
+		//We don't want to be hit while we're invincible. Completely skip this step if so.
 		if(!invincible.is_invincible)
 		{
+			//The main logic happens in the CollisionHandler. Get a list of this entity's enemies and send it there.
+			getEnemies();
+			
 			//Scan through all the entities that are enemies to this entity.
 			if(alignment == Alignment.PLAYER)
 			{
@@ -95,6 +96,24 @@ public abstract class MovingEntity extends Entity
 			else if(alignment == Alignment.ENEMY)
 			{
 				
+			}
+		}
+	}
+	
+	private void getEnemies()
+	{
+		if(enemies == null)
+		{
+			enemies = new ArrayList<MovingEntity>();
+		}
+		
+		//Clear the enemy list and begin adding the enemies.
+		enemies.clear();
+		for(Entity e : world.entity_handler.all_entities)
+		{
+			if(e instanceof MovingEntity && this.alignment != e.alignment && e.alignment != Alignment.NEUTRAL)
+			{
+				enemies.add((MovingEntity) e);
 			}
 		}
 	}
