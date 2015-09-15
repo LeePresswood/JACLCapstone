@@ -34,23 +34,23 @@ public class CollisionHandler
 	public CollisionHandler(World world)
 	{
 		this.world = world;
-		
-		intersector = new Rectangle();
-		center_holder1 = new Vector2();
-		center_holder2 = new Vector2();
 	}
 	
 	public void handlerInit()
 	{
-		//Get collision object shapes.
+		COMPARE_DISTANCE = (float) Math.pow(world.map_handler.tile_size, 2.0f) * COMPARE_BLOCKS;
+		
 		MapObjects objects = world.map_handler.map.getLayers().get(COLLISION_LAYER).getObjects();
 		collision_objects = new Array<RectangleMapObject>();
+		intersector = new Rectangle();
+		center_holder1 = new Vector2();
+		center_holder2 = new Vector2();
+		
+		//Get collision object shapes.
 		for(int i = 0; i < objects.getCount(); i++)
-		{//Get the map object and put it into the arrays.
+		{
 			collision_objects.add((RectangleMapObject) objects.get(i));
 		}
-		
-		COMPARE_DISTANCE = (float) Math.pow(world.map_handler.tile_size, 2.0f) * COMPARE_BLOCKS;
 	}
 	
 	/**
@@ -135,20 +135,24 @@ public class CollisionHandler
 						entity.knockback.knockback_direction = Direction.RIGHT;
 						e.knockback.knockback_direction = Direction.LEFT;
 					}
-					if(intersector.y > r1.y && intersector.width >= intersector.height)
+					else if(intersector.y > r1.y && intersector.width >= intersector.height)
 					{
 						entity.knockback.knockback_direction = Direction.UP;
 						e.knockback.knockback_direction = Direction.DOWN;
 					}
-					if(intersector.x + intersector.width < r1.x + r1.width && intersector.width < intersector.height)  
+					else if(intersector.x + intersector.width < r1.x + r1.width && intersector.width < intersector.height)  
 					{
 						entity.knockback.knockback_direction = Direction.LEFT;
 						e.knockback.knockback_direction = Direction.RIGHT;
 					}
-					if(intersector.y + intersector.height < r1.y + r1.height && intersector.width >= intersector.height)
+					else if(intersector.y + intersector.height < r1.y + r1.height && intersector.width >= intersector.height)
 					{
 						entity.knockback.knockback_direction = Direction.DOWN;
 						e.knockback.knockback_direction = Direction.UP;
+					}
+					else
+					{
+						System.out.println("Else in entity-entity collision. This shouldn't happen.");
 					}
 					
 					//Do the collision effects. This includes damage, knockback, and other residual effects.
