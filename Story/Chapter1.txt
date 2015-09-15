@@ -1,0 +1,74 @@
+Chapter 1
+	<We start our game with panning of the world onto the place where our Heroine Dia lives>
+	
+	<We see Dia and her brother Malc playing in a field close to a mountain>
+	
+	<A giant earthquake shakes throughout the land and thats where the player takes control of Dia>
+	
+	Malc: 			Dia! Quickly, follow me to the cave and take cover!
+	
+	<Player follows Malc avoiding rocks, debris, etc.>
+	
+	<Boulder crashes behind entrance once Dia enters cave>
+	
+	...Enter Cave...
+	Malc: 			Dia! Stay close and wait for this earthquake to stop!
+	
+	<Earthquake stops>
+				Whew, that was a close call! I hope mother and father are alright.
+				This cave sure is dark, good thing I brought our lantern with us.
+
+	<Malc tries to move boulder blocking the way they came>
+
+				It's no use, I this boulder won't budge. Maybe we can find another way out of this cave.
+	
+	<Player takes control of Malc>
+	
+	<Start Tutorial Puzzle / Control Section of game>
+	
+	<End puzzle with finding a glowing rock>
+	
+	Mysterious Voice: 	Heeeeellllllppppppp Meeeeeeeeeeeee!
+
+	Malc:			Who... who's there!?
+
+	Mysterious Voice:	Heeeeeeeelllllpppppp meeeeeeeeeeeeeeee.....
+
+	Malc:			Dia did you hear that?
+
+	<Characters turn left and right to look at where voice is coming from>
+
+	Mysterious Voice:	Puuussssshhhhh thhhhheeee gllllowwwwiiinnngggg rooooccccckkkk offf theeeee peeedddaasssstaaaallll.....
+
+	Malc:			Dia, what do you think? Should we listen to this mysterious voice?
+
+	Mysterious Voice:	I knnnooowwwwww thhheeee waaaaayyyyy oooouuutttt offfff theeeee caaaaaavvvveeeee.....
+				Puuuussssshhhh thhheeeee gllloowwwwwiiinnnnggg rooooocccckkkk annnndd I wiiilllll shhhhhoowwww yoouuuuu....
+
+	Malc: 			Well Dia, it looks like we have no choice, let's listen to the voice and get the heck out of here!
+
+	<Malc with the help of Dia push over the boulder toppling it off it's pedastal shattering it revealing a man trapped within it.>
+
+	Mysterious Voice:	Thank you children for freeing me. My name is Xoyn. I've been trapped in that crystal by an evil wizard from long ago.
+				As my gratitude for being free, I shall guide you out of the cave.
+
+	Malc:			It is our pleasure, normally we wouldn't trust a mysterious voice, but we had no other choice. Thank you for guiding us out of here!
+
+	<The three walk further back down the cave finding the light at the end of the tunnel revealing an exit.>
+
+	<Once outside...>
+
+	Xoyn:			Ahhhhhh the fresh air! The breeze! The sunlight! I haven't had these pleasantries in decades! **Evil Cackle** 
+				Thank you children, now that I am free from my confines, I, Onyx, shall continue trying to take over this treacherous kingdom of Jewel!
+				It took all the remaining strength I had to conjure up that little "earthquake" you two were so scared about in order to lure you
+				in and free the likes of me! **Evil Cackle** For your cooperation I have held up my deal and lead you outside of the cave and as
+				gratitude for setting me free, I shall let you live to see another day. Goodbye children, and thank you for letting my wickednes roam
+				again! **Evil Cackle**
+
+	<Onyx takes off flying away into the distance>
+
+	Malc:			Hey! Mister! Wait! What do you mean you're going to take over Jewel! Xoyn!!!
+				Dia, this is bad, we better go back home and tell mother and father what happened!
+
+	<Follow Malc back home through the forest>
+	
