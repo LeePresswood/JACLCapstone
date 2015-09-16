@@ -2,6 +2,7 @@ package com.jacl.capstone.hud;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.jacl.capstone.screens.ScreenGame;
 
 /**
@@ -12,8 +13,9 @@ import com.jacl.capstone.screens.ScreenGame;
 public class HUD
 {
 	public ScreenGame screen;
-	
 	public OrthographicCamera camera;
+	
+	public BitmapFont font;
 	
 	public HUD(ScreenGame screen)
 	{
@@ -24,8 +26,11 @@ public class HUD
 		//Set the dimensions of the camera equal to the size of the screen and center the camera on the middle.
 		//Draw items as a percentage of the screen.
 		camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0);
+		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f);
 		camera.update();
+		
+		font = screen.game.assets.get("fonts/font.fnt", BitmapFont.class);
+		font.setScale(0.85f);
 	}
 	
 	public void update(float delta)
@@ -38,7 +43,7 @@ public class HUD
 		//Set the projection matrix of the sprite to our new camera. This keeps the two layers from affecting the coordinates of the other.
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
-		
+			font.draw(screen.batch, screen.world.time.toString(), 0f, Gdx.graphics.getHeight());
 		screen.batch.end();
 	}
 }

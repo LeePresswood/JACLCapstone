@@ -5,9 +5,7 @@ import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
  * Manages knockback from hits.
- * 
  * @author Lee
- *
  */
 public class KnockbackHelper
 {
@@ -57,7 +55,6 @@ public class KnockbackHelper
 		if(is_being_knocked_back)
 		{
 			//Calculate the knockback.
-			current_knockback += delta * KNOCKBACK_SPEED_TICK;
 			if(knockback_direction == Direction.LEFT)
 			{
 				entity.sprite.translateX(delta * KNOCKBACK_SPEED_TICK);
@@ -76,6 +73,7 @@ public class KnockbackHelper
 			}
 			
 			//If knockback is over, end.
+			current_knockback += delta * KNOCKBACK_SPEED_TICK;
 			if(current_knockback >= KNOCKBACK_DISTANCE)
 			{
 				is_being_knocked_back = false;

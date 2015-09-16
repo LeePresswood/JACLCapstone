@@ -2,6 +2,7 @@ package com.jacl.capstone.data;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 /**
  * This class should be used to load our assets.<br><br>
@@ -40,7 +41,7 @@ public class Assets extends AssetManager
 		
 		
 		//Fonts
-		
+		load("fonts/font.fnt", BitmapFont.class);
 		
 		//Textures
 		load("image.png", Texture.class);

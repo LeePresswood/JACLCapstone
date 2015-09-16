@@ -1,5 +1,7 @@
 package com.jacl.capstone.world.entities;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
@@ -27,6 +29,9 @@ public abstract class MovingEntity extends Entity
 	public float health;
 	public boolean knockback_on_collide;
 	public float damage_on_collide;
+	
+	//Enemy list.
+	public ArrayList<MovingEntity> enemies;
 	
 	public MovingEntity(World world, float x, float y, Element data, Alignment alignment)
 	{
@@ -69,33 +74,38 @@ public abstract class MovingEntity extends Entity
 	
 	private void entityCollision()
 	{
-		//We don't want to be hit while we're invincible.
+		//We don't want to be hit while we're invincible. Completely skip this step if so.
 		if(!invincible.is_invincible)
 		{
-			//Scan through all the entities that are enemies to this entity.
-			if(alignment == Alignment.PLAYER)
+			//The main logic happens in the CollisionHandler. Get a list of this entity's enemies and send it there.
+			getEnemies();
+			world.collision_handler.entityCollision(this, enemies);
+		}
+	}
+	
+	private void getEnemies()
+	{
+		if(enemies == null)
+		{
+			enemies = new ArrayList<MovingEntity>();
+		}
+		
+		//Clear the enemy list and begin adding the enemies.
+		enemies.clear();
+		for(Entity e : world.entity_handler.all_entities)
+		{
+			if(e instanceof MovingEntity && e.alignment != Alignment.NEUTRAL && this.alignment != e.alignment)
 			{
-				for(MovingEntity e : world.entity_handler.enemies)
-				{
-					world.collision_handler.collidesWith(this, e);
-					if(this.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle()))
-					{//There was a collision.
-						this.hitBy(e);
-						e.hitBy(this);
-					}
-				}
-			}
-			else if(alignment == Alignment.ENEMY)
-			{
-				
+				enemies.add((MovingEntity) e);
 			}
 		}
 	}
 	
 	/**
 	 * Entity was hit by an enemy entity. Set knockback and invincibility.
+	 * @param e The enemy this collided with.
 	 */
-	private void hitBy(MovingEntity e)
+	public void hitBy(MovingEntity e)
 	{
 		if(e.knockback_on_collide)
 		{

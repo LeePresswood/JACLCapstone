@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
-import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 import com.jacl.capstone.world.entities.player.Player;
 
 public class EntityHandler
@@ -15,16 +13,11 @@ public class EntityHandler
 	public World world;
 	
 	//We will have an all entities array that will be used for drawing. We can sort this array by the Y-values to give an effect of being in front of/behind each other.
-	private ArrayList<Entity> all_entities;
+	public ArrayList<Entity> all_entities;
+	public float array_sort_counter_current;
+	public final float ARRAY_SORT_COUNTER_TICK = 0.75f;
 	
-	//Players
 	public Player player;
-	
-	//Enemies/NPCs
-	public ArrayList<Enemy> enemies;
-	
-	//Projectiles
-	
 	
 	public EntityHandler(World world)
 	{
@@ -41,12 +34,10 @@ public class EntityHandler
 		//We will eventually have an EntityManager here to complete the set.
 		player = new Player(world, start_x, start_y, world.data_handler.player_root);
 		
-		enemies = new ArrayList<Enemy>();
-		
 		//Because this is when we are recreating the EnitityHandler, there should be no items in the all_entities array. Let's make it and add the player.
 		//Note: We would normally sort the array after adding an entity, but because this is the only entity, there's no need.
 		all_entities = new ArrayList<Entity>();
-		all_entities.add(player);		
+		all_entities.add(player);
 	}
 	
 	/**
@@ -58,26 +49,22 @@ public class EntityHandler
 		//Add and sort by Y values. Highest to lowest.
 		all_entities.add(e);
 		Collections.sort(all_entities, new EntityComparator());
-		
-		//Split this entity based upon what type it is.
-		if(e.alignment == Alignment.PLAYER)
-		{
-			
-		}
-		else if(e.alignment == Alignment.ENEMY)
-		{
-			enemies.add((Enemy) e);
-		}
 	}
 	
 	public void update(float delta)
 	{
-		//player.update(delta);
 		for(Entity e : all_entities)
 		{
 			e.update(delta);
 		}
-		Collections.sort(all_entities, new EntityComparator());
+		
+		//Determine if it's time to sort the entities. This is done slower than our update rate because sorting takes a long time relative to the other logic in the update step.
+		array_sort_counter_current += delta;
+		if(array_sort_counter_current >= ARRAY_SORT_COUNTER_TICK)
+		{
+			array_sort_counter_current -= ARRAY_SORT_COUNTER_TICK;
+			Collections.sort(all_entities, new EntityComparator());
+		}
 	}
 	
 	public void draw()
