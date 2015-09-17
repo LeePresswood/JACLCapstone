@@ -35,14 +35,14 @@ public class PathfindingAI extends AI
 			path = astar.getPath(npc.getTileX(), npc.getTileY(), handler.player.getTileX(), handler.player.getTileY());
 			
 			//After getting the path, we have to prune doubles.
-			System.out.println("Current Location: " + npc.getTileX() + "," + npc.getTileY());
-			System.out.println("Target Location: " + handler.player.getTileX() + "," + handler.player.getTileY());
-			System.out.print("Path: ");
+			//System.out.println("Current Location: " + npc.getTileX() + "," + npc.getTileY());
+			//System.out.println("Target Location: " + handler.player.getTileX() + "," + handler.player.getTileY());
+			//System.out.print("Path: ");
 			for(int i = 0; i < path.size; i += 2)
 			{
 				System.out.print(path.get(i) + "," + path.get(i + 1) + " ");
 			}
-			System.out.println("");
+			//System.out.println("");
 		}
 	}
 	
@@ -123,5 +123,4 @@ public class PathfindingAI extends AI
 	public void updateAction(float delta)
 	{
 	}
-	
 }
