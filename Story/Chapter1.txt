@@ -110,7 +110,7 @@ Chapter 1
 	Onyx:			Touching story old gemstone guardian, but you're too late. I've already gathered and hidden those precious jewels across this land. My power hasn't returned
 				enough to destroy such mystical gems, but I have enough to at least take care of you!
 
-	<Onyx crashes down a giant boulder onto their home trapping the two siblings parents underneath it>
+	<Onyx crashes down a giant boulder onto their home trapping the two sibling's parents underneath it, in process make it so Malc gets knocked back and "hurt">
 
 	Father:			Onyx! You will never get away with this!
 
@@ -119,4 +119,14 @@ Chapter 1
 	
 	<Onyx then flies away>
 	
-		
+	Father: 		Dia go check on Malc to see okay. Luckily your mother and I were able to conjure up a bit of magic to protect ourselves; however, we only have enough to
+				keep this boulder from crushing us for the time being.
+
+	<Dia checks on Malc who was knocked unconcious>
+
+	Father:			I see, well I'll need you to take his <weapon we give> and run into the city and grab the doctor, while you're there try to also find the Minor brothers to
+				help break up this boulder so we can get out from underneath.
+
+	<You've attained the <<weapon>>! Use <<action button>> to <<weapon verb>> enemies!>
+
+	
