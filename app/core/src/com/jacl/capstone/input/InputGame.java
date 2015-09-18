@@ -24,11 +24,25 @@ public class InputGame implements InputProcessor
 			//The Keys class has static references to all keys on the keyboard. We can use these to decode the button click.
 			case Keys.UP:
 			case Keys.W:
-				screen.world.entity_handler.player.up = true;
+				if(screen.hud.dialogue_handler.showing_dialogue)
+				{
+					screen.hud.dialogue_handler.reverseDialogue();
+				}
+				else
+				{
+					screen.world.entity_handler.player.up = true;
+				}
 				break;
 			case Keys.DOWN:
 			case Keys.S:
-				screen.world.entity_handler.player.down = true;
+				if(screen.hud.dialogue_handler.showing_dialogue)
+				{
+					screen.hud.dialogue_handler.forwardDialogue();
+				}
+				else
+				{
+					screen.world.entity_handler.player.down = true;
+				}
 				break;
 			case Keys.LEFT:
 			case Keys.A:
@@ -39,14 +53,7 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.right = true;
 				break;
 			case Keys.SPACE:
-				if(screen.hud.dialogue_handler.showing_dialogue)
-				{
-					
-				}
-				else
-				{
 					screen.world.entity_handler.player.attack.attacking = true;
-				}
 				break;
 		}
 		
@@ -63,11 +70,25 @@ public class InputGame implements InputProcessor
 			//The Keys class has static references to all keys on the keyboard. We can use these to decode the button click.
 			case Keys.UP:
 			case Keys.W:
-				screen.world.entity_handler.player.up = false;
+				if(screen.hud.dialogue_handler.showing_dialogue)
+				{
+					screen.hud.dialogue_handler.reverseDialogue();
+				}
+				else
+				{
+					screen.world.entity_handler.player.up = false;
+				}
 				break;
 			case Keys.DOWN:
 			case Keys.S:
-				screen.world.entity_handler.player.down = false;
+				if(screen.hud.dialogue_handler.showing_dialogue)
+				{
+					screen.hud.dialogue_handler.forwardDialogue();
+				}
+				else
+				{
+					screen.world.entity_handler.player.down = false;
+				}
 				break;
 			case Keys.LEFT:
 			case Keys.A:
@@ -78,7 +99,14 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.right = false;
 				break;
 			case Keys.SPACE:
-				screen.world.entity_handler.player.attack.attacking = false;
+				if(screen.hud.dialogue_handler.showing_dialogue)
+				{
+					screen.hud.dialogue_handler.forwardDialogue();
+				}
+				else
+				{
+					screen.world.entity_handler.player.attack.attacking = false;
+				}
 				break;
 			case Keys.E:
 				screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));
