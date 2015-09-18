@@ -39,7 +39,14 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.right = true;
 				break;
 			case Keys.SPACE:
-				screen.world.entity_handler.player.attack.attacking = true;
+				if(screen.hud.dialogue_handler.showing_dialogue)
+				{
+					
+				}
+				else
+				{
+					screen.world.entity_handler.player.attack.attacking = true;
+				}
 				break;
 		}
 		

@@ -3,6 +3,7 @@ package com.jacl.capstone.hud;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.jacl.capstone.helpers.handlers.hud.DialogueHandler;
 import com.jacl.capstone.screens.ScreenGame;
 
 /**
@@ -13,8 +14,9 @@ import com.jacl.capstone.screens.ScreenGame;
 public class HUD
 {
 	public ScreenGame screen;
-	public OrthographicCamera camera;
 	
+	public DialogueHandler dialogue_handler;
+	public OrthographicCamera camera;
 	public BitmapFont font;
 	
 	public HUD(ScreenGame screen)
