@@ -31,11 +31,21 @@ public class DialogueHandler
 		
 	}
 	
+	/**
+	 * Handle the updating of dialogue. Should only be used for animations.
+	 * @param delta Change in time.
+	 */
 	public void update(float delta)
 	{
 		
 	}
 	
+	/**
+	 * Draw the dialogue box. To do this, draw in the following order:<br>
+	 * Border<br>
+	 * Background<br>
+	 * Text
+	 */
 	public void draw()
 	{
 		//screen.batch
