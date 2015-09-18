@@ -1,4 +1,4 @@
-package com.jacl.capstone.helpers.handlers;
+package com.jacl.capstone.helpers.handlers.world;
 
 import java.io.IOException;
 
