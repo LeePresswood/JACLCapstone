@@ -72,8 +72,11 @@ public class World
 
 	public void update(float delta)
 	{
-		//If there is an active event, play it. Otherwise, update normally.
-		if(event_handler.event != null)
+		if(screen.hud.dialogue_handler.showing_dialogue)		//If dialogue is showing, don't do anything here.
+		{
+			
+		}
+		else if(event_handler.event != null)						//If there is an active event, play it. Otherwise, update normally.
 		{
 			event_handler.event.update(delta);
 		}

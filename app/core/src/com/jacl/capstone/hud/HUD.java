@@ -33,11 +33,13 @@ public class HUD
 		
 		font = screen.game.assets.get("fonts/font.fnt", BitmapFont.class);
 		font.setScale(0.85f);
+		
+		
 	}
 	
 	public void update(float delta)
 	{
-		
+		dialogue_handler.update(delta);
 	}
 	
 	public void draw()
@@ -46,6 +48,7 @@ public class HUD
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
 			font.draw(screen.batch, screen.world.time.toString(), 0f, Gdx.graphics.getHeight());
+			dialogue_handler.draw();
 		screen.batch.end();
 	}
 }
