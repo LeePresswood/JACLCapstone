@@ -24,25 +24,11 @@ public class InputGame implements InputProcessor
 			//The Keys class has static references to all keys on the keyboard. We can use these to decode the button click.
 			case Keys.UP:
 			case Keys.W:
-				if(screen.hud.dialogue_handler.showing_dialogue)
-				{
-					screen.hud.dialogue_handler.reverseDialogue();
-				}
-				else
-				{
-					screen.world.entity_handler.player.up = true;
-				}
+				screen.world.entity_handler.player.up = true;
 				break;
 			case Keys.DOWN:
 			case Keys.S:
-				if(screen.hud.dialogue_handler.showing_dialogue)
-				{
-					screen.hud.dialogue_handler.forwardDialogue();
-				}
-				else
-				{
-					screen.world.entity_handler.player.down = true;
-				}
+				screen.world.entity_handler.player.down = true;
 				break;
 			case Keys.LEFT:
 			case Keys.A:
