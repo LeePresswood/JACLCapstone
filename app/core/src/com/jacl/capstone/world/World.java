@@ -4,13 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.jacl.capstone.helpers.handlers.CameraHandler;
-import com.jacl.capstone.helpers.handlers.CollisionHandler;
-import com.jacl.capstone.helpers.handlers.DataHandler;
-import com.jacl.capstone.helpers.handlers.EntityHandler;
-import com.jacl.capstone.helpers.handlers.EventEntityHandler;
-import com.jacl.capstone.helpers.handlers.MapHandler;
-import com.jacl.capstone.helpers.handlers.SaveHandler;
+import com.jacl.capstone.helpers.handlers.world.CameraHandler;
+import com.jacl.capstone.helpers.handlers.world.CollisionHandler;
+import com.jacl.capstone.helpers.handlers.world.DataHandler;
+import com.jacl.capstone.helpers.handlers.world.EntityHandler;
+import com.jacl.capstone.helpers.handlers.world.EventEntityHandler;
+import com.jacl.capstone.helpers.handlers.world.MapHandler;
+import com.jacl.capstone.helpers.handlers.world.SaveHandler;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.atmosphere.GameTime;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
@@ -72,8 +72,11 @@ public class World
 
 	public void update(float delta)
 	{
-		//If there is an active event, play it. Otherwise, update normally.
-		if(event_handler.event != null)
+		if(screen.hud.dialogue_handler.showing_dialogue)		//If dialogue is showing, don't do anything here.
+		{
+			
+		}
+		else if(event_handler.event != null)						//If there is an active event, play it. Otherwise, update normally.
 		{
 			event_handler.event.update(delta);
 		}

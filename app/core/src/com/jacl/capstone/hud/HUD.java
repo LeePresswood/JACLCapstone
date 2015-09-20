@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.jacl.capstone.helpers.handlers.hud.DialogueHandler;
 import com.jacl.capstone.screens.ScreenGame;
 
 /**
@@ -15,8 +16,9 @@ import com.jacl.capstone.screens.ScreenGame;
 public class HUD
 {
 	public ScreenGame screen;
-	public OrthographicCamera camera;
 	
+	public DialogueHandler dialogue_handler;
+	public OrthographicCamera camera;
 	public BitmapFont font;
 	private NinePatch HealthBarBackground;
 	private NinePatch HealthBar;
@@ -44,13 +46,12 @@ public class HUD
 		//create healthbar object
 		HealthBarBackground = new NinePatch(new Texture(Gdx.files.internal("health-red.png")),5,5,2,2);
 		HealthBar = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
-		
-		
-	}
+
+}
 	
 	public void update(float delta)
 	{
-		
+		dialogue_handler.update(delta);
 	}
 	
 	public void draw()
@@ -62,6 +63,8 @@ public class HUD
 			font.draw(screen.batch, screen.world.time.toString(), 0f, Gdx.graphics.getHeight());
 			HealthBarBackground.draw(screen.batch, 10, 10, totalBarWidth, 8);
 			HealthBar.draw(screen.batch, 10, 10, width, 8);
+
+			dialogue_handler.draw();
 		screen.batch.end();
 	}
 }
