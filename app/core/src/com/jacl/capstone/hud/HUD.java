@@ -2,7 +2,9 @@ package com.jacl.capstone.hud;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.jacl.capstone.screens.ScreenGame;
 
 /**
@@ -16,6 +18,13 @@ public class HUD
 	public OrthographicCamera camera;
 	
 	public BitmapFont font;
+	private NinePatch HealthBarBackground;
+	private NinePatch HealthBar;
+	
+	float totalBarWidth=150;
+	float width=(90/100)*totalBarWidth;
+	float x=9f;
+	float y=9f;
 	
 	public HUD(ScreenGame screen)
 	{
@@ -31,6 +40,12 @@ public class HUD
 		
 		font = screen.game.assets.get("fonts/font.fnt", BitmapFont.class);
 		font.setScale(0.85f);
+		
+		//create healthbar object
+		HealthBarBackground = new NinePatch(new Texture(Gdx.files.internal("health-red.png")),5,5,2,2);
+		HealthBar = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
+		
+		
 	}
 	
 	public void update(float delta)
@@ -40,10 +55,13 @@ public class HUD
 	
 	public void draw()
 	{
+		
 		//Set the projection matrix of the sprite to our new camera. This keeps the two layers from affecting the coordinates of the other.
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
 			font.draw(screen.batch, screen.world.time.toString(), 0f, Gdx.graphics.getHeight());
+			HealthBarBackground.draw(screen.batch, 10, 10, totalBarWidth, 8);
+			HealthBar.draw(screen.batch, 10, 10, width, 8);
 		screen.batch.end();
 	}
 }

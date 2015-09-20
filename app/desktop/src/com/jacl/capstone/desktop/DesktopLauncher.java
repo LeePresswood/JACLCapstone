@@ -25,7 +25,7 @@ public class DesktopLauncher
 	 * be appended to the version number.
 	 * 
 	 * Goals for 0.3:
-	 *	Use of items
+	 * Use of items
 	 * Healthbars
 	 * Death of enemies and the player
 	 * Pathfinding AI.
