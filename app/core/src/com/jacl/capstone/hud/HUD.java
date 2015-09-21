@@ -56,6 +56,40 @@ public class HUD
 	
 	public void update(float delta)
 	{
+		if(dialogue_handler.showing_dialogue)						//If dialogue is showing, don't do anything here.
+		{
+			
+		}
+		else if(screen.world.event_handler.event != null)		//If there is an active event, play it. Otherwise, update normally.
+		{
+			screen.world.event_handler.event.update(delta);
+		}
+		else
+		{
+			HUDUpdate(delta);
+		}
+	}
+	
+	public void draw()
+	{
+		//If there is an active event, draw it. Otherwise, draw normally.
+		if(screen.world.event_handler.event != null)
+		{
+			screen.world.event_handler.event.draw(screen.batch);
+		}
+		else
+		{
+			HUDDraw();
+		}
+	}
+	
+	/**
+	 * The function in which the actual updating is done. Separated out so that 
+	 * events/dialogue may use the normal game logic without getting held-up in the
+	 * update() method.
+	 */
+	public void HUDUpdate(float delta)
+	{
 		//Update time.
 		time.update(delta);
 		
@@ -69,7 +103,12 @@ public class HUD
 		dialogue_handler.update(delta);
 	}
 	
-	public void draw()
+	/**
+	 * The function in which the actual drawing is done. Separated out so that 
+	 * events/dialogue may use this as a frame buffer of sorts without getting held-up
+	 * in the draw() method.
+	 */
+	public void HUDDraw()
 	{
 		//Set the projection matrix of the sprite to our new camera. This keeps the two layers from affecting the coordinates of the other.
 		screen.batch.setProjectionMatrix(camera.combined);

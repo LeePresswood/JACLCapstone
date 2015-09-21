@@ -92,7 +92,7 @@ public class World
 	
 	/**
 	 * The function in which the actual updating is done. Separated out so that 
-	 * events may use the normal game logic without getting held-up in the
+	 * events/dialogue may use the normal game logic without getting held-up in the
 	 * update() method.
 	 */
 	public void worldUpdate(float delta)
