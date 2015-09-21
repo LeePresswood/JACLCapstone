@@ -40,7 +40,15 @@ public class HUD
 		dialogue_handler = new DialogueHandler(this);
 		
 		health_bar = new HealthBar(this);
-}
+	}
+	
+	/**
+	 * Call this to initialize the HUD. This is called after loading from a save.
+	 */
+	public void init(float max, float current, float regen)
+	{
+		health_bar.init(max, current, regen);
+	}
 	
 	public void update(float delta)
 	{

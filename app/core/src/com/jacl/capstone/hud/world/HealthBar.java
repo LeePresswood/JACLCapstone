@@ -119,4 +119,13 @@ public class HealthBar
 		health_bar_background.draw(hud.screen.batch, X, Y, CONSTANT_WIDTH, CONSTANT_HEIGHT);
 		health_bar_foreground.draw(hud.screen.batch, X, Y, width, CONSTANT_HEIGHT);
 	}
+	
+	/**
+	 * We're trying to save the game. Package the saveable items here.
+	 * @return In order: max, current, regen.
+	 */
+	public float[] packageForSave()
+	{
+		return new float[]{max, current, regen};
+	}
 }

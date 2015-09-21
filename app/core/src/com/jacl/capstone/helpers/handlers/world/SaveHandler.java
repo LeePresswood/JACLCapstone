@@ -8,6 +8,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.atmosphere.GameTime;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
@@ -22,6 +23,7 @@ import com.jacl.capstone.world.atmosphere.TimeColorer;
 public class SaveHandler
 {
 	public World world;
+	public HUD hud;
 	
 	private final String SAVE_DIR = "saves/";
 	private final String SAVE_FILE = "test.xml";
@@ -35,10 +37,13 @@ public class SaveHandler
 	public SaveHandler(World world)
 	{
 		this.world = world;
+		this.hud = world.screen.hud;
 		
 		//Make the saves/ directory if it does not exist.
 		if(!Gdx.files.local(SAVE_DIR).exists() || !Gdx.files.local(SAVE_DIR).isDirectory() || !Gdx.files.local(SAVE_DIR + SAVE_FILE).exists())
+		{
 			init();
+		}
 	}
 	
 	/**
@@ -127,9 +132,9 @@ public class SaveHandler
 			world.init(map, x, y);
 			
 			//Push into HUD.
-			float healthbar_max = root.getChildByName("healthbar").getFloat("max");
-			float healthbar_current = root.getChildByName("healthbar").getFloat("current");
-			float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
+			//float healthbar_max = root.getChildByName("healthbar").getFloat("max");
+			//float healthbar_current = root.getChildByName("healthbar").getFloat("current");
+			//float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
 		}
 		catch(IOException e)
 		{
@@ -146,8 +151,13 @@ public class SaveHandler
 		FileHandle file = Gdx.files.local(SAVE_DIR + SAVE_FILE);
 		String file_string = file.readString();
 		
-		//Build an XML string.
-		file_string = file_string.replaceFirst("<healthbar>.*</healthbar>", "<max>" + world.time.toString() + "</max>");
+		//Get save packages.
+		float[] healthbar_package = hud.health_bar.packageForSave();
+		
+		//Build an XML string from the above packages.
+		file_string = file_string.replaceFirst("<healthbar>.*</healthbar>", "<max>" + healthbar_package[0] + "</max>"
+				+ "<current>" + healthbar_package[1] + "</current>" 
+				+ "<regen>" + healthbar_package[2] + "</regen>");
 		file_string = file_string.replaceFirst("<time>.*</time>", "<time>" + world.time.toString() + "</time>");
 		file_string = file_string.replaceFirst("<x>.*</x>", "<x>" + world.entity_handler.player.getTileX() + "</x>");
 		file_string = file_string.replaceFirst("<y>.*</y>", "<y>" + world.entity_handler.player.getTileY() + "</y>");
