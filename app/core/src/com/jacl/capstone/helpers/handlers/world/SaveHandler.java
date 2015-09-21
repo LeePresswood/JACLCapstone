@@ -28,6 +28,9 @@ public class SaveHandler
 	private final String SAVE_DIR = "saves/";
 	private final String SAVE_FILE = "test.xml";
 	
+	private final String INIT_HEALTH_MAX = "10";
+	private final String INIT_HEALTH_CURRENT = INIT_HEALTH_MAX;
+	private final String INIT_HEALTH_REGEN = "0";
 	private final String INIT_TIME = "00:00";
 	private final String INIT_X = "0";
 	private final String INIT_Y = "0";
@@ -61,6 +64,17 @@ public class SaveHandler
 			
 			xml.element("player")
 				.element("save")
+					.element("healthbar")
+						.element("max")
+							.text(INIT_HEALTH_MAX)
+						.pop()
+						.element("current")
+							.text(INIT_HEALTH_CURRENT)
+						.pop()
+						.element("regen")
+							.text(INIT_HEALTH_REGEN)
+						.pop()
+					.pop()
 					.element("time")
 						.text(INIT_TIME)
 					.pop()
@@ -122,7 +136,7 @@ public class SaveHandler
 			//Read from save file.
 			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + SAVE_FILE)).getChildByName("save");
 			
-			//Push into the game's world.
+			//Push into world.
 			String time_line = root.get("time");
 			int x = root.getChildByName("player_location").getInt("x");
 			int y = root.getChildByName("player_location").getInt("y");
@@ -132,9 +146,10 @@ public class SaveHandler
 			world.init(map, x, y);
 			
 			//Push into HUD.
-			//float healthbar_max = root.getChildByName("healthbar").getFloat("max");
-			//float healthbar_current = root.getChildByName("healthbar").getFloat("current");
-			//float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
+			float healthbar_max = root.getChildByName("healthbar").getFloat("max");
+			float healthbar_current = root.getChildByName("healthbar").getFloat("current");
+			float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
+			hud.init(healthbar_max, healthbar_current, healthbar_regen);
 		}
 		catch(IOException e)
 		{
