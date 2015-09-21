@@ -23,10 +23,10 @@ public class HUD
 	private NinePatch HealthBarBackground;
 	private NinePatch HealthBar;
 	
-	float totalBarWidth=150;
-	float width=(90/100)*totalBarWidth;
-	float x=9f;
-	float y=9f;
+	float totalBarWidth = 150;
+	float width= 0.9f * totalBarWidth;
+	float x = 9f;
+	float y = 9f;
 	
 	public HUD(ScreenGame screen)
 	{
@@ -42,6 +42,8 @@ public class HUD
 		
 		font = screen.game.assets.get("fonts/font.fnt", BitmapFont.class);
 		font.setScale(0.85f);
+		
+		dialogue_handler = new DialogueHandler(this);
 		
 		//create healthbar object
 		HealthBarBackground = new NinePatch(new Texture(Gdx.files.internal("health-red.png")),5,5,2,2);
