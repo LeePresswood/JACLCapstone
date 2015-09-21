@@ -22,6 +22,8 @@ public class HealthBar
 	private float current;
 	private float max;
 	
+	private float regen = 0.1f;
+	
 	float totalBarWidth = 150;
 	float width= 0.9f * totalBarWidth;
 	float x = 9f;
@@ -30,6 +32,9 @@ public class HealthBar
 	public HealthBar(HUD hud)
 	{
 		this.hud = hud;
+		
+		max = 10f;
+		current = 5f;
 		
 		HealthBarBackground = new NinePatch(new Texture(Gdx.files.internal("health-red.png")),5,5,2,2);
 		HealthBar = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
@@ -46,7 +51,7 @@ public class HealthBar
 	
 	public void changeCurrentValueBy(float change_by)
 	{
-		current += change_by;
+		current = change_by;
 		if(current > max)
 		{
 			current = max;
@@ -55,7 +60,7 @@ public class HealthBar
 	
 	public void changeMaxValueTo(float new_max)
 	{
-		max += new_max;
+		max = new_max;
 		if(current > max)
 		{
 			current = max;
@@ -68,7 +73,15 @@ public class HealthBar
 	}
 	
 	public void update(float delta)
-	{//Use this for animation.
+	{//Use this for animation setting the width of the bar.
+		//Animation.
+		
+		
+		//Regen (if we want this).
+		changeCurrentValueBy(regen * delta);
+		
+		//Bar width.
+		width = totalBarWidth * current / max;
 	}
 	
 	public void draw()
