@@ -41,5 +41,5 @@ You need Gradle installed on your machine in order to view, manipulate, or execu
 
 [libGDX]:http://libgdx.badlogicgames.com/
 [Tiled]:http://www.mapeditor.org/
-[See Current Change Log]:https://github.com/LeePresswood/JACLCapstone/blob/master/versions/v0.4a%2Cmd
+[See Current Change Log]:https://github.com/LeePresswood/JACLCapstone/blob/master/versions/v0.4a.md
 [See Previous Change Log]:https://github.com/LeePresswood/JACLCapstone/blob/master/versions/v0.3a.md
