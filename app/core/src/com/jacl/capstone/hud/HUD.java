@@ -46,6 +46,7 @@ public class HUD
 	
 	public void update(float delta)
 	{
+		health_bar.update(delta);
 		dialogue_handler.update(delta);
 	}
 	
@@ -56,7 +57,7 @@ public class HUD
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
 			font.draw(screen.batch, screen.world.time.toString(), 0f, Gdx.graphics.getHeight());
-			
+			health_bar.draw();
 
 			dialogue_handler.draw();
 		screen.batch.end();

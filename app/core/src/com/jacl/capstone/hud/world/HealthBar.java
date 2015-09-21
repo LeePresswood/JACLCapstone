@@ -40,6 +40,10 @@ public class HealthBar
 		HealthBar = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
 	}
 	
+	/**
+	 * Change current variable to the new value.
+	 * @param new_value
+	 */
 	public void changeCurrentValueTo(float new_value)
 	{
 		current = new_value;
@@ -49,15 +53,23 @@ public class HealthBar
 		}
 	}
 	
+	/**
+	 * Change current variable by the change_by amount.
+	 * @param change_by
+	 */
 	public void changeCurrentValueBy(float change_by)
 	{
-		current = change_by;
+		current += change_by;
 		if(current > max)
 		{
 			current = max;
 		}
 	}
 	
+	/**
+	 * Change max variable to the new value.
+	 * @param new_value
+	 */
 	public void changeMaxValueTo(float new_max)
 	{
 		max = new_max;
@@ -67,6 +79,10 @@ public class HealthBar
 		}
 	}
 	
+	/**
+	 * Change max variable by the change_by amount.
+	 * @param change_by
+	 */
 	public void changeMaxValueBy(float change_by)
 	{
 		max += change_by;
