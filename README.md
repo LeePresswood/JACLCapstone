@@ -1,5 +1,6 @@
 # Jewel
-###### Version 0.3 Alpha
+###### Version 0.4 Alpha
+* [changelog] - See Previous Version Change log 
 
 ## Story
 In a vast kingdom named Jewel, there once lived a family secluded in the woods. In this family there was a mother, a father, an older brother, and a younger sister. The mother and father loved their children very much teaching them the ways of life as the children grew. The oldest brother was named Malc, short for Malachite, and he was always curious for knowledge. He would question his mother and father about everything in life and why the things were the way they are. The younger sister was named Dia, short for Diamond, and she was very loyal and followed her parents orders to a tee.
@@ -39,3 +40,4 @@ You need Gradle installed on your machine in order to view, manipulate, or execu
 
 [libGDX]:http://libgdx.badlogicgames.com/
 [Tiled]:http://www.mapeditor.org/
+[changelog]:https://github.com/LeePresswood/JACLCapstone/blob/master/versions/v0.3a.md
