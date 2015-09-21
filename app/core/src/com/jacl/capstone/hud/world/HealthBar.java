@@ -19,6 +19,9 @@ public class HealthBar
 	private NinePatch HealthBarBackground;
 	private NinePatch HealthBar;
 	
+	private float current;
+	private float max;
+	
 	float totalBarWidth = 150;
 	float width= 0.9f * totalBarWidth;
 	float x = 9f;
@@ -32,14 +35,36 @@ public class HealthBar
 		HealthBar = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
 	}
 	
-	public void changeCurrentValue(float new_value)
+	public void changeCurrentValueTo(float new_value)
 	{
-		
+		current = new_value;
+		if(current > max)
+		{
+			current = max;
+		}
 	}
 	
-	public void changeMaxValue(float new_max)
+	public void changeCurrentValueBy(float change_by)
 	{
-		
+		current += change_by;
+		if(current > max)
+		{
+			current = max;
+		}
+	}
+	
+	public void changeMaxValueTo(float new_max)
+	{
+		max += new_max;
+		if(current > max)
+		{
+			current = max;
+		}
+	}
+	
+	public void changeMaxValueBy(float change_by)
+	{
+		max += change_by;
 	}
 	
 	public void update(float delta)
