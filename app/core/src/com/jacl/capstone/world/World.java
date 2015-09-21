@@ -10,10 +10,7 @@ import com.jacl.capstone.helpers.handlers.world.DataHandler;
 import com.jacl.capstone.helpers.handlers.world.EntityHandler;
 import com.jacl.capstone.helpers.handlers.world.EventEntityHandler;
 import com.jacl.capstone.helpers.handlers.world.MapHandler;
-import com.jacl.capstone.helpers.handlers.world.SaveHandler;
 import com.jacl.capstone.screens.ScreenGame;
-import com.jacl.capstone.world.atmosphere.GameTime;
-import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
  * Handles the updating and rendering of game objects. Create managers to keep this class general.
@@ -33,7 +30,6 @@ public class World
 	public DataHandler data_handler;
 	
 	//Atmosphere.
-	public GameTime time;
 	public Color time_color;	
 	
 	public World(ScreenGame screen)
@@ -101,15 +97,6 @@ public class World
 	 */
 	public void worldUpdate(float delta)
 	{
-		//Update time.
-		time.update(delta);
-		
-		//If the hour changed, update color.
-		if(time.recently_updated_minute)
-		{
-			time_color = TimeColorer.getColor(time);
-		}
-		
 		//Update entities.
 		entity_handler.update(delta);
 		

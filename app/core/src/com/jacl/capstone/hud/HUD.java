@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.jacl.capstone.helpers.handlers.hud.DialogueHandler;
 import com.jacl.capstone.hud.world.HealthBar;
 import com.jacl.capstone.screens.ScreenGame;
+import com.jacl.capstone.world.atmosphere.GameTime;
+import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
  * Updates and renders the HUD of the world.
@@ -21,6 +23,7 @@ public class HUD
 	public BitmapFont font;
 	
 	public HealthBar health_bar;
+	public GameTime time;
 	
 	public HUD(ScreenGame screen)
 	{
@@ -52,17 +55,25 @@ public class HUD
 	
 	public void update(float delta)
 	{
+		//Update time.
+		time.update(delta);
+		
+		//If the hour changed, update color.
+		if(time.recently_updated_minute)
+		{
+			screen.world.time_color = TimeColorer.getColor(time);
+		}
+		
 		health_bar.update(delta);
 		dialogue_handler.update(delta);
 	}
 	
 	public void draw()
 	{
-		
 		//Set the projection matrix of the sprite to our new camera. This keeps the two layers from affecting the coordinates of the other.
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
-			font.draw(screen.batch, screen.world.time.toString(), 0f, Gdx.graphics.getHeight());
+			font.draw(screen.batch, time.toString(), 0f, Gdx.graphics.getHeight());
 			health_bar.draw();
 
 			dialogue_handler.draw();

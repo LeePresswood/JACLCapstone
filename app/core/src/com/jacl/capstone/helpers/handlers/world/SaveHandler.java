@@ -142,8 +142,8 @@ public class SaveHandler
 			int x = root.getChildByName("player_location").getInt("x");
 			int y = root.getChildByName("player_location").getInt("y");
 			String map = root.get("map");
-			world.time = new GameTime(time_line);
-			world.time_color = TimeColorer.getColor(world.time);
+			hud.time = new GameTime(time_line);
+			world.time_color = TimeColorer.getColor(hud.time);
 			world.init(map, x, y);
 			
 			//Push into HUD.
@@ -174,7 +174,7 @@ public class SaveHandler
 		file_string = file_string.replaceFirst("<healthbar>.*</healthbar>", "<max>" + healthbar_package[0] + "</max>"
 				+ "<current>" + healthbar_package[1] + "</current>" 
 				+ "<regen>" + healthbar_package[2] + "</regen>");
-		file_string = file_string.replaceFirst("<time>.*</time>", "<time>" + world.time.toString() + "</time>");
+		file_string = file_string.replaceFirst("<time>.*</time>", "<time>" + hud.time.toString() + "</time>");
 		file_string = file_string.replaceFirst("<x>.*</x>", "<x>" + world.entity_handler.player.getTileX() + "</x>");
 		file_string = file_string.replaceFirst("<y>.*</y>", "<y>" + world.entity_handler.player.getTileY() + "</y>");
 		file_string = file_string.replaceFirst("<map>.*</map>", "<map>" + world.map_handler.map_name + "</map>");
