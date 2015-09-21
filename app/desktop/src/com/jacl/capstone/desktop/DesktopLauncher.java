@@ -9,7 +9,7 @@ public class DesktopLauncher
 	/**
 	 * Use this to write the name of the game in the UI box.
 	 */
-	public static final String GAME_NAME = "Game";	
+	public static final String GAME_NAME = "Jewel";	
 	
 	/**
 	 * Use this to determine the version of the game in V.U format. 
