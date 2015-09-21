@@ -48,9 +48,10 @@ public class HUD
 	/**
 	 * Call this to initialize the HUD. This is called after loading from a save.
 	 */
-	public void init(float max, float current, float regen)
+	public void init(float max, float current, float regen, String time_set)
 	{
 		health_bar.init(max, current, regen);
+		time = new GameTime(time_set);
 	}
 	
 	public void update(float delta)

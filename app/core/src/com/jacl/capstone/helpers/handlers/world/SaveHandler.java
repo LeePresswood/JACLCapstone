@@ -11,8 +11,6 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.atmosphere.GameTime;
-import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
  * Once the game is opened, read from the save state. Once it is
@@ -138,19 +136,18 @@ public class SaveHandler
 			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + SAVE_FILE)).getChildByName("save");
 			
 			//Push into world.
-			String time_line = root.get("time");
 			int x = root.getChildByName("player_location").getInt("x");
 			int y = root.getChildByName("player_location").getInt("y");
 			String map = root.get("map");
-			hud.time = new GameTime(time_line);
-			world.time_color = TimeColorer.getColor(hud.time);
 			world.init(map, x, y);
 			
 			//Push into HUD.
+			
+			String time = root.get("time");
 			float healthbar_max = root.getChildByName("healthbar").getFloat("max");
 			float healthbar_current = root.getChildByName("healthbar").getFloat("current");
 			float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
-			hud.init(healthbar_max, healthbar_current, healthbar_regen);
+			hud.init(healthbar_max, healthbar_current, healthbar_regen, time);
 		}
 		catch(IOException e)
 		{
