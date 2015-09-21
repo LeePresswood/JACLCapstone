@@ -23,7 +23,7 @@ public class HealthBar
 	private float max;
 	
 	private float regen = 0.1f;
-	
+	//hub.com/
 	private float totalBarWidth = 150;
 	private float width= 0.9f * totalBarWidth;
 	private float x = 9f;
