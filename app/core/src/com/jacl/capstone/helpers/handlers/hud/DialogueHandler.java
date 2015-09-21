@@ -7,8 +7,6 @@ public class DialogueHandler
 	public HUD hud;
 	
 	public boolean showing_dialogue;
-
-	
 	
 	public DialogueHandler(HUD hud)
 	{

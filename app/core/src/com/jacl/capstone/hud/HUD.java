@@ -2,9 +2,7 @@ package com.jacl.capstone.hud;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.jacl.capstone.helpers.handlers.hud.DialogueHandler;
 import com.jacl.capstone.hud.world.HealthBar;
 import com.jacl.capstone.screens.ScreenGame;
