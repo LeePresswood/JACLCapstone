@@ -2,7 +2,7 @@ package com.jacl.capstone;
 
 import com.badlogic.gdx.Game;
 import com.jacl.capstone.data.Assets;
-import com.jacl.capstone.screens.game.ScreenGame;
+import com.jacl.capstone.screens.ScreenGame;
 
 public class CapstoneGame extends Game
 {	
