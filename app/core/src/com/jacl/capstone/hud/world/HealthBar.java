@@ -16,8 +16,8 @@ public class HealthBar
 {
 	public HUD hud;
 	
-	private NinePatch HealthBarBackground;
-	private NinePatch HealthBar;
+	private NinePatch health_bar_background;
+	private NinePatch health_bar_foreground;
 	
 	private float current;
 	private float max;
@@ -36,8 +36,8 @@ public class HealthBar
 		max = 10f;
 		current = 5f;
 		
-		HealthBarBackground = new NinePatch(new Texture(Gdx.files.internal("health-red.png")),5,5,2,2);
-		HealthBar = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
+		health_bar_background = new NinePatch(new Texture(Gdx.files.internal("health-red.png")),5,5,2,2);
+		health_bar_foreground = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
 	}
 	
 	/**
@@ -102,7 +102,7 @@ public class HealthBar
 	
 	public void draw()
 	{
-		HealthBarBackground.draw(hud.screen.batch, 10, 10, totalBarWidth, 8);
-		HealthBar.draw(hud.screen.batch, 10, 10, width, 8);
+		health_bar_background.draw(hud.screen.batch, 10, 10, totalBarWidth, 8);
+		health_bar_foreground.draw(hud.screen.batch, 10, 10, width, 8);
 	}
 }
