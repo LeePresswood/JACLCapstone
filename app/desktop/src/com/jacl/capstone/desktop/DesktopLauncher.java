@@ -51,6 +51,6 @@ public class DesktopLauncher
 		
 		//config.addIcon(null, null);
 		
-		new LwjglApplication(new CapstoneGame(), config);
+		new LwjglApplication(new CapstoneGame(GAME_NAME, GAME_VERSION), config);
 	}
 }

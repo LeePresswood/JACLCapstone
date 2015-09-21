@@ -1,5 +1,6 @@
 package com.jacl.capstone.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
@@ -43,6 +44,9 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
+		//Display FPS
+		Gdx.graphics.setTitle(game.GAME_NAME + " : " + game.GAME_VERSION + " - FPS: " + Gdx.graphics.getFramesPerSecond());
+		
 		//Update world first and HUD second to stay parallel with the draw method.
 		world.update(delta);
 		hud.update(delta);
