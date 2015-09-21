@@ -24,13 +24,11 @@ public class DesktopLauncher
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.
 	 * 
-	 * Goals for 0.3:
+	 * Goals for 0.4:
 	 * Use of items
-	 * Healthbars
 	 * Death of enemies and the player
-	 * Pathfinding AI.
 	 */
-	public static final String GAME_VERSION = "0.3 Alpha";
+	public static final String GAME_VERSION = "0.4 Alpha";
 	
 	/**
 	 * Game width will be a constant. Game height will be directly
