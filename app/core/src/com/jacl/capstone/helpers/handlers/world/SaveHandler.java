@@ -25,7 +25,7 @@ public class SaveHandler
 	public HUD hud;
 	
 	private final String SAVE_DIR = "saves/";
-	private final String SAVE_FILE = "object_collision_test.tmx";
+	private final String SAVE_FILE = "test.xml";
 	
 	private final String INIT_HEALTH_MAX = "10";
 	private final String INIT_HEALTH_CURRENT = INIT_HEALTH_MAX;
@@ -33,7 +33,7 @@ public class SaveHandler
 	private final String INIT_TIME = "00:00";
 	private final String INIT_X = "0";
 	private final String INIT_Y = "0";
-	private final String INIT_MAP = "test.tmx";
+	private final String INIT_MAP = "object_collision_test.tmx";
 	private final String INIT_PROGRESS_FLAG = "0";
 	
 	public SaveHandler(ScreenGame screen_game)
@@ -142,7 +142,6 @@ public class SaveHandler
 			world.init(map, x, y);
 			
 			//Push into HUD.
-			
 			String time = root.get("time");
 			float healthbar_max = root.getChildByName("healthbar").getFloat("max");
 			float healthbar_current = root.getChildByName("healthbar").getFloat("current");
@@ -160,7 +159,7 @@ public class SaveHandler
 	 */
 	public void write()
 	{
-		System.out.print("\nWriting save file...");
+		System.out.print("Writing save file...");
 		FileHandle file = Gdx.files.local(SAVE_DIR + SAVE_FILE);
 		String file_string = file.readString();
 		

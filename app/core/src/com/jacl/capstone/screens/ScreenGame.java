@@ -19,12 +19,12 @@ public class ScreenGame extends ScreenParent
 	{
 		super(game);
 		
-		save_handler = new SaveHandler(this);
+		
 		
 		world = new World(this);
 		hud = new HUD(this);
 		
-		//Load from save.
+		save_handler = new SaveHandler(this);
 		save_handler.getFromSave();
 	}
 
