@@ -3,6 +3,7 @@ package com.jacl.capstone.screens;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
+import com.jacl.capstone.helpers.handlers.world.SaveHandler;
 import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.input.InputGame;
 import com.jacl.capstone.world.World;
@@ -12,12 +13,19 @@ public class ScreenGame extends ScreenParent
 	public World world;
 	public HUD hud;
 	
+	public SaveHandler save_handler;
+	
 	public ScreenGame(CapstoneGame game)
 	{
 		super(game);
 		
+		save_handler = new SaveHandler(this);
+		
 		world = new World(this);
 		hud = new HUD(this);
+		
+		//Load from save.
+		save_handler.getFromSave();
 	}
 
 	@Override
@@ -59,7 +67,7 @@ public class ScreenGame extends ScreenParent
 	 */	
 	public void show()
 	{
-		world.save_handler.getFromSave();
+		save_handler.getFromSave();
 	}
 	
 	@Override
@@ -69,6 +77,6 @@ public class ScreenGame extends ScreenParent
 	 */
 	public void hide()
 	{
-		world.save_handler.write();
+		save_handler.write();
 	}
 }

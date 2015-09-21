@@ -26,7 +26,6 @@ public class World
 	
 	//Handlers.
 	public CameraHandler camera_handler;
-	public SaveHandler save_handler;
 	public MapHandler map_handler;
 	public EntityHandler entity_handler;
 	public CollisionHandler collision_handler;	
@@ -42,16 +41,12 @@ public class World
 		this.screen = screen;
 		
 		//Initialize helpers.
-		save_handler = new SaveHandler(this);
 		map_handler = new MapHandler(this);
 		entity_handler = new EntityHandler(this);
 		collision_handler = new CollisionHandler(this);
 		event_handler = new EventEntityHandler(this);
 		camera_handler = new CameraHandler(this);
 		data_handler = new DataHandler(this);
-		
-		//Load from save.
-		save_handler.getFromSave();
 	}
 	
 	/**

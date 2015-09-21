@@ -9,6 +9,7 @@ import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.hud.HUD;
+import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.atmosphere.GameTime;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
@@ -26,7 +27,7 @@ public class SaveHandler
 	public HUD hud;
 	
 	private final String SAVE_DIR = "saves/";
-	private final String SAVE_FILE = "test.xml";
+	private final String SAVE_FILE = "object_collision_test.tmx";
 	
 	private final String INIT_HEALTH_MAX = "10";
 	private final String INIT_HEALTH_CURRENT = INIT_HEALTH_MAX;
@@ -37,10 +38,10 @@ public class SaveHandler
 	private final String INIT_MAP = "test.tmx";
 	private final String INIT_PROGRESS_FLAG = "0";
 	
-	public SaveHandler(World world)
+	public SaveHandler(ScreenGame screen_game)
 	{
-		this.world = world;
-		this.hud = world.screen.hud;
+		this.world = screen_game.world;
+		this.hud = screen_game.hud;
 		
 		//Make the saves/ directory if it does not exist.
 		if(!Gdx.files.local(SAVE_DIR).exists() || !Gdx.files.local(SAVE_DIR).isDirectory() || !Gdx.files.local(SAVE_DIR + SAVE_FILE).exists())
