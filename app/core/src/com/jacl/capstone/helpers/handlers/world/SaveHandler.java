@@ -8,9 +8,9 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.utils.XmlReader;
 import com.badlogic.gdx.utils.XmlWriter;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.jacl.capstone.hud.HUD;
+import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.atmosphere.GameTime;
-import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
  * Once the game is opened, read from the save state. Once it is
@@ -22,23 +22,30 @@ import com.jacl.capstone.world.atmosphere.TimeColorer;
 public class SaveHandler
 {
 	public World world;
+	public HUD hud;
 	
 	private final String SAVE_DIR = "saves/";
 	private final String SAVE_FILE = "test.xml";
 	
+	private final String INIT_HEALTH_MAX = "10";
+	private final String INIT_HEALTH_CURRENT = INIT_HEALTH_MAX;
+	private final String INIT_HEALTH_REGEN = "0";
 	private final String INIT_TIME = "00:00";
 	private final String INIT_X = "0";
 	private final String INIT_Y = "0";
-	private final String INIT_MAP = "test.tmx";
+	private final String INIT_MAP = "object_collision_test.tmx";
 	private final String INIT_PROGRESS_FLAG = "0";
 	
-	public SaveHandler(World world)
+	public SaveHandler(ScreenGame screen_game)
 	{
-		this.world = world;
+		this.world = screen_game.world;
+		this.hud = screen_game.hud;
 		
 		//Make the saves/ directory if it does not exist.
 		if(!Gdx.files.local(SAVE_DIR).exists() || !Gdx.files.local(SAVE_DIR).isDirectory() || !Gdx.files.local(SAVE_DIR + SAVE_FILE).exists())
+		{
 			init();
+		}
 	}
 	
 	/**
@@ -56,6 +63,17 @@ public class SaveHandler
 			
 			xml.element("player")
 				.element("save")
+					.element("healthbar")
+						.element("max")
+							.text(INIT_HEALTH_MAX)
+						.pop()
+						.element("current")
+							.text(INIT_HEALTH_CURRENT)
+						.pop()
+						.element("regen")
+							.text(INIT_HEALTH_REGEN)
+						.pop()
+					.pop()
 					.element("time")
 						.text(INIT_TIME)
 					.pop()
@@ -117,21 +135,18 @@ public class SaveHandler
 			//Read from save file.
 			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + SAVE_FILE)).getChildByName("save");
 			
-			//Read the time.
-			String time_line = root.get("time");
-			
-			//Read player's location.
+			//Push into world.
 			int x = root.getChildByName("player_location").getInt("x");
 			int y = root.getChildByName("player_location").getInt("y");
-			
-			//Read map.
 			String map = root.get("map");
-			
-			//Push these into the game's world.
-			//Time.
-			world.time = new GameTime(time_line);
-			world.time_color = TimeColorer.getColor(world.time);
 			world.init(map, x, y);
+			
+			//Push into HUD.
+			String time = root.get("time");
+			float healthbar_max = root.getChildByName("healthbar").getFloat("max");
+			float healthbar_current = root.getChildByName("healthbar").getFloat("current");
+			float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
+			hud.init(healthbar_max, healthbar_current, healthbar_regen, time);
 		}
 		catch(IOException e)
 		{
@@ -144,12 +159,18 @@ public class SaveHandler
 	 */
 	public void write()
 	{
-		System.out.print("\nWriting save file...");
+		System.out.print("Writing save file...");
 		FileHandle file = Gdx.files.local(SAVE_DIR + SAVE_FILE);
 		String file_string = file.readString();
 		
-		//Build an XML string.
-		file_string = file_string.replaceFirst("<time>.*</time>", "<time>" + world.time.toString() + "</time>");
+		//Get save packages.
+		float[] healthbar_package = hud.health_bar.packageForSave();
+		
+		//Build an XML string from the above packages.
+		file_string = file_string.replaceFirst("<healthbar>.*</healthbar>", "<max>" + healthbar_package[0] + "</max>"
+				+ "<current>" + healthbar_package[1] + "</current>" 
+				+ "<regen>" + healthbar_package[2] + "</regen>");
+		file_string = file_string.replaceFirst("<time>.*</time>", "<time>" + hud.time.toString() + "</time>");
 		file_string = file_string.replaceFirst("<x>.*</x>", "<x>" + world.entity_handler.player.getTileX() + "</x>");
 		file_string = file_string.replaceFirst("<y>.*</y>", "<y>" + world.entity_handler.player.getTileY() + "</y>");
 		file_string = file_string.replaceFirst("<map>.*</map>", "<map>" + world.map_handler.map_name + "</map>");

@@ -2,12 +2,12 @@ package com.jacl.capstone.hud;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.jacl.capstone.helpers.handlers.hud.DialogueHandler;
 import com.jacl.capstone.hud.world.HealthBar;
 import com.jacl.capstone.screens.ScreenGame;
+import com.jacl.capstone.world.atmosphere.GameTime;
+import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
  * Updates and renders the HUD of the world.
@@ -23,6 +23,7 @@ public class HUD
 	public BitmapFont font;
 	
 	public HealthBar health_bar;
+	public GameTime time;
 	
 	public HUD(ScreenGame screen)
 	{
@@ -40,26 +41,78 @@ public class HUD
 		font.setScale(0.85f);
 		
 		dialogue_handler = new DialogueHandler(this);
-		
 		health_bar = new HealthBar(this);
-}
+	}
+	
+	/**
+	 * Call this to initialize the HUD. This is called after loading from a save.
+	 */
+	public void init(float max, float current, float regen, String time_set)
+	{
+		health_bar.init(max, current, regen);
+		time = new GameTime(time_set);
+	}
 	
 	public void update(float delta)
 	{
-		health_bar.update(delta);
-		dialogue_handler.update(delta);
+		if(dialogue_handler.showing_dialogue)						//If dialogue is showing, don't do anything here.
+		{
+			
+		}
+		else if(screen.world.event_handler.event != null)		//If there is an active event, play it. Otherwise, update normally.
+		{
+			screen.world.event_handler.event.update(delta);
+		}
+		else
+		{
+			HUDUpdate(delta);
+		}
 	}
 	
 	public void draw()
 	{
+		//If there is an active event, draw it. Otherwise, draw normally.
+		if(screen.world.event_handler.event != null)
+		{
+			screen.world.event_handler.event.draw(screen.batch);
+		}
+		else
+		{
+			HUDDraw();
+		}
+	}
+	
+	/**
+	 * The function in which the actual updating is done. Separated out so that 
+	 * events/dialogue may use the normal game logic without getting held-up in the
+	 * update() method.
+	 */
+	public void HUDUpdate(float delta)
+	{
+		//Update time.
+		time.update(delta);
+		if(time.recently_updated_minute)
+		{
+			screen.world.time_color = TimeColorer.getColor(time);
+		}
 		
+		health_bar.update(delta);
+		dialogue_handler.update(delta);
+	}
+	
+	/**
+	 * The function in which the actual drawing is done. Separated out so that 
+	 * events/dialogue may use this as a frame buffer of sorts without getting held-up
+	 * in the draw() method.
+	 */
+	public void HUDDraw()
+	{
 		//Set the projection matrix of the sprite to our new camera. This keeps the two layers from affecting the coordinates of the other.
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
-			font.draw(screen.batch, screen.world.time.toString(), 0f, Gdx.graphics.getHeight());
-			health_bar.draw();
-
-			dialogue_handler.draw();
+			font.draw(screen.batch, time.toString(), 0f, Gdx.graphics.getHeight());			//Time.
+			health_bar.draw();																				//Health.
+			dialogue_handler.draw();																		//Dialogue.
 		screen.batch.end();
 	}
 }

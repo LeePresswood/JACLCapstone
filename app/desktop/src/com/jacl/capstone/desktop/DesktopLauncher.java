@@ -9,7 +9,7 @@ public class DesktopLauncher
 	/**
 	 * Use this to write the name of the game in the UI box.
 	 */
-	public static final String GAME_NAME = "Game";	
+	public static final String GAME_NAME = "Jewel";	
 	
 	/**
 	 * Use this to determine the version of the game in V.U format. 
@@ -24,13 +24,11 @@ public class DesktopLauncher
 	 * Until the game is out of testing stages, "Alpha" or "Beta" will 
 	 * be appended to the version number.
 	 * 
-	 * Goals for 0.3:
+	 * Goals for 0.4:
 	 * Use of items
-	 * Healthbars
 	 * Death of enemies and the player
-	 * Pathfinding AI.
 	 */
-	public static final String GAME_VERSION = "0.3 Alpha";
+	public static final String GAME_VERSION = "0.4 Alpha";
 	
 	/**
 	 * Game width will be a constant. Game height will be directly
@@ -53,6 +51,6 @@ public class DesktopLauncher
 		
 		//config.addIcon(null, null);
 		
-		new LwjglApplication(new CapstoneGame(), config);
+		new LwjglApplication(new CapstoneGame(GAME_NAME, GAME_VERSION), config);
 	}
 }
