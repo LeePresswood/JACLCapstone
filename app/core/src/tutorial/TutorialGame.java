@@ -14,6 +14,7 @@ public class TutorialGame extends Game
 	{
 		//Initialize assets here through an extension of the AssetManager class.
 		assets = new AssetsTutorial();
+		assets.finishLoading();
 		
 		//Setting the screen changes the display. To change the screen from another class: game.setScreen(...); That's why we pass in a reference to this class.
 		setScreen(new ScreenTutorialGame(this));

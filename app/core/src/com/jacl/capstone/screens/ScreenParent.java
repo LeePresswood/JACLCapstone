@@ -48,6 +48,7 @@ public abstract class ScreenParent extends ScreenAdapter
 		update(delta);
 		
 		//Draw
+		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		Gdx.gl.glClearColor(color_background.r, color_background.g, color_background.b, color_background.a);
       Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		draw();
