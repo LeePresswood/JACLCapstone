@@ -41,7 +41,6 @@ public class HUD
 		font.setScale(0.85f);
 		
 		dialogue_handler = new DialogueHandler(this);
-		
 		health_bar = new HealthBar(this);
 	}
 	
@@ -92,8 +91,6 @@ public class HUD
 	{
 		//Update time.
 		time.update(delta);
-		
-		//If the hour changed, update color.
 		if(time.recently_updated_minute)
 		{
 			screen.world.time_color = TimeColorer.getColor(time);
@@ -113,10 +110,9 @@ public class HUD
 		//Set the projection matrix of the sprite to our new camera. This keeps the two layers from affecting the coordinates of the other.
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
-			font.draw(screen.batch, time.toString(), 0f, Gdx.graphics.getHeight());
-			health_bar.draw();
-
-			dialogue_handler.draw();
+			font.draw(screen.batch, time.toString(), 0f, Gdx.graphics.getHeight());			//Time.
+			health_bar.draw();																				//Health.
+			dialogue_handler.draw();																		//Dialogue.
 		screen.batch.end();
 	}
 }
