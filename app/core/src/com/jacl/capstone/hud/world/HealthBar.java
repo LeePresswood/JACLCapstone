@@ -21,13 +21,16 @@ public class HealthBar
 	
 	private float current;
 	private float max;
+	private float regen;
 	
-	private float regen = 0.1f;
+	private float width;
+	
 	//hub.com/
-	private float totalBarWidth = 150;
-	private float width= 0.9f * totalBarWidth;
-	private float x = 9f;
-	private float y = 9f;
+	
+	private final float X = 9f;
+	private final float Y = 9f;
+	private final float CONSTANT_WIDTH = 150f;
+	private final float CONSTANT_HEIGHT = 8f;
 	
 	public HealthBar(HUD hud)
 	{
@@ -38,6 +41,19 @@ public class HealthBar
 		
 		health_bar_background = new NinePatch(new Texture(Gdx.files.internal("health-red.png")),5,5,2,2);
 		health_bar_foreground = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
+	}
+	
+	/**
+	 * Called after loading from a save.
+	 * @param max
+	 * @param current
+	 * @param regen
+	 */
+	public void init(float max, float current, float regen)
+	{
+		this.max = max;
+		this.current = current;
+		this.regen = regen;
 	}
 	
 	/**
@@ -97,12 +113,21 @@ public class HealthBar
 		changeCurrentValueBy(regen * delta);
 		
 		//Bar width.
-		width = totalBarWidth * current / max;
+		width = CONSTANT_WIDTH * current / max;
 	}
 	
 	public void draw()
 	{
-		health_bar_background.draw(hud.screen.batch, 10, 10, totalBarWidth, 8);
-		health_bar_foreground.draw(hud.screen.batch, 10, 10, width, 8);
+		health_bar_background.draw(hud.screen.batch, X, Y, CONSTANT_WIDTH, CONSTANT_HEIGHT);
+		health_bar_foreground.draw(hud.screen.batch, X, Y, width, CONSTANT_HEIGHT);
+	}
+	
+	/**
+	 * We're trying to save the game. Package the saveable items here.
+	 * @return In order: max, current, regen.
+	 */
+	public float[] packageForSave()
+	{
+		return new float[]{max, current, regen};
 	}
 }

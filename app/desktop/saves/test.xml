@@ -1,8 +1,14 @@
 <player>
 	<save>
-		<time>07:27</time>
+
+		<healthbar>
+			<max>10</max>
+			<current>10</current>
+			<regen>0</regen>
+		</healthbar>
+		<time>00:56</time>
 		<player_location>
-			<x>19</x>
+			<x>14</x>
 			<y>5</y>
 		</player_location>
 		<map>object_collision_test.tmx</map>
