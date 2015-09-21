@@ -117,21 +117,19 @@ public class SaveHandler
 			//Read from save file.
 			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + SAVE_FILE)).getChildByName("save");
 			
-			//Read the time.
+			//Push into the game's world.
 			String time_line = root.get("time");
-			
-			//Read player's location.
 			int x = root.getChildByName("player_location").getInt("x");
 			int y = root.getChildByName("player_location").getInt("y");
-			
-			//Read map.
 			String map = root.get("map");
-			
-			//Push these into the game's world.
-			//Time.
 			world.time = new GameTime(time_line);
 			world.time_color = TimeColorer.getColor(world.time);
 			world.init(map, x, y);
+			
+			//Push into HUD.
+			float healthbar_max = root.getChildByName("healthbar").getFloat("max");
+			float healthbar_current = root.getChildByName("healthbar").getFloat("current");
+			float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
 		}
 		catch(IOException e)
 		{
@@ -149,6 +147,7 @@ public class SaveHandler
 		String file_string = file.readString();
 		
 		//Build an XML string.
+		file_string = file_string.replaceFirst("<healthbar>.*</healthbar>", "<max>" + world.time.toString() + "</max>");
 		file_string = file_string.replaceFirst("<time>.*</time>", "<time>" + world.time.toString() + "</time>");
 		file_string = file_string.replaceFirst("<x>.*</x>", "<x>" + world.entity_handler.player.getTileX() + "</x>");
 		file_string = file_string.replaceFirst("<y>.*</y>", "<y>" + world.entity_handler.player.getTileY() + "</y>");

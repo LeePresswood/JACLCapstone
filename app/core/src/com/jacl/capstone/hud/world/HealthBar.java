@@ -21,9 +21,9 @@ public class HealthBar
 	
 	private float current;
 	private float max;
-	private float width;
+	private float regen;
 	
-	private float regen = 0.3f;
+	private float width;
 	
 	private final float X = 9f;
 	private final float Y = 9f;
@@ -39,6 +39,19 @@ public class HealthBar
 		
 		health_bar_background = new NinePatch(new Texture(Gdx.files.internal("health-red.png")),5,5,2,2);
 		health_bar_foreground = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
+	}
+	
+	/**
+	 * Called after loading from a save.
+	 * @param max
+	 * @param current
+	 * @param regen
+	 */
+	public void init(float max, float current, float regen)
+	{
+		this.max = max;
+		this.current = current;
+		this.regen = regen;
 	}
 	
 	/**

@@ -55,7 +55,7 @@ public class World
 	}
 	
 	/**
-	 * Call this to initialize the world to the passed map.
+	 * Call this to initialize the world to the passed map. This is called after loading from a save.
 	 * @param map_name The map to load. Note: Map directory should not be included. Simply pass the name of the map found in the map directory of the assets folder.
 	 * @param start_x Player's starting X location (in blocks).
 	 * @param start_y Player's starting Y location (in blocks). 
