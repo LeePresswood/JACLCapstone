@@ -24,10 +24,10 @@ public class HealthBar
 	
 	private float regen = 0.1f;
 	
-	float totalBarWidth = 150;
-	float width= 0.9f * totalBarWidth;
-	float x = 9f;
-	float y = 9f;
+	private float totalBarWidth = 150;
+	private float width= 0.9f * totalBarWidth;
+	private float x = 9f;
+	private float y = 9f;
 	
 	public HealthBar(HUD hud)
 	{
