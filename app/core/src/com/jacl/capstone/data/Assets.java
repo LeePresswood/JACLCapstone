@@ -23,6 +23,7 @@ public class Assets extends AssetManager
 	public static final String HEALTHBAR_BACKGROUND = "hud/healthbar/health-red.png";
 	public static final String HEALTHBAR_FOREGROUND = "hud/healthbar/health-blue.png";
 	
+	public static final String FONT_DIALOGUE = "hud/fonts/dialogue.fnt";
 	public static final String FONT16 = "hud/fonts/font16.fnt";
 	public static final String FONT24 = "hud/fonts/font24.fnt";
 	public static final String FONT32 = "hud/fonts/font32.fnt";
@@ -49,6 +50,7 @@ public class Assets extends AssetManager
 		
 		
 		//Fonts
+		load(FONT_DIALOGUE, BitmapFont.class);
 		load(FONT16, BitmapFont.class);
 		load(FONT24, BitmapFont.class);
 		load(FONT32, BitmapFont.class);
