@@ -13,7 +13,6 @@ import com.jacl.capstone.world.atmosphere.TimeColorer;
 /**
  * Updates and renders the HUD of the world.
  * @author Lee
- *
  */
 public class HUD
 {
