@@ -23,6 +23,12 @@ public class Assets extends AssetManager
 	public static final String HEALTHBAR_BACKGROUND = "health-red.png";
 	public static final String HEALTHBAR_FOREGROUND = "health-blue.png";
 	
+	public static final String FONT16 = "font16.fnt";
+	public static final String FONT24 = "font24.fnt";
+	public static final String FONT32 = "font32.fnt";
+	public static final String FONT44 = "font44.fnt";
+	public static final String FONT56 = "font56.fnt";
+	
 	public Assets()
 	{
 		/* Note: These will all be loaded asynchronously.
@@ -43,7 +49,11 @@ public class Assets extends AssetManager
 		
 		
 		//Fonts
-		load("fonts/font.fnt", BitmapFont.class);
+		load(FONT16, BitmapFont.class);
+		load(FONT24, BitmapFont.class);
+		load(FONT32, BitmapFont.class);
+		load(FONT44, BitmapFont.class);
+		load(FONT56, BitmapFont.class);
 		
 		//Textures
 		load(PLAYER, Texture.class);
