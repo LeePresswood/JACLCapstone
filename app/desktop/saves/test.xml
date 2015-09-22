@@ -2,13 +2,13 @@
 	<save>
 
 		<healthbar>
-			<max>10</max>
+			<max>50</max>
 			<current>10</current>
 			<regen>0</regen>
 		</healthbar>
-		<time>00:56</time>
+		<time>01:21</time>
 		<player_location>
-			<x>14</x>
+			<x>9</x>
 			<y>5</y>
 		</player_location>
 		<map>object_collision_test.tmx</map>

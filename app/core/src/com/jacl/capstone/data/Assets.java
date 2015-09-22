@@ -20,6 +20,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 public class Assets extends AssetManager
 {
 	public static final String PLAYER = "image.png";
+	public static final String HEALTHBAR_BACKGROUND = "health-red.png";
+	public static final String HEALTHBAR_FOREGROUND = "health-blue.png";
 	
 	public Assets()
 	{
@@ -44,7 +46,9 @@ public class Assets extends AssetManager
 		load("fonts/font.fnt", BitmapFont.class);
 		
 		//Textures
-		load("image.png", Texture.class);
+		load(PLAYER, Texture.class);
+		load(HEALTHBAR_BACKGROUND, Texture.class);
+		load(HEALTHBAR_FOREGROUND, Texture.class);
 		
 		finishLoading();
 	}
