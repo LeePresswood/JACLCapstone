@@ -39,7 +39,7 @@ public class DialogueHandler
 			boxes = new DialogueBox[split.length];
 			for(int i = 0; i < split.length; i++)
 			{
-				boxes[i] = new DialogueBox(split[i]);
+				boxes[i] = new DialogueBox(hud, split[i]);
 			}
 		}
 	}
