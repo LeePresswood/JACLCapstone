@@ -1,15 +1,14 @@
 <player>
 	<save>
-
 		<healthbar>
-			<max>50</max>
+			<max>10</max>
 			<current>10</current>
 			<regen>0</regen>
 		</healthbar>
-		<time>01:21</time>
+		<time>00:34</time>
 		<player_location>
-			<x>9</x>
-			<y>5</y>
+			<x>6</x>
+			<y>8</y>
 		</player_location>
 		<map>object_collision_test.tmx</map>
 		<progress_flag>0</progress_flag>

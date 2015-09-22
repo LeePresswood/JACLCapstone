@@ -3,6 +3,7 @@ package com.jacl.capstone.hud;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.helpers.handlers.hud.DialogueHandler;
 import com.jacl.capstone.hud.world.HealthBar;
 import com.jacl.capstone.screens.ScreenGame;
@@ -37,8 +38,7 @@ public class HUD
 		camera.position.set(camera.viewportWidth / 2f, camera.viewportHeight / 2f, 0f);
 		camera.update();
 		
-		font = screen.game.assets.get("fonts/font.fnt", BitmapFont.class);
-		font.setScale(0.85f);
+		font = screen.game.assets.get(Assets.FONT24, BitmapFont.class);
 		
 		dialogue_handler = new DialogueHandler(this);
 		health_bar = new HealthBar(this);
