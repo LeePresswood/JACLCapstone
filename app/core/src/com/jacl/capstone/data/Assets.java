@@ -20,6 +20,15 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 public class Assets extends AssetManager
 {
 	public static final String PLAYER = "image.png";
+	public static final String HEALTHBAR_BACKGROUND = "hud/healthbar/health-red.png";
+	public static final String HEALTHBAR_FOREGROUND = "hud/healthbar/health-blue.png";
+	
+	public static final String FONT_DIALOGUE = "hud/fonts/dialogue.fnt";
+	public static final String FONT16 = "hud/fonts/font16.fnt";
+	public static final String FONT24 = "hud/fonts/font24.fnt";
+	public static final String FONT32 = "hud/fonts/font32.fnt";
+	public static final String FONT44 = "hud/fonts/font44.fnt";
+	public static final String FONT56 = "hud/fonts/font56.fnt";
 	
 	public Assets()
 	{
@@ -41,10 +50,17 @@ public class Assets extends AssetManager
 		
 		
 		//Fonts
-		load("fonts/font.fnt", BitmapFont.class);
+		load(FONT_DIALOGUE, BitmapFont.class);
+		load(FONT16, BitmapFont.class);
+		load(FONT24, BitmapFont.class);
+		load(FONT32, BitmapFont.class);
+		load(FONT44, BitmapFont.class);
+		load(FONT56, BitmapFont.class);
 		
 		//Textures
-		load("image.png", Texture.class);
+		load(PLAYER, Texture.class);
+		load(HEALTHBAR_BACKGROUND, Texture.class);
+		load(HEALTHBAR_FOREGROUND, Texture.class);
 		
 		finishLoading();
 	}

@@ -1,6 +1,6 @@
 package com.jacl.capstone.world.entities.npc.ai;
 
-import com.jacl.capstone.helpers.handlers.EntityHandler;
+import com.jacl.capstone.helpers.handlers.world.EntityHandler;
 import com.jacl.capstone.world.entities.npc.NPC;
 
 /**

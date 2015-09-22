@@ -1,8 +1,10 @@
 package com.jacl.capstone.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
+import com.jacl.capstone.helpers.handlers.world.SaveHandler;
 import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.input.InputGame;
 import com.jacl.capstone.world.World;
@@ -12,12 +14,19 @@ public class ScreenGame extends ScreenParent
 	public World world;
 	public HUD hud;
 	
+	public SaveHandler save_handler;
+	
 	public ScreenGame(CapstoneGame game)
 	{
 		super(game);
 		
+		
+		
 		world = new World(this);
 		hud = new HUD(this);
+		
+		save_handler = new SaveHandler(this);
+		save_handler.getFromSave();
 	}
 
 	@Override
@@ -35,6 +44,9 @@ public class ScreenGame extends ScreenParent
 	@Override
 	public void update(float delta)
 	{
+		//Display FPS
+		Gdx.graphics.setTitle(game.GAME_NAME + " : " + game.GAME_VERSION + " - FPS: " + Gdx.graphics.getFramesPerSecond());
+		
 		//Update world first and HUD second to stay parallel with the draw method.
 		world.update(delta);
 		hud.update(delta);
@@ -59,7 +71,7 @@ public class ScreenGame extends ScreenParent
 	 */	
 	public void show()
 	{
-		world.save_handler.getFromSave();
+		save_handler.getFromSave();
 	}
 	
 	@Override
@@ -69,6 +81,6 @@ public class ScreenGame extends ScreenParent
 	 */
 	public void hide()
 	{
-		world.save_handler.write();
+		save_handler.write();
 	}
 }

@@ -30,6 +30,7 @@ public class GameTime
 		String[] splitter = time.split(":");
 		hours = Integer.parseInt(splitter[0]);
 		minutes = Integer.parseInt(splitter[1]);
+		recently_updated_minute = true;
 	}
 	
 	/**
@@ -41,6 +42,7 @@ public class GameTime
 	{
 		this.hours = hours;
 		this.minutes = minutes;
+		recently_updated_minute = true;
 	}
 	
 	/**

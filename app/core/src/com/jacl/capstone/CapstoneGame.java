@@ -6,8 +6,17 @@ import com.jacl.capstone.screens.ScreenGame;
 
 public class CapstoneGame extends Game
 {	
+	public String GAME_NAME;
+	public String GAME_VERSION;
+	
 	public Assets assets;
 	
+	public CapstoneGame(String gameName, String gameVersion)
+	{
+		this.GAME_NAME = gameName;
+		this.GAME_VERSION = gameVersion;
+	}
+
 	/**
 	 * This is basically the constructor. Use it to initialize any necessary objects and to set the screen.
 	 */

@@ -4,16 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
-import com.jacl.capstone.helpers.handlers.CameraHandler;
-import com.jacl.capstone.helpers.handlers.CollisionHandler;
-import com.jacl.capstone.helpers.handlers.DataHandler;
-import com.jacl.capstone.helpers.handlers.EntityHandler;
-import com.jacl.capstone.helpers.handlers.EventEntityHandler;
-import com.jacl.capstone.helpers.handlers.MapHandler;
-import com.jacl.capstone.helpers.handlers.SaveHandler;
+import com.jacl.capstone.helpers.handlers.world.CameraHandler;
+import com.jacl.capstone.helpers.handlers.world.CollisionHandler;
+import com.jacl.capstone.helpers.handlers.world.DataHandler;
+import com.jacl.capstone.helpers.handlers.world.EntityHandler;
+import com.jacl.capstone.helpers.handlers.world.EventEntityHandler;
+import com.jacl.capstone.helpers.handlers.world.MapHandler;
 import com.jacl.capstone.screens.ScreenGame;
-import com.jacl.capstone.world.atmosphere.GameTime;
-import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
  * Handles the updating and rendering of game objects. Create managers to keep this class general.
@@ -26,7 +23,6 @@ public class World
 	
 	//Handlers.
 	public CameraHandler camera_handler;
-	public SaveHandler save_handler;
 	public MapHandler map_handler;
 	public EntityHandler entity_handler;
 	public CollisionHandler collision_handler;	
@@ -34,7 +30,6 @@ public class World
 	public DataHandler data_handler;
 	
 	//Atmosphere.
-	public GameTime time;
 	public Color time_color;	
 	
 	public World(ScreenGame screen)
@@ -42,20 +37,16 @@ public class World
 		this.screen = screen;
 		
 		//Initialize helpers.
-		save_handler = new SaveHandler(this);
 		map_handler = new MapHandler(this);
 		entity_handler = new EntityHandler(this);
 		collision_handler = new CollisionHandler(this);
 		event_handler = new EventEntityHandler(this);
 		camera_handler = new CameraHandler(this);
 		data_handler = new DataHandler(this);
-		
-		//Load from save.
-		save_handler.getFromSave();
 	}
 	
 	/**
-	 * Call this to initialize the world to the passed map.
+	 * Call this to initialize the world to the passed map. This is called after loading from a save.
 	 * @param map_name The map to load. Note: Map directory should not be included. Simply pass the name of the map found in the map directory of the assets folder.
 	 * @param start_x Player's starting X location (in blocks).
 	 * @param start_y Player's starting Y location (in blocks). 
@@ -72,8 +63,11 @@ public class World
 
 	public void update(float delta)
 	{
-		//If there is an active event, play it. Otherwise, update normally.
-		if(event_handler.event != null)
+		if(screen.hud.dialogue_handler.showing_dialogue)		//If dialogue is showing, don't do anything here.
+		{
+			
+		}
+		else if(event_handler.event != null)						//If there is an active event, play it. Otherwise, update normally.
 		{
 			event_handler.event.update(delta);
 		}
@@ -98,20 +92,11 @@ public class World
 	
 	/**
 	 * The function in which the actual updating is done. Separated out so that 
-	 * events may use the normal game logic without getting held-up in the
+	 * events/dialogue may use the normal game logic without getting held-up in the
 	 * update() method.
 	 */
 	public void worldUpdate(float delta)
 	{
-		//Update time.
-		time.update(delta);
-		
-		//If the hour changed, update color.
-		if(time.recently_updated_minute)
-		{
-			time_color = TimeColorer.getColor(time);
-		}
-		
 		//Update entities.
 		entity_handler.update(delta);
 		
