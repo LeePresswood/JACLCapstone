@@ -3,6 +3,7 @@ package com.jacl.capstone.hud.world;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.hud.HUD;
 
 /**
@@ -25,6 +26,8 @@ public class HealthBar
 	
 	private float width;
 	
+	//hub.com/
+	
 	private final float X = 9f;
 	private final float Y = 9f;
 	private final float CONSTANT_WIDTH = 150f;
@@ -37,8 +40,8 @@ public class HealthBar
 		max = 10f;
 		current = 5f;
 		
-		health_bar_background = new NinePatch(new Texture(Gdx.files.internal("health-red.png")),5,5,2,2);
-		health_bar_foreground = new NinePatch(new Texture(Gdx.files.internal("health-blue.png")),5,5,2,2);
+		health_bar_background = new NinePatch(hud.screen.game.assets.get(Assets.HEALTHBAR_BACKGROUND, Texture.class), 5, 5, 2, 2);
+		health_bar_foreground = new NinePatch(hud.screen.game.assets.get(Assets.HEALTHBAR_FOREGROUND, Texture.class), 5, 5, 2, 2);
 	}
 	
 	/**
