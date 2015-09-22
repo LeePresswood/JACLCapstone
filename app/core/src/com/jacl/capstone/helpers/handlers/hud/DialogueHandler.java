@@ -32,9 +32,15 @@ public class DialogueHandler
 		//Split the text into DialogueBoxes.
 		if(file_text.length() > 0)
 		{
-			//Create an array of strings that represent the texts of the dialogue boxes.
+			//Create an array of strings that represents the texts of the dialogue boxes.
 			String[] split = file_text.split(SPLIT_CHAR);
 			
+			//Each of these strings needs to be made into a dialogue box.
+			boxes = new DialogueBox[split.length];
+			for(int i = 0; i < split.length; i++)
+			{
+				boxes[i] = new DialogueBox(split[i]);
+			}
 		}
 	}
 	
