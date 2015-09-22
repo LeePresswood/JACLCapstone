@@ -64,6 +64,10 @@ public class HealthBar
 	public void changeCurrentValueTo(float new_value)
 	{
 		current = new_value;
+		if(current < 0.0f)
+		{
+			current = 0.0f;
+		}
 		if(current > max)
 		{
 			current = max;
@@ -77,6 +81,10 @@ public class HealthBar
 	public void changeCurrentValueBy(float change_by)
 	{
 		current += change_by;
+		if(current < 0.0f)
+		{
+			current = 0.0f;
+		}
 		if(current > max)
 		{
 			current = max;
@@ -90,6 +98,10 @@ public class HealthBar
 	public void changeMaxValueTo(float new_max)
 	{
 		max = new_max;
+		if(max < 0.0f)
+		{
+			max = 0.0f;
+		}
 		if(current > max)
 		{
 			current = max;
@@ -103,6 +115,10 @@ public class HealthBar
 	public void changeMaxValueBy(float change_by)
 	{
 		max += change_by;
+		if(max < 0.0f)
+		{
+			max = 0.0f;
+		}
 	}
 	
 	public void update(float delta)
