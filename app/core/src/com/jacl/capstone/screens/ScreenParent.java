@@ -17,7 +17,7 @@ import com.jacl.capstone.CapstoneGame;
  * is not as big of a deal as if we were working on a mobile device. Nevertheless, we're doing it out of good practice.
  * 
  * @author Lee
- *
+ * @contribute Huy
  */
 public abstract class ScreenParent extends ScreenAdapter
 {
