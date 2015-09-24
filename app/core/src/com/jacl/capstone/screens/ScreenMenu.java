@@ -1,5 +1,9 @@
 package com.jacl.capstone.screens;
 
+import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.Color;
+import com.jacl.capstone.CapstoneGame;
+
 /**
  * 
  * @author huy_trinh
@@ -7,11 +11,13 @@ package com.jacl.capstone.screens;
  * States are in int from 1-3.
  *  
  */
-public class ScreenMenu {
+public class ScreenMenu extends ScreenParent
+{
 
-	public ScreenMenu() {
-		// TODO Auto-generated constructor stub
-	}
+	public ScreenMenu(CapstoneGame game)
+   {
+	   super(game);
+   }
 
 	public void draw()
 	{
@@ -32,4 +38,16 @@ public class ScreenMenu {
 	{
 		
 	}
+
+	@Override
+   public Color setUpBackgroundColor()
+   {
+	   return null;
+   }
+
+	@Override
+   public InputProcessor setUpInput()
+   {
+	   return null;
+   }
 }
