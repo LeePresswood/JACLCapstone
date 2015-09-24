@@ -11,10 +11,10 @@ import com.jacl.capstone.CapstoneGame;
  * States are in int from 1-3.
  *  
  */
-public class ScreenMenu extends ScreenParent
+public class ScreenGameMenu extends ScreenParent
 {
 
-	public ScreenMenu(CapstoneGame game)
+	public ScreenGameMenu(CapstoneGame game)
    {
 	   super(game);
    }
