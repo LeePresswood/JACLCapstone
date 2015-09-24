@@ -1,13 +1,17 @@
 package com.jacl.capstone.input;
 
 import com.badlogic.gdx.InputProcessor;
+import com.jacl.capstone.hud.HUDButton;
 import com.jacl.capstone.screens.ScreenMainMenu;
 
 public class InputMainMenu implements InputProcessor
 {
-
-	public InputMainMenu(ScreenMainMenu screenGameMenu)
+	public ScreenMainMenu screen;
+	public HUDButton button_clicked_down; 
+	
+	public InputMainMenu(ScreenMainMenu screen)
    {
+		this.screen = screen;
    }
 
 	@Override
@@ -31,13 +35,34 @@ public class InputMainMenu implements InputProcessor
 	@Override
    public boolean touchDown(int screenX, int screenY, int pointer, int button)
    {
-	   return false;
+		//Determine if the clicked location contains a button. Do this by looping through all the buttons.
+		for(HUDButton b : screen.buttons)
+		{
+			if(b != null)
+			{
+				button_clicked_down = b;
+				b.downColor();
+				break;
+			}
+		}
+		
+	   return true;
    }
 
 	@Override
    public boolean touchUp(int screenX, int screenY, int pointer, int button)
    {
-	   return false;
+		//Determine if the clicked location contains a button. Do this by looping through all the buttons.
+		for(HUDButton b : screen.buttons)
+		{
+			if(b != null)
+			{
+				button_clicked_down.click();
+				break;
+			}
+		}
+		
+	   return true;
    }
 
 	@Override
