@@ -55,6 +55,8 @@ public class InputMainMenu implements InputProcessor
 		//Determine if the clicked location contains a button. Do this by looping through all the buttons.
 		for(HUDButton b : screen.buttons)
 		{
+			b.upColor();
+			
 			if(b.sprite.getBoundingRectangle().contains(screenX, screenY) && button_clicked_down.equals(b))
 			{
 				b.click();
