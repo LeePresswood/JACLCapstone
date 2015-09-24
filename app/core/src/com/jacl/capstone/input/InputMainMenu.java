@@ -1,11 +1,12 @@
 package com.jacl.capstone.input;
 
 import com.badlogic.gdx.InputProcessor;
+import com.jacl.capstone.screens.ScreenMainMenu;
 
 public class InputMainMenu implements InputProcessor
 {
 
-	public InputMainMenu(ScreenGameMenu screenGameMenu)
+	public InputMainMenu(ScreenMainMenu screenGameMenu)
    {
    }
 
