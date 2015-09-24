@@ -26,7 +26,7 @@ public abstract class HUDButton
 	
 	public void draw()
 	{
-		
+		sprite.draw(screen.batch);
 	}
 	
 	public abstract void upColor();
