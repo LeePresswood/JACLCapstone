@@ -3,6 +3,7 @@ package com.jacl.capstone.screens;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
+import com.jacl.capstone.input.InputMainMenu;
 
 /**
  * 
@@ -15,9 +16,9 @@ public class ScreenGameMenu extends ScreenParent
 {
 
 	public ScreenGameMenu(CapstoneGame game)
-   {
-	   super(game);
-   }
+	{
+		super(game);
+	}
 
 	public void draw()
 	{
@@ -33,7 +34,7 @@ public class ScreenGameMenu extends ScreenParent
 	 * Load: Gather the player's location and time from the save file.
 	 * Options: show volume, graphic and such
 	 * Credits: mostly name
-	 */	
+	 */
 	public void update(float delta)
 	{
 		
@@ -48,6 +49,14 @@ public class ScreenGameMenu extends ScreenParent
 	@Override
    public InputProcessor setUpInput()
    {
-	   return null;
+	   return new InputMainMenu(this);
    }
+	
+	/**
+	 * This is called when the user clicks the new game button.
+	 */
+	public void newGameButtonClick()
+	{
+		
+	}
 }
