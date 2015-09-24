@@ -26,7 +26,7 @@
    eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
- <layer name="Events" width="30" height="30" visible="0">
+ <layer name="Events" width="30" height="30">
   <properties>
    <property name="11,7" value="GOTO test2.tmx 9,17"/>
   </properties>
