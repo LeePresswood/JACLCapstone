@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.jacl.capstone.screens.ScreenParent;
 
-public class HUDButton
+public abstract class HUDButton
 {
 	public ScreenParent screen;
 	public Sprite sprite;
@@ -16,13 +16,8 @@ public class HUDButton
 		sprite = new Sprite(texture);
 		sprite.setBounds(x, y, width, height);
 	}
-
-	public void downColor()
-   {
-   }
-
-	public void click()
-   {
-   }
 	
+	public abstract void upColor();
+	public abstract void downColor();
+	public abstract void click();
 }

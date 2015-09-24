@@ -38,7 +38,7 @@ public class InputMainMenu implements InputProcessor
 		//Determine if the clicked location contains a button. Do this by looping through all the buttons.
 		for(HUDButton b : screen.buttons)
 		{
-			if(b != null)
+			if(b.sprite.getBoundingRectangle().contains(screenX, screenY))
 			{
 				button_clicked_down = b;
 				b.downColor();
@@ -55,9 +55,9 @@ public class InputMainMenu implements InputProcessor
 		//Determine if the clicked location contains a button. Do this by looping through all the buttons.
 		for(HUDButton b : screen.buttons)
 		{
-			if(b != null)
+			if(b.sprite.getBoundingRectangle().contains(screenX, screenY) && button_clicked_down.equals(b))
 			{
-				button_clicked_down.click();
+				b.click();
 				break;
 			}
 		}
