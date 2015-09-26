@@ -4,6 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.jacl.capstone.screens.ScreenParent;
 
+/**
+ * The way this should work is like so:
+ * Create a new child class of this class for each button that will be available for clicking.
+ * Each of these buttons will have an upColor that is used when inactive, a down color that is
+ * used while being held down but not being clicked, and a click() method that is activated
+ * upon a full click.
+ * @author Lee
+ */
 public abstract class HUDButton
 {
 	public ScreenParent screen;
