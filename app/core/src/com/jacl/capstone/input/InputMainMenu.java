@@ -42,7 +42,10 @@ public class InputMainMenu implements InputProcessor
 			{
 				button_clicked_down = b;
 				b.downColor();
-				break;
+			}
+			else
+			{//We are not clicking this button. Make sure the button's up color is used.
+				b.upColor();
 			}
 		}
 		
@@ -60,7 +63,6 @@ public class InputMainMenu implements InputProcessor
 			if(b.sprite.getBoundingRectangle().contains(screenX, screenY) && button_clicked_down.equals(b))
 			{
 				b.click();
-				break;
 			}
 		}
 		
