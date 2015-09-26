@@ -36,13 +36,17 @@ public class InputMainMenu implements InputProcessor
    public boolean touchDown(int screenX, int screenY, int pointer, int button)
    {
 		//Determine if the clicked location contains a button. Do this by looping through all the buttons.
+		button_clicked_down = null;
 		for(HUDButton b : screen.buttons)
 		{
 			if(b.sprite.getBoundingRectangle().contains(screenX, screenY))
 			{
 				button_clicked_down = b;
 				b.downColor();
-				break;
+			}
+			else
+			{//We are not clicking this button. Make sure the button's up color is used.
+				b.upColor();
 			}
 		}
 		
@@ -52,16 +56,16 @@ public class InputMainMenu implements InputProcessor
 	@Override
    public boolean touchUp(int screenX, int screenY, int pointer, int button)
    {
-		//Determine if the clicked location contains a button. Do this by looping through all the buttons.
+		//Set the up color for all buttons.
 		for(HUDButton b : screen.buttons)
 		{
 			b.upColor();
-			
-			if(b.sprite.getBoundingRectangle().contains(screenX, screenY) && button_clicked_down.equals(b))
-			{
-				b.click();
-				break;
-			}
+		}
+		
+		//Determine if the clicked location contains a button.
+		if(button_clicked_down != null && button_clicked_down.sprite.getBoundingRectangle().contains(screenX, screenY))
+		{
+			button_clicked_down.click();
 		}
 		
 	   return true;
