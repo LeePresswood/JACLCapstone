@@ -36,6 +36,7 @@ public class InputMainMenu implements InputProcessor
    public boolean touchDown(int screenX, int screenY, int pointer, int button)
    {
 		//Determine if the clicked location contains a button. Do this by looping through all the buttons.
+		button_clicked_down = null;
 		for(HUDButton b : screen.buttons)
 		{
 			if(b.sprite.getBoundingRectangle().contains(screenX, screenY))
@@ -62,7 +63,7 @@ public class InputMainMenu implements InputProcessor
 		}
 		
 		//Determine if the clicked location contains a button.
-		if(button_clicked_down.sprite.getBoundingRectangle().contains(screenX, screenY))
+		if(button_clicked_down != null && button_clicked_down.sprite.getBoundingRectangle().contains(screenX, screenY))
 		{
 			button_clicked_down.click();
 		}
