@@ -28,8 +28,7 @@ public abstract class HUDButton
 	}
 	
 	public void update(float delta)
-	{
-		
+	{//I can't imagine we'll need any animations here.
 	}
 	
 	public void draw()
