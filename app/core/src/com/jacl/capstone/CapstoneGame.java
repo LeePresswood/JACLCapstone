@@ -28,7 +28,7 @@ public class CapstoneGame extends Game
 		assets = new Assets();
 		
 		//Setting the screen changes the display. To change the screen from another class: game.setScreen(...); That's why we pass in a reference to this class.
-		setScreen(new ScreenGame(this));
+			setScreen(new ScreenGame(this));
 		//setScreen(new ScreenMainMenu(this));
 	}	
 	
