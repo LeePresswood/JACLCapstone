@@ -36,9 +36,13 @@ public class Player extends MovingEntity
 	public boolean up, down, left, right;
 	public Direction last_direction;
 
-	public Player(World world, float x, float y, Element data)
+	public Player(World world, float x, float y, Element data, float health_max, float health_current, float health_regen)
 	{
 		super(world, x, y, data, Alignment.PLAYER);
+		
+		this.health_max = health_max;
+		this.health_current = health_current;
+		this.health_regen = health_regen;
 	}
 
 	@Override
@@ -139,5 +143,14 @@ public class Player extends MovingEntity
 				item = null;
 			}*/
 		}
+	}
+	
+	/**
+	 * We're trying to save the game. Package the saveable items here.
+	 * @return In order: max, current, regen.
+	 */
+	public float[] packageForSave()
+	{
+		return new float[]{health_max, health_current, health_regen};
 	}
 }
