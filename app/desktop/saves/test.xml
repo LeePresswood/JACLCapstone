@@ -1,15 +1,15 @@
 <player>
 	<map>object_collision_test.tmx</map>
-	<time>06:16</time>
+	<time>07:52</time>
 	<player_location>
-		<x>8</x>
+		<x>5</x>
 		<y>4</y>
 	</player_location>
 	<progress_flag>0</progress_flag>
 	<healthbar>
-		<max>6.0</max>
-		<current>10.0</current>
-		<regen>0</regen>
+		<health_max>10.0</health_max>
+		<health_current>5.0</health_current>
+		<health_regen>0.0</health_regen>
 	</healthbar>
 	<texture>image.png</texture>
 	<width>1.0</width>

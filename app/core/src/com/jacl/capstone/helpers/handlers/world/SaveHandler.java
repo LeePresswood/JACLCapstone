@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.World;
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 /**
  * Once the game is opened, read from the save state. Once it is
@@ -134,9 +135,9 @@ public class SaveHandler
 			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + SAVE_FILE));
 			
 			//Push into world.
-			float healthbar_max = root.getChildByName("healthbar").getFloat("max");
-			float healthbar_current = root.getChildByName("healthbar").getFloat("current");
-			float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
+			float healthbar_max = root.getChildByName("healthbar").getFloat("health_max");
+			float healthbar_current = root.getChildByName("healthbar").getFloat("health_current");
+			float healthbar_regen = root.getChildByName("healthbar").getFloat("health_regen");
 			int x = root.getChildByName("player_location").getInt("x");
 			int y = root.getChildByName("player_location").getInt("y");
 			String map = root.get("map");
@@ -165,9 +166,9 @@ public class SaveHandler
 		float[] healthbar_package = world.entity_handler.player.packageForSave();
 		
 		//Build an XML string from the above packages.
-		file_string = file_string.replaceFirst("<healthbar>.*</healthbar>", "<max>" + healthbar_package[0] + "</max>"
-				+ "<current>" + healthbar_package[1] + "</current>" 
-				+ "<regen>" + healthbar_package[2] + "</regen>");
+		file_string = file_string.replaceFirst("<health_max>.*</health_max>", "<health_max>" + healthbar_package[0] + "</health_max>");
+		file_string = file_string.replaceFirst("<health_current>.*</health_current>", "<health_current>" + healthbar_package[1] + "</health_current>");
+		file_string = file_string.replaceFirst("<health_regen>.*</health_regen>", "<health_regen>" + healthbar_package[2] + "</health_regen>");
 		file_string = file_string.replaceFirst("<time>.*</time>", "<time>" + hud.time.toString() + "</time>");
 		file_string = file_string.replaceFirst("<x>.*</x>", "<x>" + world.entity_handler.player.getTileX() + "</x>");
 		file_string = file_string.replaceFirst("<y>.*</y>", "<y>" + world.entity_handler.player.getTileY() + "</y>");
