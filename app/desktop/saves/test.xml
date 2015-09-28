@@ -5,9 +5,9 @@
 			<current>10</current>
 			<regen>0</regen>
 		</healthbar>
-		<time>05:18</time>
+		<time>06:07</time>
 		<player_location>
-			<x>9</x>
+			<x>8</x>
 			<y>3</y>
 		</player_location>
 		<map>object_collision_test.tmx</map>

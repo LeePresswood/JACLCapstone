@@ -25,13 +25,11 @@ public class RandomAI extends AI
 	private boolean moving;
 	private float move_current;
 	private float move_time_random;
-	private final float MOVE_TIME = 0.5f;
 	private Direction direction;
 	
 	private boolean waiting;
 	private float wait_current;
 	private float wait_time_random;
-	private final float WAIT_TIME = MOVE_TIME;
 	
 	public RandomAI(NPC npc)
 	{
@@ -51,16 +49,16 @@ public class RandomAI extends AI
 			//random < CHANCE_WAIT = Wait. Move otherwise.
 			if(random.nextFloat() < CHANCE_WAIT)
 			{
+				waiting = true;
+				wait_current = 0f;
+				wait_time_random = random.nextFloat();
+			}
+			else
+			{
 				moving = true;
 				move_current = 0f;
 				move_time_random = random.nextFloat();
 				direction = Direction.values()[random.nextInt(4)];
-			}
-			else
-			{
-				waiting = true;
-				wait_current = 0f;
-				wait_time_random = random.nextFloat();
 			}
 		}
 	}
