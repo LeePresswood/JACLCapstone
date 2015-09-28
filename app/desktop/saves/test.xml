@@ -9,7 +9,7 @@
 	<healthbar>
 		<health_max>10.0</health_max>
 		<health_current>10.0</health_current>
-		<health_regen>1.0</health_regen>
+		<health_regen>0.1</health_regen>
 	</healthbar>
 	<texture>image.png</texture>
 	<width>1.0</width>
