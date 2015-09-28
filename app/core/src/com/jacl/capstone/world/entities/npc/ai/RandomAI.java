@@ -86,10 +86,21 @@ public class RandomAI extends AI
 						break;
 				}
 			}
+			else
+			{
+				moving = false;
+			}
 		}
 		else if(waiting)
 		{
-			wait_current += delta;
+			if(wait_current < WAIT_TIME)
+			{
+				wait_current += delta;
+			}
+			else
+			{
+				waiting = false;
+			}
 		}
 	}
 	
