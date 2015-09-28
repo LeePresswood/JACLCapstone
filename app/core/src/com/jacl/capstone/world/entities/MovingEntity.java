@@ -27,7 +27,8 @@ public abstract class MovingEntity extends Entity
 	
 	//Qualities that will be manipulated throughout play.
 	public float move_speed;
-	public float health;
+	public float health_current;
+	public float health_max;
 	public boolean knockback_on_collide;
 	public float damage_on_collide;
 	public float defense;
@@ -46,7 +47,6 @@ public abstract class MovingEntity extends Entity
 		//Health, speed, damage, and knockback_on_collide are set by the entity list.
 		this.knockback_on_collide = data.getBoolean("knockback_on_collide");
 		this.move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;	//Set in terms of tiles per second.
-		this.health = data.getFloat("health");
 		this.damage_on_collide = data.getFloat("damage_on_collide");
 	}
 	
@@ -113,7 +113,7 @@ public abstract class MovingEntity extends Entity
 		{
 			//Knockback and damage.
 			knockback.doKnockback();
-			health -= DamageCalculator.getDamage(e.damage_on_collide, defense);
+			health_current -= DamageCalculator.getDamage(e.damage_on_collide, defense);
 			
 			//Invincibility upon hit is only for players.
 			if(this instanceof Player)
