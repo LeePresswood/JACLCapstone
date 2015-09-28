@@ -3,6 +3,7 @@ package com.jacl.capstone.world.entities.npc.ai;
 import java.util.Random;
 
 import com.badlogic.gdx.math.Vector2;
+import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.entities.npc.NPC;
 
 /**
@@ -23,11 +24,12 @@ public class RandomAI extends AI
 	
 	private boolean moving;
 	private float move_current;
-	private final float MOVE_MAX = 1f;
+	private final float MOVE_TIME = 1f;
+	private Direction direction;
 	
 	private boolean waiting;
 	private float wait_current;
-	private final float wait_time = 0.75f;
+	private final float WAIT_TIME = MOVE_TIME;
 	
 	public RandomAI(NPC npc)
 	{
@@ -35,22 +37,33 @@ public class RandomAI extends AI
 		
 		ATTACK_RADIUS = (float) Math.pow(1.5f * npc.world.map_handler.tile_size, 2);
 		player_position = new Vector2();
+		random = new Random();
 	}
 	
 	@Override
 	public void updateThinking(float delta)
 	{
-		
+		//If we are neither moving nor waiting, we can make a decision based upon random chance.
+		if(!moving && !waiting)
+		{
+			//random < CHANCE_WAIT = Wait. Move otherwise.
+			if(random.nextFloat() < CHANCE_WAIT)
+			{
+				moving = true;
+				move_current = 0f;
+				direction = Direction.values()[random.nextInt(4)];
+			}
+		}
 	}
 	
 	@Override
 	public void updatePosition(float delta)
 	{
+		//Update timing.
 	}
 	
 	@Override
 	public void updateAction(float delta)
 	{
 	}
-	
 }
