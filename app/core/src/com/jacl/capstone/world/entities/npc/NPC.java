@@ -20,6 +20,11 @@ public abstract class NPC extends MovingEntity
 	public NPC(World world, float x, float y, Element data, Alignment alignment)
 	{
 		super(world, x, y, data, alignment);
+		
+		//Get data.
+		health_max = data.getFloat("health");
+		health_current = health_max;
+		
 		ai = initAI();
 	}
 	

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
+import com.jacl.capstone.helpers.DamageCalculator;
 import com.jacl.capstone.helpers.InvincibleHelper;
 import com.jacl.capstone.helpers.KnockbackHelper;
 import com.jacl.capstone.world.World;
@@ -24,11 +25,15 @@ public abstract class MovingEntity extends Entity
 	public AttackHelper attack;
 	public InvincibleHelper invincible;	
 	
+	public float health_current;
+	public float health_max;
+	public float health_regen;
+	
 	//Qualities that will be manipulated throughout play.
 	public float move_speed;
-	public float health;
 	public boolean knockback_on_collide;
 	public float damage_on_collide;
+	public float defense;
 	
 	//Enemy list.
 	public ArrayList<MovingEntity> enemies;
@@ -44,7 +49,6 @@ public abstract class MovingEntity extends Entity
 		//Health, speed, damage, and knockback_on_collide are set by the entity list.
 		this.knockback_on_collide = data.getBoolean("knockback_on_collide");
 		this.move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;	//Set in terms of tiles per second.
-		this.health = data.getFloat("health");
 		this.damage_on_collide = data.getFloat("damage_on_collide");
 	}
 	
@@ -61,6 +65,9 @@ public abstract class MovingEntity extends Entity
 			attack(delta);
 			entityCollision();
 		}
+		
+		//Calculate regeneration (if we want this).
+		changeCurrentHealthValueBy(health_regen * delta);
 		
 		//Calculate invincibility frames if necessary.
 		invincible.update(delta);
@@ -109,14 +116,79 @@ public abstract class MovingEntity extends Entity
 	{
 		if(e.knockback_on_collide)
 		{
-			//Knockback.
+			//Knockback and damage.
 			knockback.doKnockback();
+			health_current -= DamageCalculator.getDamage(e.damage_on_collide, defense);
 			
 			//Invincibility upon hit is only for players.
 			if(this instanceof Player)
 			{
 				invincible.goInvincible();
 			}
+		}
+	}
+	
+	/**
+	 * Change current health to the new value.
+	 * @param new_value
+	 */
+	public void changeCurrentHealthValueTo(float new_value)
+	{
+		health_current = new_value;
+		if(health_current < 0.0f)
+		{
+			health_current = 0.0f;
+		}
+		if(health_current > health_max)
+		{
+			health_current = health_max;
+		}
+	}
+	
+	/**
+	 * Change current health by the change_by amount.
+	 * @param change_by
+	 */
+	public void changeCurrentHealthValueBy(float change_by)
+	{
+		health_current += change_by;
+		if(health_current < 0.0f)
+		{
+			health_current = 0.0f;
+		}
+		if(health_current > health_max)
+		{
+			health_current = health_max;
+		}
+	}
+	
+	/**
+	 * Change max health to the new value.
+	 * @param new_value
+	 */
+	public void changeMaxHealthValueTo(float new_max)
+	{
+		health_max = new_max;
+		if(health_max < 0.0f)
+		{
+			health_max = 0.0f;
+		}
+		if(health_current > health_max)
+		{
+			health_current = health_max;
+		}
+	}
+	
+	/**
+	 * Change max health by the change_by amount.
+	 * @param change_by
+	 */
+	public void changeMaxHealthValueBy(float change_by)
+	{
+		health_max += change_by;
+		if(health_max < 0.0f)
+		{
+			health_max = 0.0f;
 		}
 	}
 	

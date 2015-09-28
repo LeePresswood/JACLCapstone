@@ -51,10 +51,10 @@ public class World
 	 * @param start_x Player's starting X location (in blocks).
 	 * @param start_y Player's starting Y location (in blocks). 
 	 */
-	public void init(String map_name, int start_x, int start_y)
+	public void init(String map_name, int start_x, int start_y, float health_max, float health_current, float health_regen)
 	{
 		map_handler.handlerInit(map_name);
-		entity_handler.handlerInit(start_x, start_y);
+		entity_handler.handlerInit(map_name, start_x, start_y, health_max, health_current, health_regen);
 		camera_handler.handlerInit();
 		collision_handler.handlerInit();
 		event_handler.handlerInit();

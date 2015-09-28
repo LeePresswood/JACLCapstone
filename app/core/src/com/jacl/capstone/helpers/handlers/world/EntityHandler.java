@@ -29,10 +29,10 @@ public class EntityHandler
 	 * @param start_x Player's starting X location (in blocks).
 	 * @param start_y Player's starting Y location (in blocks). 
 	 */
-	public void handlerInit(int start_x, int start_y)
+	public void handlerInit(String map_name, int start_x, int start_y, float health_max, float health_current, float health_regen)
 	{
 		//We will eventually have an EntityManager here to complete the set.
-		player = new Player(world, start_x, start_y, world.data_handler.player_root);
+		player = new Player(world, start_x, start_y, world.data_handler.player_root, health_max, health_current, health_regen);
 		
 		//Because this is when we are recreating the EnitityHandler, there should be no items in the all_entities array. Let's make it and add the player.
 		//Note: We would normally sort the array after adding an entity, but because this is the only entity, there's no need.
