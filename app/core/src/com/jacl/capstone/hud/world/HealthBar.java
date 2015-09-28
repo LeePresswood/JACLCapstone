@@ -1,6 +1,5 @@
 package com.jacl.capstone.hud.world;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.jacl.capstone.data.Assets;
@@ -19,10 +18,6 @@ public class HealthBar
 	
 	private NinePatch health_bar_background;
 	private NinePatch health_bar_foreground;
-	
-	private float current;
-	private float max;
-	
 	private float width;
 	
 	//hub.com/
@@ -36,23 +31,15 @@ public class HealthBar
 	{
 		this.hud = hud;
 		
-		max = 10f;
-		current = 5f;
-		
 		health_bar_background = new NinePatch(hud.screen.game.assets.get(Assets.HEALTHBAR_BACKGROUND, Texture.class), 5, 5, 2, 2);
 		health_bar_foreground = new NinePatch(hud.screen.game.assets.get(Assets.HEALTHBAR_FOREGROUND, Texture.class), 5, 5, 2, 2);
 	}
 	
 	/**
 	 * Called after loading from a save.
-	 * @param max
-	 * @param current
-	 * @param regen
 	 */
-	public void init(float max, float current)
+	public void init()
 	{
-		this.max = max;
-		this.current = current;
 	}
 	
 	public void update(float delta)
@@ -60,7 +47,7 @@ public class HealthBar
 		//Animation.
 		
 		//Bar width.
-		width = CONSTANT_WIDTH * current / max;
+		width = CONSTANT_WIDTH * hud.screen.world.entity_handler.player.health_current / hud.screen.world.entity_handler.player.health_max;
 	}
 	
 	public void draw()

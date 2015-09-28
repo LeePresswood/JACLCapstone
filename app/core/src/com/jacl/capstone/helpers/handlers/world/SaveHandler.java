@@ -144,7 +144,7 @@ public class SaveHandler
 			
 			//Push into HUD.
 			String time = root.get("time");
-			hud.init(healthbar_max, healthbar_current, time);
+			hud.init(time);
 		}
 		catch(IOException e)
 		{
