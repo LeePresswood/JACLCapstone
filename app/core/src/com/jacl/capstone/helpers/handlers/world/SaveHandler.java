@@ -62,35 +62,33 @@ public class SaveHandler
 			XmlWriter xml = new XmlWriter(writer);
 			
 			xml.element("player")
-				.element("save")
-					.element("healthbar")
-						.element("max")
-							.text(INIT_HEALTH_MAX)
-						.pop()
-						.element("current")
-							.text(INIT_HEALTH_CURRENT)
-						.pop()
-						.element("regen")
-							.text(INIT_HEALTH_REGEN)
-						.pop()
+				.element("healthbar")
+					.element("max")
+						.text(INIT_HEALTH_MAX)
 					.pop()
-					.element("time")
-						.text(INIT_TIME)
+					.element("current")
+						.text(INIT_HEALTH_CURRENT)
 					.pop()
-					.element("player_location")
-						.element("x")
-							.text(INIT_X)
-						.pop()
-						.element("y")
-							.text(INIT_Y)
-						.pop()
+					.element("regen")
+						.text(INIT_HEALTH_REGEN)
 					.pop()
-					.element("map")
-						.text(INIT_MAP)
+				.pop()
+				.element("time")
+					.text(INIT_TIME)
+				.pop()
+				.element("player_location")
+					.element("x")
+						.text(INIT_X)
 					.pop()
-					.element("progress_flag")
-						.text(INIT_PROGRESS_FLAG)
+					.element("y")
+						.text(INIT_Y)
 					.pop()
+				.pop()
+				.element("map")
+					.text(INIT_MAP)
+				.pop()
+				.element("progress_flag")
+					.text(INIT_PROGRESS_FLAG)
 				.pop()
 				.element("texture")
 					.text("image.png")
@@ -133,9 +131,12 @@ public class SaveHandler
 		try
 		{
 			//Read from save file.
-			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + SAVE_FILE)).getChildByName("save");
+			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + SAVE_FILE));
 			
 			//Push into world.
+			float healthbar_max = root.getChildByName("healthbar").getFloat("max");
+			float healthbar_current = root.getChildByName("healthbar").getFloat("current");
+			float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
 			int x = root.getChildByName("player_location").getInt("x");
 			int y = root.getChildByName("player_location").getInt("y");
 			String map = root.get("map");
@@ -143,9 +144,6 @@ public class SaveHandler
 			
 			//Push into HUD.
 			String time = root.get("time");
-			float healthbar_max = root.getChildByName("healthbar").getFloat("max");
-			float healthbar_current = root.getChildByName("healthbar").getFloat("current");
-			float healthbar_regen = root.getChildByName("healthbar").getFloat("regen");
 			hud.init(healthbar_max, healthbar_current, healthbar_regen, time);
 		}
 		catch(IOException e)
