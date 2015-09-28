@@ -162,7 +162,7 @@ public class SaveHandler
 		String file_string = file.readString();
 		
 		//Get save packages.
-		float[] healthbar_package = hud.health_bar.packageForSave();
+		float[] healthbar_package = world.entity_handler.player.packageForSave();
 		
 		//Build an XML string from the above packages.
 		file_string = file_string.replaceFirst("<healthbar>.*</healthbar>", "<max>" + healthbar_package[0] + "</max>"
