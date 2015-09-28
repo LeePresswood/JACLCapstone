@@ -67,11 +67,29 @@ public class RandomAI extends AI
 		//Update timing and position if necessary.
 		if(moving)
 		{
-			
+			if(move_current < MOVE_TIME)
+			{
+				move_current += delta;
+				switch(direction)
+				{
+					case UP:
+						npc.sprite.translateY(npc.move_speed * delta);
+						break;
+					case DOWN:
+						npc.sprite.translateY(-npc.move_speed * delta);
+						break;
+					case LEFT:
+						npc.sprite.translateX(-npc.move_speed * delta);
+						break;
+					case RIGHT:
+						npc.sprite.translateX(npc.move_speed * delta);
+						break;
+				}
+			}
 		}
 		else if(waiting)
 		{
-			
+			wait_current += delta;
 		}
 	}
 	
