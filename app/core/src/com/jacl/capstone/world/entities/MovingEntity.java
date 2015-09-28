@@ -67,7 +67,7 @@ public abstract class MovingEntity extends Entity
 		}
 		
 		//Calculate regeneration (if we want this).
-		changeCurrentValueBy(health_regen * delta);
+		changeCurrentHealthValueBy(health_regen * delta);
 		
 		//Calculate invincibility frames if necessary.
 		invincible.update(delta);
@@ -129,10 +129,10 @@ public abstract class MovingEntity extends Entity
 	}
 	
 	/**
-	 * Change current variable to the new value.
+	 * Change current health to the new value.
 	 * @param new_value
 	 */
-	public void changeCurrentValueTo(float new_value)
+	public void changeCurrentHealthValueTo(float new_value)
 	{
 		health_current = new_value;
 		if(health_current < 0.0f)
@@ -146,10 +146,10 @@ public abstract class MovingEntity extends Entity
 	}
 	
 	/**
-	 * Change current variable by the change_by amount.
+	 * Change current health by the change_by amount.
 	 * @param change_by
 	 */
-	public void changeCurrentValueBy(float change_by)
+	public void changeCurrentHealthValueBy(float change_by)
 	{
 		health_current += change_by;
 		if(health_current < 0.0f)
@@ -163,10 +163,10 @@ public abstract class MovingEntity extends Entity
 	}
 	
 	/**
-	 * Change max variable to the new value.
+	 * Change max health to the new value.
 	 * @param new_value
 	 */
-	public void changeMaxValueTo(float new_max)
+	public void changeMaxHealthValueTo(float new_max)
 	{
 		health_max = new_max;
 		if(health_max < 0.0f)
@@ -180,10 +180,10 @@ public abstract class MovingEntity extends Entity
 	}
 	
 	/**
-	 * Change max variable by the change_by amount.
+	 * Change max health by the change_by amount.
 	 * @param change_by
 	 */
-	public void changeMaxValueBy(float change_by)
+	public void changeMaxHealthValueBy(float change_by)
 	{
 		health_max += change_by;
 		if(health_max < 0.0f)
