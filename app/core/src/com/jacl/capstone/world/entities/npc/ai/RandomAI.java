@@ -20,15 +20,17 @@ public class RandomAI extends AI
 	
 	//Two movement actions are either move or wait. Waiting should be the more common action of the two.
 	private Random random;
-	private final float CHANCE_WAIT = 0.7f;
+	private final float CHANCE_WAIT = 0.6f;
 	
 	private boolean moving;
 	private float move_current;
-	private final float MOVE_TIME = 1f;
+	private float move_time_random;
+	private final float MOVE_TIME = 0.5f;
 	private Direction direction;
 	
 	private boolean waiting;
 	private float wait_current;
+	private float wait_time_random;
 	private final float WAIT_TIME = MOVE_TIME;
 	
 	public RandomAI(NPC npc)
@@ -51,12 +53,14 @@ public class RandomAI extends AI
 			{
 				moving = true;
 				move_current = 0f;
+				move_time_random = random.nextFloat();
 				direction = Direction.values()[random.nextInt(4)];
 			}
 			else
 			{
 				waiting = true;
 				wait_current = 0f;
+				wait_time_random = random.nextFloat();
 			}
 		}
 	}
@@ -67,7 +71,7 @@ public class RandomAI extends AI
 		//Update timing and position if necessary.
 		if(moving)
 		{
-			if(move_current < MOVE_TIME)
+			if(move_current < move_time_random)
 			{
 				move_current += delta;
 				switch(direction)
@@ -93,7 +97,7 @@ public class RandomAI extends AI
 		}
 		else if(waiting)
 		{
-			if(wait_current < WAIT_TIME)
+			if(wait_current < wait_time_random)
 			{
 				wait_current += delta;
 			}
