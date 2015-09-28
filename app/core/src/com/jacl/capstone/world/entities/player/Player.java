@@ -40,8 +40,8 @@ public class Player extends MovingEntity
 	{
 		super(world, x, y, data, Alignment.PLAYER);
 		
-		this.health_max = health_max;
-		this.health_current = health_current;
+		changeMaxHealthValueTo(health_max);
+		changeCurrentHealthValueTo(health_current);
 		this.health_regen = health_regen;
 	}
 
