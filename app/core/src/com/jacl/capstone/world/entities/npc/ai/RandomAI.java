@@ -53,17 +53,32 @@ public class RandomAI extends AI
 				move_current = 0f;
 				direction = Direction.values()[random.nextInt(4)];
 			}
+			else
+			{
+				waiting = true;
+				wait_current = 0f;
+			}
 		}
 	}
 	
 	@Override
 	public void updatePosition(float delta)
 	{
-		//Update timing.
+		//Update timing and position if necessary.
+		if(moving)
+		{
+			
+		}
+		else if(waiting)
+		{
+			
+		}
 	}
 	
 	@Override
 	public void updateAction(float delta)
 	{
+		//Despite what our move action (move or wait) is, if the enemy (that is, the player) gets
+		//too close, we can stop the move action and attack.
 	}
 }
