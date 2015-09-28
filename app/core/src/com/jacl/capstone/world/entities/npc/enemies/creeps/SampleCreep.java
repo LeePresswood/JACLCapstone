@@ -5,7 +5,6 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.npc.ai.AI;
-import com.jacl.capstone.world.entities.npc.ai.PathfindingAI;
 import com.jacl.capstone.world.entities.npc.ai.RandomAI;
 import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 

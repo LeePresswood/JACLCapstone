@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
+import com.jacl.capstone.helpers.DamageCalculator;
 import com.jacl.capstone.helpers.InvincibleHelper;
 import com.jacl.capstone.helpers.KnockbackHelper;
 import com.jacl.capstone.world.World;
@@ -29,6 +30,7 @@ public abstract class MovingEntity extends Entity
 	public float health;
 	public boolean knockback_on_collide;
 	public float damage_on_collide;
+	public float defense;
 	
 	//Enemy list.
 	public ArrayList<MovingEntity> enemies;
@@ -109,8 +111,9 @@ public abstract class MovingEntity extends Entity
 	{
 		if(e.knockback_on_collide)
 		{
-			//Knockback.
+			//Knockback and damage.
 			knockback.doKnockback();
+			health -= DamageCalculator.getDamage(e.damage_on_collide, defense);
 			
 			//Invincibility upon hit is only for players.
 			if(this instanceof Player)
