@@ -22,7 +22,6 @@ public class HealthBar
 	
 	private float current;
 	private float max;
-	private float regen;
 	
 	private float width;
 	
@@ -50,84 +49,15 @@ public class HealthBar
 	 * @param current
 	 * @param regen
 	 */
-	public void init(float max, float current, float regen)
+	public void init(float max, float current)
 	{
 		this.max = max;
 		this.current = current;
-		this.regen = regen;
-	}
-	
-	/**
-	 * Change current variable to the new value.
-	 * @param new_value
-	 */
-	public void changeCurrentValueTo(float new_value)
-	{
-		current = new_value;
-		if(current < 0.0f)
-		{
-			current = 0.0f;
-		}
-		if(current > max)
-		{
-			current = max;
-		}
-	}
-	
-	/**
-	 * Change current variable by the change_by amount.
-	 * @param change_by
-	 */
-	public void changeCurrentValueBy(float change_by)
-	{
-		current += change_by;
-		if(current < 0.0f)
-		{
-			current = 0.0f;
-		}
-		if(current > max)
-		{
-			current = max;
-		}
-	}
-	
-	/**
-	 * Change max variable to the new value.
-	 * @param new_value
-	 */
-	public void changeMaxValueTo(float new_max)
-	{
-		max = new_max;
-		if(max < 0.0f)
-		{
-			max = 0.0f;
-		}
-		if(current > max)
-		{
-			current = max;
-		}
-	}
-	
-	/**
-	 * Change max variable by the change_by amount.
-	 * @param change_by
-	 */
-	public void changeMaxValueBy(float change_by)
-	{
-		max += change_by;
-		if(max < 0.0f)
-		{
-			max = 0.0f;
-		}
 	}
 	
 	public void update(float delta)
 	{//Use this for animation setting the width of the bar.
 		//Animation.
-		
-		
-		//Regen (if we want this).
-		changeCurrentValueBy(regen * delta);
 		
 		//Bar width.
 		width = CONSTANT_WIDTH * current / max;
@@ -137,14 +67,5 @@ public class HealthBar
 	{
 		health_bar_background.draw(hud.screen.batch, X, Y, CONSTANT_WIDTH, CONSTANT_HEIGHT);
 		health_bar_foreground.draw(hud.screen.batch, X, Y, width, CONSTANT_HEIGHT);
-	}
-	
-	/**
-	 * We're trying to save the game. Package the saveable items here.
-	 * @return In order: max, current, regen.
-	 */
-	public float[] packageForSave()
-	{
-		return new float[]{max, current, regen};
 	}
 }

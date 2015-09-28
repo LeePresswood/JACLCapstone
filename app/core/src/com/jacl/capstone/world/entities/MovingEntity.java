@@ -25,10 +25,12 @@ public abstract class MovingEntity extends Entity
 	public AttackHelper attack;
 	public InvincibleHelper invincible;	
 	
-	//Qualities that will be manipulated throughout play.
-	public float move_speed;
 	public float health_current;
 	public float health_max;
+	public float health_regen;
+	
+	//Qualities that will be manipulated throughout play.
+	public float move_speed;
 	public boolean knockback_on_collide;
 	public float damage_on_collide;
 	public float defense;
@@ -63,6 +65,9 @@ public abstract class MovingEntity extends Entity
 			attack(delta);
 			entityCollision();
 		}
+		
+		//Calculate regeneration (if we want this).
+		changeCurrentValueBy(health_regen * delta);
 		
 		//Calculate invincibility frames if necessary.
 		invincible.update(delta);
@@ -120,6 +125,70 @@ public abstract class MovingEntity extends Entity
 			{
 				invincible.goInvincible();
 			}
+		}
+	}
+	
+	/**
+	 * Change current variable to the new value.
+	 * @param new_value
+	 */
+	public void changeCurrentValueTo(float new_value)
+	{
+		health_current = new_value;
+		if(health_current < 0.0f)
+		{
+			health_current = 0.0f;
+		}
+		if(health_current > health_max)
+		{
+			health_current = health_max;
+		}
+	}
+	
+	/**
+	 * Change current variable by the change_by amount.
+	 * @param change_by
+	 */
+	public void changeCurrentValueBy(float change_by)
+	{
+		health_current += change_by;
+		if(health_current < 0.0f)
+		{
+			health_current = 0.0f;
+		}
+		if(health_current > health_max)
+		{
+			health_current = health_max;
+		}
+	}
+	
+	/**
+	 * Change max variable to the new value.
+	 * @param new_value
+	 */
+	public void changeMaxValueTo(float new_max)
+	{
+		health_max = new_max;
+		if(health_max < 0.0f)
+		{
+			health_max = 0.0f;
+		}
+		if(health_current > health_max)
+		{
+			health_current = health_max;
+		}
+	}
+	
+	/**
+	 * Change max variable by the change_by amount.
+	 * @param change_by
+	 */
+	public void changeMaxValueBy(float change_by)
+	{
+		health_max += change_by;
+		if(health_max < 0.0f)
+		{
+			health_max = 0.0f;
 		}
 	}
 	

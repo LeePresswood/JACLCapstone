@@ -140,11 +140,11 @@ public class SaveHandler
 			int x = root.getChildByName("player_location").getInt("x");
 			int y = root.getChildByName("player_location").getInt("y");
 			String map = root.get("map");
-			world.init(map, x, y);
+			world.init(map, x, y, healthbar_max, healthbar_current, healthbar_regen);
 			
 			//Push into HUD.
 			String time = root.get("time");
-			hud.init(healthbar_max, healthbar_current, healthbar_regen, time);
+			hud.init(healthbar_max, healthbar_current, time);
 		}
 		catch(IOException e)
 		{
