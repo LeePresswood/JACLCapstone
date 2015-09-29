@@ -8,7 +8,8 @@ import com.jacl.capstone.input.InputMainMenu;
 
 /**
  * 
- * @author huy_trinh Also need game state such as menu, in-game, gameover States
+ * @author Lee, huy_trinh 
+ * Also need game state such as menu, in-game, gameover States
  *         are in int from 1-3.
  * 
  */
