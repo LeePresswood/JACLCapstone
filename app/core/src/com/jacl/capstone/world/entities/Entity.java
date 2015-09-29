@@ -38,7 +38,7 @@ public abstract class Entity
 		//Events will not pass a data element up the tree. Other entities will. Watch for this.
 		if(data != null)
 		{
-			makeSprite(x, y, data.getFloat("width"), data.getFloat("height"));//, world.screen.game.assets.get(data.get("texture"), Texture.class));
+			makeSprite(x, y, data.getFloat("width"), data.getFloat("height"));
 		}
 		else
 		{
@@ -48,15 +48,7 @@ public abstract class Entity
 	
 	public void makeSprite(float x, float y, float width, float height)
 	{
-		/*if(texture.length != 0)
-		{
-			sprite = new Sprite(world.screen.game.assets.get(Assets.PLAYER, Texture.class));
-		}
-		else
-		{*/
-			sprite = new Sprite();
-		//}
-		
+		sprite = new Sprite();
 		sprite.setBounds(x * world.map_handler.tile_size, y * world.map_handler.tile_size, width * world.map_handler.tile_size, height * world.map_handler.tile_size);
 		last_location = new Vector2(sprite.getX(), sprite.getY());
 	}

@@ -66,15 +66,13 @@ public class Assets extends AssetManager
 		load(HEALTHBAR_BACKGROUND, Texture.class);
 		load(HEALTHBAR_FOREGROUND, Texture.class);
 		
-		
-		
 		finishLoading();
 	}
 	
 	private void loadTexturesFromFolder(String folder)
 	{
 		for(String file : Gdx.files.internal(folder).readString().split("\n"))
-		{System.out.println(folder + file);
+		{
 			load(folder + file, Texture.class);
 		}
 	}
