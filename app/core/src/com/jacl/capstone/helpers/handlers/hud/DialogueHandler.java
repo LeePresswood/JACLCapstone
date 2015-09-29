@@ -49,7 +49,11 @@ public class DialogueHandler
 	 */
 	public void reverseDialogue()
 	{
-		
+		current_box--;
+		if(current_box < 0)
+		{//Beginning of dialogue.
+			current_box = 0;
+		}
 	}
 	
 	/**
@@ -57,7 +61,11 @@ public class DialogueHandler
 	 */
 	public void forwardDialogue()
 	{
-		
+		current_box++;
+		if(current_box >= boxes.length)
+		{//End of dialogue.
+			
+		}
 	}
 	
 	/**
@@ -78,5 +86,7 @@ public class DialogueHandler
 	public void draw()
 	{
 		//screen.batch
+
+		//boxes[current_box].
 	}
 }

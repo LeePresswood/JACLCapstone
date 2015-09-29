@@ -21,7 +21,6 @@ public class LerpAI extends AI
 		super(npc);
 		
 		ATTACK_RADIUS = (float) Math.pow(1.5f * npc.world.map_handler.tile_size, 2);
-		
 		player_position = new Vector2();
 	}
 

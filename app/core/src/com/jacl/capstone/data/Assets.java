@@ -1,5 +1,6 @@
 package com.jacl.capstone.data;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -19,7 +20,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
  */
 public class Assets extends AssetManager
 {
-	public static final String PLAYER = "image.png";
+	public static final String TEXTURE_BASE = "textures/";
+	
 	public static final String HEALTHBAR_BACKGROUND = "hud/healthbar/health-red.png";
 	public static final String HEALTHBAR_FOREGROUND = "hud/healthbar/health-blue.png";
 	
@@ -58,10 +60,19 @@ public class Assets extends AssetManager
 		load(FONT56, BitmapFont.class);
 		
 		//Textures
-		load(PLAYER, Texture.class);
+		loadTexturesFromFolder(TEXTURE_BASE + "player/");
+
 		load(HEALTHBAR_BACKGROUND, Texture.class);
 		load(HEALTHBAR_FOREGROUND, Texture.class);
 		
 		finishLoading();
+	}
+	
+	private void loadTexturesFromFolder(String folder)
+	{
+		for(String file : Gdx.files.internal(folder).readString().split("\n"))
+		{
+			load(folder + file, Texture.class);
+		}
 	}
 }

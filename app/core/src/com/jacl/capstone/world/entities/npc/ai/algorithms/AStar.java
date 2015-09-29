@@ -1,4 +1,4 @@
-package com.jacl.capstone.world.entities.npc.ai;
+package com.jacl.capstone.world.entities.npc.ai.algorithms;
 
 import com.badlogic.gdx.utils.BinaryHeap;
 import com.badlogic.gdx.utils.BinaryHeap.Node;

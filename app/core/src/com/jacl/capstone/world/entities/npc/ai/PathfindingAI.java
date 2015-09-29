@@ -2,6 +2,7 @@ package com.jacl.capstone.world.entities.npc.ai;
 
 import com.badlogic.gdx.utils.IntArray;
 import com.jacl.capstone.world.entities.npc.NPC;
+import com.jacl.capstone.world.entities.npc.ai.algorithms.AStar;
 
 public class PathfindingAI extends AI
 {
