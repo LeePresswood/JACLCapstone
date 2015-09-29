@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
 import com.jacl.capstone.helpers.DamageCalculator;
@@ -77,7 +78,7 @@ public abstract class MovingEntity extends Entity
 		left_frames = new Texture[MOVE_FRAMES];
 		right_frames = new Texture[MOVE_FRAMES];
 		
-		String base_texture_folder = "textures/" + folder;
+		String base_texture_folder = Assets.TEXTURE_BASE + folder;
 		
 		for(String file : Gdx.files.internal(base_texture_folder).readString().split("\n"))
 		{
@@ -105,7 +106,7 @@ public abstract class MovingEntity extends Entity
 		}
 		
 		//On top of loading the images, we're also interested in setting the sprite's texture after loading. Let's just use up_frames[1].
-		sprite.setRegion(up_frames[1]);
+		sprite.setRegion(down_frames[1]);
 	}
 	
 	@Override
