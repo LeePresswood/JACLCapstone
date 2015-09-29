@@ -79,10 +79,33 @@ public abstract class MovingEntity extends Entity
 		
 		String base_texture_folder = "textures/" + folder;
 		
-		for(FileHandle file : Gdx.files.internal(folder).list())
+		for(FileHandle file : Gdx.files.internal(base_texture_folder).list())
 		{
-			load(file.path(), Texture.class);
+			//Get the file that we're looking at.
+			String file_name = file.nameWithoutExtension();
+			String[] parts = file_name.split("_");
+			
+			//parts[1] is what we're really interested in. It will tell us the direction and the frame.
+			if(parts[1].startsWith("bk"))
+			{//Back
+				up_frames[Character.getNumericValue(parts[1].charAt(parts[1].length() - 1)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
+			}
+			else if(parts[1].startsWith("fr"))
+			{//Front
+				down_frames[Character.getNumericValue(parts[1].charAt(parts[1].length() - 1)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
+			}
+			else if(parts[1].startsWith("lf"))
+			{//Left
+				left_frames[Character.getNumericValue(parts[1].charAt(parts[1].length() - 1)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
+			}
+			else if(parts[1].startsWith("rt"))
+			{//Right
+				right_frames[Character.getNumericValue(parts[1].charAt(parts[1].length() - 1)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
+			}
 		}
+		
+		//On top of loading the images, we're also interested in setting the sprite's texture after loading. Let's just use up_frames[1].
+		sprite.setRegion(up_frames[1]);
 	}
 	
 	@Override
