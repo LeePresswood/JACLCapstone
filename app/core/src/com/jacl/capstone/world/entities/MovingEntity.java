@@ -2,6 +2,9 @@ package com.jacl.capstone.world.entities;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
@@ -39,6 +42,11 @@ public abstract class MovingEntity extends Entity
 	public ArrayList<MovingEntity> enemies;
 	
 	//Movement sprites.
+	private final int MOVE_FRAMES = 2;
+	private Texture[] up_frames;
+	private Texture[] down_frames;
+	private Texture[] left_frames;
+	private Texture[] right_frames;
 	
 	public MovingEntity(World world, float x, float y, Element data, Alignment alignment)
 	{
@@ -63,9 +71,18 @@ public abstract class MovingEntity extends Entity
 	 */
 	private void setMovementSprites(String folder)
 	{
+		//Create arrays for the textures.
+		up_frames = new Texture[MOVE_FRAMES];
+		down_frames = new Texture[MOVE_FRAMES];
+		left_frames = new Texture[MOVE_FRAMES];
+		right_frames = new Texture[MOVE_FRAMES];
+		
 		String base_texture_folder = "textures/" + folder;
 		
-		
+		for(FileHandle file : Gdx.files.internal(folder).list())
+		{
+			load(file.path(), Texture.class);
+		}
 	}
 	
 	@Override
