@@ -66,7 +66,7 @@ public class ScreenMenu implements Screen{
 		
 		Gdx.input.setInputProcessor(stage);
 		
-		atlas = new TextureAtlas("ui/button.pack");
+		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
 		
 		//fonts
