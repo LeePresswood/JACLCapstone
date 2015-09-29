@@ -61,7 +61,7 @@ public class Assets extends AssetManager
 		load(FONT56, BitmapFont.class);
 		
 		//Textures
-		loadTexturesFromFolder(TEXTURE_BASE + "/player/");
+		loadTexturesFromFolder(TEXTURE_BASE + "player/");
 
 		load(HEALTHBAR_BACKGROUND, Texture.class);
 		load(HEALTHBAR_FOREGROUND, Texture.class);
@@ -73,9 +73,9 @@ public class Assets extends AssetManager
 	
 	private void loadTexturesFromFolder(String folder)
 	{
-		for(FileHandle file : Gdx.files.internal(folder).list())
-		{
-			load(file.path(), Texture.class);
+		for(String file : Gdx.files.internal(folder).readString().split("\n"))
+		{System.out.println(folder + file);
+			load(folder + file, Texture.class);
 		}
 	}
 }

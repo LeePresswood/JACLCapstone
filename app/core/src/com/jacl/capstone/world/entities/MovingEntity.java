@@ -79,28 +79,28 @@ public abstract class MovingEntity extends Entity
 		
 		String base_texture_folder = "textures/" + folder;
 		
-		for(FileHandle file : Gdx.files.internal(base_texture_folder).list())
+		for(String file : Gdx.files.internal(base_texture_folder).readString().split("\n"))
 		{
 			//Get the file that we're looking at.
-			String file_name = file.nameWithoutExtension();
+			String file_name = base_texture_folder + file;
 			String[] parts = file_name.split("_");
 			
 			//parts[1] is what we're really interested in. It will tell us the direction and the frame.
 			if(parts[1].startsWith("bk"))
 			{//Back
-				up_frames[Character.getNumericValue(parts[1].charAt(parts[1].length() - 1)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
+				up_frames[Character.getNumericValue(parts[1].charAt(2)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
 			}
 			else if(parts[1].startsWith("fr"))
 			{//Front
-				down_frames[Character.getNumericValue(parts[1].charAt(parts[1].length() - 1)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
+				down_frames[Character.getNumericValue(parts[1].charAt(2)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
 			}
 			else if(parts[1].startsWith("lf"))
 			{//Left
-				left_frames[Character.getNumericValue(parts[1].charAt(parts[1].length() - 1)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
+				left_frames[Character.getNumericValue(parts[1].charAt(2)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
 			}
 			else if(parts[1].startsWith("rt"))
 			{//Right
-				right_frames[Character.getNumericValue(parts[1].charAt(parts[1].length() - 1)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
+				right_frames[Character.getNumericValue(parts[1].charAt(2)) - 1] = world.screen.game.assets.get(file_name, Texture.class);
 			}
 		}
 		
