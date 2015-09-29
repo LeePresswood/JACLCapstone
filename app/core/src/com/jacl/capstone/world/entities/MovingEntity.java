@@ -38,6 +38,8 @@ public abstract class MovingEntity extends Entity
 	//Enemy list.
 	public ArrayList<MovingEntity> enemies;
 	
+	//Movement sprites.
+	
 	public MovingEntity(World world, float x, float y, Element data, Alignment alignment)
 	{
 		super(world, x, y, data, alignment);
@@ -47,9 +49,23 @@ public abstract class MovingEntity extends Entity
 		invincible = new InvincibleHelper(this);
 		
 		//Health, speed, damage, and knockback_on_collide are set by the entity list.
-		this.knockback_on_collide = data.getBoolean("knockback_on_collide");
-		this.move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;	//Set in terms of tiles per second.
-		this.damage_on_collide = data.getFloat("damage_on_collide");
+		knockback_on_collide = data.getBoolean("knockback_on_collide");
+		move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;	//Set in terms of tiles per second.
+		damage_on_collide = data.getFloat("damage_on_collide");
+		
+		//Set movement sprites.
+		setMovementSprites(data.get("texture_folder"));
+	}
+	
+	/**
+	 * Go into the given folder and turn the images into sprites.
+	 * @param folder Folder to search.
+	 */
+	private void setMovementSprites(String folder)
+	{
+		String base_texture_folder = "textures/" + folder;
+		
+		
 	}
 	
 	@Override
