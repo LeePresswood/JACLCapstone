@@ -2,12 +2,16 @@ package com.jacl.capstone.world.entities;
 
 import java.util.ArrayList;
 
+import sun.util.logging.PlatformLogger.Level;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.data.enums.Alignment;
+import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.helpers.AttackHelper;
 import com.jacl.capstone.helpers.DamageCalculator;
 import com.jacl.capstone.helpers.InvincibleHelper;
@@ -44,6 +48,10 @@ public abstract class MovingEntity extends Entity
 	
 	//Movement sprites.
 	private final int MOVE_FRAMES = 2;
+	private float frame_change = 0.5f;
+	private float frame_change_current;
+	private int frame_current = 1;
+	private Direction direction;
 	private Texture[] up_frames;
 	private Texture[] down_frames;
 	private Texture[] left_frames;
@@ -106,6 +114,7 @@ public abstract class MovingEntity extends Entity
 		}
 		
 		//On top of loading the images, we're also interested in setting the sprite's texture after loading. Let's just use up_frames[1].
+		direction = Direction.DOWN;
 		sprite.setRegion(down_frames[1]);
 	}
 	
@@ -131,6 +140,55 @@ public abstract class MovingEntity extends Entity
 		
 		//Calculate solid block collision.
 		world.collision_handler.cellCollision(this, last_location);
+		
+		//Set the correct sprite. The sprite direction we use will be based upon the amount we moved.
+		if(Math.abs(sprite.getX() - last_location.x) > Math.abs(sprite.getY() - last_location.y))
+		{
+			if(Math.signum(sprite.getX() - last_location.x) == -1)
+			{//Left
+				if(direction == Direction.LEFT)
+				{
+					//Update timing.
+					frame_change_current += delta;
+					if(frame_change_current <= frame_change)
+					{
+						frame_change_current -= frame_change;
+						frame_current = (frame_current + 1) % 2;
+					}
+				}
+				else
+				{//Reset timing 
+					direction = Direction.LEFT;
+					frame_change_current = 0f;
+					frame_current = 1;
+				}
+			}
+			else
+			{//Right
+				
+			}
+		}
+		else
+		{
+			
+		}
+		
+		//Sprite is set based upon direction.
+		switch(direction)
+		{
+			case DOWN:
+				sprite.setRegion(down_frames[frame_current]);
+				break;
+			case LEFT:
+				sprite.setRegion(left_frames[frame_current]);
+				break;
+			case RIGHT:
+				sprite.setRegion(right_frames[frame_current]);
+				break;
+			case UP:
+				sprite.setRegion(up_frames[frame_current]);
+				break;
+		}
 		
 		//Now that all movement is done, we can reset the last_location variable.
 		last_location.set(sprite.getX(), sprite.getY());
