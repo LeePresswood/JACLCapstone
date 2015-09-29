@@ -9,8 +9,8 @@ import com.jacl.capstone.input.InputMainMenu;
 /**
  * 
  * @author Lee, huy_trinh 
- * Also need game state such as menu, in-game, gameover States
- *         are in int from 1-3.
+ * This should be main menu in the game play where it has menu to pause game, 
+ * Options to use item, etc.
  * 
  */
 public class ScreenMainMenu extends ScreenParent
