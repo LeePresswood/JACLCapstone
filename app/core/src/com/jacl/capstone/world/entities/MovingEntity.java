@@ -49,7 +49,8 @@ public abstract class MovingEntity extends Entity
 	//Movement sprites.
 	private boolean moving;
 	private final int MOVE_FRAMES = 2;
-	private float frame_change = 0.1f;
+	private float move_check = 0.1f;
+	private float frame_change = 0.2f;
 	private float frame_change_current;
 	private int frame_current = 1;
 	private Direction direction;
@@ -141,87 +142,90 @@ public abstract class MovingEntity extends Entity
 		
 		//Calculate solid block collision.
 		world.collision_handler.cellCollision(this, last_location);
-		System.out.println(frame_change_current);
+		
 		//Set the correct sprite. The sprite direction we use will be based upon the amount we moved.
-		if(Math.abs(sprite.getX() - last_location.x) > Math.abs(sprite.getY() - last_location.y))
+		if(Math.abs(sprite.getX() - last_location.x) + Math.abs(sprite.getY() - last_location.y) > move_check)
 		{
-			if(Math.signum(sprite.getX() - last_location.x) == -1)
-			{//Left
-				if(direction == Direction.LEFT)
-				{
-					//Update timing.
-					frame_change_current += delta;
-					if(frame_change_current >= frame_change)
+			if(Math.abs(sprite.getX() - last_location.x) > Math.abs(sprite.getY() - last_location.y))
+			{
+				if(Math.signum(sprite.getX() - last_location.x) == -1)
+				{//Left
+					if(direction == Direction.LEFT)
 					{
-						frame_change_current -= frame_change;
-						frame_current = (frame_current + 1) % 2;
+						//Update timing.
+						frame_change_current += delta;
+						if(frame_change_current >= frame_change)
+						{
+							frame_change_current -= frame_change;
+							frame_current = (frame_current + 1) % 2;
+						}
+					}
+					else
+					{//Reset timing 
+						direction = Direction.LEFT;
+						frame_change_current = 0f;
+						frame_current = 1;
 					}
 				}
 				else
-				{//Reset timing 
-					direction = Direction.LEFT;
-					frame_change_current = 0f;
-					frame_current = 1;
+				{//Right
+					if(direction == Direction.RIGHT)
+					{
+						//Update timing.
+						frame_change_current += delta;
+						if(frame_change_current >= frame_change)
+						{
+							frame_change_current -= frame_change;
+							frame_current = (frame_current + 1) % 2;
+						}
+					}
+					else
+					{//Reset timing 
+						direction = Direction.RIGHT;
+						frame_change_current = 0f;
+						frame_current = 1;
+					}
 				}
 			}
 			else
-			{//Right
-				if(direction == Direction.RIGHT)
-				{
-					//Update timing.
-					frame_change_current += delta;
-					if(frame_change_current >= frame_change)
+			{
+				if(Math.signum(sprite.getY() - last_location.y) == -1)
+				{//Down
+					if(direction == Direction.DOWN)
 					{
-						frame_change_current -= frame_change;
-						frame_current = (frame_current + 1) % 2;
+						//Update timing.
+						frame_change_current += delta;
+						if(frame_change_current >= frame_change)
+						{
+							frame_change_current -= frame_change;
+							frame_current = (frame_current + 1) % 2;
+						}
+					}
+					else
+					{//Reset timing 
+						direction = Direction.DOWN;
+						frame_change_current = 0f;
+						frame_current = 1;
 					}
 				}
 				else
-				{//Reset timing 
-					direction = Direction.RIGHT;
-					frame_change_current = 0f;
-					frame_current = 1;
-				}
-			}
-		}
-		else
-		{
-			if(Math.signum(sprite.getY() - last_location.y) == -1)
-			{//Down
-				if(direction == Direction.DOWN)
-				{
-					//Update timing.
-					frame_change_current += delta;
-					if(frame_change_current >= frame_change)
+				{//Up
+					if(direction == Direction.UP)
 					{
-						frame_change_current -= frame_change;
-						frame_current = (frame_current + 1) % 2;
+						//Update timing.
+						frame_change_current += delta;
+						if(frame_change_current >= frame_change)
+						{
+							frame_change_current -= frame_change;
+							frame_current = (frame_current + 1) % 2;
+						}
 					}
-				}
-				else
-				{//Reset timing 
-					direction = Direction.DOWN;
-					frame_change_current = 0f;
-					frame_current = 1;
-				}
-			}
-			else
-			{//Up
-				if(direction == Direction.UP)
-				{
-					//Update timing.
-					frame_change_current += delta;
-					if(frame_change_current >= frame_change)
-					{
-						frame_change_current -= frame_change;
-						frame_current = (frame_current + 1) % 2;
+					else
+					{//Reset timing 
+						direction = Direction.UP;
+						frame_change_current = 0f;
+						frame_current = 1;
 					}
-				}
-				else
-				{//Reset timing 
-					direction = Direction.UP;
-					frame_change_current = 0f;
-					frame_current = 1;
 				}
 			}
 		}
