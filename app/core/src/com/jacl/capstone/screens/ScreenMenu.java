@@ -77,7 +77,7 @@ public class ScreenMenu extends ScreenAdapter{
 				Gdx.app.exit();
 			}
 		});
-		buttonExit.pad(20);
+		buttonExit.pad(5);
 		
 		// new game button which is start a new game
 		buttonNew = new TextButton("New Game",textButtonStyle);
@@ -87,7 +87,7 @@ public class ScreenMenu extends ScreenAdapter{
 				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
 			}
 		});
-		buttonNew.pad(15);
+		buttonNew.pad(5);
 		
 		//button load from a save point
 		buttonLoad = new TextButton("Load Game",textButtonStyle);
@@ -97,7 +97,7 @@ public class ScreenMenu extends ScreenAdapter{
 				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
 			}
 		});
-		buttonLoad.pad(15);
+		buttonLoad.pad(5);
 		
 		//button credit which show contributors
 		buttonCredit = new TextButton("Credits",textButtonStyle);
@@ -107,7 +107,7 @@ public class ScreenMenu extends ScreenAdapter{
 				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
 			}
 		});
-		buttonCredit.pad(15);
+		buttonCredit.pad(5);
 		
 		// Options button which show volume, graphic etc.
 		buttonOptions = new TextButton("Options",textButtonStyle);
@@ -117,7 +117,7 @@ public class ScreenMenu extends ScreenAdapter{
 				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
 			}
 		});
-		buttonOptions.pad(15);
+		buttonOptions.pad(5);
 		
 		//heading
 		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
@@ -129,7 +129,12 @@ public class ScreenMenu extends ScreenAdapter{
 		table.row();
 		table.getCell(heading).spaceBottom(50);
 		table.add(buttonNew);
-		table.getCell(buttonNew).spaceBottom(15);
+		table.row();
+		table.add(buttonLoad);
+		table.row();
+		table.add(buttonOptions);
+		table.row();
+		table.add(buttonCredit);
 		table.row();
 		table.add(buttonExit);
 		table.debug();
