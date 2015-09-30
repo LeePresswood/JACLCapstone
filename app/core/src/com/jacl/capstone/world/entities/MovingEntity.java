@@ -229,6 +229,11 @@ public abstract class MovingEntity extends Entity
 				}
 			}
 		}
+		else
+		{//Movement isn't happening.
+			frame_change_current = 0f;
+			frame_current = 1;
+		}
 		
 		//Sprite is set based upon direction.
 		switch(direction)
