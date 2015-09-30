@@ -146,7 +146,7 @@ public abstract class MovingEntity extends Entity
 		//Set the correct sprite. The sprite direction we use will be based upon the amount we moved.
 		if(Math.abs(sprite.getX() - last_location.x) + Math.abs(sprite.getY() - last_location.y) > move_check)
 		{
-			if(Math.abs(sprite.getX() - last_location.x) > Math.abs(sprite.getY() - last_location.y))
+			if(Math.abs(sprite.getX() - last_location.x) - Math.abs(sprite.getY() - last_location.y) > move_check)
 			{
 				if(Math.signum(sprite.getX() - last_location.x) == -1)
 				{//Left
