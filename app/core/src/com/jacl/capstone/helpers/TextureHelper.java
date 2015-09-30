@@ -77,11 +77,11 @@ public class TextureHelper
 	 */
 	public void update(float delta)
 	{
-		if(Math.abs(sprite.getX() - last_location.x) + Math.abs(sprite.getY() - last_location.y) > move_check)
+		if(Math.abs(entity.sprite.getX() - entity.last_location.x) + Math.abs(entity.sprite.getY() - entity.last_location.y) > move_check)
 		{
-			if(Math.abs(sprite.getX() - last_location.x) - Math.abs(sprite.getY() - last_location.y) > move_check)
+			if(Math.abs(entity.sprite.getX() - entity.last_location.x) - Math.abs(entity.sprite.getY() - entity.last_location.y) > move_check)
 			{
-				if(Math.signum(sprite.getX() - last_location.x) == -1)
+				if(Math.signum(entity.sprite.getX() - entity.last_location.x) == -1)
 				{//Left
 					if(direction == Direction.LEFT)
 					{
@@ -122,7 +122,7 @@ public class TextureHelper
 			}
 			else
 			{
-				if(Math.signum(sprite.getY() - last_location.y) == -1)
+				if(Math.signum(entity.sprite.getY() - entity.last_location.y) == -1)
 				{//Down
 					if(direction == Direction.DOWN)
 					{
@@ -172,16 +172,16 @@ public class TextureHelper
 		switch(direction)
 		{
 			case DOWN:
-				sprite.setRegion(down_frames[frame_current]);
+				entity.sprite.setRegion(down_frames[frame_current]);
 				break;
 			case LEFT:
-				sprite.setRegion(left_frames[frame_current]);
+				entity.sprite.setRegion(left_frames[frame_current]);
 				break;
 			case RIGHT:
-				sprite.setRegion(right_frames[frame_current]);
+				entity.sprite.setRegion(right_frames[frame_current]);
 				break;
 			case UP:
-				sprite.setRegion(up_frames[frame_current]);
+				entity.sprite.setRegion(up_frames[frame_current]);
 				break;
 		}
 	}
