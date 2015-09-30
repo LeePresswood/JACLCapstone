@@ -69,6 +69,7 @@ public class ScreenMenu extends ScreenAdapter{
 		textButtonStyle.pressedOffsetY = -1;
 		textButtonStyle.font = bitmap;
 		
+		//exit button which is exit console
 		buttonExit = new TextButton("EXIT", textButtonStyle);
 		buttonExit.addListener(new ClickListener(){
 			@Override
@@ -78,6 +79,7 @@ public class ScreenMenu extends ScreenAdapter{
 		});
 		buttonExit.pad(20);
 		
+		// new game button which is start a new game
 		buttonNew = new TextButton("New Game",textButtonStyle);
 		buttonNew.addListener(new ClickListener(){
 			@Override
@@ -86,6 +88,36 @@ public class ScreenMenu extends ScreenAdapter{
 			}
 		});
 		buttonNew.pad(15);
+		
+		//button load from a save point
+		buttonLoad = new TextButton("Load Game",textButtonStyle);
+		buttonLoad.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+			}
+		});
+		buttonLoad.pad(15);
+		
+		//button credit which show contributors
+		buttonCredit = new TextButton("Credits",textButtonStyle);
+		buttonCredit.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+			}
+		});
+		buttonCredit.pad(15);
+		
+		// Options button which show volume, graphic etc.
+		buttonOptions = new TextButton("Options",textButtonStyle);
+		buttonOptions.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+			}
+		});
+		buttonOptions.pad(15);
 		
 		//heading
 		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
