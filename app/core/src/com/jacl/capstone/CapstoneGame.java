@@ -2,8 +2,7 @@ package com.jacl.capstone;
 
 import com.badlogic.gdx.Game;
 import com.jacl.capstone.data.Assets;
-import com.jacl.capstone.screens.ScreenGame;
-import com.jacl.capstone.screens.ScreenMainMenu;
+import com.jacl.capstone.screens.ScreenMenu;
 
 public class CapstoneGame extends Game
 {	
@@ -28,8 +27,7 @@ public class CapstoneGame extends Game
 		assets = new Assets();
 		
 		//Setting the screen changes the display. To change the screen from another class: game.setScreen(...); That's why we pass in a reference to this class.
-			setScreen(new ScreenGame(this));
-		//setScreen(new ScreenMainMenu(this));
+		setScreen(new ScreenMenu(this));
 	}	
 	
 	/**

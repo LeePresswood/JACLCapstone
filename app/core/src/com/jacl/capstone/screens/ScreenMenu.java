@@ -2,8 +2,8 @@ package com.jacl.capstone.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.InputProcessor;
 import com.jacl.capstone.CapstoneGame;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -25,7 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  * States are in int from 1-3.
  *  
  */
-public class ScreenMenu implements Screen{
+public class ScreenMenu extends ScreenAdapter{
 
 	private Stage stage;
 	public CapstoneGame game;
@@ -36,31 +36,18 @@ public class ScreenMenu implements Screen{
 	private BitmapFont bitmap;
 	private Label heading;
 	
-	public ScreenMenu() {
-		// TODO Auto-generated constructor stub
+	public ScreenMenu(CapstoneGame game) {
+		this.game = game;
 	}
 
-	public void draw()
-	{
-		/* Draw Background with 4 buttons: New Game, Load, Options and Credits 
-		 * 
-		 */
-		
-	}
-	
+	@Override
 	/**
-	 * This is called when the user click button
+	 * This is called when the screen is created.
 	 * New Game: start a new game
 	 * Load: Gather the player's location and time from the save file.
 	 * Options: show volume, graphic and such
 	 * Credits: mostly name
-	 */	
-	public void update(float delta)
-	{
-		
-	}
-
-	@Override
+	 */
 	public void show() {
 		stage = new Stage();
 		
@@ -72,7 +59,7 @@ public class ScreenMenu implements Screen{
 		//fonts
 		table = new Table(skin);
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.png"),false);
+		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
 		
 		//buttons styles
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
@@ -124,31 +111,6 @@ public class ScreenMenu implements Screen{
 		
 		stage.act(delta);
 		stage.draw();
-		
-	}
-
-	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void resume() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
