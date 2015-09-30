@@ -127,7 +127,7 @@ public class ScreenMenu extends ScreenAdapter{
 		//add together stuffs
 		table.add(heading);
 		table.row();
-		table.getCell(heading).spaceBottom(50);
+		table.getCell(heading).spaceBottom(30);
 		table.add(buttonNew);
 		table.row();
 		table.add(buttonLoad);
