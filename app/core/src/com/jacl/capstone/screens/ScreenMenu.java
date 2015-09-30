@@ -36,8 +36,8 @@ public class ScreenMenu implements Screen{
 	private BitmapFont bitmap;
 	private Label heading;
 	
-	public ScreenMenu() {
-		// TODO Auto-generated constructor stub
+	public ScreenMenu(CapstoneGame game) {
+		this.game = game;
 	}
 
 	public void draw()
@@ -72,7 +72,7 @@ public class ScreenMenu implements Screen{
 		//fonts
 		table = new Table(skin);
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.png"),false);
+		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
 		
 		//buttons styles
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
