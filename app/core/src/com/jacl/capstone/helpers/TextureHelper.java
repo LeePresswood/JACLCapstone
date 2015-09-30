@@ -13,7 +13,7 @@ public class TextureHelper
 	private boolean moving;
 	private final int MOVE_FRAMES = 2;
 	private float move_check = 0.1f;
-	private float frame_change = 0.2f;
+	private float frame_change;
 	private float frame_change_current;
 	private int frame_current = 1;
 	private Direction direction;
@@ -22,9 +22,13 @@ public class TextureHelper
 	private Texture[] left_frames;
 	private Texture[] right_frames;
 	
-	public TextureHelper(MovingEntity entity)
+	public TextureHelper(MovingEntity entity, float movespeed)
 	{
 		this.entity = entity;
+		
+		//The player's move speed will determine how quickly the texture changes.
+		frame_change = 1f / movespeed;
+		System.out.println(frame_change);
 	}
 	
 	/**

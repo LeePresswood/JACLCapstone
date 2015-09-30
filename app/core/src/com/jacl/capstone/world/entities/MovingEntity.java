@@ -47,7 +47,7 @@ public abstract class MovingEntity extends Entity
 		knockback = new KnockbackHelper(this);
 		attack = new AttackHelper(this);
 		invincible = new InvincibleHelper(this);
-		texture_helper = new TextureHelper(this);
+		texture_helper = new TextureHelper(this, data.getFloat("move_speed"));
 		
 		//Health, speed, damage, and knockback_on_collide are set by the entity list.
 		knockback_on_collide = data.getBoolean("knockback_on_collide");
