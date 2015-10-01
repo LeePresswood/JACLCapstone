@@ -69,6 +69,7 @@ public class ScreenMenu extends ScreenAdapter{
 		textButtonStyle.pressedOffsetY = -1;
 		textButtonStyle.font = bitmap;
 		
+		//exit button which is exit console
 		buttonExit = new TextButton("EXIT", textButtonStyle);
 		buttonExit.addListener(new ClickListener(){
 			@Override
@@ -76,8 +77,9 @@ public class ScreenMenu extends ScreenAdapter{
 				Gdx.app.exit();
 			}
 		});
-		buttonExit.pad(20);
+		buttonExit.pad(5);
 		
+		// new game button which is start a new game
 		buttonNew = new TextButton("New Game",textButtonStyle);
 		buttonNew.addListener(new ClickListener(){
 			@Override
@@ -85,7 +87,37 @@ public class ScreenMenu extends ScreenAdapter{
 				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
 			}
 		});
-		buttonNew.pad(15);
+		buttonNew.pad(5);
+		
+		//button load from a save point
+		buttonLoad = new TextButton("Load Game",textButtonStyle);
+		buttonLoad.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+			}
+		});
+		buttonLoad.pad(5);
+		
+		//button credit which show contributors
+		buttonCredit = new TextButton("Credits",textButtonStyle);
+		buttonCredit.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+			}
+		});
+		buttonCredit.pad(5);
+		
+		// Options button which show volume, graphic etc.
+		buttonOptions = new TextButton("Options",textButtonStyle);
+		buttonOptions.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+			}
+		});
+		buttonOptions.pad(5);
 		
 		//heading
 		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
@@ -95,9 +127,14 @@ public class ScreenMenu extends ScreenAdapter{
 		//add together stuffs
 		table.add(heading);
 		table.row();
-		table.getCell(heading).spaceBottom(50);
+		table.getCell(heading).spaceBottom(30);
 		table.add(buttonNew);
-		table.getCell(buttonNew).spaceBottom(15);
+		table.row();
+		table.add(buttonLoad);
+		table.row();
+		table.add(buttonOptions);
+		table.row();
+		table.add(buttonCredit);
 		table.row();
 		table.add(buttonExit);
 		table.debug();
