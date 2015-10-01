@@ -2,7 +2,6 @@ package com.jacl.capstone.helpers;
 
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.entities.MovingEntity;
-import com.jacl.capstone.world.entities.player.Player;
 
 /**
  * Manages knockback from hits.
