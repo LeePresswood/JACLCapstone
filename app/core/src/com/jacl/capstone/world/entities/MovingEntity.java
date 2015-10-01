@@ -10,7 +10,6 @@ import com.jacl.capstone.helpers.InvincibleHelper;
 import com.jacl.capstone.helpers.KnockbackHelper;
 import com.jacl.capstone.helpers.TextureHelper;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.entities.player.Player;
 
 /**
  * These are world objects that move. These include enemies and players.
@@ -124,16 +123,9 @@ public abstract class MovingEntity extends Entity
 	public void hitBy(MovingEntity e)
 	{
 		if(e.knockback_on_collide)
-		{
-			//Knockback and damage.
+		{//Knockback and damage.
 			knockback.doKnockback();
 			health_current -= DamageCalculator.getDamage(e.damage_on_collide, defense);
-			
-			//Invincibility upon hit is only for players.
-			if(this instanceof Player)
-			{
-				invincible.goInvincible();
-			}
 		}
 	}
 	

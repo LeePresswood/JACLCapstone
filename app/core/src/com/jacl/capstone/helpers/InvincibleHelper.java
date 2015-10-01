@@ -47,10 +47,8 @@ public class InvincibleHelper
 
 	public void update(float delta)
 	{
-		//Only need to do invincible calculation for player.
-		if(is_invincible && entity instanceof Player)
+		if(is_invincible)
 		{
-			//If invincibility is over, end.
 			invincible_time_current += delta;
 			if(invincible_time_current >= invincible_time_trigger)
 			{
