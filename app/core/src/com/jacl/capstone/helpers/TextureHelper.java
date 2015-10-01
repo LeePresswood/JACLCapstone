@@ -82,11 +82,13 @@ public class TextureHelper
 	 */
 	public void update(float delta)
 	{
-		if(Math.abs(entity.sprite.getX() - entity.last_location.x) + Math.abs(entity.sprite.getY() - entity.last_location.y) > move_check)
+		dx = entity.sprite.getX() - entity.last_location.x;
+		dy = entity.sprite.getY() - entity.last_location.y;
+		if(Math.abs(dx) + Math.abs(dy) > move_check)
 		{
-			if(Math.abs(entity.sprite.getX() - entity.last_location.x) - Math.abs(entity.sprite.getY() - entity.last_location.y) > move_check)
+			if(Math.abs(dx) - Math.abs(dy) > move_check)
 			{
-				if(Math.signum(entity.sprite.getX() - entity.last_location.x) == -1)
+				if(Math.signum(dx) == -1)
 				{//Left
 					if(direction == Direction.LEFT)
 					{
@@ -127,7 +129,7 @@ public class TextureHelper
 			}
 			else
 			{
-				if(Math.signum(entity.sprite.getY() - entity.last_location.y) == -1)
+				if(Math.signum(dy) == -1)
 				{//Down
 					if(direction == Direction.DOWN)
 					{
