@@ -85,7 +85,9 @@ public class TextureHelper
 	 */
 	public void update(float delta)
 	{
-		calculateMovement(delta);
+		dx = entity.sprite.getX() - entity.last_location.x;
+		dy = entity.sprite.getY() - entity.last_location.y;
+		parseMovement(delta);
 		setRegion();
 	}
 	
@@ -93,10 +95,8 @@ public class TextureHelper
 	 * Determine if we have moved. If we have, change the sprite.
 	 * @param delta
 	 */
-	private void calculateMovement(float delta)
+	private void parseMovement(float delta)
 	{
-		dx = entity.sprite.getX() - entity.last_location.x;
-		dy = entity.sprite.getY() - entity.last_location.y;
 		if(Math.abs(dx) + Math.abs(dy) > move_check)
 		{
 			if(Math.abs(dx) - Math.abs(dy) > move_check)

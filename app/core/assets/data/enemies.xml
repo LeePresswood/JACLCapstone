@@ -3,7 +3,7 @@
 <enemies>
 	<sample_creep>
 		<name>Sample Creep</name>
-		<texture_folder></texture_folder>
+		<texture_folder>player/</texture_folder>
 		<width>1.0</width>
 		<height>1.0</height>
 		<health>100.0</health>
