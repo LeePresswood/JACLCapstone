@@ -125,10 +125,6 @@ public abstract class MovingEntity extends Entity
 		if(!invincible.is_invincible && e.knockback_on_collide)
 		{//Knockback and damage.
 			knockback.doKnockback();
-		}
-		
-		if(!invincible.is_invincible)
-		{
 			health_current -= DamageCalculator.getDamage(e.damage_on_collide, defense);
 		}
 	}
