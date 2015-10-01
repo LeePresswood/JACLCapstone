@@ -13,7 +13,7 @@ public class InvincibleHelper
 {
 	private MovingEntity entity;
 
-	private final float INVINCIBLE_TIME_HIT = 0.75f;
+	private final float INVINCIBLE_TIME_HIT = 1.75f;
 	private final float INVINCIBILITY_ALPHA = 0.4f;
 	private float invincible_time_trigger;
 	private float invincible_time_current;
@@ -47,10 +47,8 @@ public class InvincibleHelper
 
 	public void update(float delta)
 	{
-		//Only need to do invincible calculation for player.
-		if(is_invincible && entity instanceof Player)
+		if(is_invincible)
 		{
-			//If invincibility is over, end.
 			invincible_time_current += delta;
 			if(invincible_time_current >= invincible_time_trigger)
 			{

@@ -150,12 +150,8 @@ public class CollisionHandler
 						entity.knockback.knockback_direction = Direction.DOWN;
 						e.knockback.knockback_direction = Direction.UP;
 					}
-					else
-					{
-						System.out.println("Else in entity-entity collision. This shouldn't happen.");
-					}
 					
-					//Do the collision effects. This includes damage, knockback, and other residual effects.
+					//Do the collision effects. This includes damage, knockback, and other residual effects. Should only happen if not invincible.
 					entity.hitBy(e);
 					e.hitBy(entity);
 					

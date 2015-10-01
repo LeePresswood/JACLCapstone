@@ -10,7 +10,6 @@ public class TextureHelper
 {
 	public MovingEntity entity;
 	
-	private boolean moving;
 	private final int MOVE_FRAMES = 2;
 	private float move_check = 0.1f;
 	private float frame_change;
@@ -22,13 +21,20 @@ public class TextureHelper
 	private Texture[] left_frames;
 	private Texture[] right_frames;
 	
+	private float dx;
+	private float dy;
+	
 	public TextureHelper(MovingEntity entity, float movespeed)
 	{
 		this.entity = entity;
 		
+		up_frames = new Texture[MOVE_FRAMES];
+		down_frames = new Texture[MOVE_FRAMES];
+		left_frames = new Texture[MOVE_FRAMES];
+		right_frames = new Texture[MOVE_FRAMES];
+		
 		//The player's move speed will determine how quickly the texture changes.
 		frame_change = 1f / movespeed;
-		System.out.println(frame_change);
 	}
 	
 	/**
@@ -37,14 +43,16 @@ public class TextureHelper
 	 */
 	public void setMovementSprites(String folder)
 	{
-		//Create arrays for the textures.
-		up_frames = new Texture[MOVE_FRAMES];
-		down_frames = new Texture[MOVE_FRAMES];
-		left_frames = new Texture[MOVE_FRAMES];
-		right_frames = new Texture[MOVE_FRAMES];
+		readFromFile(folder);
 		
+		//On top of loading the images, we're also interested in setting the sprite's texture after loading. Let's just use down_frames[1].
+		direction = Direction.DOWN;
+		entity.sprite.setRegion(down_frames[1]);
+	}
+	
+	private void readFromFile(String folder)
+	{
 		String base_texture_folder = Assets.TEXTURE_BASE + folder;
-		
 		for(String file : Gdx.files.internal(base_texture_folder).readString().split("\n"))
 		{
 			//Get the file that we're looking at.
@@ -69,10 +77,6 @@ public class TextureHelper
 				right_frames[Character.getNumericValue(parts[1].charAt(2)) - 1] = entity.world.screen.game.assets.get(file_name, Texture.class);
 			}
 		}
-		
-		//On top of loading the images, we're also interested in setting the sprite's texture after loading. Let's just use up_frames[1].
-		direction = Direction.DOWN;
-		entity.sprite.setRegion(down_frames[1]);
 	}
 	
 	/**
@@ -81,98 +85,83 @@ public class TextureHelper
 	 */
 	public void update(float delta)
 	{
-		if(Math.abs(entity.sprite.getX() - entity.last_location.x) + Math.abs(entity.sprite.getY() - entity.last_location.y) > move_check)
+		dx = entity.sprite.getX() - entity.last_location.x;
+		dy = entity.sprite.getY() - entity.last_location.y;
+		parseMovement(delta);
+		setRegion();
+	}
+	
+	/**
+	 * Determine if we have moved. If we have, change the sprite.
+	 * @param delta
+	 */
+	private void parseMovement(float delta)
+	{
+		if(Math.abs(dx) + Math.abs(dy) > move_check)
 		{
-			if(Math.abs(entity.sprite.getX() - entity.last_location.x) - Math.abs(entity.sprite.getY() - entity.last_location.y) > move_check)
+			if(Math.abs(dx) - Math.abs(dy) > move_check)
 			{
-				if(Math.signum(entity.sprite.getX() - entity.last_location.x) == -1)
+				if(Math.signum(dx) == -1)
 				{//Left
-					if(direction == Direction.LEFT)
-					{
-						//Update timing.
-						frame_change_current += delta;
-						if(frame_change_current >= frame_change)
-						{
-							frame_change_current -= frame_change;
-							frame_current = (frame_current + 1) % 2;
-						}
-					}
-					else
-					{//Reset timing 
-						direction = Direction.LEFT;
-						frame_change_current = 0f;
-						frame_current = 1;
-					}
+					frameChange(delta, Direction.LEFT);
 				}
 				else
 				{//Right
-					if(direction == Direction.RIGHT)
-					{
-						//Update timing.
-						frame_change_current += delta;
-						if(frame_change_current >= frame_change)
-						{
-							frame_change_current -= frame_change;
-							frame_current = (frame_current + 1) % 2;
-						}
-					}
-					else
-					{//Reset timing 
-						direction = Direction.RIGHT;
-						frame_change_current = 0f;
-						frame_current = 1;
-					}
+					frameChange(delta, Direction.RIGHT);
 				}
 			}
 			else
 			{
-				if(Math.signum(entity.sprite.getY() - entity.last_location.y) == -1)
+				if(Math.signum(dy) == -1)
 				{//Down
-					if(direction == Direction.DOWN)
-					{
-						//Update timing.
-						frame_change_current += delta;
-						if(frame_change_current >= frame_change)
-						{
-							frame_change_current -= frame_change;
-							frame_current = (frame_current + 1) % 2;
-						}
-					}
-					else
-					{//Reset timing 
-						direction = Direction.DOWN;
-						frame_change_current = 0f;
-						frame_current = 1;
-					}
+					frameChange(delta, Direction.DOWN);
 				}
 				else
 				{//Up
-					if(direction == Direction.UP)
-					{
-						//Update timing.
-						frame_change_current += delta;
-						if(frame_change_current >= frame_change)
-						{
-							frame_change_current -= frame_change;
-							frame_current = (frame_current + 1) % 2;
-						}
-					}
-					else
-					{//Reset timing 
-						direction = Direction.UP;
-						frame_change_current = 0f;
-						frame_current = 1;
-					}
+					frameChange(delta, Direction.UP);
 				}
 			}
 		}
 		else
-		{//Movement isn't happening.
+		{
+			resetFrame();
+		}
+	}
+	
+	private void frameChange(float delta, Direction direction_compare)
+	{
+		if(direction == direction_compare)
+		{
+			//Update timing.
+			frame_change_current += delta;
+			if(frame_change_current >= frame_change)
+			{
+				frame_change_current -= frame_change;
+				frame_current = (frame_current + 1) % 2;
+			}
+		}
+		else
+		{//Reset timing 
+			direction = direction_compare;
 			frame_change_current = 0f;
 			frame_current = 1;
 		}
-		
-		//Sprite is set based upon direction.
+	}
+	
+	/**
+	 * Reset frame because are no longer moving.
+	 */
+	private void resetFrame()
+	{
+		frame_change_current = 0f;
+		frame_current = 1;
+	}
+	
+	/**
+	 * Change sprite's texture based upon the direction.
+	 */
+	private void setRegion()
+	{
 		switch(direction)
 		{
 			case DOWN:
