@@ -1,8 +1,8 @@
 <player>
 	<map>object_collision_test.tmx</map>
-	<time>14:39</time>
+	<time>15:13</time>
 	<player_location>
-		<x>18</x>
+		<x>16</x>
 		<y>3</y>
 	</player_location>
 	<progress_flag>0</progress_flag>
