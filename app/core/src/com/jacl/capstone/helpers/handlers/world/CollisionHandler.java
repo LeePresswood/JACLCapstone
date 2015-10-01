@@ -152,14 +152,8 @@ public class CollisionHandler
 					}
 					
 					//Do the collision effects. This includes damage, knockback, and other residual effects. Should only happen if not invincible.
-					if(!entity.invincible.is_invincible)
-					{
-						entity.hitBy(e);
-					}
-					if(!e.invincible.is_invincible)
-					{
-						e.hitBy(entity);
-					}
+					entity.hitBy(e);
+					e.hitBy(entity);
 					
 					return;
 				}
