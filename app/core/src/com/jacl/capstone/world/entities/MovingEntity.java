@@ -136,14 +136,8 @@ public abstract class MovingEntity extends Entity
 	public void changeCurrentHealthValueTo(float new_value)
 	{
 		health_current = new_value;
-		if(health_current < 0.0f)
-		{
-			health_current = 0.0f;
-		}
-		if(health_current > health_max)
-		{
-			health_current = health_max;
-		}
+		checkMax();
+		checkCurrent();
 	}
 	
 	/**
@@ -153,14 +147,8 @@ public abstract class MovingEntity extends Entity
 	public void changeCurrentHealthValueBy(float change_by)
 	{
 		health_current += change_by;
-		if(health_current < 0.0f)
-		{
-			health_current = 0.0f;
-		}
-		if(health_current > health_max)
-		{
-			health_current = health_max;
-		}
+		checkMax();
+		checkCurrent();
 	}
 	
 	/**
@@ -170,14 +158,8 @@ public abstract class MovingEntity extends Entity
 	public void changeMaxHealthValueTo(float new_max)
 	{
 		health_max = new_max;
-		if(health_max < 0.0f)
-		{
-			health_max = 0.0f;
-		}
-		if(health_current > health_max)
-		{
-			health_current = health_max;
-		}
+		checkMax();
+		checkCurrent();
 	}
 	
 	/**
@@ -187,9 +169,22 @@ public abstract class MovingEntity extends Entity
 	public void changeMaxHealthValueBy(float change_by)
 	{
 		health_max += change_by;
+		checkMax();
+	}
+	
+	private void checkMax()
+	{
 		if(health_max < 0.0f)
 		{
 			health_max = 0.0f;
+		}
+	}
+	
+	private void checkCurrent()
+	{
+		if(health_current > health_max)
+		{
+			health_current = health_max;
 		}
 	}
 	
