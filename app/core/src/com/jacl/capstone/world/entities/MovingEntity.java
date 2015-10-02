@@ -145,9 +145,9 @@ public abstract class MovingEntity extends Entity
 	 * Change max health to the new value.
 	 * @param new_value
 	 */
-	public void changeMaxHealthValueTo(float new_max)
+	public void changeMaxHealthValueTo(float new_value)
 	{
-		health_max = new_max;
+		health_max = new_value;
 		checkHealthOnChange();
 	}
 	
