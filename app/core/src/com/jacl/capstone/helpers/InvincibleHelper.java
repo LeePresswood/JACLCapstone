@@ -1,13 +1,10 @@
 package com.jacl.capstone.helpers;
 
 import com.jacl.capstone.world.entities.MovingEntity;
-import com.jacl.capstone.world.entities.player.Player;
 
 /**
  * Entities will become invincible for a period of time after being hit.
- * 
  * @author Lee
- *
  */
 public class InvincibleHelper
 {
