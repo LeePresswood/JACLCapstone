@@ -88,7 +88,6 @@ public class HUD
 	 */
 	public void HUDUpdate(float delta)
 	{
-		//Update time.
 		time.update(delta);
 		if(time.recently_updated_minute)
 		{
