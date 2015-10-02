@@ -20,7 +20,6 @@ import com.jacl.capstone.world.World;
  */
 public abstract class MovingEntity extends Entity
 {	
-	//Helpers.
 	public KnockbackHelper knockback;
 	public AttackHelper attack;
 	public InvincibleHelper invincible;	
@@ -30,30 +29,28 @@ public abstract class MovingEntity extends Entity
 	public float health_max;
 	public float health_regen;
 	
-	//Qualities that will be manipulated throughout play.
 	public float move_speed;
 	public boolean knockback_on_collide;
 	public float damage_on_collide;
 	public float defense;
 	
-	//Enemy list.
 	public ArrayList<MovingEntity> enemies;
 	
 	public MovingEntity(World world, float x, float y, Element data, Alignment alignment)
 	{
 		super(world, x, y, data, alignment);
 		
+		enemies = new ArrayList<MovingEntity>();
+		
 		knockback = new KnockbackHelper(this);
 		attack = new AttackHelper(this);
 		invincible = new InvincibleHelper(this);
 		texture_helper = new TextureHelper(this, data.getFloat("move_speed"));
 		
-		//Health, speed, damage, and knockback_on_collide are set by the entity list.
 		knockback_on_collide = data.getBoolean("knockback_on_collide");
-		move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;	//Set in terms of tiles per second.
+		move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;				//Set in terms of tiles per second.
 		damage_on_collide = data.getFloat("damage_on_collide");
 		
-		//Set movement sprites.
 		texture_helper.setMovementSprites(data.get("texture_folder"));
 	}
 	
@@ -100,11 +97,6 @@ public abstract class MovingEntity extends Entity
 	
 	private void getEnemies()
 	{
-		if(enemies == null)
-		{
-			enemies = new ArrayList<MovingEntity>();
-		}
-		
 		//Clear the enemy list and begin adding the enemies.
 		enemies.clear();
 		for(Entity e : world.entity_handler.all_entities)
@@ -136,8 +128,7 @@ public abstract class MovingEntity extends Entity
 	public void changeCurrentHealthValueTo(float new_value)
 	{
 		health_current = new_value;
-		checkMax();
-		checkCurrent();
+		checkHealthOnChange();
 	}
 	
 	/**
@@ -147,8 +138,7 @@ public abstract class MovingEntity extends Entity
 	public void changeCurrentHealthValueBy(float change_by)
 	{
 		health_current += change_by;
-		checkMax();
-		checkCurrent();
+		checkHealthOnChange();
 	}
 	
 	/**
@@ -158,8 +148,7 @@ public abstract class MovingEntity extends Entity
 	public void changeMaxHealthValueTo(float new_max)
 	{
 		health_max = new_max;
-		checkMax();
-		checkCurrent();
+		checkHealthOnChange();
 	}
 	
 	/**
@@ -169,7 +158,13 @@ public abstract class MovingEntity extends Entity
 	public void changeMaxHealthValueBy(float change_by)
 	{
 		health_max += change_by;
+		checkHealthOnChange();
+	}
+	
+	private void checkHealthOnChange()
+	{
 		checkMax();
+		checkCurrent();
 	}
 	
 	private void checkMax()
