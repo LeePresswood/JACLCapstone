@@ -1,9 +1,14 @@
 <player>
-	<map>object_collision_test.tmx</map>
-	<time>17:50</time>
+	<map>object_collision_test.tmx</map><time>17:me>
 	<player_location>
 		<x>15</x>
 		<y>5</y>
+=======
+	<time>17:59</time>
+	<player_location>
+		<x>11</x>
+		<y>7</y>
+>>>>>>> d2cedc837d50eb7171216b7b3d50961f4851bb10
 	</player_location>
 	<progress_flag>0</progress_flag>
 	<healthbar>

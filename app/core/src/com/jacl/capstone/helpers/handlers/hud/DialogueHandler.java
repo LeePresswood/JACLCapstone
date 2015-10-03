@@ -28,7 +28,7 @@ public class DialogueHandler
 	 * @param file_text
 	 */
 	public void startDialogue(String file_text)
-	{
+	{showing_dialogue = true;
 		//Split the text into DialogueBoxes.
 		if(file_text.length() > 0)
 		{
@@ -64,7 +64,7 @@ public class DialogueHandler
 		current_box++;
 		if(current_box >= boxes.length)
 		{//End of dialogue.
-			
+			showing_dialogue = false;
 		}
 	}
 	
@@ -85,8 +85,11 @@ public class DialogueHandler
 	 */
 	public void draw()
 	{
-		//screen.batch
+		if(showing_dialogue && current_box >= 0 && current_box < boxes.length)
+		{
+			//screen.batch
 
-		//boxes[current_box].
+			boxes[current_box].draw();
+		}
 	}
 }
