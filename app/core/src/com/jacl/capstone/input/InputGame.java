@@ -39,7 +39,7 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.right = true;
 				break;
 			case Keys.SPACE:
-					screen.world.entity_handler.player.attack.attacking = true;
+				//screen.world.entity_handler.player.attack.attacking = true;
 				break;
 		}
 		
@@ -96,6 +96,9 @@ public class InputGame implements InputProcessor
 				break;
 			case Keys.E:
 				screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));
+				break;
+			case Keys.R:
+				screen.hud.dialogue_handler.startDialogue("1rsd4jfisdf3214dsafsd4326afsadf1r23r432qr");
 				break;
 		}
 		
