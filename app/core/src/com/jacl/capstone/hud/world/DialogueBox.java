@@ -1,6 +1,8 @@
 package com.jacl.capstone.hud.world;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.hud.HUD;
 
 /**
@@ -12,6 +14,7 @@ public class DialogueBox
 {
 	public HUD hud;
 	
+	private BitmapFont font;
 	private String[] lines;
 	
 	private final float DIALOGUE_WIDTH = Gdx.graphics.getWidth() > 500f ? 500f : Gdx.graphics.getWidth();
@@ -26,6 +29,16 @@ public class DialogueBox
 	{
 		this.hud = hud;
 		
+		font = hud.screen.game.assets.get(Assets.FONT24, BitmapFont.class);
 		lines = text.split(NEW_LINE_SPLIT);
+	}
+	
+	public void update(float delta)
+	{//Animation.
+	}
+	
+	public void draw()
+	{//In order: Background, text, border.
+		font.draw(hud.screen.batch, "Hello. This is a long string. TESTTIEUEUEUEJFKJDKJJKJKAKFJAKJFJKSAFKJSFJK", 50, 50);
 	}
 }
