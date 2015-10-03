@@ -120,9 +120,10 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonOptions.pad(5);
 		
 		//heading
+		String label = game.GAME_NAME+" "+game.GAME_VERSION;
 		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
-		heading = new Label(game.GAME_VERSION,headingStyle);
-		heading.setFontScale(3);
+		heading = new Label(label,headingStyle);
+		heading.setFontScale(2);
 		
 		//add together stuffs
 		table.add(heading);
