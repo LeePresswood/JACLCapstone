@@ -32,6 +32,7 @@ public class ScreenOptions extends ScreenAdapter{
 	/**
 	 * This is called when the screen is created.
 	 * show settings in game
+	 * putting sliders and checkbox for sound and graphic
 	 */
 	public void show() {
 		

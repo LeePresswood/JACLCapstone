@@ -31,9 +31,9 @@ public class ScreenMenu extends ScreenAdapter{
 	private TextureAtlas atlas;
 	private Skin skin;
 	private Table table;
-	private TextButton buttonExit,buttonLoad,buttonNew,buttonCredit,buttonOptions;
 	private BitmapFont bitmap;
 	private Label heading;
+	private TextButton buttonExit,buttonLoad,buttonNew,buttonCredit,buttonOptions;
 	
 	public ScreenMenu(CapstoneGame game) {
 		this.game = game;
@@ -103,7 +103,7 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonCredit.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
-				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenCredit(game));
 			}
 		});
 		buttonCredit.pad(5);
@@ -113,7 +113,7 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonOptions.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
-				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenOptions(game));
 			}
 		});
 		buttonOptions.pad(5);
