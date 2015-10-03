@@ -137,7 +137,7 @@ public class ScreenMenu extends ScreenAdapter{
 		table.add(buttonCredit);
 		table.row();
 		table.add(buttonExit);
-		table.debug();
+		//table.debug();
 		stage.addActor(table);
 	}
 
