@@ -68,7 +68,6 @@ public class ScreenCredit extends ScreenAdapter{
 		buttonBack.pad(5);
 		
 		
-		
 		//heading
 		String label = "Credits";
 		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
@@ -78,7 +77,7 @@ public class ScreenCredit extends ScreenAdapter{
 		//add together stuffs
 		table.add(heading);
 		table.row();
-		table.getCell(heading).spaceBottom(30);
+		table.getCell(heading).spaceBottom(70);
 		table.add(buttonBack);
 		table.row();
 		stage.addActor(table);

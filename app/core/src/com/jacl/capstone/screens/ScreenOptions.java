@@ -27,6 +27,9 @@ public class ScreenOptions extends ScreenAdapter{
 	private TextureAtlas atlas;
 	private Skin skin;
 	private TextButton buttonBack;
+	private Table table;
+	private BitmapFont bitmap;
+	private Label heading;
 
 	@Override
 	/**
@@ -35,15 +38,59 @@ public class ScreenOptions extends ScreenAdapter{
 	 * putting sliders and checkbox for sound and graphic
 	 */
 	public void show() {
+stage = new Stage();
+		
+		Gdx.input.setInputProcessor(stage);
+		
+		atlas = new TextureAtlas("atlas.pack");
+		skin = new Skin(atlas);
+		
+		//fonts
+		table = new Table(skin);
+		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
+		
+		//buttons styles
+		TextButtonStyle textButtonStyle = new TextButtonStyle();
+		textButtonStyle.up = skin.getDrawable("button.up");
+		textButtonStyle.down = skin.getDrawable("button.down");
+		textButtonStyle.pressedOffsetX = 1;
+		textButtonStyle.pressedOffsetY = -1;
+		textButtonStyle.font = bitmap;
+		
+		//back button which is back to main menu
+		buttonBack = new TextButton("Back", textButtonStyle);
+		buttonBack.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y){
+				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+			}
+		});
+		buttonBack.pad(5);
 		
 		
+		//heading
+		String label = "Options";
+		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
+		heading = new Label(label,headingStyle);
+		heading.setFontScale(2);
 		
+		//add together stuffs
+		table.add(heading);
+		table.row();
+		table.getCell(heading).spaceBottom(70);
+		table.add(buttonBack);
+		table.row();
+		stage.addActor(table);
 	}
 
 	@Override
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		stage.act(delta);
+		stage.draw();
 	
 	}
 
@@ -52,5 +99,6 @@ public class ScreenOptions extends ScreenAdapter{
 		stage.dispose();
 		atlas.dispose();
 		skin.dispose();
+		bitmap.dispose();
 	}
 }
