@@ -2,7 +2,7 @@
 	<map>object_collision_test.tmx</map>
 	<time>17:59</time>
 	<player_location>
-		<x>12</x>
+		<x>11</x>
 		<y>7</y>
 	</player_location>
 	<progress_flag>0</progress_flag>
