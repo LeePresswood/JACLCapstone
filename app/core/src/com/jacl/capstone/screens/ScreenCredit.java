@@ -1,6 +1,7 @@
 package com.jacl.capstone.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -21,7 +22,10 @@ public class ScreenCredit extends ScreenAdapter{
 
 	public ScreenCredit(CapstoneGame game) {
 		this.game = game;
+		this.last_screen = game.getScreen();
 	}
+	private Screen last_screen;
+	
 	private Stage stage;
 	public CapstoneGame game;
 	private TextureAtlas atlas;
@@ -62,7 +66,7 @@ public class ScreenCredit extends ScreenAdapter{
 		buttonBack.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
-				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(last_screen);
 			}
 		});
 		buttonBack.pad(5);
