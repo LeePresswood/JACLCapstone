@@ -60,12 +60,7 @@ public class Assets extends AssetManager
 		
 		
 		//Fonts
-		load(FONT_DIALOGUE, BitmapFont.class);
-		load(FONT16, BitmapFont.class);
-		load(FONT24, BitmapFont.class);
-		load(FONT32, BitmapFont.class);
-		load(FONT44, BitmapFont.class);
-		load(FONT56, BitmapFont.class);
+		loadFontsFromFolder("hud/fonts");
 		
 		//Textures
 		loadTexturesFromFolder(TEXTURE_BASE + "player/");
@@ -74,6 +69,17 @@ public class Assets extends AssetManager
 		load(HEALTHBAR_FOREGROUND, Texture.class);
 		
 		finishLoading();
+	}
+	
+	private void loadFontsFromFolder(String folder)
+	{
+		for(String file : Gdx.files.internal(folder).readString().split("\n"))
+		{
+			if(file.endsWith(".fnt"))
+			{
+				load(folder + file, BitmapFont.class);
+			}
+		}
 	}
 	
 	private void loadTexturesFromFolder(String folder)
