@@ -29,7 +29,7 @@ public class DialogueBox
 	{
 		this.hud = hud;
 		
-		font = hud.screen.game.assets.get(Assets.FONT16, BitmapFont.class);
+		font = hud.screen.game.assets.get(Assets.FONT_DIALOGUE, BitmapFont.class);
 		lines = text.split(NEW_LINE_SPLIT);
 	}
 	
