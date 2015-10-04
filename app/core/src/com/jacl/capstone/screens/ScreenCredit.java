@@ -71,7 +71,6 @@ public class ScreenCredit extends ScreenAdapter{
 		});
 		buttonBack.pad(5);
 		
-		
 		//heading
 		String label = "Credits";
 		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);

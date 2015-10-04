@@ -42,7 +42,7 @@ public class ScreenOptions extends ScreenAdapter{
 	 * putting sliders and checkbox for sound and graphic
 	 */
 	public void show() {
-stage = new Stage();
+		stage = new Stage();
 		
 		Gdx.input.setInputProcessor(stage);
 		
