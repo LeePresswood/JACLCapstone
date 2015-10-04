@@ -26,11 +26,19 @@ public class Assets extends AssetManager
 	public static final String HEALTHBAR_FOREGROUND = "hud/healthbar/health-blue.png";
 	
 	public static final String FONT_DIALOGUE = "hud/fonts/dialogue.fnt";
+	public static final String FONT12 = "hud/fonts/font12.fnt";
 	public static final String FONT16 = "hud/fonts/font16.fnt";
+	public static final String FONT20 = "hud/fonts/font20.fnt";
 	public static final String FONT24 = "hud/fonts/font24.fnt";
+	public static final String FONT28 = "hud/fonts/font28.fnt";
 	public static final String FONT32 = "hud/fonts/font32.fnt";
+	public static final String FONT36 = "hud/fonts/font36.fnt";
+	public static final String FONT40 = "hud/fonts/font40.fnt";
 	public static final String FONT44 = "hud/fonts/font44.fnt";
+	public static final String FONT48 = "hud/fonts/font48.fnt";
+	public static final String FONT52 = "hud/fonts/font52.fnt";
 	public static final String FONT56 = "hud/fonts/font56.fnt";
+	public static final String FONT60 = "hud/fonts/font60.fnt";
 	
 	public Assets()
 	{
