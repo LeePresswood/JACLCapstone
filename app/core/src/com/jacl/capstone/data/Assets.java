@@ -60,7 +60,7 @@ public class Assets extends AssetManager
 		
 		
 		//Fonts
-		loadFontsFromFolder("hud/fonts");
+		loadFontsFromFolder("hud/fonts/");
 		
 		//Textures
 		loadTexturesFromFolder(TEXTURE_BASE + "player/");
