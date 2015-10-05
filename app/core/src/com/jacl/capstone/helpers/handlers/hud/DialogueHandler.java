@@ -33,6 +33,7 @@ public class DialogueHandler
 	{
 		//Initialize world for dialogue box.
 		showing_dialogue = true;
+		current_box = 0;
 		
 		//Split the text into DialogueBoxes.
 		if(file_text.length() > 0)
