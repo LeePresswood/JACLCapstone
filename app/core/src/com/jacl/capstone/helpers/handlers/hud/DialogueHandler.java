@@ -32,7 +32,6 @@ public class DialogueHandler
 	public void startDialogue(String file_text)
 	{
 		//Initialize world for dialogue box.
-		InputGame.class.cast(Gdx.input.getInputProcessor()).clearInput();
 		showing_dialogue = true;
 		
 		//Split the text into DialogueBoxes.
