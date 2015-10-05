@@ -11,7 +11,6 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.World;
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 /**
  * Once the game is opened, read from the save state. Once it is

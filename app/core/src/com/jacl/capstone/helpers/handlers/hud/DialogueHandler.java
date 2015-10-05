@@ -1,9 +1,7 @@
 package com.jacl.capstone.helpers.handlers.hud;
 
-import com.badlogic.gdx.Gdx;
 import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.hud.world.DialogueBox;
-import com.jacl.capstone.input.InputGame;
 
 public class DialogueHandler
 {

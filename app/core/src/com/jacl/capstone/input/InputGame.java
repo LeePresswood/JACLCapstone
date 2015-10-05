@@ -1,6 +1,5 @@
 package com.jacl.capstone.input;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.jacl.capstone.data.enums.EnemyType;
