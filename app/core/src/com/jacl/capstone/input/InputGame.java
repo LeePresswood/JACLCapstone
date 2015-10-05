@@ -54,55 +54,55 @@ public class InputGame implements InputProcessor
 	public boolean keyUp(int keycode)
 	{
 		//keycode is an integer representation of the key being used. This is the key in the up position in this case. Note: Keys that have never been pressed are also in this position. It is not solely a key being up after being down.
-		switch(keycode)
+		if(screen.hud.dialogue_handler.showing_dialogue)
 		{
-			//The Keys class has static references to all keys on the keyboard. We can use these to decode the button click.
-			case Keys.UP:
-			case Keys.W:
-				if(screen.hud.dialogue_handler.showing_dialogue)
-				{
+			switch(keycode)
+			{
+				//The Keys class has static references to all keys on the keyboard. We can use these to decode the button click.
+				case Keys.UP:
+				case Keys.W:
 					screen.hud.dialogue_handler.reverseDialogue();
-				}
-				else
-				{
+					break;
+				case Keys.DOWN:
+				case Keys.S:
+					screen.hud.dialogue_handler.forwardDialogue();
+					break;
+				case Keys.SPACE:
+					screen.hud.dialogue_handler.forwardDialogue();
+					break;
+			}
+		}
+		else
+		{
+			switch(keycode)
+			{
+				//The Keys class has static references to all keys on the keyboard. We can use these to decode the button click.
+				case Keys.UP:
+				case Keys.W:
 					screen.world.entity_handler.player.up = false;
-				}
-				break;
-			case Keys.DOWN:
-			case Keys.S:
-				if(screen.hud.dialogue_handler.showing_dialogue)
-				{
-					screen.hud.dialogue_handler.forwardDialogue();
-				}
-				else
-				{
+					break;
+				case Keys.DOWN:
+				case Keys.S:
 					screen.world.entity_handler.player.down = false;
-				}
-				break;
-			case Keys.LEFT:
-			case Keys.A:
-				screen.world.entity_handler.player.left = false;
-				break;
-			case Keys.RIGHT:
-			case Keys.D:
-				screen.world.entity_handler.player.right = false;
-				break;
-			case Keys.SPACE:
-				if(screen.hud.dialogue_handler.showing_dialogue)
-				{
-					screen.hud.dialogue_handler.forwardDialogue();
-				}
-				else
-				{
+					break;
+				case Keys.LEFT:
+				case Keys.A:
+					screen.world.entity_handler.player.left = false;
+					break;
+				case Keys.RIGHT:
+				case Keys.D:
+					screen.world.entity_handler.player.right = false;
+					break;
+				case Keys.SPACE:
 					screen.world.entity_handler.player.attack.attacking = false;
-				}
-				break;
-			case Keys.E:
-				screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));
-				break;
-			case Keys.R:
-				screen.hud.dialogue_handler.startDialogue("Hello. This is a long string.\n TESTTIEUEUEUEJFKJDKJJKJKAKFJAKJFJKSAFKJSFJK");
-				break;
+					break;
+				case Keys.E:
+					screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));
+					break;
+				case Keys.R:
+					screen.hud.dialogue_handler.startDialogue("Hello. This is a long string.\n TESTTIEUEUEUEJFKJDKJJKJKAKFJAKJFJKSAFKJSFJK");
+					break;
+			}
 		}
 		
 		//Always return true on input methods you use. This tells LibGDX that it is in use and should be reading for it.

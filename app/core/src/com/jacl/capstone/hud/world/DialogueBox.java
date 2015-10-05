@@ -40,26 +40,6 @@ public class DialogueBox
 		box_y = 0;
 	}
 	
-	/**
-	 * Same as other constructor, but draws dialogue box at the specified top/bottom location. 
-	 * @param hud
-	 * @param text
-	 * @param at_top
-	 */
-	public DialogueBox(HUD hud, String text, boolean at_top)
-	{
-		this(hud, text);
-		
-		//Determine Y location.
-		if(at_top)
-		{//Set to top.
-			box_y = Gdx.graphics.getHeight() - DIALOGUE_HEIGHT;
-		}
-		else
-		{//Y has already been set to the bottom. Do nothing here.
-		}
-	}
-	
 	public void update(float delta)
 	{//Animation.
 	}
