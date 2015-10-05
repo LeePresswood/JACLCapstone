@@ -110,7 +110,8 @@ public class HUD
 		screen.batch.begin();
 			font.draw(screen.batch, time.toString(), 0f, Gdx.graphics.getHeight());			//Time.
 			health_bar.draw();																				//Health.
-			dialogue_handler.draw();																		//Dialogue.
 		screen.batch.end();
+		
+		dialogue_handler.draw();																			//Dialogue.
 	}
 }

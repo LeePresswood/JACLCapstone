@@ -1,7 +1,9 @@
 package com.jacl.capstone.hud.world;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.hud.HUD;
 
@@ -21,10 +23,10 @@ public class DialogueBox
 	private float box_x;
 	private float box_y;
 	private final float DIALOGUE_WIDTH = Gdx.graphics.getWidth();
-	private final float DIALOGUE_HEIGHT = Gdx.graphics.getHeight() > 300f ? 300f : Gdx.graphics.getHeight();
+	private final float DIALOGUE_HEIGHT = Gdx.graphics.getHeight() > 100f ? 100f : Gdx.graphics.getHeight();
 	
 	//Text location inside box.
-	private final float TEXT_PAD_X = 10f;
+	private final float TEXT_PAD_X = 5f;
 	private final float TEXT_PAD_Y = TEXT_PAD_X;
 	
 	public DialogueBox(HUD hud, String text)
@@ -64,6 +66,19 @@ public class DialogueBox
 	
 	public void draw()
 	{//In order: Background, text, border.
-		font.drawMultiLine(hud.screen.batch, text, box_x + TEXT_PAD_X, box_y + DIALOGUE_HEIGHT - TEXT_PAD_Y);
+		hud.screen.renderer.setColor(Color.GREEN);
+		hud.screen.renderer.begin(ShapeType.Filled);
+			hud.screen.renderer.rect(box_x, box_y, DIALOGUE_WIDTH, DIALOGUE_HEIGHT);
+		hud.screen.renderer.end();
+		
+		hud.screen.renderer.setColor(Color.BLACK);
+		hud.screen.renderer.begin(ShapeType.Line);
+			hud.screen.renderer.rect(box_x, box_y, DIALOGUE_WIDTH, DIALOGUE_HEIGHT);
+		hud.screen.renderer.end();
+		
+		//font.setColor(Color.YELLOW);
+		hud.screen.batch.begin();
+			font.drawMultiLine(hud.screen.batch, text, box_x + TEXT_PAD_X, box_y + DIALOGUE_HEIGHT - TEXT_PAD_Y);
+		hud.screen.batch.end();
 	}
 }
