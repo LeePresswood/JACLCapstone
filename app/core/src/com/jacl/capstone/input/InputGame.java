@@ -39,7 +39,10 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.player.right = true;
 				break;
 			case Keys.SPACE:
-				//screen.world.entity_handler.player.attack.attacking = true;
+				if(!screen.hud.dialogue_handler.showing_dialogue)
+				{
+					//screen.world.entity_handler.player.attack.attacking = true;
+				}
 				break;
 		}
 		
@@ -142,4 +145,17 @@ public class InputGame implements InputProcessor
 		return false;
 	}
 	
+	/**
+	 * Clear any input-related variables that are being held.
+	 */
+	public void clearInput()
+	{
+		//Directions
+		screen.world.entity_handler.player.up = false;
+		screen.world.entity_handler.player.down = false;
+		screen.world.entity_handler.player.left = false;
+		screen.world.entity_handler.player.right = false;
+		
+		//Other actions.
+	}
 }

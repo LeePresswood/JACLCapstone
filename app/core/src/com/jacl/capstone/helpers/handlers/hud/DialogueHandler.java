@@ -1,7 +1,9 @@
 package com.jacl.capstone.helpers.handlers.hud;
 
+import com.badlogic.gdx.Gdx;
 import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.hud.world.DialogueBox;
+import com.jacl.capstone.input.InputGame;
 
 public class DialogueHandler
 {
@@ -28,7 +30,11 @@ public class DialogueHandler
 	 * @param file_text
 	 */
 	public void startDialogue(String file_text)
-	{showing_dialogue = true;
+	{
+		//Initialize world for dialogue box.
+		InputGame.class.cast(Gdx.input.getInputProcessor()).clearInput();
+		showing_dialogue = true;
+		
 		//Split the text into DialogueBoxes.
 		if(file_text.length() > 0)
 		{
