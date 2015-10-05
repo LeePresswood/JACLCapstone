@@ -17,10 +17,15 @@ public class DialogueBox
 	private BitmapFont font;
 	private String text;
 	
-	private float x;
-	private float y;
-	private final float DIALOGUE_WIDTH = Gdx.graphics.getWidth() > 500f ? 500f : Gdx.graphics.getWidth();
-	private final float DIALOGUE_HEIGHT = Gdx.graphics.getHeight() > 300f ? 500f : Gdx.graphics.getHeight();
+	//Box location and size.
+	private float box_x;
+	private float box_y;
+	private final float DIALOGUE_WIDTH = Gdx.graphics.getWidth();
+	private final float DIALOGUE_HEIGHT = Gdx.graphics.getHeight() > 300f ? 300f : Gdx.graphics.getHeight();
+	
+	//Text location inside box.
+	private final float TEXT_PAD_X = 10f;
+	private final float TEXT_PAD_Y = TEXT_PAD_X;
 	
 	public DialogueBox(HUD hud, String text)
 	{
@@ -29,8 +34,8 @@ public class DialogueBox
 		
 		font = hud.screen.game.assets.get(Assets.FONT_DIALOGUE, BitmapFont.class);
 		
-		x = Gdx.graphics.getWidth() / 2f - DIALOGUE_WIDTH / 2f;
-		y = 0;
+		box_x = Gdx.graphics.getWidth() / 2f - DIALOGUE_WIDTH / 2f;
+		box_y = 0;
 	}
 	
 	/**
@@ -46,7 +51,7 @@ public class DialogueBox
 		//Determine Y location.
 		if(at_top)
 		{//Set to top.
-			y = Gdx.graphics.getHeight() - DIALOGUE_HEIGHT;
+			box_y = Gdx.graphics.getHeight() - DIALOGUE_HEIGHT;
 		}
 		else
 		{//Y has already been set to the bottom. Do nothing here.
@@ -59,6 +64,6 @@ public class DialogueBox
 	
 	public void draw()
 	{//In order: Background, text, border.
-		font.drawMultiLine(hud.screen.batch, text, x, y);
+		font.drawMultiLine(hud.screen.batch, text, box_x + TEXT_PAD_X, box_y + DIALOGUE_HEIGHT - TEXT_PAD_Y);
 	}
 }
