@@ -113,13 +113,4 @@ public class CameraHandler extends OrthographicCamera
 		//Finish updating and end.
 		update();
 	}
-	
-	/**
-	 * Determines if the player is on the top half of the screen
-	 * @return
-	 */
-	public boolean isPlayerOnTopSideOfScreen()
-	{
-		return false;
-	}
 }
