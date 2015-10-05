@@ -45,7 +45,7 @@ public class DialogueHandler
 			boxes = new DialogueBox[split.length];
 			for(int i = 0; i < split.length; i++)
 			{
-				boxes[i] = new DialogueBox(hud, split[i]);
+				boxes[i] = new DialogueBox(hud, split[i], !hud.screen.world.camera_handler.isPlayerOnTopSideOfScreen());
 			}
 		}
 	}
