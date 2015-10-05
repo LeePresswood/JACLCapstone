@@ -1,5 +1,7 @@
 package com.jacl.capstone.hud.world;
 
+import java.util.Collections;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.jacl.capstone.data.Assets;
@@ -15,22 +17,17 @@ public class DialogueBox
 	public HUD hud;
 	
 	private BitmapFont font;
-	private String[] lines;
+	private String text;
 	
 	private final float DIALOGUE_WIDTH = Gdx.graphics.getWidth() > 500f ? 500f : Gdx.graphics.getWidth();
 	private final float DIALOGUE_HEIGHT = Gdx.graphics.getHeight() > 300f ? 500f : Gdx.graphics.getHeight();
-	
-	/**
-	 * Use this to split the text into multiple lines.
-	 */
-	private final String NEW_LINE_SPLIT = "<n>";
 	
 	public DialogueBox(HUD hud, String text)
 	{
 		this.hud = hud;
 		
 		font = hud.screen.game.assets.get(Assets.FONT_DIALOGUE, BitmapFont.class);
-		lines = text.split(NEW_LINE_SPLIT);
+		this.text = text;
 	}
 	
 	public void update(float delta)
@@ -39,6 +36,6 @@ public class DialogueBox
 	
 	public void draw()
 	{//In order: Background, text, border.
-		font.draw(hud.screen.batch, "Hello. This is a long string. TESTTIEUEUEUEJFKJDKJJKJKAKFJAKJFJKSAFKJSFJK", 50, 50);
+		font.drawMultiLine(hud.screen.batch, text, 50, 50);
 	}
 }

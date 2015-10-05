@@ -101,7 +101,7 @@ public class InputGame implements InputProcessor
 				screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));
 				break;
 			case Keys.R:
-				screen.hud.dialogue_handler.startDialogue("1rsd4jfisdf3214dsafsd4326afsadf1r23r432qr");
+				screen.hud.dialogue_handler.startDialogue("Hello. This is a long string.\n TESTTIEUEUEUEJFKJDKJJKJKAKFJAKJFJKSAFKJSFJK");
 				break;
 		}
 		
