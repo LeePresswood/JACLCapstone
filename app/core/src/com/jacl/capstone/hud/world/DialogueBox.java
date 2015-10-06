@@ -44,8 +44,14 @@ public class DialogueBox
 	{//Animation.
 	}
 	
+	/**
+	 * Draw the dialogue box. To do this, draw in the following order:<br>
+	 * Border<br>
+	 * Background<br>
+	 * Text
+	 */
 	public void draw()
-	{//In order: Background, text, border.
+	{
 		hud.screen.renderer.setColor(Color.GREEN);
 		hud.screen.renderer.begin(ShapeType.Filled);
 			hud.screen.renderer.rect(box_x, box_y, DIALOGUE_WIDTH, DIALOGUE_HEIGHT);
