@@ -91,8 +91,6 @@ public class DialogueHandler
 	{
 		if(showing_dialogue && current_box >= 0 && current_box < boxes.length)
 		{
-			//screen.batch
-
 			boxes[current_box].draw();
 		}
 	}
