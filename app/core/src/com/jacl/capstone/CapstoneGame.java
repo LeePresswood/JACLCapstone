@@ -51,4 +51,9 @@ public class CapstoneGame extends Game
 		super.dispose();
 		assets.dispose();
 	}
+
+	public Object getPreferences() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

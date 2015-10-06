@@ -1,5 +1,7 @@
 package com.jacl.capstone.screens;
 
+import java.util.Locale;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
@@ -7,8 +9,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -16,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.jacl.capstone.CapstoneGame;
 
 public class ScreenOptions extends ScreenAdapter{
@@ -34,6 +39,7 @@ public class ScreenOptions extends ScreenAdapter{
 	private Table table;
 	private BitmapFont bitmap;
 	private Label heading;
+	private Label volumeValue;
 
 	@Override
 	/**
@@ -42,12 +48,62 @@ public class ScreenOptions extends ScreenAdapter{
 	 * putting sliders and checkbox for sound and graphic
 	 */
 	public void show() {
+		super.show();
 		stage = new Stage();
 		
 		Gdx.input.setInputProcessor(stage);
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
+		
+		//TableLayout layout = table.getTableLayout();
+
+		//create sounds option
+		final CheckBox soundEffectsCheckbox = new CheckBox("Sound Effects", skin);
+		soundEffectsCheckbox.setChecked(game.getPreferences().isSoundEffectsEnabled() );
+		soundEffectsCheckbox.addListener(new ClickListener() {
+			public void click(
+					Actor actor,
+					float x,
+					float y)
+			{
+				boolean enabled = soundEffectsCheckbox.isChecked();
+				game.getPreferences().setSoundEffectsEnabled(enabled);
+			}
+		});
+		
+		
+		//create music option
+		final CheckBox musicEffectsCheckbox = new CheckBox("Music Effects", skin);
+		musicEffectsCheckbox.setChecked(game.getPreferences().isMusicEffectsEnabled() );
+		musicEffectsCheckbox.addListener(new ClickListener() {
+			public void click(
+					Actor actor,
+					float x,
+					float y)
+			{
+				boolean enabled = musicEffectsCheckbox.isChecked();
+				game.getPreferences().setMusicEffectsEnabled(enabled);
+			}
+		});
+		
+		
+		//range is [0.0,1.0]; step is 0.1f
+		Slider volumeSlider = new Slider(0f,1f,0.1f,skin);
+		volumeSlider.setValue(game.getPreferences().getVolume());
+		volumeSlider.setValueChangedListener(new ValueChangedListener(){
+			public void changed(
+					Slider slider,
+					float value)
+			{
+				game.getPreferences().setVolume(value);
+				updateVolumeLabel();
+		}}; 
+		
+		
+		volumeValue = new Label(skin);
+		updateVolumeLabel();
+		
 		
 		//fonts
 		table = new Table(skin);
@@ -83,6 +139,10 @@ public class ScreenOptions extends ScreenAdapter{
 		table.add(heading);
 		table.row();
 		table.getCell(heading).spaceBottom(70);
+		table.add(volumeSlider);
+		table.add(volumeValue);
+		table.add(musicEffectsCheckbox);
+		table.add(soundEffectsCheckbox);
 		table.add(buttonBack);
 		table.row();
 		stage.addActor(table);
@@ -104,5 +164,11 @@ public class ScreenOptions extends ScreenAdapter{
 		atlas.dispose();
 		skin.dispose();
 		bitmap.dispose();
+	}
+	
+	private void updateVolumeLabel()
+	{
+		float volume=(game.getPreferences().getVolume()*100);
+		volumeValue.setText(String.format((Locale.US, "%0.1f%%",volume));
 	}
 }
