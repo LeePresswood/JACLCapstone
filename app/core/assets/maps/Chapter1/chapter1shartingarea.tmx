@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="19">
+ <tileset firstgid="1" name="Default" tilewidth="16" tileheight="16">
+  <image source="../Development/School/JACLCapstone/app/core/assets/tileset.png" width="1744" height="848"/>
+ </tileset>
+ <layer name="terrain" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJx7yMDA8JBIrMxEGBNr1kg0jxg7Bpt5T3lQ8WAzbxSP4lE8cBgAFyY/0A==
+  </data>
+ </layer>
+ <layer name="background" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJytkzESQEAMRdfYhkrhTHRKrcMyCjfgDA5BisxmIrsR689kUlh/3/zPUTq333O82GMdZr5nYXNW4Wzvnet8emte8Ay93kjzgkE+0FSEd4fm6ce9VuZl5Ysx0xwoH6r94Ifsf/DRHCQ+i2bmg99CrsAHPKFH3uVWPM9rmSKf5JfSJNxF+XLyoxzoI/Vr4c3hk3LV+GL5UEndaHyWfyTFpymnX0svX/li4nx/7QsmQWxv
+  </data>
+ </layer>
+ <layer name="foreground" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzLYWZgyAViagFqmgUCOaPuowhQy33U9ifMTGqaRQv3UTv8qOnGUfdRbuZQcR+1aGS3UoMGALsEItk=
+  </data>
+ </layer>
+ <objectgroup name="collisionobjects">
+  <object id="1" x="-1" y="0" width="32" height="320"/>
+  <object id="3" x="1" y="305" width="320" height="15"/>
+  <object id="4" x="289" y="93" width="32" height="226"/>
+  <object id="5" x="258" y="45" width="61" height="72"/>
+  <object id="7" x="177" y="0" width="61" height="53"/>
+  <object id="8" x="32" y="0" width="158" height="21"/>
+  <object id="9" x="240" y="0" width="78" height="45"/>
+  <object id="15" x="98" y="48" width="12" height="14"/>
+  <object id="16" x="241" y="175" width="14" height="17"/>
+  <object id="17" x="80" y="193" width="17" height="15"/>
+  <object id="18" x="112" y="272" width="16" height="15"/>
+ </objectgroup>
+ <layer name="events" width="20" height="20" visible="0">
+  <properties>
+   <property name="15,16" value="GOTO tutorial_dungeon.tmx 19,36"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFxIJCnoF2wSgYBaNgFAweAACBFgB+
+  </data>
+ </layer>
+ <layer name="spawnobjects" width="20" height="20" visible="0">
+  <properties>
+   <property name="0,10" value="boulder"/>
+   <property name="0,9" value="boulder"/>
+   <property name="1,10" value="boulder"/>
+   <property name="1,9" value="boulder"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+  </data>
+ </layer>
+</map>
