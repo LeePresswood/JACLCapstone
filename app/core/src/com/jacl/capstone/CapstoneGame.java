@@ -11,10 +11,19 @@ public class CapstoneGame extends Game
 	
 	public Assets assets;
 	
+	private final GamePreferences preferences;
+	
 	public CapstoneGame(String gameName, String gameVersion)
 	{
 		this.GAME_NAME = gameName;
 		this.GAME_VERSION = gameVersion;
+		preferences = new GamePreferences();
+	}
+	
+	//Collaborators
+	public GamePreferences getPreferences()
+	{
+		return preferences;
 	}
 
 	/**
