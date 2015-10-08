@@ -31,7 +31,10 @@
   <object id="21" x="1" y="0" width="140" height="24"/>
   <object id="22" x="139" y="0" width="32" height="16"/>
  </objectgroup>
- <layer name="events" width="20" height="20" visible="0">
+ <layer name="events" width="20" height="20">
+  <properties>
+   <property name="9,18" value="GOTOchapter1shartingarea.tmx 15,15"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJxjYKA/0GYeAEtHwSgYBaNgFFAVAAAQ9AAv
   </data>
