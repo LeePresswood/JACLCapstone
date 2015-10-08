@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="23">
  <tileset firstgid="1" name="terrain" tilewidth="16" tileheight="16">
-  <image source="../Development/School/JACLCapstone/app/core/assets/tileset.png" width="1744" height="848"/>
+  <image source="../../tileset.png" width="1744" height="848"/>
  </tileset>
  <layer name="terrain" width="20" height="20" opacity="0.58">
   <data encoding="base64" compression="zlib">
@@ -31,7 +31,10 @@
   <object id="21" x="1" y="0" width="140" height="24"/>
   <object id="22" x="139" y="0" width="32" height="16"/>
  </objectgroup>
- <layer name="events" width="20" height="20" visible="0">
+ <layer name="events" width="20" height="20">
+  <properties>
+   <property name="9,18" value="GOTOchapter1shartingarea.tmx 15,15"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJxjYKA/0GYeAEtHwSgYBaNgFFAVAAAQ9AAv
   </data>

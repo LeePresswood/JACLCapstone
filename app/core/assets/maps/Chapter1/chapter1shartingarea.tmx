@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" nextobjectid="19">
  <tileset firstgid="1" name="Default" tilewidth="16" tileheight="16">
-  <image source="../Development/School/JACLCapstone/app/core/assets/tileset.png" width="1744" height="848"/>
+  <image source="../../tileset.png" width="1744" height="848"/>
  </tileset>
  <layer name="terrain" width="20" height="20">
   <data encoding="base64" compression="zlib">
@@ -31,7 +31,7 @@
   <object id="17" x="80" y="193" width="17" height="15"/>
   <object id="18" x="112" y="272" width="16" height="15"/>
  </objectgroup>
- <layer name="events" width="20" height="20" visible="0">
+ <layer name="events" width="20" height="20">
   <properties>
    <property name="15,16" value="GOTO tutorial_dungeon.tmx 19,36"/>
   </properties>
