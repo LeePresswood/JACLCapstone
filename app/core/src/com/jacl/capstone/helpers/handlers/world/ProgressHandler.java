@@ -6,9 +6,11 @@ package com.jacl.capstone.helpers.handlers.world;
  */
 public class ProgressHandler
 {
+	public int chapter;
 	
 	public ProgressHandler()
 	{
+		chapter = 1;
 	}
 	
 }
