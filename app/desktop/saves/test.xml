@@ -1,9 +1,9 @@
 <player>
 	<map>Chapter1/chapter1shartingarea.tmx</map>
-	<time>22:12</time>
+	<time>23:54</time>
 	<player_location>
-		<x>2</x>
-		<y>2</y>
+		<x>12</x>
+		<y>3</y>
 	</player_location>
 	<progress_flag>0</progress_flag>
 	<healthbar>
