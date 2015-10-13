@@ -48,6 +48,9 @@
   <object id="34" x="259" y="111" width="13" height="11"/>
  </objectgroup>
  <layer name="events" width="20" height="20" visible="0">
+  <properties>
+   <property name="15,16" value="GOTO chapter1-1.tmx 19,36"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJxjYBgFxIJCnoF2wSgYBaNgFAweAACBFgB+
   </data>
