@@ -33,6 +33,7 @@ public class MapHandler
 	
 	//Other map qualities.
 	public boolean is_outside;
+	public int chapter;
 	
 	/*
 	 * Note for future Lee:
@@ -50,6 +51,7 @@ public class MapHandler
 	public void handlerInit(String map_name, int map_chapter)
 	{
 		//Get map file path.
+		this.chapter = map_chapter;
 		String chapter_directory = "Chapter" + map_chapter + "/";
 		this.map_name = map_name;
 		map = new TmxMapLoader().load(MAP_DIRECTORY + chapter_directory + map_name);
