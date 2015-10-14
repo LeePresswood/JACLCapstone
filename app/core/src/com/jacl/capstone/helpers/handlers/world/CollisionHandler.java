@@ -86,7 +86,7 @@ public class CollisionHandler
 						entity.sprite.setY(last_location.y);
 					}
 				}
-				else
+				if(intersector.width < intersector.height)
 				{//Reset X.
 					//Don't stop trapped players from walking away if they get stuck.
 					if(entity instanceof Player)

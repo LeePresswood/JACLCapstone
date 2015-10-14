@@ -33,6 +33,7 @@ public class MapHandler
 	
 	//Other map qualities.
 	public boolean is_outside;
+	public int chapter;
 	
 	/*
 	 * Note for future Lee:
@@ -47,11 +48,13 @@ public class MapHandler
 	/**
 	 * Initialize portions of the map.
 	 */
-	public void handlerInit(String map_name)
+	public void handlerInit(String map_name, int map_chapter)
 	{
-		//Get map data.
+		//Get map file path.
+		this.chapter = map_chapter;
+		String chapter_directory = "Chapter" + map_chapter + "/";
 		this.map_name = map_name;
-		map = new TmxMapLoader().load(MAP_DIRECTORY + map_name);
+		map = new TmxMapLoader().load(MAP_DIRECTORY + chapter_directory + map_name);
 		tiled_map_renderer = new OrthogonalTiledMapRenderer(map);
 		
 		//Read bounds and sizes of map.

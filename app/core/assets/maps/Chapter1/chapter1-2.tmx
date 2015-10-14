@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="pkmset" tilewidth="16" tileheight="16">
+  <image source="../../tileset.png" width="1744" height="848"/>
+ </tileset>
+ <tileset firstgid="5778" name="natset" tilewidth="16" tileheight="16">
+  <image source="../../terrain.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="terrain" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwwEJAAAMA6AFeP+G67EcBwV7SVVVVVVVVVVVVfX5AbYNMgw=
+  </data>
+ </layer>
+ <layer name="background" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztmW0OgyAMQDkAHm7bbdh12XaNZVmMCyvQL7GSvoQ/JrY+ESkQgmORewzhuui1FLeYr7hdeyi3kidwTUKO/zFz1Htf6WAPrTzZPch5LHjkRr7yG0/IZ7bmwX1m7tivvSeMx6UR97boevT6qHaf9vhwj7k8uPEhDymaHtj7av0hqRO4Yx/6n2BjnW0edA85s3hAMTH/JkosaV1So6wvyvFajulEyDHSg9qnlBzuQXsmKEaPER6tehc7F/ag5IDmxlH/qz1xD1vM4lFDWu9Ca+ge0n05aB6V9gendpLun2DWLpyYs3hwsOaBXddp5sWuiVtw1xGYvLUzAu7avoV79POO9NBibw9Ovau1X6TpcRTu8WUGj7X+1T4T1jhH/qXl8ak31/Nt661VH1j5nji4hy1GzdWOc3bePpG3zA==
+  </data>
+ </layer>
+ <layer name="foreground" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2NEJwCAMBUAHcN+223eBUrUqGnoH+VaElwRTAojtyCmdDXXl1Tdeq/a9/v5OEN3ITLf02KcC4mndr2qzr48AsKPemfdl3+6dtRBJKS9PeZitlMFZ/2Jv5/qLIwqzC+IZse+OKmCs1ZnWE9jZDaTUeKk=
+  </data>
+ </layer>
+ <objectgroup name="collisionobjects"/>
+ <layer name="events" width="50" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+  </data>
+ </layer>
+</map>

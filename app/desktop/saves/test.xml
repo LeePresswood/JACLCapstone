@@ -1,11 +1,14 @@
 <player>
-	<map>Chapter1/chapter1shartingarea.tmx</map>
-	<time>22:12</time>
+	<map>chapter1-1.tmx</map>
+	<time>03:52</time>
 	<player_location>
-		<x>2</x>
-		<y>2</y>
+		<x>6</x>
+		<y>17</y>
 	</player_location>
-	<progress_flag>0</progress_flag>
+	<progress>
+		<chapter>1</chapter>
+		<progress_flag>0</progress_flag>
+	</progress>
 	<healthbar>
 		<health_max>10.0</health_max>
 		<health_current>10.0</health_current>
