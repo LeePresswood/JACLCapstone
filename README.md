@@ -1,5 +1,5 @@
 # Jewel
-###### Version 0.4 Alpha 
+###### Version 0.6 Alpha 
 * [See Current Change Log]
 * [See Previous Change Log]
 
@@ -41,5 +41,5 @@ You need Gradle installed on your machine in order to view, manipulate, or execu
 
 [libGDX]:http://libgdx.badlogicgames.com/
 [Tiled]:http://www.mapeditor.org/
-[See Current Change Log]:https://github.com/LeePresswood/JACLCapstone/blob/master/versions/v0.4a.md
-[See Previous Change Log]:https://github.com/LeePresswood/JACLCapstone/blob/master/versions/v0.3a.md
+[See Current Change Log]:https://github.com/LeePresswood/JACLCapstone/blob/master/versions/v0.5a.md
+[See Previous Change Log]:https://github.com/LeePresswood/JACLCapstone/blob/master/versions/v0.4a.md
