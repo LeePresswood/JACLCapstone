@@ -1,5 +1,5 @@
 # Jewel
-###### Version 0.6 Alpha 
+###### Version 0.5 Alpha 
 * [See Current Change Log]
 * [See Previous Change Log]
 
