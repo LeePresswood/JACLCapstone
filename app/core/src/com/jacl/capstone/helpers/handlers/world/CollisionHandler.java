@@ -63,7 +63,7 @@ public class CollisionHandler
 		{
 			//We want to speed up this search by only looking at objects within a small distance of the sprite.
 			obj.getRectangle().getCenter(center_holder1);
-			if(center_holder1.dst2(center_holder2) < COMPARE_DISTANCE && entity.sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
+			if(entity.sprite.getBoundingRectangle().overlaps(obj.getRectangle()))
 			{
 				//There was a collision. Stop further checking and return to last location. Because we made it here, we've overlapped. We want to get the intersection of the overlap.
 				Intersector.intersectRectangles(entity.sprite.getBoundingRectangle(), obj.getRectangle(), intersector);
@@ -86,7 +86,7 @@ public class CollisionHandler
 						entity.sprite.setY(last_location.y);
 					}
 				}
-				else
+				if(intersector.width < intersector.height)
 				{//Reset X.
 					//Don't stop trapped players from walking away if they get stuck.
 					if(entity instanceof Player)
@@ -105,8 +105,6 @@ public class CollisionHandler
 						entity.sprite.setX(last_location.x);
 					}
 				}
-				
-				return;
 			}
 		}
 	}

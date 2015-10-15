@@ -72,7 +72,7 @@ public class GoToEventEntity extends EventEntity
 				current_fade = FADE_TIME;
 				
 				//Initialize the new map. Must happen at this exact moment so that no crazy drawing happens while we switch over to the new map.
-				world.init(map_to_load, start_x, start_y, world.entity_handler.player.health_max, world.entity_handler.player.health_current, world.entity_handler.player.health_regen);
+				world.init(map_to_load, start_x, start_y, world.entity_handler.player.health_max, world.entity_handler.player.health_current, world.entity_handler.player.health_regen, world.map_handler.chapter);
 			}
 		}
 		else
