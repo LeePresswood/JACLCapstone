@@ -4,7 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
-import com.jacl.capstone.helpers.handlers.world.SaveHandler;
+import com.jacl.capstone.helpers.handlers.SaveHandler;
 import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.input.InputGame;
 import com.jacl.capstone.world.World;

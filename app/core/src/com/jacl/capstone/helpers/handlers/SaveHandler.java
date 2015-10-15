@@ -1,4 +1,4 @@
-package com.jacl.capstone.helpers.handlers.world;
+package com.jacl.capstone.helpers.handlers;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -15,9 +15,7 @@ import com.jacl.capstone.world.World;
 /**
  * Once the game is opened, read from the save state. Once it is
  * closed, write to the save state. Manage this balance here.
- * 
  * @author Lee
- *
  */
 public class SaveHandler
 {
