@@ -15,7 +15,7 @@ public class TextureHelper
 	private float frame_change;
 	private float frame_change_current;
 	private int frame_current = 1;
-	private Direction direction;
+	public Direction direction;
 	private Texture[] up_frames;
 	private Texture[] down_frames;
 	private Texture[] left_frames;
@@ -46,7 +46,7 @@ public class TextureHelper
 		readFromFile(folder);
 		
 		//On top of loading the images, we're also interested in setting the sprite's texture after loading. Let's just use down_frames[1].
-		direction = Direction.DOWN;
+		direction = Direction.UP;
 		entity.sprite.setRegion(down_frames[1]);
 	}
 	

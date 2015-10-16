@@ -4,10 +4,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.data.enums.Direction;
-import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
-import com.jacl.capstone.world.entities.player.items.ItemFactory;
 
 /**
  * This is the player that is controlled by input.There should 
@@ -67,39 +65,43 @@ public class Player extends MovingEntity
 	@Override
 	protected void move(float delta)
 	{
-		//Correct if diagonal.
-		if(up && left || up && right || down && left || down && right)
+		//We can't move while attacking
+		if(!attack.mid_attack)
 		{
-			move_speed /= FOURTH_ROOT_FOUR;
-		}
+			//Correct if diagonal.
+			if(up && left || up && right || down && left || down && right)
+			{
+				move_speed /= FOURTH_ROOT_FOUR;
+			}
 
-		//Do the translation.
-		if(up)
-		{
-			sprite.translateY(move_speed * delta);
-			last_direction = Direction.UP;
-		}
-		else if(down)
-		{
-			sprite.translateY(-move_speed * delta);
-			last_direction = Direction.DOWN;
-		}
-		
-		if(left)
-		{
-			sprite.translateX(-move_speed * delta);
-			last_direction = Direction.LEFT;
-		}
-		else if(right)
-		{
-			sprite.translateX(move_speed * delta);
-			last_direction = Direction.RIGHT;
-		}
-		
-		//Undo correction if diagonal.
-		if(up && left || up && right || down && left || down && right)
-		{
-			move_speed *= FOURTH_ROOT_FOUR;
+			//Do the translation.
+			if(up)
+			{
+				sprite.translateY(move_speed * delta);
+				last_direction = Direction.UP;
+			}
+			else if(down)
+			{
+				sprite.translateY(-move_speed * delta);
+				last_direction = Direction.DOWN;
+			}
+			
+			if(left)
+			{
+				sprite.translateX(-move_speed * delta);
+				last_direction = Direction.LEFT;
+			}
+			else if(right)
+			{
+				sprite.translateX(move_speed * delta);
+				last_direction = Direction.RIGHT;
+			}
+			
+			//Undo correction if diagonal.
+			if(up && left || up && right || down && left || down && right)
+			{
+				move_speed *= FOURTH_ROOT_FOUR;
+			}
 		}
 	}
 	
