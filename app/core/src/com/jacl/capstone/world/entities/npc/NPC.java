@@ -40,14 +40,4 @@ public abstract class NPC extends MovingEntity
 		ai.updatePosition(delta);
 		ai.updateAction(delta);
 	}
-	
-	@Override
-	/**
-	 * Attacking will be an action done through AI's updateAction.
-	 * Thus, this attack method is not required for AI. Let's use
-	 * it here to remove necessity for it in derivative classes.
-	 */
-	protected void attack(float delta)
-	{
-	}
 }

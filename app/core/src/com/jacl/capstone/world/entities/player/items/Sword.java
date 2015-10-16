@@ -7,13 +7,17 @@ import com.jacl.capstone.world.World;
 
 /**
  * Player's main weapon.
- * 
  * @author Lee
- *
  */
 public class Sword extends Weapon
 {
-
+	/**
+	 * This is how many degrees off the four cardinal compass directions the sword spawns.
+	 */
+	private final float OFF_90 = -15f;
+	
+	private final float ROTATE_DEGREE = 50f;
+	
 	public Sword(World world, Element data, Direction direction)
 	{
 		/* Note: The location of the sword will not be passed to this class.
@@ -25,38 +29,31 @@ public class Sword extends Weapon
 		
 		//All weapons will start from the player's center.
 		//The rotation of the sword will depend upon the player's direction.
+		sprite.setOrigin(0f, 0f);
+		sprite.setX(world.entity_handler.player.getCenterX());
+		sprite.setY(world.entity_handler.player.getCenterY());
 		if(direction == Direction.UP)
 		{
-			sprite.setX(world.entity_handler.player.getCenterX() - sprite.getWidth() / 2f);
-			sprite.setY(world.entity_handler.player.getCenterY());
+			sprite.setRotation(0f + OFF_90);
 		}
 		else if(direction == Direction.LEFT)
 		{
-			sprite.setX(world.entity_handler.player.getCenterX());
-			sprite.setY(world.entity_handler.player.getCenterY() - sprite.getHeight() / 2f);
-			sprite.setRotation(90f);
+			sprite.setRotation(90f + OFF_90);
 		}
 		else if(direction == Direction.DOWN)
 		{
-			sprite.setX(world.entity_handler.player.getCenterX() - sprite.getWidth() / 2f);
-			sprite.setY(world.entity_handler.player.getCenterY());
-			sprite.setRotation(180f);
+			sprite.setRotation(180f + OFF_90);
 		} 
 		else if(direction == Direction.RIGHT)
 		{
-			sprite.setX(world.entity_handler.player.getCenterX());
-			sprite.setY(world.entity_handler.player.getCenterY() - sprite.getHeight() / 2f);
-			sprite.setRotation(270f);
-		} 
+			sprite.setRotation(270f + OFF_90);
+		}
 	}
 
 	@Override
 	public void update(float delta)
 	{
-		//Update time and set flag if necessary.
-		use_time -= delta;
-		if(use_time <= 0f)
-			finished = true;
+		sprite.rotate(delta * ROTATE_DEGREE / use_time);
 	}
 
 	@Override
