@@ -30,14 +30,17 @@ public class AttackHelper
 	public void doAttack(ItemSelection item_selection)
 	{
 		//Only start an attack if we aren't already mid attack
-		//Get the selected item if a copy of the item does not exist.
-		weapon = ItemFactory.spawn(item_selection, world);
-		world.entity_handler.add(weapon);
-		
-		//We don't want to stop mid attack. Commit to the attack until the end by setting a mid-attack flag.
-		mid_attack = true;
-		attack_time_current = 0f;
-		attack_time_max = weapon.use_time;
+		if(!mid_attack)
+		{
+			//Get the selected item if a copy of the item does not exist.
+			weapon = ItemFactory.spawn(item_selection, world);
+			world.entity_handler.add(weapon);
+			
+			//We don't want to stop mid attack. Commit to the attack until the end by setting a mid-attack flag.
+			mid_attack = true;
+			attack_time_current = 0f;
+			attack_time_max = weapon.use_time;
+		}
 	}
 	
 	public void update(float delta)
