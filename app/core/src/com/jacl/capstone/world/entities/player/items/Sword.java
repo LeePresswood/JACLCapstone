@@ -7,13 +7,10 @@ import com.jacl.capstone.world.World;
 
 /**
  * Player's main weapon.
- * 
  * @author Lee
- *
  */
 public class Sword extends Weapon
 {
-
 	public Sword(World world, Element data, Direction direction)
 	{
 		/* Note: The location of the sword will not be passed to this class.
@@ -53,10 +50,6 @@ public class Sword extends Weapon
 	@Override
 	public void update(float delta)
 	{
-		//Update time and set flag if necessary.
-		use_time -= delta;
-		if(use_time <= 0f)
-			finished = true;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package com.jacl.capstone.world.entities.player.items;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
@@ -28,5 +29,6 @@ public abstract class Weapon extends Entity
 		this.knockback_on_collide = data.getBoolean("knockback_on_collide");
 		this.damage_on_collide = data.getFloat("damage_on_collide");
 		this.use_time = data.getFloat("use_time");
+		this.sprite.setRegion(world.screen.game.assets.get("textures/weapons/" + data.get("texture"), Texture.class));
 	}
 }
