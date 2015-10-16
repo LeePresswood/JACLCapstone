@@ -5,13 +5,15 @@ import com.badlogic.gdx.Preferences;
 
 public class GamePreferences {
 	//constants
-	private static final String PREF_VOLUME="volume";
-	private static final String PREF_MUSIC_ENABLED="music.enable";
-	private static final String PREF_SOUND_ENABLED="sound.enabled";
-	private static final String PREF_NAME="JEWEL";
+	private final String PREF_VOLUME="volume";
+	private final String PREF_MUSIC_ENABLED="music.enable";
+	private final String PREF_SOUND_ENABLED="sound.enabled";
+	private final String PREF_NAME;
+	private final String PREF_VERSION;
 	
-	public GamePreferences() {
-		
+	public GamePreferences(CapstoneGame capstoneGame) {
+		PREF_NAME = capstoneGame.GAME_NAME;
+		PREF_VERSION = capstoneGame.GAME_VERSION;
 	}
 	
 	protected Preferences getPrefs()
