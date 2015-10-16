@@ -9,13 +9,13 @@ import com.jacl.capstone.world.entities.MovingEntity;
 public class TextureHelper
 {
 	public MovingEntity entity;
+	public Direction direction;
 	
 	private final int MOVE_FRAMES = 2;
 	private float move_check = 0.1f;
 	private float frame_change;
 	private float frame_change_current;
 	private int frame_current = 1;
-	public Direction direction;
 	private Texture[] up_frames;
 	private Texture[] down_frames;
 	private Texture[] left_frames;

@@ -12,7 +12,6 @@ import com.jacl.capstone.world.entities.player.items.Weapon;
  */
 public class AttackHelper
 {
-	private MovingEntity entity;
 	private World world;
 	
 	public Weapon weapon;
@@ -22,7 +21,6 @@ public class AttackHelper
 	
 	public AttackHelper(MovingEntity entity)
 	{
-		this.entity = entity;
 		this.world = entity.world;
 	}
 	

@@ -32,19 +32,19 @@ public class Sword extends Weapon
 		sprite.setOrigin(0f, 0f);
 		sprite.setX(world.entity_handler.player.getCenterX());
 		sprite.setY(world.entity_handler.player.getCenterY());
-		if(world.entity_handler.player.texture_helper.direction == Direction.UP)
+		if(direction == Direction.UP)
 		{
 			sprite.setRotation(0f + OFF_90);
 		}
-		else if(world.entity_handler.player.texture_helper.direction == Direction.LEFT)
+		else if(direction == Direction.LEFT)
 		{
 			sprite.setRotation(90f + OFF_90);
 		}
-		else if(world.entity_handler.player.texture_helper.direction == Direction.DOWN)
+		else if(direction == Direction.DOWN)
 		{
 			sprite.setRotation(180f + OFF_90);
 		} 
-		else if(world.entity_handler.player.texture_helper.direction == Direction.RIGHT)
+		else if(direction == Direction.RIGHT)
 		{
 			sprite.setRotation(270f + OFF_90);
 		}

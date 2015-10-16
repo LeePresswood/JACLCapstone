@@ -10,7 +10,7 @@ public class ItemFactory
 		switch(type)
 		{
 			case SWORD:
-				return new Sword(world, world.data_handler.item_root.getChildByName("sword"), world.entity_handler.player.last_direction);
+				return new Sword(world, world.data_handler.item_root.getChildByName("sword"), world.entity_handler.player.texture_helper.direction);
 			default:
 				return null;
 		}

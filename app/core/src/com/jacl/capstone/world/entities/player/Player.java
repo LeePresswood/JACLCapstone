@@ -3,7 +3,6 @@ package com.jacl.capstone.world.entities.player;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
-import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
 
@@ -31,7 +30,7 @@ public class Player extends MovingEntity
 	
 	//Rather than AI, we will use signals to define the correct time to move/attack.
 	public boolean up, down, left, right;
-	public Direction last_direction;
+	//public Direction last_direction;
 
 	public Player(World world, float x, float y, Element data, float health_max, float health_current, float health_regen)
 	{
@@ -78,23 +77,19 @@ public class Player extends MovingEntity
 			if(up)
 			{
 				sprite.translateY(move_speed * delta);
-				last_direction = Direction.UP;
 			}
 			else if(down)
 			{
 				sprite.translateY(-move_speed * delta);
-				last_direction = Direction.DOWN;
 			}
 			
 			if(left)
 			{
 				sprite.translateX(-move_speed * delta);
-				last_direction = Direction.LEFT;
 			}
 			else if(right)
 			{
 				sprite.translateX(move_speed * delta);
-				last_direction = Direction.RIGHT;
 			}
 			
 			//Undo correction if diagonal.
