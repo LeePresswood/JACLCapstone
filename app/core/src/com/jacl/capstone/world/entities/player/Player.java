@@ -20,7 +20,6 @@ import com.jacl.capstone.world.entities.MovingEntity;
  * The player will be the only entity that communicates with 
  * EventEntities. During the block collision step, check for
  * collisions with event blocks.
- * 
  * @author Lee
  */
 public class Player extends MovingEntity
@@ -30,7 +29,6 @@ public class Player extends MovingEntity
 	
 	//Rather than AI, we will use signals to define the correct time to move/attack.
 	public boolean up, down, left, right;
-	//public Direction last_direction;
 
 	public Player(World world, float x, float y, Element data, float health_max, float health_current, float health_regen)
 	{
