@@ -25,7 +25,6 @@ import com.jacl.capstone.world.entities.player.items.ItemFactory;
  * collisions with event blocks.
  * 
  * @author Lee
- *
  */
 public class Player extends MovingEntity
 {

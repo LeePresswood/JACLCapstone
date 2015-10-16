@@ -13,10 +13,25 @@ public class AttackHelper
 	private MovingEntity entity;
 	
 	public boolean attacking, mid_attack;
+	public float attack_time_current;
+	public float attack_time_max;
 	
 	public AttackHelper(MovingEntity entity)
 	{
 		this.world = entity.world;
 		this.entity = entity;
+	}
+	
+	/**
+	 * Attack was requested. Send in the item we attacked with.
+	 */
+	public void doAttack()
+	{
+		
+	}
+	
+	public void update(float delta)
+	{
+		
 	}
 }
