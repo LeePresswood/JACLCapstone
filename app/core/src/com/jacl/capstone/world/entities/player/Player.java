@@ -110,40 +110,6 @@ public class Player extends MovingEntity
 		world.event_handler.doEventEntity(getCenterX(), getCenterY());
 	}
 	
-	@Override
-	/**
-	 * See if player requested an attack. If so, get selected item and do its motion and effect.
-	 */
-	protected void attack(float delta)
-	{		
-		if(attack.attacking || attack.mid_attack)
-		{
-			world.entity_handler.add(ItemFactory.spawn(ItemSelection.SWORD, world));
-			
-			//We don't want to stop mid attack. Commit to the attack until the end by setting a mid-attack flag.
-			//mid_attack = true;
-			
-			//Get the selected item if a copy of the item does not exist.
-			/*if(item == null)
-			 	item = ItemFactory.get(this);
-			 */
-			
-			//Update the item's animation and collision.
-			//item.update(delta);
-			/*for(Entity e : world.enemies)
-			 	if(world.collision.collidesWith(item, e)
-			 		e.damage();
-			 */
-			
-			//If the attack is over, set mid_attack to off. That way, the only thing affecting the player's attacking is the keyboard input.
-			/*if(item.isDone())
-			{
-				mid_attack = false;
-				item = null;
-			}*/
-		}
-	}
-	
 	/**
 	 * We're trying to save the game. Package the saveable items here.
 	 * @return In order: max, current, regen.
