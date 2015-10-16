@@ -89,15 +89,17 @@ public class ScreenOptions extends ScreenAdapter
 		heading = new Label(label, headingStyle);
 		heading.setFontScale(2);
 		
+		
+		//create sounds option 
 		/*
-		 * //create sounds option final CheckBox soundEffectsCheckbox = new
-		 * CheckBox("Sound Effects", skin);
-		 * soundEffectsCheckbox.setChecked(game.getPreferences
-		 * ().isSoundEffectsEnabled() ); soundEffectsCheckbox.addListener(new
-		 * ClickListener() { public void clicked(InputEvent event, float x, float
-		 * y) { boolean enabled = soundEffectsCheckbox.isChecked();
-		 * game.getPreferences().setSoundEffectsEnabled(enabled); } });
-		 */
+		final CheckBox soundEffectsCheckbox = new CheckBox("Sound Effects", skin);
+		soundEffectsCheckbox.setChecked(game.getPreferences().isSoundEffectsEnabled() ); 
+		soundEffectsCheckbox.addListener(newClickListener() { public void clicked(InputEvent event, float x, float y) { 
+				boolean enabled = soundEffectsCheckbox.isChecked();
+				game.getPreferences().setSoundEffectsEnabled(enabled); 
+			} 
+		});
+		*/
 		/*
 		 * //create music option final CheckBox musicEffectsCheckbox = new
 		 * CheckBox("Music Effects", skin);
