@@ -20,9 +20,6 @@ public abstract class Weapon extends Entity
 	public float damage_on_collide;
 	public float use_time;
 	
-	//When this flag is set, the item is finished being used.
-	public boolean finished;
-
 	public Weapon(World world, float x, float y, Element data)
 	{
 		super(world, x, y, data, Alignment.PLAYER);

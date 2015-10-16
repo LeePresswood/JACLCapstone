@@ -29,6 +29,7 @@ public class AttackHelper
 	 */
 	public void doAttack(ItemSelection item_selection)
 	{
+		//Only start an attack if we aren't already mid attack
 		//Get the selected item if a copy of the item does not exist.
 		weapon = ItemFactory.spawn(item_selection, world);
 		world.entity_handler.add(weapon);
@@ -48,7 +49,7 @@ public class AttackHelper
 			if(attack_time_current > attack_time_max)
 			{
 				mid_attack = false;
-				weapon.finished = true;
+				weapon.remove = true;
 			}
 		}
 	}
