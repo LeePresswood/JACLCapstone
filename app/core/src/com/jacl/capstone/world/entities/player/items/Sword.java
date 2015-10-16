@@ -22,9 +22,10 @@ public class Sword extends Weapon
 		
 		//All weapons will start from the player's center.
 		//The rotation of the sword will depend upon the player's direction.
+		sprite.setOrigin(0f, 0f);
 		if(direction == Direction.UP)
 		{
-			sprite.setX(world.entity_handler.player.getCenterX() - sprite.getWidth() / 2f);
+			sprite.setX(world.entity_handler.player.getCenterX());
 			sprite.setY(world.entity_handler.player.getCenterY());
 		}
 		else if(direction == Direction.LEFT)
@@ -44,12 +45,13 @@ public class Sword extends Weapon
 			sprite.setX(world.entity_handler.player.getCenterX());
 			sprite.setY(world.entity_handler.player.getCenterY() - sprite.getHeight() / 2f);
 			sprite.setRotation(270f);
-		} 
+		}
 	}
 
 	@Override
 	public void update(float delta)
 	{
+		sprite.rotate(delta * 90f);
 	}
 
 	@Override

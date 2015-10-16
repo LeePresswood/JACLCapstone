@@ -48,6 +48,7 @@ public class AttackHelper
 			if(attack_time_current > attack_time_max)
 			{
 				mid_attack = false;
+				weapon.finished = true;
 			}
 		}
 	}

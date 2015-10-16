@@ -3,9 +3,9 @@
 <items>
 	<sword>
 		<name>sword</name>
-		<texture>image.png</texture>
-		<width>0.5</width>
-		<height>1.0</height>
+		<texture>sword.jpg</texture>
+		<width>1.5</width>
+		<height>1.5</height>
 		<knockback_on_collide>true</knockback_on_collide>
 		<damage_on_collide>1.0</damage_on_collide>
 		<use_time>1.0</use_time>
