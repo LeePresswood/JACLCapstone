@@ -11,6 +11,11 @@ import com.jacl.capstone.world.World;
  */
 public class Sword extends Weapon
 {
+	/**
+	 * This is how many degrees off the four cardinal compass directions the sword spawns.
+	 */
+	private final float OFF_90 = -15f;
+	
 	public Sword(World world, Element data, Direction direction)
 	{
 		/* Note: The location of the sword will not be passed to this class.
@@ -27,26 +32,26 @@ public class Sword extends Weapon
 		sprite.setY(world.entity_handler.player.getCenterY());
 		if(direction == Direction.UP)
 		{
-			sprite.setRotation(0f);
+			sprite.setRotation(0f + OFF_90);
 		}
 		else if(direction == Direction.LEFT)
 		{
-			sprite.setRotation(90f);
+			sprite.setRotation(90f + OFF_90);
 		}
 		else if(direction == Direction.DOWN)
 		{
-			sprite.setRotation(180f);
+			sprite.setRotation(180f + OFF_90);
 		} 
 		else if(direction == Direction.RIGHT)
 		{
-			sprite.setRotation(270f);
+			sprite.setRotation(270f + OFF_90);
 		}
 	}
 
 	@Override
 	public void update(float delta)
 	{
-		sprite.rotate(delta * 30f / use_time);
+		sprite.rotate(delta * 45f / use_time);
 	}
 
 	@Override
