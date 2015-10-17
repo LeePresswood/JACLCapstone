@@ -1,4 +1,4 @@
-package com.jacl.capstone.helpers.handlers.world;
+package com.jacl.capstone.helpers.handlers;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -11,14 +11,11 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.hud.HUD;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.World;
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
 
 /**
  * Once the game is opened, read from the save state. Once it is
  * closed, write to the save state. Manage this balance here.
- * 
  * @author Lee
- *
  */
 public class SaveHandler
 {
@@ -36,6 +33,7 @@ public class SaveHandler
 	private final String INIT_Y = "0";
 	private final String INIT_MAP = "object_collision_test.tmx";
 	private final String INIT_PROGRESS_FLAG = "0";
+	private final String INIT_CHAPTER = "0";
 	
 	public SaveHandler(ScreenGame screen_game)
 	{
@@ -85,11 +83,16 @@ public class SaveHandler
 						.text(INIT_Y)
 					.pop()
 				.pop()
+				.element("player_location")
+					.element("chapter")
+						.text(INIT_CHAPTER)
+					.pop()
+					.element("progress_flag")
+						.text(INIT_PROGRESS_FLAG)
+					.pop()
+				.pop()
 				.element("map")
 					.text(INIT_MAP)
-				.pop()
-				.element("progress_flag")
-					.text(INIT_PROGRESS_FLAG)
 				.pop()
 				.element("texture")
 					.text("image.png")
@@ -140,8 +143,9 @@ public class SaveHandler
 			float healthbar_regen = root.getChildByName("healthbar").getFloat("health_regen");
 			int x = root.getChildByName("player_location").getInt("x");
 			int y = root.getChildByName("player_location").getInt("y");
+			int chapter = root.getChildByName("progress").getInt("chapter");
 			String map = root.get("map");
-			world.init(map, x, y, healthbar_max, healthbar_current, healthbar_regen);
+			world.init(map, x, y, healthbar_max, healthbar_current, healthbar_regen, chapter);
 			
 			//Push into HUD.
 			String time = root.get("time");
@@ -173,6 +177,7 @@ public class SaveHandler
 		file_string = file_string.replaceFirst("<x>.*</x>", "<x>" + world.entity_handler.player.getTileX() + "</x>");
 		file_string = file_string.replaceFirst("<y>.*</y>", "<y>" + world.entity_handler.player.getTileY() + "</y>");
 		file_string = file_string.replaceFirst("<map>.*</map>", "<map>" + world.map_handler.map_name + "</map>");
+		//file_string = file_string.replaceFirst("<chapter>.*</chapter>", "<chapter>" + ........ + "</chapter>");
 		
 		//Write to the XML file for saving.
 		file.writeString(file_string, false);

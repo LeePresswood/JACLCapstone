@@ -88,19 +88,27 @@ public class CameraHandler extends OrthographicCamera
 		//Adjust bounds in accordance with the world's bounds.
 		//Left side
 		if(position.x < viewportWidth / 2f)
+		{
 			position.x = viewportWidth / 2f;
+		}
 		
 		//Right side
 		else if(position.x > TILES_TOTAL_HORIZONTAL * TILE_SIZE - viewportWidth / 2f)
+		{
 			position.x = TILES_TOTAL_HORIZONTAL * TILE_SIZE - viewportWidth / 2f;
+		}
 		
 		//Bottom side
 		if(position.y < viewportHeight / 2f)
+		{
 			position.y = viewportHeight / 2f;
+		}
 		
 		//Top side
 		else if(position.y > TILES_TOTAL_VERTICAL * TILE_SIZE - viewportHeight / 2f)
+		{
 			position.y = TILES_TOTAL_VERTICAL * TILE_SIZE - viewportHeight / 2f;
+		}
 		
 		//Finish updating and end.
 		update();

@@ -21,7 +21,7 @@ public class AStar
 	{
 		this.width = width;
 		this.height = height;
-		open = new BinaryHeap(width * 4, false);
+		open = new BinaryHeap<PathNode>(width * 4, false);
 		nodes = new PathNode[width * height];
 	}
 	
@@ -51,7 +51,6 @@ public class AStar
 		open.add(root, 0);
 		
 		int lastColumn = width - 1, lastRow = height - 1;
-		int i = 0;
 		while(open.size > 0){
 			PathNode node = open.pop();
 			if(node.x == targetX && node.y == targetY){
@@ -84,7 +83,6 @@ public class AStar
 				addNode(node, x, y + 1, 10);
 			if(y > 0)
 				addNode(node, x, y - 1, 10);
-			i++;
 		}
 		return path;
 	}

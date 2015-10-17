@@ -41,7 +41,6 @@ public abstract class MovingEntity extends Entity
 		super(world, x, y, data, alignment);
 		
 		enemies = new ArrayList<MovingEntity>();
-		
 		knockback = new KnockbackHelper(this);
 		attack = new AttackHelper(this);
 		invincible = new InvincibleHelper(this);
@@ -64,7 +63,7 @@ public abstract class MovingEntity extends Entity
 		else
 		{//If not being knocked back, update normally with free movement.
 			move(delta);
-			attack(delta);
+			attack.update(delta);
 			entityCollision();
 		}
 		
@@ -184,5 +183,4 @@ public abstract class MovingEntity extends Entity
 	}
 	
 	protected abstract void move(float delta);
-	protected abstract void attack(float delta);
 }

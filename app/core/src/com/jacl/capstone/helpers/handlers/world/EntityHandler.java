@@ -3,6 +3,7 @@ package com.jacl.capstone.helpers.handlers.world;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
@@ -14,6 +15,7 @@ public class EntityHandler
 	
 	//We will have an all entities array that will be used for drawing. We can sort this array by the Y-values to give an effect of being in front of/behind each other.
 	public ArrayList<Entity> all_entities;
+	public Iterator<Entity> entity_iterator;
 	public float array_sort_counter_current;
 	public final float ARRAY_SORT_COUNTER_TICK = 0.75f;
 	
@@ -65,6 +67,8 @@ public class EntityHandler
 			array_sort_counter_current -= ARRAY_SORT_COUNTER_TICK;
 			Collections.sort(all_entities, new EntityComparator());
 		}
+		
+		remove();
 	}
 	
 	public void draw()
@@ -82,6 +86,21 @@ public class EntityHandler
 				e.draw(world.screen.batch);
 			}
 		world.screen.batch.end();
+	}
+	
+	/**
+	 * Clear out old entities.
+	 */
+	public void remove()
+	{
+		entity_iterator = all_entities.iterator();
+		while(entity_iterator.hasNext())
+		{
+			if(entity_iterator.next().remove)
+			{
+				entity_iterator.remove();
+			}
+		}
 	}
 	
 	/**
