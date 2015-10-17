@@ -2,18 +2,19 @@ package com.jacl.capstone.data;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 /**
  * This class should be used to load our assets.<br><br>
- * 
+ *
  * To load assets:<br>
  * load(<file_name>, <asset_type>.class);<br><br>
- * 
+ *
  * To retrieve them:<br>
  * get(<file_name>, <asset_type>.class);<br><br>
- * 
+ *
  * Various String constants will be added to allow
  * for calling of file names in a cleaner fashion.
  * @author Lee
@@ -21,10 +22,10 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 public class Assets extends AssetManager
 {
 	public static final String TEXTURE_BASE = "textures/";
-	
+
 	public static final String HEALTHBAR_BACKGROUND = "hud/healthbar/health-red.png";
 	public static final String HEALTHBAR_FOREGROUND = "hud/healthbar/health-blue.png";
-	
+
 	public static final String FONT_DIALOGUE = "hud/fonts/dialogue.fnt";
 	public static final String FONT12 = "hud/fonts/font12.fnt";
 	public static final String FONT16 = "hud/fonts/font16.fnt";
@@ -39,16 +40,16 @@ public class Assets extends AssetManager
 	public static final String FONT52 = "hud/fonts/font52.fnt";
 	public static final String FONT56 = "hud/fonts/font56.fnt";
 	public static final String FONT60 = "hud/fonts/font60.fnt";
-	
+
 	public Assets()
 	{
 		/* Note: These will all be loaded asynchronously.
 		 * Trying to grab these assets before they are
 		 * fully loaded will result in an error and
 		 * a crash.
-		 * 
+		 *
 		 * To fix this, we will want to either
-		 * finishLoading() at the end of this constructor 
+		 * finishLoading() at the end of this constructor
 		 * or create a loading screen screen that shows
 		 * the progress of our assets being loaded.
 		 *
@@ -57,36 +58,36 @@ public class Assets extends AssetManager
 		 */
 		//Load different assets.
 		//Audio
-		
-		
+
+
 		//Fonts
 		loadFontsFromFolder("hud/fonts/");
-		
+
 		//Textures
 		loadTexturesFromFolder(TEXTURE_BASE + "player/");
 
 		load(HEALTHBAR_BACKGROUND, Texture.class);
 		load(HEALTHBAR_FOREGROUND, Texture.class);
-		
+
 		finishLoading();
 	}
-	
+
 	private void loadFontsFromFolder(String folder)
 	{
-		for(String file : Gdx.files.internal(folder).readString().split("\n"))
+		for(FileHandle file : Gdx.files.internal(folder).list())
 		{
-			if(file.endsWith(".fnt"))
+			if(file.extension().equals("fnt"))
 			{
-				load(folder + file, BitmapFont.class);
+				load(file.path(), BitmapFont.class);
 			}
 		}
 	}
-	
+
 	private void loadTexturesFromFolder(String folder)
 	{
-		for(String file : Gdx.files.internal(folder).readString().split("\n"))
+		for(FileHandle file : Gdx.files.internal(folder).list())
 		{
-			load(folder + file, Texture.class);
+			load(file.path(), Texture.class);
 		}
 	}
 }
