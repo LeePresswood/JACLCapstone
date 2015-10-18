@@ -35,6 +35,8 @@ public class ScreenOptions extends ScreenAdapter
 	public CapstoneGame game;
 	private TextureAtlas atlas;
 	private Skin skin;
+	private TextureAtlas atlas1;
+	private Skin skin1;
 	private TextButton buttonBack;
 	private Table table;
 	private BitmapFont bitmap;
@@ -55,6 +57,9 @@ public class ScreenOptions extends ScreenAdapter
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
+		
+		atlas1 = new TextureAtlas("uiskin.atlas");
+		skin1 = new Skin(atlas1);
 		
 		// TableLayout layout = table.getTableLayout();
 		
@@ -122,8 +127,8 @@ public class ScreenOptions extends ScreenAdapter
 		 * is not defined in the skin you're using. You'll need to make a LabelStyle to fix this.
 		 */
 		SliderStyle style = new SliderStyle();
-		style.background = skin.getDrawable("button.up");
-		style.knob = skin.getDrawable("button.down");
+		style.background = skin1.getDrawable("default-slider");
+		style.knob = skin1.getDrawable("default-slider-knob");
 		
 		final Slider volumeSlider = new Slider(0.1f, 4, 0.1f, false, style);
 		volumeSlider.setValue(1);
