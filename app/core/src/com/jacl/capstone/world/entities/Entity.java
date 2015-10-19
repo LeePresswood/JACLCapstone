@@ -27,6 +27,8 @@ public abstract class Entity
 	
 	public Sprite sprite;
 	public Vector2 last_location;
+	
+	public boolean remove;
 		
 	public Entity(World world, float x, float y, Element data, Alignment alignment)
 	{

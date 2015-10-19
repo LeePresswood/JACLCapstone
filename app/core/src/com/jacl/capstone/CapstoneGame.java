@@ -17,7 +17,7 @@ public class CapstoneGame extends Game
 	{
 		this.GAME_NAME = gameName;
 		this.GAME_VERSION = gameVersion;
-		preferences = new GamePreferences();
+		preferences = new GamePreferences(this);
 	}
 	
 	//Collaborators
