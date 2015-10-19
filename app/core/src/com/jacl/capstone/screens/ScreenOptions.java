@@ -43,6 +43,7 @@ public class ScreenOptions extends ScreenAdapter
 	private BitmapFont bitmap;
 	private Label heading;
 	private Label volumeValue;
+	private Slider volumeSlider;
 	
 	@Override
 	/**
@@ -65,7 +66,7 @@ public class ScreenOptions extends ScreenAdapter
 		// TableLayout layout = table.getTableLayout();
 		
 		// fonts
-		table = new Table(skin);
+		table = new Table(skin1);
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"), false);
 		
@@ -129,10 +130,11 @@ public class ScreenOptions extends ScreenAdapter
 		style.background = skin1.getDrawable("default-slider");
 		style.knob = skin1.getDrawable("default-slider-knob");
 		
-		final Slider volumeSlider = new Slider(0.1f, 4, 0.1f, false, style);
-		volumeSlider.setValue(1);
+		volumeSlider = new Slider(0.1f, 4, 0.1f, false, style);
+		volumeSlider.setValue(2);
 		volumeSlider.getCaptureListeners();
-		// volumeValue = new Label("volume", skin);
+		CharSequence x = "50";
+		volumeValue = new Label(x,headingStyle);
 		updateVolumeLabel();
 		
 		// add together stuffs
@@ -140,8 +142,8 @@ public class ScreenOptions extends ScreenAdapter
 		table.row();
 		table.getCell(heading).spaceBottom(70);
 		table.add(volumeSlider);
+		table.add(volumeValue);
 		table.row();
-		// table.add(volumeValue);
 		table.add(musicEffectsCheckbox);
 		table.row();
 		table.add(soundEffectsCheckbox);
@@ -171,9 +173,15 @@ public class ScreenOptions extends ScreenAdapter
 		bitmap.dispose();
 	}
 	
+	public void update(float delta){
+		float volume = (volumeSlider.getValue()/4*100);
+		volumeValue.setText(String.format("%0.1f%%",volume));
+	}
+	
 	private void updateVolumeLabel()
 	{
-		// float volume=(game.getPreferences().getVolume()*100);
-		// volumeValue.setText(String.format((Locale.US, "%0.1f%%",volume));
+		//float volume=(game.getPreferences().getVolume()*100);
+		//float volume = volumeSlider.getValue();
+		//volumeValue.setText(String.format("%0.1f%%",volume));
 	}
 }
