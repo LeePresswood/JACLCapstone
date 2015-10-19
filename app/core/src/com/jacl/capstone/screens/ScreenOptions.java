@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox.CheckBoxStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -95,11 +96,17 @@ public class ScreenOptions extends ScreenAdapter
 		heading.setFontScale(2);
 		
 		
-		//create sounds option 
-		/*
-		final CheckBox soundEffectsCheckbox = new CheckBox("Sound Effects", skin);
-		soundEffectsCheckbox.setChecked(game.getPreferences().isSoundEffectsEnabled() ); 
-		soundEffectsCheckbox.addListener(newClickListener() { public void clicked(InputEvent event, float x, float y) { 
+		// make checkbox Style
+		CheckBoxStyle checkboxStyle = new CheckBoxStyle();
+		checkboxStyle.checkboxOff = skin1.getDrawable("check-off");
+		checkboxStyle.checkboxOn = skin1.getDrawable("check-on");
+		checkboxStyle.font=bitmap;
+		
+		//create sound checkbox effects
+		final CheckBox soundEffectsCheckbox = new CheckBox("Sound Effects", checkboxStyle);
+		soundEffectsCheckbox.setChecked(true);
+		//soundEffectsCheckbox.setChecked(game.getPreferences().isSoundEffectsEnabled() ); 
+		/*soundEffectsCheckbox.addListener(newClickListener() { public void clicked(InputEvent event, float x, float y) { 
 				boolean enabled = soundEffectsCheckbox.isChecked();
 				game.getPreferences().setSoundEffectsEnabled(enabled); 
 			} 
@@ -142,9 +149,9 @@ public class ScreenOptions extends ScreenAdapter
 		table.getCell(heading).spaceBottom(70);
 		table.add(volumeSlider);
 		// table.add(volumeValue);
-		// table.add(musicEffectsCheckbox);
+		//table.add(musicEffectsCheckbox);
 		// table.row();
-		// table.add(soundEffectsCheckbox);
+		table.add(soundEffectsCheckbox);
 		// table.row();
 		table.add(buttonBack);
 		table.row();
