@@ -110,18 +110,10 @@ public class ScreenOptions extends ScreenAdapter
 				boolean enabled = soundEffectsCheckbox.isChecked();
 				game.getPreferences().setSoundEffectsEnabled(enabled); 
 			} 
-		});
-		*/
-		/*
-		 * //create music option final CheckBox musicEffectsCheckbox = new
-		 * CheckBox("Music Effects", skin);
-		 * musicEffectsCheckbox.setChecked(game.getPreferences
-		 * ().isMusicEffectsEnabled() ); musicEffectsCheckbox.addListener(new
-		 * ClickListener() { public void clicked(InputEvent event, float x, float
-		 * y) { boolean enabled = musicEffectsCheckbox.isChecked();
-		 * game.getPreferences().setMusicEffectsEnabled(enabled); } });
-		 */
-		// range is [0.0,1.0]; step is 0.1f
+		});*/
+		//create music checkbox effects
+		final CheckBox musicEffectsCheckbox = new CheckBox("Music Effects", checkboxStyle);
+		musicEffectsCheckbox.setChecked(true);
 		/**
 		 * slider doesn't work correctly
 		 * 
@@ -148,11 +140,12 @@ public class ScreenOptions extends ScreenAdapter
 		table.row();
 		table.getCell(heading).spaceBottom(70);
 		table.add(volumeSlider);
+		table.row();
 		// table.add(volumeValue);
-		//table.add(musicEffectsCheckbox);
-		// table.row();
+		table.add(musicEffectsCheckbox);
+		table.row();
 		table.add(soundEffectsCheckbox);
-		// table.row();
+		table.row();
 		table.add(buttonBack);
 		table.row();
 		stage.addActor(table);
