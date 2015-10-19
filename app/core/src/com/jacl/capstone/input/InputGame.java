@@ -3,6 +3,7 @@ package com.jacl.capstone.input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.jacl.capstone.data.enums.EnemyType;
+import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.entities.npc.enemies.EnemyFactory;
 
@@ -43,9 +44,6 @@ public class InputGame implements InputProcessor
 				case Keys.RIGHT:
 				case Keys.D:
 					screen.world.entity_handler.player.right = true;
-					break;
-				case Keys.SPACE:
-					screen.world.entity_handler.player.attack.attacking = true;
 					break;
 			}
 		}
@@ -98,7 +96,7 @@ public class InputGame implements InputProcessor
 					screen.world.entity_handler.player.right = false;
 					break;
 				case Keys.SPACE:
-					screen.world.entity_handler.player.attack.attacking = false;
+					screen.world.entity_handler.player.attack.doAttack(ItemSelection.SWORD);;
 					break;
 				case Keys.E:
 					screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));

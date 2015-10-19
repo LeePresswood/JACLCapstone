@@ -3,11 +3,8 @@ package com.jacl.capstone.world.entities.player;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
-import com.jacl.capstone.data.enums.Direction;
-import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
-import com.jacl.capstone.world.entities.player.items.ItemFactory;
 
 /**
  * This is the player that is controlled by input.There should 
@@ -23,9 +20,7 @@ import com.jacl.capstone.world.entities.player.items.ItemFactory;
  * The player will be the only entity that communicates with 
  * EventEntities. During the block collision step, check for
  * collisions with event blocks.
- * 
  * @author Lee
- *
  */
 public class Player extends MovingEntity
 {
@@ -34,7 +29,6 @@ public class Player extends MovingEntity
 	
 	//Rather than AI, we will use signals to define the correct time to move/attack.
 	public boolean up, down, left, right;
-	public Direction last_direction;
 
 	public Player(World world, float x, float y, Element data, float health_max, float health_current, float health_regen)
 	{
@@ -68,39 +62,39 @@ public class Player extends MovingEntity
 	@Override
 	protected void move(float delta)
 	{
-		//Correct if diagonal.
-		if(up && left || up && right || down && left || down && right)
+		//We can't move while attacking
+		if(!attack.mid_attack)
 		{
-			move_speed /= FOURTH_ROOT_FOUR;
-		}
+			//Correct if diagonal.
+			if(up && left || up && right || down && left || down && right)
+			{
+				move_speed /= FOURTH_ROOT_FOUR;
+			}
 
-		//Do the translation.
-		if(up)
-		{
-			sprite.translateY(move_speed * delta);
-			last_direction = Direction.UP;
-		}
-		else if(down)
-		{
-			sprite.translateY(-move_speed * delta);
-			last_direction = Direction.DOWN;
-		}
-		
-		if(left)
-		{
-			sprite.translateX(-move_speed * delta);
-			last_direction = Direction.LEFT;
-		}
-		else if(right)
-		{
-			sprite.translateX(move_speed * delta);
-			last_direction = Direction.RIGHT;
-		}
-		
-		//Undo correction if diagonal.
-		if(up && left || up && right || down && left || down && right)
-		{
-			move_speed *= FOURTH_ROOT_FOUR;
+			//Do the translation.
+			if(up)
+			{
+				sprite.translateY(move_speed * delta);
+			}
+			else if(down)
+			{
+				sprite.translateY(-move_speed * delta);
+			}
+			
+			if(left)
+			{
+				sprite.translateX(-move_speed * delta);
+			}
+			else if(right)
+			{
+				sprite.translateX(move_speed * delta);
+			}
+			
+			//Undo correction if diagonal.
+			if(up && left || up && right || down && left || down && right)
+			{
+				move_speed *= FOURTH_ROOT_FOUR;
+			}
 		}
 	}
 	
@@ -109,40 +103,6 @@ public class Player extends MovingEntity
 	{//On top of normal updating, check for events we may have started.
 		super.update(delta);
 		world.event_handler.doEventEntity(getCenterX(), getCenterY());
-	}
-	
-	@Override
-	/**
-	 * See if player requested an attack. If so, get selected item and do its motion and effect.
-	 */
-	protected void attack(float delta)
-	{		
-		if(attack.attacking || attack.mid_attack)
-		{
-			world.entity_handler.add(ItemFactory.spawn(ItemSelection.SWORD, world));
-			
-			//We don't want to stop mid attack. Commit to the attack until the end by setting a mid-attack flag.
-			//mid_attack = true;
-			
-			//Get the selected item if a copy of the item does not exist.
-			/*if(item == null)
-			 	item = ItemFactory.get(this);
-			 */
-			
-			//Update the item's animation and collision.
-			//item.update(delta);
-			/*for(Entity e : world.enemies)
-			 	if(world.collision.collidesWith(item, e)
-			 		e.damage();
-			 */
-			
-			//If the attack is over, set mid_attack to off. That way, the only thing affecting the player's attacking is the keyboard input.
-			/*if(item.isDone())
-			{
-				mid_attack = false;
-				item = null;
-			}*/
-		}
 	}
 	
 	/**
