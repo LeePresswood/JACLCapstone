@@ -33,10 +33,29 @@ public class ScreenCredit extends ScreenAdapter{
 	private TextureAtlas atlas;
 	private Skin skin;
 	private TextButton buttonBack;
-	private BitmapFont bitmap;
 	private Label heading;
+	private BitmapFont bitmap44;
+	private BitmapFont bitmap24;
+	private BitmapFont bitmap28;
 
-	private static final String shortStory="";
+	private static final String shortStory="This is the beginning of story in Jewel\n"
+			+ "In a vast kingdom named Jewel,\n "
+			+ "there once lived a family secluded in the woods.\n"
+			+ "In this family there was a mother, a father, \n"
+			+ "an older brother, and a younger sister.\n"
+			+ "The mother and father loved their children\n"
+			+ "very much, teaching them the ways of life as\n"
+			+ "the children grew.\n"
+			+ "The oldest brother was named Malc,\n"
+			+ "short for Malachite, and he was always curious\n"
+			+ "for knowledge.\n"
+			+ "He would question his mother and father about\n "
+			+ "everything in life and why the things\n"
+			+ "were the way they are.\n"
+			+ "The younger sister was named Dia, short for\n"
+			+ "Diamond, and she was very loyal and followed\n"
+			+ "her parents orders to a tee.\n";
+	
 	@Override
 	/**
 	 * This is called when the credits button on main menu is selected.
@@ -49,49 +68,46 @@ public class ScreenCredit extends ScreenAdapter{
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
-		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
-		
+		bitmap44 = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
+		bitmap24 = new BitmapFont(Gdx.files.internal("hud/fonts/font24.fnt"),false);
+		bitmap28 = new BitmapFont(Gdx.files.internal("hud/fonts/font28.fnt"),false);
 		//heading
-		String label = "Credits";
-		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
+		String label = "About";
+		LabelStyle headingStyle = new LabelStyle(bitmap44, Color.WHITE);
 		heading = new Label(label,headingStyle);
 		heading.setFontScale(2);
 		
 		//create scrollPane content
-		LabelStyle contentStyle = new LabelStyle(bitmap, Color.WHITE);
-		final Label text = new Label(shortStory,contentStyle);
-		text.setFontScale(1);
+		LabelStyle mainStyle = new LabelStyle(bitmap28, Color.WHITE);
+		LabelStyle contentStyle = new LabelStyle(bitmap24, Color.WHITE);
+		final Label text = new Label(shortStory,mainStyle);
 		text.setAlignment(Align.center);
 		text.setWrap(true);
 		//add label for contributors
-		final Label contributor = new Label("Contributor: ",contentStyle);
-		text.setFontScale(1);
+		final Label contributor = new Label("Contributor: ",mainStyle);
 		contributor.setAlignment(Align.center);
 		contributor.setWrap(true);
 		final Label lee = new Label(" - Lee Presswood",contentStyle);
-		text.setFontScale(1);
 		lee.setAlignment(Align.center);
 		lee.setWrap(true);
 		final Label cj = new Label(" - Charles Voege",contentStyle);
-		text.setFontScale(1);
 		cj.setAlignment(Align.center);
 		cj.setWrap(true);
 		final Label joe = new Label(" - Joseph Trammel",contentStyle);
-		text.setFontScale(1);
 		joe.setAlignment(Align.center);
 		joe.setWrap(true);
 		final Label amy = new Label(" - Amy Schmidt",contentStyle);
-		text.setFontScale(1);
 		amy.setAlignment(Align.center);
 		amy.setWrap(true);
 		final Label huy = new Label(" - Huy Trinh",contentStyle);
-		text.setFontScale(1);
 		huy.setAlignment(Align.center);
 		huy.setWrap(true);
 		
 		// scroll table and fonts
 		final Table scrollTable = new Table();
 		scrollTable.add(text);
+		scrollTable.row();
+		scrollTable.row();
 		scrollTable.row();
 		scrollTable.add(contributor);
 		scrollTable.row();
@@ -106,6 +122,8 @@ public class ScreenCredit extends ScreenAdapter{
 		scrollTable.add(huy);
 		scrollTable.row();
 		final ScrollPane scroller = new ScrollPane(scrollTable);
+		//scroller.fling(0.5f, 0.1f, 0.1f);
+		//scroller.setFlingTime(2);
 		
 		final Table table = new Table();
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -116,7 +134,7 @@ public class ScreenCredit extends ScreenAdapter{
 		textButtonStyle.down = skin.getDrawable("button.down");
 		textButtonStyle.pressedOffsetX = 1;
 		textButtonStyle.pressedOffsetY = -1;
-		textButtonStyle.font = bitmap;
+		textButtonStyle.font = bitmap28;
 		
 		//back button which is back to main menu
 		buttonBack = new TextButton("Back", textButtonStyle);
@@ -131,10 +149,11 @@ public class ScreenCredit extends ScreenAdapter{
 		//add together stuffs
 		table.add(heading);
 		table.row();
-		table.getCell(heading).spaceBottom(70);
+		table.getCell(heading).spaceTop(0);
 		table.add(scroller).fill().expand();
-		table.add(buttonBack);
 		table.row();
+		table.add(buttonBack);
+		
 		stage.addActor(table);
 		
 	}
@@ -153,6 +172,8 @@ public class ScreenCredit extends ScreenAdapter{
 		stage.dispose();
 		atlas.dispose();
 		skin.dispose();
-		bitmap.dispose();
+		bitmap44.dispose();
+		bitmap24.dispose();
+		bitmap28.dispose();
 	}
 }
