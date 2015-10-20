@@ -90,7 +90,6 @@ public class ScreenCredit extends ScreenAdapter{
 		huy.setWrap(true);
 		
 		// scroll table and fonts
-		/*
 		final Table scrollTable = new Table();
 		scrollTable.add(text);
 		scrollTable.row();
@@ -106,8 +105,7 @@ public class ScreenCredit extends ScreenAdapter{
 		scrollTable.row();
 		scrollTable.add(huy);
 		scrollTable.row();
-		*/
-		//final ScrollPane scroller = new ScrollPane(scrollTable);
+		final ScrollPane scroller = new ScrollPane(scrollTable);
 		
 		final Table table = new Table();
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -134,7 +132,7 @@ public class ScreenCredit extends ScreenAdapter{
 		table.add(heading);
 		table.row();
 		table.getCell(heading).spaceBottom(70);
-		//table.add(scroller);
+		table.add(scroller).fill().expand();
 		table.add(buttonBack);
 		table.row();
 		stage.addActor(table);
