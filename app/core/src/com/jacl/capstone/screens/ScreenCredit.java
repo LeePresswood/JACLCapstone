@@ -47,33 +47,50 @@ public class ScreenCredit extends ScreenAdapter{
 		
 		Gdx.input.setInputProcessor(stage);
 		
-		atlas = new TextureAtlas("uiskin.atlas");
+		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
+		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
 		
-		final Label text = new Label(shortStory,skin);
+		//heading
+		String label = "Credits";
+		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
+		heading = new Label(label,headingStyle);
+		heading.setFontScale(2);
+		
+		//create scrollPane content
+		LabelStyle contentStyle = new LabelStyle(bitmap, Color.WHITE);
+		final Label text = new Label(shortStory,contentStyle);
+		text.setFontScale(1);
 		text.setAlignment(Align.center);
 		text.setWrap(true);
 		//add label for contributors
-		final Label contributor = new Label("Contributor: ",skin);
+		final Label contributor = new Label("Contributor: ",contentStyle);
+		text.setFontScale(1);
 		contributor.setAlignment(Align.center);
 		contributor.setWrap(true);
-		final Label lee = new Label(" - Lee Presswood",skin);
+		final Label lee = new Label(" - Lee Presswood",contentStyle);
+		text.setFontScale(1);
 		lee.setAlignment(Align.center);
 		lee.setWrap(true);
-		final Label cj = new Label(" - Charles Voege",skin);
+		final Label cj = new Label(" - Charles Voege",contentStyle);
+		text.setFontScale(1);
 		cj.setAlignment(Align.center);
 		cj.setWrap(true);
-		final Label joe = new Label(" - Joseph Trammel",skin);
+		final Label joe = new Label(" - Joseph Trammel",contentStyle);
+		text.setFontScale(1);
 		joe.setAlignment(Align.center);
 		joe.setWrap(true);
-		final Label amy = new Label(" - Amy Schmidt",skin);
+		final Label amy = new Label(" - Amy Schmidt",contentStyle);
+		text.setFontScale(1);
 		amy.setAlignment(Align.center);
 		amy.setWrap(true);
-		final Label huy = new Label(" - Huy Trinh",skin);
+		final Label huy = new Label(" - Huy Trinh",contentStyle);
+		text.setFontScale(1);
 		huy.setAlignment(Align.center);
 		huy.setWrap(true);
 		
 		// scroll table and fonts
+		/*
 		final Table scrollTable = new Table();
 		scrollTable.add(text);
 		scrollTable.row();
@@ -89,17 +106,11 @@ public class ScreenCredit extends ScreenAdapter{
 		scrollTable.row();
 		scrollTable.add(huy);
 		scrollTable.row();
-		
-		final ScrollPane scroller = new ScrollPane(scrollTable);
+		*/
+		//final ScrollPane scroller = new ScrollPane(scrollTable);
 		
 		final Table table = new Table();
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		table.add(scroller).fill().expand();
-		
-		//this.stage.addActor(table);
-		
-		
-		/*bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
 		
 		//buttons styles
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
@@ -119,18 +130,13 @@ public class ScreenCredit extends ScreenAdapter{
 		});
 		buttonBack.pad(5);
 		
-		//heading
-		String label = "Credits";
-		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
-		heading = new Label(label,headingStyle);
-		heading.setFontScale(2);
-		
 		//add together stuffs
 		table.add(heading);
 		table.row();
 		table.getCell(heading).spaceBottom(70);
+		//table.add(scroller);
 		table.add(buttonBack);
-		table.row();*/
+		table.row();
 		stage.addActor(table);
 		
 	}
