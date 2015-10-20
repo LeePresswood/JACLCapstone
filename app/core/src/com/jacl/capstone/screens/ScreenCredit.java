@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -72,7 +73,7 @@ public class ScreenCredit extends ScreenAdapter{
 		huy.setAlignment(Align.center);
 		huy.setWrap(true);
 		
-		// scrolltable and fonts
+		// scroll table and fonts
 		final Table scrollTable = new Table();
 		scrollTable.add(text);
 		scrollTable.row();
@@ -88,8 +89,17 @@ public class ScreenCredit extends ScreenAdapter{
 		scrollTable.row();
 		scrollTable.add(huy);
 		scrollTable.row();
-		scrolltable.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
+		
+		final ScrollPane scroller = new ScrollPane(scrollTable);
+		
+		final Table table = new Table();
+		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		table.add(scroller).fill().expand();
+		
+		//this.stage.addActor(table);
+		
+		
+		/*bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
 		
 		//buttons styles
 		TextButtonStyle textButtonStyle = new TextButtonStyle();
@@ -120,7 +130,7 @@ public class ScreenCredit extends ScreenAdapter{
 		table.row();
 		table.getCell(heading).spaceBottom(70);
 		table.add(buttonBack);
-		table.row();
+		table.row();*/
 		stage.addActor(table);
 		
 	}
