@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.jacl.capstone.CapstoneGame;
 
@@ -24,17 +25,17 @@ public class ScreenCredit extends ScreenAdapter{
 		this.game = game;
 		this.last_screen = game.getScreen();
 	}
-	private Screen last_screen;
 	
+	private Screen last_screen;
 	private Stage stage;
 	public CapstoneGame game;
 	private TextureAtlas atlas;
 	private Skin skin;
 	private TextButton buttonBack;
-	private Table table;
 	private BitmapFont bitmap;
 	private Label heading;
 
+	private static final String shortStory="";
 	@Override
 	/**
 	 * This is called when the credits button on main menu is selected.
@@ -45,12 +46,49 @@ public class ScreenCredit extends ScreenAdapter{
 		
 		Gdx.input.setInputProcessor(stage);
 		
-		atlas = new TextureAtlas("atlas.pack");
+		atlas = new TextureAtlas("uiskin.atlas");
 		skin = new Skin(atlas);
 		
-		//fonts
-		table = new Table(skin);
-		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		final Label text = new Label(shortStory,skin);
+		text.setAlignment(Align.center);
+		text.setWrap(true);
+		//add label for contributors
+		final Label contributor = new Label("Contributor: ",skin);
+		contributor.setAlignment(Align.center);
+		contributor.setWrap(true);
+		final Label lee = new Label(" - Lee Presswood",skin);
+		lee.setAlignment(Align.center);
+		lee.setWrap(true);
+		final Label cj = new Label(" - Charles Voege",skin);
+		cj.setAlignment(Align.center);
+		cj.setWrap(true);
+		final Label joe = new Label(" - Joseph Trammel",skin);
+		joe.setAlignment(Align.center);
+		joe.setWrap(true);
+		final Label amy = new Label(" - Amy Schmidt",skin);
+		amy.setAlignment(Align.center);
+		amy.setWrap(true);
+		final Label huy = new Label(" - Huy Trinh",skin);
+		huy.setAlignment(Align.center);
+		huy.setWrap(true);
+		
+		// scrolltable and fonts
+		final Table scrollTable = new Table();
+		scrollTable.add(text);
+		scrollTable.row();
+		scrollTable.add(contributor);
+		scrollTable.row();
+		scrollTable.add(lee);
+		scrollTable.row();
+		scrollTable.add(cj);
+		scrollTable.row();
+		scrollTable.add(joe);
+		scrollTable.row();
+		scrollTable.add(amy);
+		scrollTable.row();
+		scrollTable.add(huy);
+		scrollTable.row();
+		scrolltable.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
 		
 		//buttons styles
