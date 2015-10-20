@@ -105,9 +105,7 @@ public class ScreenCredit extends ScreenAdapter{
 		
 		// scroll table and fonts
 		final Table scrollTable = new Table();
-		scrollTable.add(text);
-		scrollTable.row();
-		scrollTable.row();
+		scrollTable.add(text).padBottom(80);
 		scrollTable.row();
 		scrollTable.add(contributor);
 		scrollTable.row();
