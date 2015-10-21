@@ -75,20 +75,20 @@ public class Assets extends AssetManager
 
 	private void loadFontsFromFolder(String folder)
 	{
-		for(FileHandle file : Gdx.files.internal(folder).list())
-		{System.out.println(file);
+		for(FileHandle file : Gdx.files.internal("../core/assets/" + folder).list())
+		{
 			if(file.extension().equals("fnt"))
 			{
-				load(file.path(), BitmapFont.class);
+				load(folder + file.name(), BitmapFont.class);
 			}
 		}
 	}
 
 	private void loadTexturesFromFolder(String folder)
 	{
-		for(FileHandle file : Gdx.files.internal(folder).list())
+		for(FileHandle file : Gdx.files.internal("../core/assets/" + folder).list())
 		{
-			load(file.path(), Texture.class);
+			load(folder + file.name(), Texture.class);
 		}
 	}
 }
