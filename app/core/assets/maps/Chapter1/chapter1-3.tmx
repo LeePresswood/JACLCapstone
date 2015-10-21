@@ -22,12 +22,7 @@
  </layer>
  <layer name="background" width="100" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlltOAzEMRSPUn3YpLKTsgA1TsRcQi4B8IFBmkvht53GlKFJnxrF9cpOmlNL9ktLL5TjXVHt/z7wZ0tvNIg6T1fxBldSeprCYlYm1MEy4MUebqb3kStIftZjR5uhayR+YGixUrrWSP7R6KC2sP1r5ePd81DPqVyv4I4Io56UEE+/eR2SB0Yz+GFWtelZjoXXnS9Qzqj+keycdz4PJaP6wivdxPY5P4FjFH1Z+y3q9HQc35tnz3ndeLHo9tWbM4bH9IbsXs7T9IVVrdBZSe1HSH9q1zs4iq2Tx9jMegPF17cfWqHl2JlQW+V1ujp4sIP3TYg7xB5bF4wbLmZrbaL6Q9AeFxQPgD+3aR2VRWyerxeK9waLnD+3atXrEzUs6fk1n3Lz3YzQW1kzO3tss+uuePZNmcSf0oPbeCkw460C/r/1mWXvUM7PU8xNtPUy+0XpBlcVeKHlg1oXm3Ypp3QuuZvaHNROuLM7MUfzB7YmUrP0BXReTrzeLaPfGDPcHtzdW63gxwdThfZ73vufG19gj/5lY+ENa3sylmWD/Z2Hyx8TQ4oWR1VnlxaQVK4qsGUDrz0wgZxemLum7VkueTHr3e8mFU1er1iiK6g+NurxzwuQalQWnVxh/aLCBxPJmEdkfkXL1ZqJRO8cfWCbc/L1ZaO89SX+UuVIZ9b7zZmHNRKNmzNpnz3vfRWWCZafhD2juUH9Fn6G9hTKz8Mee6XOEHPb8N38D1D2goA==
-  </data>
- </layer>
- <layer name="background2" width="100" height="50">
-  <data encoding="base64" compression="zlib">
-   eJztlWGuwyAMgyft/gfsO83b76oUQpzYQCxNkboSknw1XN/P5+/3uxrxrtZ7FTHxbcYtsWuOnMWMrHmRLHZlki0LE2/O1eLsLL1C+qOVUyWuopP8YekhQ/e9yh/+GaJl9cdbPeyZn3BWre4PBc2clwgm7NkrsrBoR3+sqrd+TmMRdecj+lnVH+jZofMxmKzmj6x8Hp3ijyy/IdTL2XvOZtGbRTZjj8of2G8Roaxe1VmgvkWPioUOC1TuYhJ/f4zuwWQx0n8Uc4Y/vLWt5osV/IHKsxuL1j4I7cbCWxc6P6Jmq3Zhkc3k6b1i0d/36T80i2tiBq33TmDi2Wd0fetZZu+qZyZqP8t6tVnMivUtZPgjqqYoFug6FP2RzcQr1pmp6A/vTFBSPbMs69gs1O6NHe4P72yy9jnJH7Mz66335mezQPgDLTZzNhPLOkuOKF4WZZ1VLCZvuVSUzQB9r1neR9cUJSaTyFmUP+L8geiLXZOlVlUWnllZ/BHBZiQXm4WyP5RqZTOJ6N3jDysTb/1sFtHfHtIf91pnGfXWsVlkM4no2bL30/+9dapMrOwi/DFa+6i/1OPobEeZZfij4nxUqKFi31eleD0x+QePU3P6
+   eJztW1FOwzAMnWA/4ygcBG7AhTdxh3EDEIdg+ahUujh9tp/jFGqp8qSlie2XFztpe308HD5u11XQS5Ha7ZqjX47yf6/Hezxa7beui7/FP63W9ttqp8HiL2PS8ndN1jDTxK/2H2LbX8JEi8V0n0ekuEs2WvscRWvWHEssPXxqxc/KjyLZMWfMe8ZcR2U51n/jB+pDqy0Tr+VYFn607MmOOSsfaGLIFAs/WvaMyI+o2GkE5RTKD7S/7NiPiEURlFMafmyl5vXUSZki+bPl+sqKATNHM+Ow5frKi4XFX01/Vr3l/MGOHas/6znYlvOH9YyDyTdprf883V9f4IXkD2n+jILF2vzuzbe3p/vL2+dcLOeUPdeqtfpKY6cUHzRuxQ4PHp76SuvrqGsVey4y+RHt6+hYeGv9CH5o1tMMfmjEYp+33yUW59t1Aa7vk9/GTH4g8YvCHOWHBovSFn3+a5kn0WsVelYesWYh/NBiUX5H27aVvGEZR6qFrFhcVvgxyjkWa6/Gzk9of/P4vzewaPFjlJqXfU7FxMSzrylyrsTfu/9g+D4aFrVxa3H1+lFrr41Bza5IfliEYU+tz1o94fEDfT645qt0fpTNj95zoQc/LPOSyQ/r874ec+H5we43Gjfv/pwZC+87m9H8WOLRkx8aTBix8D7/7pG/svnRq+aNeveSPUeWeKDjMvjRe/22ShQvkPyhGb8mUflD6juKH1EYaPMH6ncGPybb0G9UUFulcaKxkOyy5nTUD8b+XBoL+R5o7f7W/735Mckck178aN2vFdZ3F5IPvTGx1FlSXDz5I+u9zN4YIPzVYNJ7/xEt2e+xtPL7cu3SrAOR+49IyeZHK64TJrXay+LXqPzIwsAyFz15VcOPCGyQvrKx0PprzasWfrCxQWwf4buSmp/sNcPLDy0mHvtHxIRdXzL5sbS1FvvWs6vWffP7s7GIzKNsfmhtr7WbYyZhmo1F1HoQwQ/UdpRfo2s0tghmvfixa7sewYZd/+aH53u3Xdt1DZMfqaUwHQ==
   </data>
  </layer>
  <layer name="foreground" width="100" height="50">
@@ -2396,10 +2391,10 @@
  </objectgroup>
  <layer name="events" width="100" height="50" visible="0">
   <properties>
-   <property name="10,49" value="GOTO"/>
-   <property name="11,49" value="GOTO"/>
-   <property name="8,49" value="GOTO"/>
-   <property name="9,49" value="GOTO"/>
+   <property name="10,49" value="GOTO chapter1-3.tmx 10,1"/>
+   <property name="11,49" value="GOTO chapter1-3.tmx 11,1"/>
+   <property name="8,49" value="GOTO chapter1-3.tmx 8,1"/>
+   <property name="9,49" value="GOTO chapter1-3.tmx 9,1"/>
    <property name="92,26" value="GOTO chapter1-2.tmx 1,6"/>
   </properties>
   <data encoding="base64" compression="zlib">
