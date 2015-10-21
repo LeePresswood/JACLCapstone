@@ -54,7 +54,7 @@ public class ScreenCredit extends ScreenAdapter{
 			+ "were the way they are.\n"
 			+ "The younger sister was named Dia, short for\n"
 			+ "Diamond, and she was very loyal and followed\n"
-			+ "her parents orders to a tee.\n";
+			+ "her parents orders to a tee.";
 	
 	@Override
 	/**
