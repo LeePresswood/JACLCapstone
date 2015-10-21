@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
+import com.badlogic.gdx.scenes.scene2d.ui.CheckBox.CheckBoxStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -35,11 +36,14 @@ public class ScreenOptions extends ScreenAdapter
 	public CapstoneGame game;
 	private TextureAtlas atlas;
 	private Skin skin;
+	private TextureAtlas atlas1;
+	private Skin skin1;
 	private TextButton buttonBack;
 	private Table table;
 	private BitmapFont bitmap;
 	private Label heading;
 	private Label volumeValue;
+	private Slider volumeSlider;
 	
 	@Override
 	/**
@@ -56,10 +60,13 @@ public class ScreenOptions extends ScreenAdapter
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
 		
+		atlas1 = new TextureAtlas("uiskin.atlas");
+		skin1 = new Skin(atlas1);
+		
 		// TableLayout layout = table.getTableLayout();
 		
 		// fonts
-		table = new Table(skin);
+		table = new Table(skin1);
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		bitmap = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"), false);
 		
@@ -90,26 +97,24 @@ public class ScreenOptions extends ScreenAdapter
 		heading.setFontScale(2);
 		
 		
-		//create sounds option 
-		/*
-		final CheckBox soundEffectsCheckbox = new CheckBox("Sound Effects", skin);
-		soundEffectsCheckbox.setChecked(game.getPreferences().isSoundEffectsEnabled() ); 
-		soundEffectsCheckbox.addListener(newClickListener() { public void clicked(InputEvent event, float x, float y) { 
+		// make checkbox Style
+		CheckBoxStyle checkboxStyle = new CheckBoxStyle();
+		checkboxStyle.checkboxOff = skin1.getDrawable("check-off");
+		checkboxStyle.checkboxOn = skin1.getDrawable("check-on");
+		checkboxStyle.font=bitmap;
+		
+		//create sound checkbox effects
+		final CheckBox soundEffectsCheckbox = new CheckBox("Sound Effects", checkboxStyle);
+		soundEffectsCheckbox.setChecked(true);
+		//soundEffectsCheckbox.setChecked(game.getPreferences().isSoundEffectsEnabled() ); 
+		/*soundEffectsCheckbox.addListener(newClickListener() { public void clicked(InputEvent event, float x, float y) { 
 				boolean enabled = soundEffectsCheckbox.isChecked();
 				game.getPreferences().setSoundEffectsEnabled(enabled); 
 			} 
-		});
-		*/
-		/*
-		 * //create music option final CheckBox musicEffectsCheckbox = new
-		 * CheckBox("Music Effects", skin);
-		 * musicEffectsCheckbox.setChecked(game.getPreferences
-		 * ().isMusicEffectsEnabled() ); musicEffectsCheckbox.addListener(new
-		 * ClickListener() { public void clicked(InputEvent event, float x, float
-		 * y) { boolean enabled = musicEffectsCheckbox.isChecked();
-		 * game.getPreferences().setMusicEffectsEnabled(enabled); } });
-		 */
-		// range is [0.0,1.0]; step is 0.1f
+		});*/
+		//create music checkbox effects
+		final CheckBox musicEffectsCheckbox = new CheckBox("Music Effects", checkboxStyle);
+		musicEffectsCheckbox.setChecked(true);
 		/**
 		 * slider doesn't work correctly
 		 * 
@@ -122,13 +127,14 @@ public class ScreenOptions extends ScreenAdapter
 		 * is not defined in the skin you're using. You'll need to make a LabelStyle to fix this.
 		 */
 		SliderStyle style = new SliderStyle();
-		style.background = skin.getDrawable("button.up");
-		style.knob = skin.getDrawable("button.down");
+		style.background = skin1.getDrawable("default-slider");
+		style.knob = skin1.getDrawable("default-slider-knob");
 		
-		final Slider volumeSlider = new Slider(0.1f, 4, 0.1f, false, style);
-		volumeSlider.setValue(1);
+		volumeSlider = new Slider(0.1f, 4, 0.1f, false, style);
+		volumeSlider.setValue(2);
 		volumeSlider.getCaptureListeners();
-		// volumeValue = new Label("volume", skin);
+		CharSequence x = "50";
+		volumeValue = new Label(x,headingStyle);
 		updateVolumeLabel();
 		
 		// add together stuffs
@@ -136,11 +142,12 @@ public class ScreenOptions extends ScreenAdapter
 		table.row();
 		table.getCell(heading).spaceBottom(70);
 		table.add(volumeSlider);
-		// table.add(volumeValue);
-		// table.add(musicEffectsCheckbox);
-		// table.row();
-		// table.add(soundEffectsCheckbox);
-		// table.row();
+		table.add(volumeValue);
+		table.row();
+		table.add(musicEffectsCheckbox);
+		table.row();
+		table.add(soundEffectsCheckbox);
+		table.row();
 		table.add(buttonBack);
 		table.row();
 		stage.addActor(table);
@@ -166,9 +173,15 @@ public class ScreenOptions extends ScreenAdapter
 		bitmap.dispose();
 	}
 	
+	public void update(float delta){
+		float volume = (volumeSlider.getValue()/4*100);
+		volumeValue.setText(String.format("%0.1f%%",volume));
+	}
+	
 	private void updateVolumeLabel()
 	{
-		// float volume=(game.getPreferences().getVolume()*100);
-		// volumeValue.setText(String.format((Locale.US, "%0.1f%%",volume));
+		//float volume=(game.getPreferences().getVolume()*100);
+		//float volume = volumeSlider.getValue();
+		//volumeValue.setText(String.format("%0.1f%%",volume));
 	}
 }

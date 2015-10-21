@@ -20,8 +20,6 @@ public class ScreenGame extends ScreenParent
 	{
 		super(game);
 		
-		
-		
 		world = new World(this);
 		hud = new HUD(this);
 		
