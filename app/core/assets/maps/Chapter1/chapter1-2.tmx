@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" nextobjectid="2">
  <tileset firstgid="1" name="pkmset" tilewidth="16" tileheight="16">
   <image source="../../tileset.png" width="1744" height="848"/>
+  <tile id="0">
+   <properties>
+    <property name="1,7" value="GOTO chapter1-3.tmx 92,26"/>
+   </properties>
+  </tile>
+  <tile id="3184">
+   <properties>
+    <property name="32,5" value="INITIATE dialog"/>
+   </properties>
+  </tile>
  </tileset>
  <tileset firstgid="5778" name="natset" tilewidth="16" tileheight="16">
   <image source="../../terrain.png" width="1024" height="1024"/>
@@ -13,18 +23,28 @@
  </layer>
  <layer name="background" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJztmW0OgyAMQDkAHm7bbdh12XaNZVmMCyvQL7GSvoQ/JrY+ESkQgmORewzhuui1FLeYr7hdeyi3kidwTUKO/zFz1Htf6WAPrTzZPch5LHjkRr7yG0/IZ7bmwX1m7tivvSeMx6UR97boevT6qHaf9vhwj7k8uPEhDymaHtj7av0hqRO4Yx/6n2BjnW0edA85s3hAMTH/JkosaV1So6wvyvFajulEyDHSg9qnlBzuQXsmKEaPER6tehc7F/ag5IDmxlH/qz1xD1vM4lFDWu9Ca+ge0n05aB6V9gendpLun2DWLpyYs3hwsOaBXddp5sWuiVtw1xGYvLUzAu7avoV79POO9NBibw9Ovau1X6TpcRTu8WUGj7X+1T4T1jhH/qXl8ak31/Nt661VH1j5nji4hy1GzdWOc3bePpG3zA==
+   eJztmW0OgjAMhneAwR3Uw6g/1dvgtdQToV7DGUMwc2z9Egrpm/QP0bbPYFu7OWfSqLN37ljJWeN7n0/fP7sLW6xH4hlHrf/12Xq58Wom5pCK0xoHOo4GjjYTL/7GG2DO2jioOVPn/tA4QTgOGb+nSpaj9I6G/ic9P4zDODRylHLBcHDrBercT60nUF9z2weNgy/jgPvi1iVDiteKeL7Gc7pBxBiTAzvWmBjGgcsp5aOkMThy9S50LywJEyO1N46xXv1bxqFLS+JIiVvvpnpoSC6cuKl9lPs+KDUH9/wE0rtQfBoHPWYsLge0r5OMC+2Jc6LW35C4Q3cE1N4+J+MoxzUOmXpX6rxIkmMqGcdHS+DofiN9J0wx7P1Rp3e92d1va7dcfTDV97QNOe2C7ZE9/bc0cFxC/tdgt5lzrGrn1sE2Nd0H5WxKo5bCYdKrFwRix/c=
   </data>
  </layer>
  <layer name="foreground" width="50" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt2NEJwCAMBUAHcN+223eBUrUqGnoH+VaElwRTAojtyCmdDXXl1Tdeq/a9/v5OEN3ITLf02KcC4mndr2qzr48AsKPemfdl3+6dtRBJKS9PeZitlMFZ/2Jv5/qLIwqzC+IZse+OKmCs1ZnWE9jZDaTUeKk=
+   eJzt2NENwCAIRVEG8KODdZ+227uAqVIwQHpPwrfG5AFRBABqu5rIrainRd841up7/f2dgOo8M63psaMCUI92v1rNPn0EAJCRdeZ92betsxaoZJaXUR52m2Vw17/Y27n8xaEKZhdQj8e+61WAxXlE3yCf6EzTE5BZByeSeQU=
   </data>
  </layer>
- <objectgroup name="collisionobjects"/>
- <layer name="events" width="50" height="50">
+ <objectgroup name="collisionobjects">
+  <object id="1" x="498" y="705" width="14" height="14">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <layer name="events" width="50" height="50" visible="0">
+  <properties>
+   <property name="1,7" value="GOTO chapter1-3.tmx 92,25"/>
+   <property name="15,40" value="SPAWN money"/>
+   <property name="25,24" value="SPAWN money"/>
+   <property name="35,39" value="SPAWN money"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAADg3wAnEAAB
+   eJzt17ENADAIAzAO6LP8vzCxVyxUlX1BhDKECABgIs92gje5CwAA7LHHAQCA3/hzaLoA3CodRwJy
   </data>
  </layer>
 </map>
