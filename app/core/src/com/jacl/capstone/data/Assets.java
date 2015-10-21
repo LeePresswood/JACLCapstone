@@ -76,7 +76,7 @@ public class Assets extends AssetManager
 	private void loadFontsFromFolder(String folder)
 	{
 		for(FileHandle file : Gdx.files.internal(folder).list())
-		{
+		{System.out.println(file);
 			if(file.extension().equals("fnt"))
 			{
 				load(file.path(), BitmapFont.class);
