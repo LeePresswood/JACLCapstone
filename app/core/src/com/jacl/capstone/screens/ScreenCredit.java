@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -119,9 +120,14 @@ public class ScreenCredit extends ScreenAdapter{
 		scrollTable.row();
 		scrollTable.add(huy);
 		scrollTable.row();
+		//ScrollPaneStyle scrollStyle = new ScrollPaneStyle();
+		//scrollStyle.vScroll =skin.getDrawable("default-slider");  
+		//scrollStyle.background = skin.getDrawable("default-rect"); 
+		//scrollStyle.vScrollKnob = skin.getDrawable("default-round-large");
 		final ScrollPane scroller = new ScrollPane(scrollTable);
 		//scroller.fling(0.5f, 0.1f, 0.1f);
 		//scroller.setFlingTime(2);
+		
 		
 		final Table table = new Table();
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
