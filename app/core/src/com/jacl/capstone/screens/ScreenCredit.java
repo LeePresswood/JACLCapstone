@@ -33,6 +33,8 @@ public class ScreenCredit extends ScreenAdapter{
 	public CapstoneGame game;
 	private TextureAtlas atlas;
 	private Skin skin;
+	private TextureAtlas atlas1;
+	private Skin skin1;
 	private TextButton buttonBack;
 	private Label heading;
 	private BitmapFont bitmap44;
@@ -69,6 +71,9 @@ public class ScreenCredit extends ScreenAdapter{
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
+		
+		atlas1 = new TextureAtlas("uiskin.atlas");
+		skin1 = new Skin(Gdx.files.internal("uiskin.json"),atlas1);
 		bitmap44 = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
 		bitmap24 = new BitmapFont(Gdx.files.internal("hud/fonts/font24.fnt"),false);
 		bitmap28 = new BitmapFont(Gdx.files.internal("hud/fonts/font28.fnt"),false);
@@ -120,11 +125,11 @@ public class ScreenCredit extends ScreenAdapter{
 		scrollTable.row();
 		scrollTable.add(huy);
 		scrollTable.row();
-		//ScrollPaneStyle scrollStyle = new ScrollPaneStyle();
-		//scrollStyle.vScroll =skin.getDrawable("default-slider");  
-		//scrollStyle.background = skin.getDrawable("default-rect"); 
-		//scrollStyle.vScrollKnob = skin.getDrawable("default-round-large");
-		final ScrollPane scroller = new ScrollPane(scrollTable);
+		ScrollPaneStyle scrollStyle = new ScrollPaneStyle();
+		scrollStyle.vScroll =skin1.getDrawable("default-slider");  
+		scrollStyle.background = skin1.getDrawable("default-rect"); 
+		scrollStyle.vScrollKnob = skin1.getDrawable("default-round-large");
+		final ScrollPane scroller = new ScrollPane(scrollTable,scrollStyle);
 		//scroller.fling(0.5f, 0.1f, 0.1f);
 		//scroller.setFlingTime(2);
 		
