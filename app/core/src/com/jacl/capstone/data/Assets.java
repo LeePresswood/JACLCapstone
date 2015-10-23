@@ -67,8 +67,7 @@ public class Assets extends AssetManager
 		loadTexturesFromFolder(TEXTURE_BASE + "player/");
 		loadTexturesFromFolder(TEXTURE_BASE + "weapons/");
 
-		load(HEALTHBAR_BACKGROUND, Texture.class);
-		load(HEALTHBAR_FOREGROUND, Texture.class);
+		loadTexturesFromFolder("hud/healthbar/");
 
 		finishLoading();
 	}
