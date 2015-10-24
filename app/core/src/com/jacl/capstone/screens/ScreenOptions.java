@@ -23,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.jacl.capstone.CapstoneGame;
 
 public class ScreenOptions extends ScreenAdapter
@@ -56,7 +57,7 @@ public class ScreenOptions extends ScreenAdapter
 	 */
 	public void show()
 	{
-		stage = new Stage();
+		stage = new Stage(new ScreenViewport());
 		
 		Gdx.input.setInputProcessor(stage);
 		
