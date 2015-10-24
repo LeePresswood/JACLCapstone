@@ -19,6 +19,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -148,11 +149,12 @@ public class ScreenOptions extends ScreenAdapter
 		updateVolumeLabel();
 		
 		// add together stuffs
-		table.add(heading);
+		table.align(Align.left);
+		table.add(heading).padBottom(70);
+		table.add();
 		table.row();
-		table.getCell(heading).spaceBottom(70);
 		table.add(volumeSlider);
-		table.add(volumeValue);
+		table.add(volumeValue).fillX();
 		table.row();
 		table.add(musicEffectsCheckbox);
 		table.row();
@@ -171,7 +173,7 @@ public class ScreenOptions extends ScreenAdapter
 		
 		stage.act(delta);
 		stage.draw();
-		
+		stage.setDebugAll(true);
 	}
 	
 	@Override
