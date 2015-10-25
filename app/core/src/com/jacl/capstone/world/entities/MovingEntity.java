@@ -44,13 +44,16 @@ public abstract class MovingEntity extends Entity
 		knockback = new KnockbackHelper(this);
 		attack = new AttackHelper(this);
 		invincible = new InvincibleHelper(this);
-		texture_helper = new TextureHelper(this, data.getFloat("move_speed"));
+		
+		if(!data.get("move_speed", "").equals(""))
+		{
+			texture_helper = new TextureHelper(this, data.getFloat("move_speed"));
+			move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;				//Set in terms of tiles per second.
+			texture_helper.setMovementSprites(data.get("texture_folder"));
+		}
 		
 		knockback_on_collide = data.getBoolean("knockback_on_collide");
-		move_speed = data.getFloat("move_speed") * world.map_handler.tile_size;				//Set in terms of tiles per second.
 		damage_on_collide = data.getFloat("damage_on_collide");
-		
-		texture_helper.setMovementSprites(data.get("texture_folder"));
 	}
 	
 	@Override
