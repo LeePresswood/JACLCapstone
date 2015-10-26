@@ -2,6 +2,7 @@ package com.jacl.capstone.helpers;
 
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.entities.MovingEntity;
+import com.jacl.capstone.world.entities.player.Player;
 
 /**
  * Manages knockback from hits.
@@ -38,9 +39,15 @@ public class KnockbackHelper
 	{
 		if(!entity.invincible.is_invincible)
 		{
+			//Start Knockback.-
 			is_being_knocked_back = true;
 			current_knockback = 0f;
-			entity.invincible.goInvincible();
+			
+			//Only the player can be invincible.
+			if(entity instanceof Player)
+			{
+				entity.invincible.goInvincible();
+			}
 		}
 	}
 	
