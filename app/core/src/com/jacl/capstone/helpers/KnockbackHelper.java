@@ -39,9 +39,12 @@ public class KnockbackHelper
 	{
 		if(!entity.invincible.is_invincible)
 		{
-			//Start Knockback.-
+			//Start Knockback.
 			is_being_knocked_back = true;
 			current_knockback = 0f;
+			
+			//Stop all attacking and motion.
+			entity.attack.stopAttack();
 			
 			//Only the player can be invincible.
 			if(entity instanceof Player)
