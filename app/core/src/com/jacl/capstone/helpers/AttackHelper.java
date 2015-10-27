@@ -42,6 +42,18 @@ public class AttackHelper
 			attack_time_max = weapon.use_time;
 		}
 	}
+
+	/**
+	 * End attack. This is called when the attack animation is over or if the attacker is hit.
+	 */
+	//public void stopAttack()
+	{//ERROR: This needs to cancel the weapon.
+		if(mid_attack)
+		{
+			mid_attack = false;
+			weapon.remove = true;
+		}
+	}
 	
 	public void update(float delta)
 	{
@@ -51,8 +63,7 @@ public class AttackHelper
 			attack_time_current += delta;
 			if(attack_time_current > attack_time_max)
 			{
-				mid_attack = false;
-				weapon.remove = true;
+				stopAttack();
 			}
 		}
 	}

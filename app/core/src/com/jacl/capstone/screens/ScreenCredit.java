@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -32,6 +33,8 @@ public class ScreenCredit extends ScreenAdapter{
 	public CapstoneGame game;
 	private TextureAtlas atlas;
 	private Skin skin;
+	private TextureAtlas atlas1;
+	private Skin skin1;
 	private TextButton buttonBack;
 	private Label heading;
 	private BitmapFont bitmap44;
@@ -54,7 +57,7 @@ public class ScreenCredit extends ScreenAdapter{
 			+ "were the way they are.\n"
 			+ "The younger sister was named Dia, short for\n"
 			+ "Diamond, and she was very loyal and followed\n"
-			+ "her parents orders to a tee.\n";
+			+ "her parents orders to a tee.";
 	
 	@Override
 	/**
@@ -68,6 +71,10 @@ public class ScreenCredit extends ScreenAdapter{
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
+		
+		atlas1 = new TextureAtlas("uiskin.atlas");
+		skin1 = new Skin(atlas1);
+		
 		bitmap44 = new BitmapFont(Gdx.files.internal("hud/fonts/font44.fnt"),false);
 		bitmap24 = new BitmapFont(Gdx.files.internal("hud/fonts/font24.fnt"),false);
 		bitmap28 = new BitmapFont(Gdx.files.internal("hud/fonts/font28.fnt"),false);
@@ -119,9 +126,14 @@ public class ScreenCredit extends ScreenAdapter{
 		scrollTable.row();
 		scrollTable.add(huy);
 		scrollTable.row();
-		final ScrollPane scroller = new ScrollPane(scrollTable);
+		ScrollPaneStyle scrollStyle = new ScrollPaneStyle();
+		//scrollStyle.vScroll = skin1.getDrawable("default-slider");  
+		scrollStyle.background = skin1.getDrawable("default-rect"); 
+		scrollStyle.vScrollKnob = skin1.getDrawable("default-round-large");
+		final ScrollPane scroller = new ScrollPane(scrollTable,scrollStyle);
 		//scroller.fling(0.5f, 0.1f, 0.1f);
 		//scroller.setFlingTime(2);
+		
 		
 		final Table table = new Table();
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -170,6 +182,8 @@ public class ScreenCredit extends ScreenAdapter{
 		stage.dispose();
 		atlas.dispose();
 		skin.dispose();
+		atlas1.dispose();
+		skin1.dispose();
 		bitmap44.dispose();
 		bitmap24.dispose();
 		bitmap28.dispose();

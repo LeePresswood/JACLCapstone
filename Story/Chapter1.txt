@@ -125,8 +125,42 @@ Chapter 1
 	<Dia checks on Malc who was knocked unconcious>
 
 	Father:			I see, well I'll need you to take his <weapon we give> and run into the city and grab the doctor, while you're there try to also find the Minor brothers to
-				help break up this boulder so we can get out from underneath.
+				help break up this boulder so we can get out from underneath. The city should be located to the North!
 
 	<You've attained the <<weapon>>! Use <<action button>> to <<weapon verb>> enemies!>
 
+	<Fight through the north and arrive in city>
+
+	<Locate building with sign that looks like a hospital/Dr's House>
+
+	Doctor:			Dia! I'll go ahead and hurry on down to your home, I hope I get there in time to help Malc and the rest of your family!
+
+	<Locate building with sign that says Minor Bros. Home>
+
+	<In the building, there is a sign that reads "Left for the field to the west, will return by noon>
+
+	Minor Sister NPC:	Dia, my brother's haven't returned from the fields to the West! They're the only ones that can help remove that boulder on your house. Can you go check on them
+				to make sure they're alright? I would leave, but I have to mind the store, thank you bunches!
+
+	<Travel to the fields to the west>
+	<upon arriving hear>
+				Arrrrrgggggghhhhhhhh!
+
+	<The Minor brothers are surrounded by enemies, one of the brothers is fainted>
+
+	<As Dia, intervene and rescue them>
+
+	Non-Fainted Bro:	Thanks for helping us with those beasts Dia! We were out for some supplies and didn't hear them come up from behind us. Our hearing's gone a little bad from
+				all the dynamite and mining we do from day to day. They ended up hurting my little brother over here and he ended up fainting because he's not used to some
+				pain. He'll be alright though, he's just overreacting. I'll go ahead and drag him back to our store. Meet us there and we can talk more about helping your
+				parents.
 	
+	<return back to the Minor Bros. Store>
+
+	Both brothers: 		Thanks for the help back there. We'd be glad to help out your family. We'll leave right away and meet you there. Thanks Dia!
+
+	<return back home>
+	
+	<The boulder has been removed, Malc has returned to conciousness, and the home is under repair>
+
+	Doctor: 		Dia, 

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
@@ -18,8 +19,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.jacl.capstone.CapstoneGame;
 
 public class ScreenOptions extends ScreenAdapter
@@ -53,7 +58,7 @@ public class ScreenOptions extends ScreenAdapter
 	 */
 	public void show()
 	{
-		stage = new Stage();
+		stage = new Stage(new ScreenViewport());
 		
 		Gdx.input.setInputProcessor(stage);
 		
@@ -130,19 +135,26 @@ public class ScreenOptions extends ScreenAdapter
 		style.background = skin1.getDrawable("default-slider");
 		style.knob = skin1.getDrawable("default-slider-knob");
 		
-		volumeSlider = new Slider(0.1f, 4, 0.1f, false, style);
-		volumeSlider.setValue(2);
-		volumeSlider.getCaptureListeners();
+		volumeSlider = new Slider(0, 100, 1, false, style);
+		volumeSlider.setValue(50);
+		//volumeSlider.getCaptureListeners();
+		volumeSlider.addCaptureListener(new ChangeListener(){
+			public void changed (ChangeEvent event, Actor actor){
+				int volume = Math.round(volumeSlider.getValue());
+				volumeValue.setText(Integer.toString(volume));
+			}
+		});
 		CharSequence x = "50";
 		volumeValue = new Label(x,headingStyle);
 		updateVolumeLabel();
 		
 		// add together stuffs
-		table.add(heading);
+		table.align(Align.left);
+		table.add(heading).padBottom(70);
+		table.add();
 		table.row();
-		table.getCell(heading).spaceBottom(70);
 		table.add(volumeSlider);
-		table.add(volumeValue);
+		table.add(volumeValue).fillX();
 		table.row();
 		table.add(musicEffectsCheckbox);
 		table.row();
@@ -161,7 +173,7 @@ public class ScreenOptions extends ScreenAdapter
 		
 		stage.act(delta);
 		stage.draw();
-		
+		stage.setDebugAll(true);
 	}
 	
 	@Override
@@ -175,7 +187,7 @@ public class ScreenOptions extends ScreenAdapter
 	
 	public void update(float delta){
 		float volume = (volumeSlider.getValue()/4*100);
-		volumeValue.setText(String.format("%0.1f%%",volume));
+		volumeValue.setText(Float.toString(volume));
 	}
 	
 	private void updateVolumeLabel()
