@@ -27,9 +27,9 @@
   </data>
  </layer>
  <objectgroup name="collisionobjects">
-  <object id="1" x="185.5" y="-8" width="55.5" height="66"/>
+  <object id="1" x="185.5" y="-8" width="50.5" height="69"/>
   <object id="2" x="217" y="-17" width="55" height="65.5"/>
-  <object id="3" x="255.5" y="0" width="64.5" height="123"/>
+  <object id="3" x="260" y="0" width="60" height="123"/>
   <object id="6" x="112" y="64" width="16" height="17"/>
   <object id="7" x="79" y="191" width="16" height="16"/>
   <object id="8" x="176" y="240" width="15" height="17"/>

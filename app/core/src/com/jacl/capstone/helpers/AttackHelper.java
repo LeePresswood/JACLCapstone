@@ -46,8 +46,7 @@ public class AttackHelper
 	/**
 	 * End attack. This is called when the attack animation is over or if the attacker is hit.
 	 */
-	//]
-	//public void stopAttack()
+	public void stopAttack()
 	{//ERROR: This needs to cancel the weapon.
 		if(mid_attack)
 		{
