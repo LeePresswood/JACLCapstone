@@ -48,10 +48,11 @@ public class AttackHelper
 	 */
 	public void stopAttack()
 	{//ERROR: This needs to cancel the weapon.
-		if(mid_attack)
+		mid_attack = false;
+		if(weapon != null)
 		{
-			mid_attack = false;
 			weapon.remove = true;
+			weapon = null;
 		}
 	}
 	
