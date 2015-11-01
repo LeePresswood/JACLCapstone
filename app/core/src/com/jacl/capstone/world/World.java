@@ -14,7 +14,6 @@ import com.jacl.capstone.screens.ScreenGame;
 
 /**
  * Handles the updating and rendering of game objects. Create managers to keep this class general.
- * 
  * @author Lee
  */
 public class World
