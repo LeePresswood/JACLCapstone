@@ -5,7 +5,6 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.entities.Entity;
 import com.jacl.capstone.world.entities.MovingEntity;
 
 /**

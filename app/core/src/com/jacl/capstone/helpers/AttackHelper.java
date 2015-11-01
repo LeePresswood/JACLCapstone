@@ -47,12 +47,11 @@ public class AttackHelper
 	 * End attack. This is called when the attack animation is over or if the attacker is hit.
 	 */
 	public void stopAttack()
-	{//ERROR: This needs to cancel the weapon.
+	{
 		mid_attack = false;
 		if(weapon != null)
 		{
 			weapon.remove = true;
-			weapon = null;
 		}
 	}
 	
@@ -60,7 +59,7 @@ public class AttackHelper
 	{
 		if(mid_attack)
 		{
-			weapon.update(delta);
+			//weapon.update(delta);
 			attack_time_current += delta;
 			if(attack_time_current > attack_time_max)
 			{

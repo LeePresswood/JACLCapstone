@@ -16,7 +16,7 @@ public class Sword extends Weapon
 	 */
 	private final float OFF_90 = -15f;
 	
-	private final float ROTATE_DEGREE = 50f;
+	private final float ROTATE_DEGREE = 90f;
 	
 	public Sword(World world, Element data, Direction direction)
 	{
@@ -53,12 +53,18 @@ public class Sword extends Weapon
 	@Override
 	public void update(float delta)
 	{
-		sprite.rotate(delta * ROTATE_DEGREE / use_time);
+		if(!remove)
+		{
+			sprite.rotate(delta * ROTATE_DEGREE / use_time);
+		}
 	}
 
 	@Override
 	public void draw(SpriteBatch batch)
 	{
-		sprite.draw(batch);
+		if(!remove)
+		{
+			sprite.draw(batch);
+		}
 	}
 }
