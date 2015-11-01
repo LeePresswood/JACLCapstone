@@ -8,6 +8,7 @@ import com.jacl.capstone.world.entities.player.items.Weapon;
 
 /**
  * Manages attacking.
+ * 
  * @author Lee
  */
 public class AttackHelper
@@ -29,39 +30,37 @@ public class AttackHelper
 	 */
 	public void doAttack(ItemSelection item_selection)
 	{
-		//Only start an attack if we aren't already mid attack
-		if(!mid_attack)
-		{
-			//Get the selected item if a copy of the item does not exist.
+		// Only start an attack if we aren't already mid attack
+		if(!mid_attack){
+			// Get the selected item if a copy of the item does not exist.
 			weapon = ItemFactory.spawn(item_selection, world);
 			world.entity_handler.add(weapon);
 			
-			//We don't want to stop mid attack. Commit to the attack until the end by setting a mid-attack flag.
+			// We don't want to stop mid attack. Commit to the attack until the end
+			// by setting a mid-attack flag.
 			mid_attack = true;
 			attack_time_current = 0f;
 			attack_time_max = weapon.use_time;
 		}
 	}
-
+	
 	/**
-	 * End attack. This is called when the attack animation is over or if the attacker is hit.
+	 * End attack. This is called when the attack animation is over or if the
+	 * attacker is hit.
 	 */
 	public void stopAttack()
 	{
 		mid_attack = false;
-		if(weapon != null)
-		{
+		if(weapon != null){
 			weapon.remove = true;
 		}
 	}
 	
 	public void update(float delta)
 	{
-		if(mid_attack)
-		{
+		if(mid_attack){
 			attack_time_current += delta;
-			if(attack_time_current > attack_time_max)
-			{
+			if(attack_time_current > attack_time_max){
 				stopAttack();
 			}
 		}

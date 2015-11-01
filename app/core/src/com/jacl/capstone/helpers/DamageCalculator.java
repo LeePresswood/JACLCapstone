@@ -1,10 +1,10 @@
 package com.jacl.capstone.helpers;
 
 /**
-* Calculate the damage an entity takes based upon the amount
-* being affected by defense.
-* @author Lee
-*/
+ * Calculate the damage an entity takes based upon the amount
+ * being affected by defense.
+ * @author Lee
+ */
 public class DamageCalculator
 {
 	/**
@@ -22,7 +22,8 @@ public class DamageCalculator
 	 */
 	public static float getDamage(float damage, float defense)
 	{
-		float total = damage * (100f - defense * PERCENT_PER_DEFENSE_POINT) / 100f;
+		float total = damage * (100f - defense * PERCENT_PER_DEFENSE_POINT)
+				/ 100f;
 		return total < 0f ? 0f : total;
 	}
 }
