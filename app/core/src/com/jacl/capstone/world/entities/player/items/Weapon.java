@@ -9,7 +9,6 @@ import com.jacl.capstone.world.entities.MovingEntity;
 
 /**
  * These are the weapons the player can utilize.
-
  * @author Lee
  */
 public abstract class Weapon extends MovingEntity
