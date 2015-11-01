@@ -59,7 +59,6 @@ public class AttackHelper
 	{
 		if(mid_attack)
 		{
-			//weapon.update(delta);
 			attack_time_current += delta;
 			if(attack_time_current > attack_time_max)
 			{
