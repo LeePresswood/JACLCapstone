@@ -22,8 +22,7 @@ public class DamageCalculator
 	 */
 	public static float getDamage(float damage, float defense)
 	{
-		float total = damage * (100f - defense * PERCENT_PER_DEFENSE_POINT)
-				/ 100f;
+		float total = damage * (100f - defense * PERCENT_PER_DEFENSE_POINT) / 100f;
 		return total < 0f ? 0f : total;
 	}
 }
