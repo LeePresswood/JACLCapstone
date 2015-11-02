@@ -149,7 +149,7 @@ public class ScreenOptions extends ScreenAdapter
 		updateVolumeLabel();
 		
 		// add together stuffs
-		table.align(Align.left);
+		//table.align(Align.left);
 		table.add(heading).padBottom(70);
 		table.add();
 		table.row();

@@ -1,10 +1,10 @@
 package com.jacl.capstone.helpers;
 
 /**
-* Calculate the damage an entity takes based upon the amount
-* being affected by defense.
-* @author Lee
-*/
+ * Calculate the damage an entity takes based upon the amount
+ * being affected by defense.
+ * @author Lee
+ */
 public class DamageCalculator
 {
 	/**
