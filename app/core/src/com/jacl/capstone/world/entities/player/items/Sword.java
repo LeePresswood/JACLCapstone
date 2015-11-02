@@ -16,7 +16,7 @@ public class Sword extends Weapon
 	 */
 	private final float OFF_90 = -15f;
 	
-	private final float ROTATE_DEGREE = 90f;
+	private final float ROTATE_DEGREE = 115f;
 	
 	public Sword(World world, Element data, Direction direction)
 	{
