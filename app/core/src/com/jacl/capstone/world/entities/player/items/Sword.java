@@ -41,7 +41,7 @@ public class Sword extends Weapon
 			sprite.setRotation(90f + OFF_90);
 		}
 		else if(direction == Direction.DOWN)
-		{
+		{ 
 			sprite.setRotation(180f + OFF_90);
 		} 
 		else if(direction == Direction.RIGHT)
