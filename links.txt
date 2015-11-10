@@ -22,4 +22,4 @@ http://www.kenney.nl/assets/roguelike-rpg-pack
   
   
 http://opengameart.org/content/tiled-terrains
-  (Better tileset than what we're using.)
+  (Tileset.)
