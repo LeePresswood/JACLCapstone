@@ -838,6 +838,16 @@
   </object>
  </objectgroup>
  <layer name="events" width="40" height="150">
+  <properties>
+   <property name="18,0" value="GOTO chapter1-4.tmx 8,0"/>
+   <property name="18,149" value="GOTO prism_city.tmx 23,0"/>
+   <property name="19,0" value="GOTO chapter1-4.tmx 9,0"/>
+   <property name="19,149" value="GOTO prism_city.tmx 24,0"/>
+   <property name="20,0" value="GOTO chapter1-4.tmx 10,0"/>
+   <property name="20,149" value="GOTO prism_city.tmx 25,0"/>
+   <property name="21,0" value="GOTO chapter1-4.tmx 11,0"/>
+   <property name="21,149" value="GOTO prism_city.tmx 26,0"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzt3CEOwCAMBVAOwGV3fzOBIllQoxR4L8EjflNaQSn/eGp/4MsoG3IDrKBvAQAAnCP7jjL7/QCAON4C0KgFAHahZwHcSw+AvNQnJ5FnosgaAAAAEcyfAADAbcxBAACQw6y/fV6JgQ4q
   </data>
