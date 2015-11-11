@@ -361,7 +361,7 @@
    <ellipse/>
   </object>
  </objectgroup>
- <layer name="events" width="20" height="40" visible="0">
+ <layer name="events" width="20" height="40">
   <properties>
    <property name="10,0" value="INITIATE dialog"/>
    <property name="10,39" value="GOTO"/>
