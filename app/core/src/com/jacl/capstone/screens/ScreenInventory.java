@@ -13,10 +13,12 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Tree;
 import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
@@ -33,6 +35,8 @@ public class ScreenInventory implements Screen {
 	//private InventoryActor inventoryActor;
 	private TextureAtlas atlas;
 	private Skin skin;
+	private TextureAtlas atlas2;
+	private Skin skin2;
 	private Table table;
 	private BitmapFont bitmap28;
 	private TextButton buttonBack;
@@ -52,11 +56,15 @@ public class ScreenInventory implements Screen {
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
+		
+		atlas2 = new TextureAtlas("uiskin.atlas");
+		skin2 = new Skin(atlas2);
+		
 		Skin skin1 = new Skin(Gdx.files.internal("uiskin.json"));
 		bitmap28 = new BitmapFont(Gdx.files.internal("hud/fonts/font28.fnt"), false);
 		
 		// heading
-		String label = "Options";
+		String label = "Character Name";
 		LabelStyle headingStyle = new LabelStyle(bitmap28, Color.WHITE);
 		heading = new Label(label, headingStyle);
 		heading.setFontScale(2);
@@ -102,13 +110,22 @@ public class ScreenInventory implements Screen {
 		*/
 
 		table.setFillParent(true);
-
+		final Table scrollTable = new Table();
+		ScrollPaneStyle scrollStyle = new ScrollPaneStyle();
+		scrollStyle.background = skin1.getDrawable("default-rect"); 
+		scrollStyle.vScrollKnob = skin1.getDrawable("default-round-large");
+		final ScrollPane scroller = new ScrollPane(scrollTable,scrollStyle);
+		
 		final Tree tree = new Tree(skin1);
 
 		inventory.add("Axe");
 		inventory.add("Sword");
 		inventory.add("Dagger");
-		inventory.add("Fire");
+		inventory.add("Health Potion");
+		inventory.add("Health Potion");
+		inventory.add("Health Potion");
+		inventory.add("Mana Potion");
+		inventory.add("Hammer");
 		
 		for(String n : inventory){
 			// create Node for tree act as items and its choices
@@ -136,26 +153,13 @@ public class ScreenInventory implements Screen {
 			newNode.add(cancelNode);
 			tree.add(newNode);
 		}
-		
-		/*
-		final Node moo1 = new Node(new TextButton("moo1", skin1));
-		final Node moo2 = new Node(new TextButton("moo2", skin1));
-		final Node moo3 = new Node(new TextButton("moo3", skin1));
-		final Node moo4 = new Node(new TextButton("moo4", skin1));
-		final Node moo5 = new Node(new TextButton("moo5", skin1));
-		tree.add(moo1);
-		tree.add(moo2);
-		moo2.add(moo3);
-		moo3.add(moo4);
-		tree.add(moo5);
-
-		moo5.getActor().addListener(new ClickListener() {
-			public void clicked (InputEvent event, float x, float y) {
-				tree.remove(moo4);
-			}
-		});
-		*/
-		table.add(tree).fill().expand();
+		tree.setPadding(100);
+		scrollTable.add(tree);
+		table.add(heading).padBottom(70);
+		table.add();
+		table.row();
+		table.add(scroller).fill().expand();
+		table.row();
 		table.add(buttonBack);
 		stage.addActor(table);
 		
@@ -168,7 +172,7 @@ public class ScreenInventory implements Screen {
 		
 		stage.act(delta);
 		stage.draw();
-		
+		//stage.setDebugAll(true);
 	}
 
 	@Override
