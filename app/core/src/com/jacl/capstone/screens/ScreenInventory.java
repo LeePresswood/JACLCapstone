@@ -1,5 +1,7 @@
 package com.jacl.capstone.screens;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -16,6 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Tree;
+import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.jacl.capstone.CapstoneGame;
 
@@ -25,7 +29,8 @@ public class ScreenInventory implements Screen {
 		this.last_screen = game.getScreen();
 	}
 	
-	private InventoryActor inventoryActor;
+	ArrayList<String> inventory = new ArrayList<String>();
+	//private InventoryActor inventoryActor;
 	private TextureAtlas atlas;
 	private Skin skin;
 	private Table table;
@@ -47,7 +52,7 @@ public class ScreenInventory implements Screen {
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
-		
+		Skin skin1 = new Skin(Gdx.files.internal("uiskin.json"));
 		bitmap28 = new BitmapFont(Gdx.files.internal("hud/fonts/font28.fnt"), false);
 		
 		// heading
@@ -73,7 +78,7 @@ public class ScreenInventory implements Screen {
 			}
 		});
 		buttonBack.pad(5);
-		
+		/*
 		//create row and column of actors 
 		//then show it in grid / table
 		int rowActors = 1;
@@ -94,9 +99,66 @@ public class ScreenInventory implements Screen {
 			}
 			table.row();
 		}
+		*/
+
+		table.setFillParent(true);
+
+		final Tree tree = new Tree(skin1);
+
+		inventory.add("Axe");
+		inventory.add("Sword");
+		inventory.add("Dagger");
+		inventory.add("Fire");
 		
+		for(String n : inventory){
+			// create Node for tree act as items and its choices
+			final Node newNode = new Node(new TextButton(n.toString(), skin1));
+			final Node equipNode = new Node(new TextButton("Equip", skin1));
+			final Node cancelNode = new Node(new TextButton("Cancel", skin1));
+			// add functions for node when clicked
+			newNode.getActor().addListener(new ClickListener(){
+				public void clicked(InputEvent event, float x, float y){
+					newNode.expandAll();
+				}
+			});
+			equipNode.getActor().addListener(new ClickListener() {
+				public void clicked (InputEvent event, float x, float y) {
+					tree.remove(newNode);
+				}
+			});
+			cancelNode.getActor().addListener(new ClickListener() {
+				public void clicked (InputEvent event, float x, float y) {
+					newNode.collapseAll();
+				}
+			});
+			// add Node to tree and choices to each node
+			newNode.add(equipNode);
+			newNode.add(cancelNode);
+			tree.add(newNode);
+		}
+		
+		/*
+		final Node moo1 = new Node(new TextButton("moo1", skin1));
+		final Node moo2 = new Node(new TextButton("moo2", skin1));
+		final Node moo3 = new Node(new TextButton("moo3", skin1));
+		final Node moo4 = new Node(new TextButton("moo4", skin1));
+		final Node moo5 = new Node(new TextButton("moo5", skin1));
+		tree.add(moo1);
+		tree.add(moo2);
+		moo2.add(moo3);
+		moo3.add(moo4);
+		tree.add(moo5);
+
+		moo5.getActor().addListener(new ClickListener() {
+			public void clicked (InputEvent event, float x, float y) {
+				tree.remove(moo4);
+			}
+		});
+		*/
+		table.add(tree).fill().expand();
 		table.add(buttonBack);
 		stage.addActor(table);
+		
 	}
 
 	@Override
