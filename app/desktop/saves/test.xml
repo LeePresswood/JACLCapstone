@@ -1,6 +1,10 @@
 <player>
 	<map>chapter1-1.tmx</map>
+<<<<<<< HEAD
+	<time>06:05</time>
+=======
 	<time>10:51</time>
+>>>>>>> 471fea12f900972e875b5df42e5f5efb05c462db
 	<player_location>
 		<x>11</x>
 		<y>9</y>
