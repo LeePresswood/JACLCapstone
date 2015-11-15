@@ -32,11 +32,12 @@
   </data>
  </layer>
  <objectgroup name="collisionobjects"/>
- <layer name="events" width="50" height="50" visible="0">
+ <layer name="events" width="50" height="50">
   <properties>
    <property name="1,7" value="GOTO chapter1-3.tmx 92,25"/>
    <property name="15,40" value="SPAWN money"/>
    <property name="25,24" value="SPAWN money"/>
+   <property name="32,5" value="INITIATE dialogue"/>
    <property name="35,39" value="SPAWN money"/>
   </properties>
   <data encoding="base64" compression="zlib">
