@@ -137,7 +137,12 @@ public class ScreenInventory implements Screen {
 			// add functions for node when clicked
 			newNode.getActor().addListener(new ClickListener(){
 				public void clicked(InputEvent event, float x, float y){
-					newNode.expandAll();
+					if(newNode.isExpanded())
+						newNode.collapseAll();
+					else{
+						tree.collapseAll();
+						newNode.expandAll();
+					}
 				}
 			});
 			equipNode.getActor().addListener(new ClickListener() {
