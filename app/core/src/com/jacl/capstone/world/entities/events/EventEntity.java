@@ -87,8 +87,8 @@ public abstract class EventEntity extends Entity
 	 * @return True if collision. False otherwise.
 	 */
 	public boolean eventCollision(float x, float y)
-	{
-		return sprite.getBoundingRectangle().contains(x, y);
+	{//You could make this more complex if you want. No reason for this project, however.
+		return true;
 	}
 
 	public abstract void init();
