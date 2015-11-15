@@ -110,7 +110,7 @@ public class InputGame implements InputProcessor
 					screen.hud.dialogue_handler.startDialogue("Hello. This is a long string.\n TESTTIEUEUEUEJFKJDKJJ<s>KJKAKFJAKJFJKSAFKJSFJK");
 					break;
 				case Keys.I:
-					((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenInventory(game));
+					game.setScreen(new ScreenInventory(game));
 			}
 		}
 		
