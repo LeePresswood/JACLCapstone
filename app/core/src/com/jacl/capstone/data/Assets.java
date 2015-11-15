@@ -21,6 +21,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
  */
 public class Assets extends AssetManager
 {
+	public static final String SPRITE_BASE = "sprites/";
 	public static final String TEXTURE_BASE = "textures/";
 
 	public static final String HEALTHBAR_BACKGROUND = "hud/healthbar/health-red.png";
@@ -64,7 +65,7 @@ public class Assets extends AssetManager
 		loadFontsFromFolder("hud/fonts/");
 
 		//Textures
-		loadTexturesFromFolder(TEXTURE_BASE + "player/");
+		loadTexturesFromFolder(SPRITE_BASE + "characters/dia/");
 		loadTexturesFromFolder(TEXTURE_BASE + "weapons/");
 
 		loadTexturesFromFolder("hud/healthbar/");
