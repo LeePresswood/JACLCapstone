@@ -3,17 +3,20 @@ package com.jacl.capstone.input;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
+import com.jacl.capstone.CapstoneGame;
 import com.jacl.capstone.data.enums.EnemyType;
 import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.screens.ScreenGame;
+import com.jacl.capstone.screens.ScreenInventory;
 import com.jacl.capstone.world.entities.npc.enemies.EnemyFactory;
 
 public class InputGame implements InputProcessor
 {
 	public ScreenGame screen;
-	
+	public CapstoneGame game;
 	public InputGame(ScreenGame screen)
 	{
+		this.game = screen.game;
 		this.screen = screen;
 	}
 
@@ -107,6 +110,8 @@ public class InputGame implements InputProcessor
 					//screen.hud.dialogue_handler.startDialogue("Hello. This is a long string.\n TESTTIEUEUEUEJFKJDKJJ<s>KJKAKFJAKJFJKSAFKJSFJK");
 					screen.hud.dialogue_handler.startDialogue(Gdx.files.internal("dialogue/chapter1-dialog.txt").readString());
 					break;
+				case Keys.I:
+					game.setScreen(new ScreenInventory(game));
 			}
 		}
 		

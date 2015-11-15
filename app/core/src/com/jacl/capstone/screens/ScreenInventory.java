@@ -1,5 +1,7 @@
 package com.jacl.capstone.screens;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -11,23 +13,32 @@ import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
+import com.badlogic.gdx.scenes.scene2d.ui.Tree;
+import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.jacl.capstone.CapstoneGame;
 
 public class ScreenInventory implements Screen {
 	public ScreenInventory(CapstoneGame game) {
 		this.game = game;
+		
+		System.out.println(game);
 		this.last_screen = game.getScreen();
 	}
 	
-	private InventoryActor inventoryActor;
+	ArrayList<String> inventory = new ArrayList<String>();
+	//private InventoryActor inventoryActor;
 	private TextureAtlas atlas;
 	private Skin skin;
+	private TextureAtlas atlas2;
+	private Skin skin2;
 	private Table table;
 	private BitmapFont bitmap28;
 	private TextButton buttonBack;
@@ -48,10 +59,14 @@ public class ScreenInventory implements Screen {
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
 		
+		atlas2 = new TextureAtlas("uiskin.atlas");
+		skin2 = new Skin(atlas2);
+		
+		Skin skin1 = new Skin(Gdx.files.internal("uiskin.json"));
 		bitmap28 = new BitmapFont(Gdx.files.internal("hud/fonts/font28.fnt"), false);
 		
 		// heading
-		String label = "Options";
+		String label = "Character Name";
 		LabelStyle headingStyle = new LabelStyle(bitmap28, Color.WHITE);
 		heading = new Label(label, headingStyle);
 		heading.setFontScale(2);
@@ -73,7 +88,7 @@ public class ScreenInventory implements Screen {
 			}
 		});
 		buttonBack.pad(5);
-		
+		/*
 		//create row and column of actors 
 		//then show it in grid / table
 		int rowActors = 1;
@@ -94,9 +109,67 @@ public class ScreenInventory implements Screen {
 			}
 			table.row();
 		}
+		*/
+
+		table.setFillParent(true);
+		final Table scrollTable = new Table();
+		ScrollPaneStyle scrollStyle = new ScrollPaneStyle();
+		scrollStyle.background = skin1.getDrawable("default-rect"); 
+		scrollStyle.vScrollKnob = skin1.getDrawable("default-round-large");
+		final ScrollPane scroller = new ScrollPane(scrollTable,scrollStyle);
 		
+		final Tree tree = new Tree(skin1);
+
+		inventory.add("Axe");
+		inventory.add("Sword");
+		inventory.add("Dagger");
+		inventory.add("Health Potion");
+		inventory.add("Health Potion");
+		inventory.add("Health Potion");
+		inventory.add("Mana Potion");
+		inventory.add("Hammer");
+		
+		for(String n : inventory){
+			// create Node for tree act as items and its choices
+			final Node newNode = new Node(new TextButton(n.toString(), skin1));
+			final Node equipNode = new Node(new TextButton("Equip", skin1));
+			final Node cancelNode = new Node(new TextButton("Cancel", skin1));
+			// add functions for node when clicked
+			newNode.getActor().addListener(new ClickListener(){
+				public void clicked(InputEvent event, float x, float y){
+					if(newNode.isExpanded())
+						newNode.collapseAll();
+					else{
+						tree.collapseAll();
+						newNode.expandAll();
+					}
+				}
+			});
+			equipNode.getActor().addListener(new ClickListener() {
+				public void clicked (InputEvent event, float x, float y) {
+					tree.remove(newNode);
+				}
+			});
+			cancelNode.getActor().addListener(new ClickListener() {
+				public void clicked (InputEvent event, float x, float y) {
+					newNode.collapseAll();
+				}
+			});
+			// add Node to tree and choices to each node
+			newNode.add(equipNode);
+			newNode.add(cancelNode);
+			tree.add(newNode);
+		}
+		tree.setPadding(100);
+		scrollTable.add(tree);
+		table.add(heading).padBottom(70);
+		table.add();
+		table.row();
+		table.add(scroller).fill().expand();
+		table.row();
 		table.add(buttonBack);
 		stage.addActor(table);
+		
 	}
 
 	@Override
@@ -106,7 +179,7 @@ public class ScreenInventory implements Screen {
 		
 		stage.act(delta);
 		stage.draw();
-		
+		//stage.setDebugAll(true);
 	}
 
 	@Override
