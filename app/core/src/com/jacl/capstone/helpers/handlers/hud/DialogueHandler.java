@@ -17,6 +17,7 @@ public class DialogueHandler
 	 * dialogue boxes using this character.
 	 */
 	private final String SPLIT_CHAR = "<s>";
+	private final String END_DIAL = "<t>";
 	
 	public DialogueHandler(HUD hud)
 	{

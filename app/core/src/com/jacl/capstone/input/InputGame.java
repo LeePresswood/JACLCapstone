@@ -1,5 +1,6 @@
 package com.jacl.capstone.input;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Input.Keys;
 import com.jacl.capstone.data.enums.EnemyType;
@@ -103,7 +104,8 @@ public class InputGame implements InputProcessor
 					break;
 				case Keys.R:
 					clearInput();							//InputGame.class.cast(Gdx.input.getInputProcessor()).clearInput();
-					screen.hud.dialogue_handler.startDialogue("Hello. This is a long string.\n TESTTIEUEUEUEJFKJDKJJ<s>KJKAKFJAKJFJKSAFKJSFJK");
+					//screen.hud.dialogue_handler.startDialogue("Hello. This is a long string.\n TESTTIEUEUEUEJFKJDKJJ<s>KJKAKFJAKJFJKSAFKJSFJK");
+					screen.hud.dialogue_handler.startDialogue(Gdx.files.internal("dialogue/chapter1-dialog.txt").readString());
 					break;
 			}
 		}
