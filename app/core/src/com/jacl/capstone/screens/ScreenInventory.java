@@ -28,6 +28,8 @@ import com.jacl.capstone.CapstoneGame;
 public class ScreenInventory implements Screen {
 	public ScreenInventory(CapstoneGame game) {
 		this.game = game;
+		
+		System.out.println(game);
 		this.last_screen = game.getScreen();
 	}
 	

@@ -16,6 +16,7 @@ public class InputGame implements InputProcessor
 	public CapstoneGame game;
 	public InputGame(ScreenGame screen)
 	{
+		this.game = screen.game;
 		this.screen = screen;
 	}
 
