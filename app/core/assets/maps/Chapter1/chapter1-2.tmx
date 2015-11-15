@@ -31,11 +31,7 @@
    eJzt2NENwCAIRVEG8KODdZ+227uAqVIwQHpPwrfG5AFRBABqu5rIrainRd841up7/f2dgOo8M63psaMCUI92v1rNPn0EAJCRdeZ92betsxaoZJaXUR52m2Vw17/Y27n8xaEKZhdQj8e+61WAxXlE3yCf6EzTE5BZByeSeQU=
   </data>
  </layer>
- <objectgroup name="collisionobjects">
-  <object id="1" x="498" y="705" width="14" height="14">
-   <ellipse/>
-  </object>
- </objectgroup>
+ <objectgroup name="collisionobjects"/>
  <layer name="events" width="50" height="50" visible="0">
   <properties>
    <property name="1,7" value="GOTO chapter1-3.tmx 92,25"/>
