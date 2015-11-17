@@ -1,6 +1,7 @@
 package com.jacl.capstone.hud;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.jacl.capstone.data.Assets;
@@ -8,6 +9,7 @@ import com.jacl.capstone.helpers.handlers.hud.DialogueHandler;
 import com.jacl.capstone.hud.world.HealthBar;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.atmosphere.GameTime;
+import com.jacl.capstone.world.atmosphere.Money;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
@@ -24,6 +26,7 @@ public class HUD
 	
 	public HealthBar health_bar;
 	public GameTime time;
+	public Money money;
 	
 	public HUD(ScreenGame screen)
 	{
@@ -41,6 +44,7 @@ public class HUD
 		
 		dialogue_handler = new DialogueHandler(this);
 		health_bar = new HealthBar(this);
+		money = new Money(this);
 	}
 	
 	/**
@@ -108,10 +112,15 @@ public class HUD
 		//Set the projection matrix of the sprite to our new camera. This keeps the two layers from affecting the coordinates of the other.
 		screen.batch.setProjectionMatrix(camera.combined);
 		screen.batch.begin();
-			font.draw(screen.batch, time.toString(), 0f, Gdx.graphics.getHeight());			//Time.
-			health_bar.draw();																				//Health.
+			font.draw(screen.batch, time.toString(), 0f, Gdx.graphics.getHeight());											//Time.
+			
+			font.setColor(Color.YELLOW);
+			font.draw(screen.batch, money.toString(), 0, Gdx.graphics.getHeight()- font.getLineHeight());		//Money.
+			font.setColor(Color.WHITE);
+			
+			health_bar.draw();																												//Health.
 		screen.batch.end();
 		
-		dialogue_handler.draw();																			//Dialogue.
+		dialogue_handler.draw();																											//Dialogue.
 	}
 }
