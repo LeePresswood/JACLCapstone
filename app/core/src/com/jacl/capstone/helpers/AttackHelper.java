@@ -34,8 +34,9 @@ public class AttackHelper
 	{
 		// Only start an attack if we aren't already mid attack
 		if(!mid_attack){
-			sfx = new AudioPlayer("sources/scratch.mp3"); // add source
-			//start audio effects when sword swings
+			//sfx = Gdx.audio.newSound(Gdx.files.internal("sounds/scratch.mp3")); // add source
+			//start audio effects when sword swing
+			sfx = new AudioPlayer("sounds/scratch.mp3");
 			sfx.play();
 			// Get the selected item if a copy of the item does not exist.
 			weapon = ItemFactory.spawn(item_selection, world);
