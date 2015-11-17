@@ -62,7 +62,7 @@ public class ScreenMenu extends ScreenAdapter{
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
-		
+		spriteBatch = new SpriteBatch();
 		//setting up backgrounds
 		backgroundTexture = new Texture("Backgrounds/menubg.gif");// load the image
 		
@@ -70,7 +70,7 @@ public class ScreenMenu extends ScreenAdapter{
 		backgroundTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		//create a region of texture
-		backgroundTextureRegion = new TextureRegion(backgroundTexture, 0,0, 512, 301);
+		backgroundTextureRegion = new TextureRegion(backgroundTexture, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		//fonts
 		table = new Table(skin);
@@ -162,9 +162,9 @@ public class ScreenMenu extends ScreenAdapter{
 	public void render(float delta) {
 		//Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		//spriteBatch.begin();
-			//spriteBatch.draw(backgroundTextureRegion,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
-		//spriteBatch.end();
+		spriteBatch.begin();
+			spriteBatch.draw(backgroundTextureRegion,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+		spriteBatch.end();
 		stage.act(delta);
 		stage.draw();
 	}
