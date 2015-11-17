@@ -69,6 +69,7 @@ public class ScreenGame extends ScreenParent
 	 */	
 	public void show()
 	{
+		super.show();
 		save_handler.getFromSave();
 	}
 	
@@ -79,6 +80,7 @@ public class ScreenGame extends ScreenParent
 	 */
 	public void hide()
 	{
+		super.hide();
 		save_handler.write();
 	}
 }

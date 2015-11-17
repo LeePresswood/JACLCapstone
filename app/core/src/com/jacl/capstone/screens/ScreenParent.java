@@ -24,6 +24,7 @@ public abstract class ScreenParent extends ScreenAdapter
 	public CapstoneGame game;
 	public SpriteBatch batch;
 	public ShapeRenderer renderer;
+	public InputProcessor input;
 	
 	protected Color color_background;
 	
@@ -34,7 +35,15 @@ public abstract class ScreenParent extends ScreenAdapter
 		this.renderer = new ShapeRenderer();
 		
 		color_background = setUpBackgroundColor();
-		Gdx.input.setInputProcessor(setUpInput());
+		input = setUpInput();
+		Gdx.input.setInputProcessor(input);
+	}
+	
+	@Override
+	public void show()
+	{
+		super.show();
+		Gdx.input.setInputProcessor(input);
 	}
 	
 	/**

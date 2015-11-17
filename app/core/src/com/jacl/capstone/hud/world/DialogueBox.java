@@ -52,14 +52,14 @@ public class DialogueBox
 	 */
 	public void draw()
 	{
-		hud.screen.renderer.setColor(Color.GREEN);
+		hud.screen.renderer.setColor(Color.BLACK);
 		hud.screen.renderer.begin(ShapeType.Filled);
 			hud.screen.renderer.rect(box_x, box_y, DIALOGUE_WIDTH, DIALOGUE_HEIGHT);
 		hud.screen.renderer.end();
 		
-		hud.screen.renderer.setColor(Color.BLACK);
+		hud.screen.renderer.setColor(Color.WHITE);
 		hud.screen.renderer.begin(ShapeType.Line);
-			hud.screen.renderer.rect(box_x, box_y, DIALOGUE_WIDTH, DIALOGUE_HEIGHT);
+			hud.screen.renderer.rect(box_x + 1f, box_y, DIALOGUE_WIDTH - 1f, DIALOGUE_HEIGHT - 1f);
 		hud.screen.renderer.end();
 		
 		//font.setColor(Color.YELLOW);

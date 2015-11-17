@@ -107,7 +107,7 @@ public class EntityHandler
 	 * Used in sorting the items by Y values. Sort by the top value of the sprite
 	 * @author Lee
 	 */
-	private class EntityComparator implements Comparator<Entity> 
+	private class EntityComparator implements Comparator<Entity>
 	{
 		@Override
 		public int compare(Entity a, Entity b) 
