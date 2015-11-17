@@ -15,7 +15,6 @@ public class Sword extends Weapon
 	 * This is how many degrees off the four cardinal compass directions the sword spawns.
 	 */
 	private final float OFF_90 = -15f;
-	
 	private final float ROTATE_DEGREE = 115f;
 	
 	public Sword(World world, Element data, Direction direction)
@@ -43,7 +42,7 @@ public class Sword extends Weapon
 		else if(direction == Direction.DOWN)
 		{
 			sprite.setRotation(180f + OFF_90);
-		}
+		} 
 		else if(direction == Direction.RIGHT)
 		{
 			sprite.setRotation(270f + OFF_90);
