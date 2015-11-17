@@ -8,6 +8,7 @@ import com.jacl.capstone.data.enums.EnemyType;
 import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.screens.ScreenInventory;
+import com.jacl.capstone.screens.ScreenMenu;
 import com.jacl.capstone.world.entities.npc.enemies.EnemyFactory;
 
 public class InputGame implements InputProcessor
@@ -112,6 +113,9 @@ public class InputGame implements InputProcessor
 					break;
 				case Keys.I:
 					game.setScreen(new ScreenInventory(game));
+					break;
+				case Keys.ESCAPE:
+					game.setScreen(new ScreenMenu(game));
 			}
 		}
 		
