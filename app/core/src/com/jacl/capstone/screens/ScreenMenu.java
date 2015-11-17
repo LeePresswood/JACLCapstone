@@ -5,7 +5,10 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -34,6 +37,10 @@ public class ScreenMenu extends ScreenAdapter{
 	private BitmapFont bitmap;
 	private Label heading;
 	private TextButton buttonExit,buttonLoad,buttonNew,buttonCredit,buttonOptions;
+	public static Texture backgroundTexture;
+	public static Sprite backgroundSprite;
+	private SpriteBatch spriteBatch;
+	
 	
 	public ScreenMenu(CapstoneGame game) {
 		this.game = game;
@@ -54,6 +61,10 @@ public class ScreenMenu extends ScreenAdapter{
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
+		
+		//setting up backgrounds
+		backgroundTexture = new Texture("Backgrounds/menubg.gif");
+		backgroundSprite = new Sprite(backgroundTexture);
 		
 		//fonts
 		table = new Table(skin);
@@ -141,15 +152,22 @@ public class ScreenMenu extends ScreenAdapter{
 		stage.addActor(table);
 	}
 
+	public void renderBackground(){
+		backgroundSprite.draw(spriteBatch);
+	}
+	
 	@Override
 	public void render(float delta) {
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		//Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		spriteBatch.begin();
+			renderBackground();
+		spriteBatch.end();
 		
 		stage.act(delta);
 		stage.draw();
 	}
-
+	
 	@Override
 	public void dispose() {
 		stage.dispose();
