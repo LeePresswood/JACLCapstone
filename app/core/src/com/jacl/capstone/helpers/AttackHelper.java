@@ -35,7 +35,6 @@ public class AttackHelper
 		// Only start an attack if we aren't already mid attack
 		if(!mid_attack){
 			sfx = new AudioPlayer("sources/scratch.mp3"); // add source
-			sfx = new AudioPlayer("sounds/scratch.mp3");
 			//start audio effects when sword swings
 			sfx.play();
 			// Get the selected item if a copy of the item does not exist.
