@@ -1,6 +1,8 @@
 package com.jacl.capstone.world.entities.player.items;
 import java.util.ArrayList;
 
+import com.jacl.capstone.world.entities.player.items.weapons.Item;
+
 public class Inventory {
 	//set of attributes
 	private ArrayList<Item> items;

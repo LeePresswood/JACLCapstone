@@ -15,7 +15,6 @@ public class EventEntityFactory
 	public static EventEntity get(World world, float x, float y, String command)
 	{
 		//This event will be determined by the command variable.
-		System.out.println(command);
 		String[] tokens = command.split(" ");
 		
 		//First token is the command. Any additional tokens will be arguments the event will use.

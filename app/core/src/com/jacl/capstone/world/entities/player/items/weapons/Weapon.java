@@ -1,4 +1,4 @@
-package com.jacl.capstone.world.entities.player.items;
+package com.jacl.capstone.world.entities.player.items.weapons;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.XmlReader.Element;
