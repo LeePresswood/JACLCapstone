@@ -8,8 +8,9 @@ public class DialogueHandler
 	public HUD hud;
 	
 	public boolean showing_dialogue;
-	public DialogueBox[] boxes;
+	public DialogueBox[][] boxes;
 	public int current_box;
+	public int current_dialogue;
 	
 	/**
 	 * This is a special character that will be inserted into dialogue scripts.
@@ -33,18 +34,25 @@ public class DialogueHandler
 		//Initialize world for dialogue box.
 		showing_dialogue = true;
 		current_box = 0;
+		current_dialogue = 0;
 		
-		//Split the text into DialogueBoxes.
-		if(file_text.length() > 0)
-		{
-			//Create an array of strings that represents the texts of the dialogue boxes.
-			String[] split = file_text.split(SPLIT_CHAR);
+		//Split the text into dialogues. These splits are denoted by the END_DIAL character.
+		if(file_text.length() > 0){
+			//Create an array of strings that represents the texts of the dialogues.
+			String[] split_dialogues = file_text.split(END_DIAL);
 			
-			//Each of these strings needs to be made into a dialogue box.
-			boxes = new DialogueBox[split.length];
-			for(int i = 0; i < split.length; i++)
-			{
-				boxes[i] = new DialogueBox(hud, split[i]);
+			//Each of these dialogues must be split further. These will represent multiple screens of dialogue per conversation.
+			boxes = new DialogueBox[split_dialogues.length][];
+			for(int i = 0; i < split_dialogues.length; i++){
+				//Create an array of strings that represents the texts of the dialogue boxes.
+				String[] split = file_text.split(SPLIT_CHAR);
+				
+				//Each of these strings needs to be made into a dialogue box.
+				boxes = new DialogueBox[i][split.length];
+				for(int j= 0; j < split.length; j++)
+				{
+					boxes[i][j] = new DialogueBox(hud, split[j]);
+				}
 			}
 		}
 	}
@@ -68,8 +76,9 @@ public class DialogueHandler
 	{
 		current_box++;
 		if(current_box >= boxes.length)
-		{//End of dialogue.
+		{//End of this conversation.
 			showing_dialogue = false;
+			current_dialogue++;
 		}
 	}
 	
@@ -92,7 +101,7 @@ public class DialogueHandler
 	{
 		if(showing_dialogue && current_box >= 0 && current_box < boxes.length)
 		{
-			boxes[current_box].draw();
+			boxes[current_dialogue][current_box].draw();
 		}
 	}
 }
