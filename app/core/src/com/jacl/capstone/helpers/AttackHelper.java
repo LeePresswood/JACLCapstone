@@ -34,7 +34,6 @@ public class AttackHelper
 	{
 		// Only start an attack if we aren't already mid attack
 		if(!mid_attack){
-			//sfx = Gdx.audio.newSound(Gdx.files.internal("sounds/scratch.mp3")); // add source
 			//start audio effects when sword swing
 			sfx = new AudioPlayer("sounds/scratch.mp3");
 			sfx.play();

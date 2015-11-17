@@ -2,6 +2,7 @@ package com.jacl.capstone.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
 import com.badlogic.gdx.graphics.GL20;
@@ -41,7 +42,7 @@ public class ScreenMenu extends ScreenAdapter{
 	public static Texture backgroundTexture;
 	public static TextureRegion backgroundTextureRegion;
 	private SpriteBatch spriteBatch;
-	
+	private Music musicbg;
 	
 	public ScreenMenu(CapstoneGame game) {
 		this.game = game;
@@ -73,6 +74,9 @@ public class ScreenMenu extends ScreenAdapter{
 		//create a region of texture
 		backgroundTextureRegion = new TextureRegion(backgroundTexture, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
+		// adding background music
+		musicbg = Gdx.audio.newMusic(Gdx.files.internal("sounds/menu.mp3"));
+		musicbg.play();
 		//fonts
 		table = new Table(skin);
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -101,6 +105,7 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonNew.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
+				musicbg.stop();
 				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
 			}
 		});
@@ -111,6 +116,7 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonLoad.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
+				musicbg.stop();
 				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
 			}
 		});
@@ -176,5 +182,6 @@ public class ScreenMenu extends ScreenAdapter{
 		atlas.dispose();
 		skin.dispose();
 		bitmap.dispose();
+		musicbg.dispose();
 	}
 }
