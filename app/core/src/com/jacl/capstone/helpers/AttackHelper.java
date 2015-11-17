@@ -21,7 +21,10 @@ public class AttackHelper
 	public float attack_time_current;
 	public float attack_time_max;
 	private AudioPlayer sfx;
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 6f3d8f50c13972475f14fb14680c27ec9971d497
 	public AttackHelper(MovingEntity entity)
 	{
 		this.world = entity.world;
@@ -34,7 +37,12 @@ public class AttackHelper
 	{
 		// Only start an attack if we aren't already mid attack
 		if(!mid_attack){
+<<<<<<< HEAD
 			sfx = new AudioPlayer("sources/scratch.mp3"); // add source
+=======
+			sfx = new AudioPlayer("sounds/scratch.mp3");
+			//start audio effects when sword swings
+>>>>>>> 6f3d8f50c13972475f14fb14680c27ec9971d497
 			sfx.play();
 			// Get the selected item if a copy of the item does not exist.
 			weapon = ItemFactory.spawn(item_selection, world);
@@ -45,6 +53,8 @@ public class AttackHelper
 			mid_attack = true;
 			attack_time_current = 0f;
 			attack_time_max = weapon.use_time;
+			
+			
 		}
 	}
 	

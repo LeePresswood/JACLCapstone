@@ -38,14 +38,14 @@ public class DialogueHandler
 		//Split the text into dialogues. These splits are denoted by the END_DIAL character.
 		if(file_text.length() > 0){
 			//Remove returns from the file_text.
-			file_text = file_text.replaceAll("\n", "");
+			//file_text = file_text.replaceAll("", "");
 			
 			//Create an array of strings that represents the texts of the dialogues.
 			String[] split_conversations = file_text.split(END_DIAL);
 			
 			//Each of these dialogues must be split further. These will represent multiple screens of dialogue per conversation.
 			boxes = new DialogueBox[split_conversations.length][];
-			for(int i = 0; i < split_conversations.length; i++){
+			for(int i = 0; i < split_conversations.length; i++){				
 				//Create an array of strings that represents the texts of the dialogue boxes.
 				String[] split_conversation_blocks = split_conversations[i].split(SPLIT_CHAR);
 				
@@ -53,6 +53,11 @@ public class DialogueHandler
 				boxes[i] = new DialogueBox[split_conversation_blocks.length];
 				for(int j = 0; j < split_conversation_blocks.length; j++)
 				{
+					while(split_conversation_blocks[j].length() > 0 && !Character.isAlphabetic(split_conversation_blocks[j].charAt(0))){
+						System.out.println(split_conversation_blocks[j].charAt(0));
+						split_conversation_blocks[j] = split_conversation_blocks[j].substring(1);
+					}
+					
 					boxes[i][j] = new DialogueBox(hud, split_conversation_blocks[j]);
 				}
 			}

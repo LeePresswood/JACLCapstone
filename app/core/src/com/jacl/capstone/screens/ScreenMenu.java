@@ -57,6 +57,7 @@ public class ScreenMenu extends ScreenAdapter{
 	 */
 	public void show() {
 		stage = new Stage();
+		spriteBatch = new SpriteBatch();
 		
 		Gdx.input.setInputProcessor(stage);
 		
