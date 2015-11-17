@@ -34,24 +34,26 @@ public class DialogueHandler
 		//Initialize world for dialogue box.
 		showing_dialogue = true;
 		current_box = 0;
-		current_dialogue = 0;
 		
 		//Split the text into dialogues. These splits are denoted by the END_DIAL character.
 		if(file_text.length() > 0){
+			//Remove returns from the file_text.
+			file_text = file_text.replaceAll("\n", "");
+			
 			//Create an array of strings that represents the texts of the dialogues.
-			String[] split_dialogues = file_text.split(END_DIAL);
+			String[] split_conversations = file_text.split(END_DIAL);
 			
 			//Each of these dialogues must be split further. These will represent multiple screens of dialogue per conversation.
-			boxes = new DialogueBox[split_dialogues.length][];
-			for(int i = 0; i < split_dialogues.length; i++){
+			boxes = new DialogueBox[split_conversations.length][];
+			for(int i = 0; i < split_conversations.length; i++){
 				//Create an array of strings that represents the texts of the dialogue boxes.
-				String[] split = file_text.split(SPLIT_CHAR);
+				String[] split_conversation_blocks = split_conversations[i].split(SPLIT_CHAR);
 				
 				//Each of these strings needs to be made into a dialogue box.
-				boxes = new DialogueBox[i][split.length];
-				for(int j= 0; j < split.length; j++)
+				boxes[i] = new DialogueBox[split_conversation_blocks.length];
+				for(int j = 0; j < split_conversation_blocks.length; j++)
 				{
-					boxes[i][j] = new DialogueBox(hud, split[j]);
+					boxes[i][j] = new DialogueBox(hud, split_conversation_blocks[j]);
 				}
 			}
 		}
@@ -75,7 +77,7 @@ public class DialogueHandler
 	public void forwardDialogue()
 	{
 		current_box++;
-		if(current_box >= boxes.length)
+		if(current_box >= boxes[current_dialogue].length)
 		{//End of this conversation.
 			showing_dialogue = false;
 			current_dialogue++;
