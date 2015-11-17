@@ -6,10 +6,12 @@ import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -38,7 +40,7 @@ public class ScreenMenu extends ScreenAdapter{
 	private Label heading;
 	private TextButton buttonExit,buttonLoad,buttonNew,buttonCredit,buttonOptions;
 	public static Texture backgroundTexture;
-	public static Sprite backgroundSprite;
+	public static TextureRegion backgroundTextureRegion;
 	private SpriteBatch spriteBatch;
 	
 	
@@ -63,8 +65,13 @@ public class ScreenMenu extends ScreenAdapter{
 		skin = new Skin(atlas);
 		
 		//setting up backgrounds
-		backgroundTexture = new Texture("Backgrounds/menubg.gif");
-		backgroundSprite = new Sprite(backgroundTexture);
+		backgroundTexture = new Texture("Backgrounds/menubg.gif");// load the image
+		
+		//set the linear texture filter to improve the image stretching
+		backgroundTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		//create a region of texture
+		backgroundTextureRegion = new TextureRegion(backgroundTexture, 0,0, 512, 301);
 		
 		//fonts
 		table = new Table(skin);
@@ -151,19 +158,14 @@ public class ScreenMenu extends ScreenAdapter{
 		//table.debug();
 		stage.addActor(table);
 	}
-
-	public void renderBackground(){
-		backgroundSprite.draw(spriteBatch);
-	}
 	
 	@Override
 	public void render(float delta) {
 		//Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		spriteBatch.begin();
-			renderBackground();
+			spriteBatch.draw(backgroundTextureRegion,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 		spriteBatch.end();
-		
 		stage.act(delta);
 		stage.draw();
 	}
