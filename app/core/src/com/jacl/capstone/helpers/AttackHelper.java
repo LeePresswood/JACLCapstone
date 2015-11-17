@@ -3,8 +3,8 @@ package com.jacl.capstone.helpers;
 import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
-import com.jacl.capstone.world.entities.player.items.ItemFactory;
-import com.jacl.capstone.world.entities.player.items.Weapon;
+import com.jacl.capstone.world.entities.player.items.weapons.ItemFactory;
+import com.jacl.capstone.world.entities.player.items.weapons.Weapon;
 
 /**
  * Manages attacking.
