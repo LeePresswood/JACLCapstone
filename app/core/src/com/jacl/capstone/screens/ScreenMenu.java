@@ -33,7 +33,7 @@ public class ScreenMenu extends ScreenAdapter{
 	private Table table;
 	private BitmapFont bitmap;
 	private Label heading;
-	private TextButton buttonExit,buttonLoad,buttonNew,buttonCredit,buttonOptions,buttonInventory;
+	private TextButton buttonExit,buttonLoad,buttonNew,buttonCredit,buttonOptions;
 	
 	public ScreenMenu(CapstoneGame game) {
 		this.game = game;
@@ -108,16 +108,6 @@ public class ScreenMenu extends ScreenAdapter{
 		});
 		buttonCredit.pad(5);
 		
-		//button credit which show contributors
-		buttonInventory = new TextButton("Inventory",textButtonStyle);
-		buttonInventory.addListener(new ClickListener(){
-					@Override
-					public void clicked(InputEvent event, float x, float y){
-						((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenInventory(game));
-					}
-				});
-				buttonInventory.pad(5);
-		
 		// Options button which show volume, graphic etc.
 		buttonOptions = new TextButton("Options",textButtonStyle);
 		buttonOptions.addListener(new ClickListener(){
@@ -139,8 +129,6 @@ public class ScreenMenu extends ScreenAdapter{
 		table.row();
 		table.getCell(heading).spaceBottom(30);
 		table.add(buttonNew);
-		table.row();
-		table.add(buttonInventory);
 		table.row();
 		table.add(buttonLoad);
 		table.row();
