@@ -115,7 +115,7 @@ public class HUD
 			font.draw(screen.batch, time.toString(), 0f, Gdx.graphics.getHeight());											//Time.
 			
 			font.setColor(Color.YELLOW);
-			font.draw(screen.batch, money.toString(), 0, Gdx.graphics.getHeight()- font.getLineHeight());		//Money.
+			font.draw(screen.batch, money.toString(), 0, Gdx.graphics.getHeight() - font.getLineHeight());			//Money.
 			font.setColor(Color.WHITE);
 			
 			health_bar.draw();																												//Health.
