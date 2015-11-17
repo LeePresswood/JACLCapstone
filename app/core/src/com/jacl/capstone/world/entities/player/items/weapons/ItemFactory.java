@@ -1,4 +1,4 @@
-package com.jacl.capstone.world.entities.player.items;
+package com.jacl.capstone.world.entities.player.items.weapons;
 
 import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.world.World;

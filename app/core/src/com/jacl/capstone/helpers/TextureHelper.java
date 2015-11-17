@@ -52,7 +52,7 @@ public class TextureHelper
 	
 	private void readFromFile(String folder)
 	{
-		String base_texture_folder = Assets.TEXTURE_BASE + folder;
+		String base_texture_folder = Assets.SPRITE_BASE + folder;
 		for(String file : Gdx.files.internal(base_texture_folder).readString().split("\n"))
 		{
 			//Get the file that we're looking at.
