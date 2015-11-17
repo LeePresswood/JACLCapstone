@@ -1,5 +1,6 @@
 package com.jacl.capstone.helpers;
 
+import com.jacl.capstone.AudioPlayer;
 import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.MovingEntity;
@@ -19,7 +20,7 @@ public class AttackHelper
 	public boolean mid_attack;
 	public float attack_time_current;
 	public float attack_time_max;
-	
+	private AudioPlayer sfx;
 	public AttackHelper(MovingEntity entity)
 	{
 		this.world = entity.world;
@@ -32,6 +33,9 @@ public class AttackHelper
 	{
 		// Only start an attack if we aren't already mid attack
 		if(!mid_attack){
+			sfx = new AudioPlayer("sounds/scratch.mp3");
+			//start audio effects when sword swings
+			sfx.play();
 			// Get the selected item if a copy of the item does not exist.
 			weapon = ItemFactory.spawn(item_selection, world);
 			world.entity_handler.add(weapon);
@@ -41,6 +45,8 @@ public class AttackHelper
 			mid_attack = true;
 			attack_time_current = 0f;
 			attack_time_max = weapon.use_time;
+			
+			
 		}
 	}
 	
