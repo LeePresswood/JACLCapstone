@@ -119,7 +119,7 @@ public class InputGame implements InputProcessor
 					game.setScreen(new ScreenMenu(game));
 					break;
 				case Keys.SHIFT_LEFT:
-					screen.world.entity_handler.add(new CollectibleMoneyItem(screen.world, 2,  4.5f, screen.world.data_handler.collectible_root));
+					screen.world.entity_handler.add(new CollectibleMoneyItem(screen.world, 2,  4.5f, screen.world.data_handler.collectible_root.getChildByName("money")));
 					break;
 			}
 		}

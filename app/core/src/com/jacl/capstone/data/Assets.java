@@ -66,6 +66,7 @@ public class Assets extends AssetManager
 
 		//Textures
 		loadTexturesFromFolder(SPRITE_BASE + "characters/dia/");
+		loadTexturesFromFolder(SPRITE_BASE + "items/");
 		loadTexturesFromFolder(TEXTURE_BASE + "weapons/");
 
 		loadTexturesFromFolder("hud/healthbar/");
