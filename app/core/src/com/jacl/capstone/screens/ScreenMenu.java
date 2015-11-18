@@ -78,7 +78,7 @@ public class ScreenMenu extends ScreenAdapter{
 		musicbg = Gdx.audio.newMusic(Gdx.files.internal("sounds/menu.mp3"));
 		if(game.getPreferences().isMusicEffectsEnabled()){
 			musicbg.setLooping(true);
-			System.out.println(game.getPreferences().getVolume());
+			//System.out.println(game.getPreferences().getVolume());
 			musicbg.setVolume(game.getPreferences().getVolume());
 			if (musicbg.isPlaying())
 			{
