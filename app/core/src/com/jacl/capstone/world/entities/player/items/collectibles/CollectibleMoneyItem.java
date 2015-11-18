@@ -15,7 +15,7 @@ public class CollectibleMoneyItem extends CollectibleItem
 		super(world, x, y, data, Alignment.PLAYER);
 		
 		//A money drop was requested. Determine its value.
-		value = new Random().nextInt(50);
+		value = new Random().nextInt(49) + 1;
 	}
 
 	@Override

@@ -66,4 +66,9 @@ public class Sword extends Weapon
 			sprite.draw(batch);
 		}
 	}
+	
+	@Override
+	protected void die()
+	{//Swords can't die.
+	}
 }

@@ -14,6 +14,7 @@ public class EntityHandler
 	public World world;
 	
 	//We will have an all entities array that will be used for drawing. We can sort this array by the Y-values to give an effect of being in front of/behind each other.
+	public ArrayList<Entity> to_add;
 	public ArrayList<Entity> all_entities;
 	public Iterator<Entity> entity_iterator;
 	public float array_sort_counter_current;
@@ -38,6 +39,7 @@ public class EntityHandler
 		
 		//Because this is when we are recreating the EnitityHandler, there should be no items in the all_entities array. Let's make it and add the player.
 		//Note: We would normally sort the array after adding an entity, but because this is the only entity, there's no need.
+		to_add = new ArrayList<Entity>();
 		all_entities = new ArrayList<Entity>();
 		all_entities.add(player);
 	}
@@ -68,6 +70,13 @@ public class EntityHandler
 			Collections.sort(all_entities, new EntityComparator());
 		}
 		
+		//Added buffered entities to list.
+		for(Entity e : to_add){
+			add(e);
+		}
+		to_add.clear();
+		
+		//Remove old entities.
 		remove();
 	}
 	
