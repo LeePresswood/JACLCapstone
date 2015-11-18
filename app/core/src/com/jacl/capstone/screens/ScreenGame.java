@@ -17,15 +17,20 @@ public class ScreenGame extends ScreenParent
 	
 	public SaveHandler save_handler;
 	private Music backgroundMusic;
-	public ScreenGame(CapstoneGame game)
+	
+	public String save_file;
+	
+	public ScreenGame(CapstoneGame game, String save_file)
 	{
 		super(game);
+		
+		this.save_file = save_file;
 		
 		world = new World(this);
 		hud = new HUD(this);
 		
 		save_handler = new SaveHandler(this);
-		save_handler.getFromSave();
+		//save_handler.getFromSave(save_file);
 		
 		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/05 Come and Find Me.mp3"));
 		if(game.getPreferences().isMusicEffectsEnabled()){
@@ -82,7 +87,7 @@ public class ScreenGame extends ScreenParent
 	public void show()
 	{
 		super.show();
-		save_handler.getFromSave();
+		save_handler.getFromSave(save_file);
 	}
 	
 	@Override

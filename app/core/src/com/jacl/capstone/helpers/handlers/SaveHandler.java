@@ -126,16 +126,16 @@ public class SaveHandler
 			e.printStackTrace();
 		}
 	}
-	
+		
 	/**
 	 * Read from the save file into the world.
 	 */
-	public void getFromSave()
+	public void getFromSave(String save_file)
 	{
 		try
 		{
 			//Read from save file.
-			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + SAVE_FILE));
+			Element root = new XmlReader().parse(Gdx.files.local(SAVE_DIR + save_file));
 			
 			//Push into world.
 			float healthbar_max = root.getChildByName("healthbar").getFloat("health_max");

@@ -107,7 +107,7 @@ public class ScreenMenu extends ScreenAdapter{
 			@Override
 			public void clicked(InputEvent event, float x, float y){
 				musicbg.stop();
-				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game, "new.xml"));
 			}
 		});
 		buttonNew.pad(5);
@@ -118,7 +118,7 @@ public class ScreenMenu extends ScreenAdapter{
 			@Override
 			public void clicked(InputEvent event, float x, float y){
 				musicbg.stop();
-				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game, "test.xml"));
 			}
 		});
 		buttonLoad.pad(5);

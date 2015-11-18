@@ -9,6 +9,6 @@
 		<health>5.0</health>
 		<knockback_on_collide>true</knockback_on_collide>
 		<damage_on_collide>1.0</damage_on_collide>
-		<move_speed>3.0</move_speed>
+		<move_speed>5.0</move_speed>
 	</sample_creep>
 </enemies>
