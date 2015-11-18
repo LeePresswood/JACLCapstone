@@ -23,13 +23,13 @@
  </layer>
  <objectgroup name="collisionobjects">
   <object id="1" x="213" y="518" width="37" height="37"/>
-  <object id="2" x="113" y="418" width="93" height="55"/>
+  <object id="2" x="113" y="418" width="93" height="53"/>
  </objectgroup>
- <layer name="events" width="20" height="40">
+ <layer name="events" width="20" height="40" visible="0">
   <properties>
    <property name="10,0" value="INITIATE dialog"/>
    <property name="10,39" value="GOTO"/>
-   <property name="10,9" value="SPAWN mom"/>
+   <property name="10,9" value="SPAWN  character mom"/>
    <property name="11,0" value="INITIATE dialog"/>
    <property name="11,39" value="GOTO"/>
    <property name="8,0" value="INITIATE dialog"/>
@@ -37,7 +37,7 @@
    <property name="9,0" value="INITIATE dialog"/>
    <property name="9,39" value="GOTO"/>
    <property name="9,7" value="INITIATE dialog"/>
-   <property name="9,9" value="SPAWN dad"/>
+   <property name="9,9" value="SPAWN character dad"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJxjYMAPCnlQ8SgYBaNgFIyCUTAKRsEooBwM9rbVYHbbKBhcgNT+AgCOgAVg
