@@ -1,9 +1,9 @@
 <player>
-	<map>chapter1-1.tmx</map>
-	<time>00:17</time>
+	<map>chapter1-3.tmx</map>
+	<time>02:53</time>
 	<player_location>
-		<x>8</x>
-		<y>5</y>
+		<x>45</x>
+		<y>25</y>
 	</player_location>
 	<progress>
 		<chapter>1</chapter>
@@ -11,7 +11,7 @@
 	</progress>
 	<healthbar>
 		<health_max>10.0</health_max>
-		<health_current>10.0</health_current>
+		<health_current>5.0</health_current>
 		<health_regen>0.0</health_regen>
 	</healthbar>
 	<texture_folder>characters/dia/</texture_folder>
