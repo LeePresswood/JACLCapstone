@@ -154,16 +154,17 @@ public class ScreenCredit extends ScreenAdapter{
 				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(last_screen);
 			}
 		});
-		buttonBack.pad(5);
+		//buttonBack.pad(5);
 		
 		//add together stuffs
 		table.add(heading);
 		table.row();
 		table.getCell(heading).spaceTop(0);
-		table.add(scroller).fill().expand();
+		table.add(scroller).fillX().expandX();
 		table.getCell(scroller).spaceBottom(100);
 		table.row();
-		table.add(buttonBack);
+		table.add(buttonBack).spaceBottom(100);
+		table.row();
 		
 		stage.addActor(table);
 		
@@ -176,6 +177,7 @@ public class ScreenCredit extends ScreenAdapter{
 		
 		stage.act(delta);
 		stage.draw();
+		stage.setDebugAll(true);
 	}
 
 	@Override
