@@ -7,13 +7,10 @@ import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
 
 public abstract class CollectibleItem extends Entity
-{
-	
-	
+{	
 	public CollectibleItem(World world, float x, float y, Element data, Alignment alignment)
 	{
 		super(world, x, y, data, alignment);
-		
 	}
 
 	@Override
@@ -24,5 +21,8 @@ public abstract class CollectibleItem extends Entity
 	@Override
 	public void draw(SpriteBatch batch)
 	{
+		sprite.draw(batch);
 	}
+	
+	public abstract void collect();
 }
