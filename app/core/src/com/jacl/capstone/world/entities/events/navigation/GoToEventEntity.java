@@ -99,4 +99,10 @@ public class GoToEventEntity extends EventEntity
 		world.screen.renderer.end();
 		Gdx.gl.glDisable(GL20.GL_BLEND);
 	}
+
+	@Override
+	public boolean canCollide()
+	{
+		return true;
+	}
 }

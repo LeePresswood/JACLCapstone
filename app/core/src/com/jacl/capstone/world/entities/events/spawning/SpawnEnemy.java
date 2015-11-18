@@ -26,5 +26,10 @@ public class SpawnEnemy extends EventEntity
 	public void draw(SpriteBatch batch)
 	{
 	}
-	
+
+	@Override
+	public boolean canCollide()
+	{
+		return false;
+	}
 }

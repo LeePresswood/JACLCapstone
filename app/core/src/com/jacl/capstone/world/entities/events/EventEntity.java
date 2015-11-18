@@ -25,6 +25,7 @@ public abstract class EventEntity extends Entity
 	//collision rectangle.
 	protected final float SHRINK_SIZE_BY = 0.15f;
 	
+	
 	public EventEntity(World world, float x, float y, String... arguments)
 	{
 		super(world, x, y, null, Alignment.NEUTRAL);
@@ -91,4 +92,5 @@ public abstract class EventEntity extends Entity
 	}
 
 	public abstract void init();
+	public abstract boolean canCollide(); 
 }
