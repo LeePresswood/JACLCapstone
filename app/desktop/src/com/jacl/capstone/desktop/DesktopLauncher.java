@@ -37,7 +37,7 @@ public class DesktopLauncher
 	 * approximation of this ration in their width x height proportions
 	 * and because it looks better to the human eye.
 	 */
-	public static final int GAME_WIDTH = 800;
+	public static final int GAME_WIDTH = 1200;
 	public static final int GAME_HEIGHT = (int) (((float) GAME_WIDTH) / 1.618f);
 	
 	public static void main (String[] arg) 

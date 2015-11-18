@@ -2,13 +2,13 @@ package com.jacl.capstone.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -42,7 +42,7 @@ public class ScreenMenu extends ScreenAdapter{
 	public static Texture backgroundTexture;
 	public static TextureRegion backgroundTextureRegion;
 	private SpriteBatch spriteBatch;
-	
+	private Music musicbg;
 	
 	public ScreenMenu(CapstoneGame game) {
 		this.game = game;
@@ -58,12 +58,13 @@ public class ScreenMenu extends ScreenAdapter{
 	 */
 	public void show() {
 		stage = new Stage();
+		spriteBatch = new SpriteBatch();
 		
 		Gdx.input.setInputProcessor(stage);
 		
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
-		
+		spriteBatch = new SpriteBatch();
 		//setting up backgrounds
 		backgroundTexture = new Texture("Backgrounds/menubg.gif");// load the image
 		
@@ -71,8 +72,11 @@ public class ScreenMenu extends ScreenAdapter{
 		backgroundTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		//create a region of texture
-		backgroundTextureRegion = new TextureRegion(backgroundTexture, 0,0, 512, 301);
+		backgroundTextureRegion = new TextureRegion(backgroundTexture, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
+		// adding background music
+		musicbg = Gdx.audio.newMusic(Gdx.files.internal("sounds/menu.mp3"));
+		musicbg.play();
 		//fonts
 		table = new Table(skin);
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -101,7 +105,8 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonNew.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
-				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+				musicbg.stop();
+				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
 			}
 		});
 		buttonNew.pad(5);
@@ -111,7 +116,8 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonLoad.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
-				//((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
+				musicbg.stop();
+				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game));
 			}
 		});
 		buttonLoad.pad(5);
@@ -176,5 +182,6 @@ public class ScreenMenu extends ScreenAdapter{
 		atlas.dispose();
 		skin.dispose();
 		bitmap.dispose();
+		musicbg.dispose();
 	}
 }

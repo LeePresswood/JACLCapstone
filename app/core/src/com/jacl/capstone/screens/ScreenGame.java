@@ -2,6 +2,7 @@ package com.jacl.capstone.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.jacl.capstone.CapstoneGame;
 import com.jacl.capstone.helpers.handlers.SaveHandler;
@@ -15,7 +16,7 @@ public class ScreenGame extends ScreenParent
 	public HUD hud;
 	
 	public SaveHandler save_handler;
-	
+	private Music backgroundMusic;
 	public ScreenGame(CapstoneGame game)
 	{
 		super(game);
@@ -25,6 +26,9 @@ public class ScreenGame extends ScreenParent
 		
 		save_handler = new SaveHandler(this);
 		save_handler.getFromSave();
+		
+		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/05 Come and Find Me.mp3"));
+		backgroundMusic.play();
 	}
 
 	@Override

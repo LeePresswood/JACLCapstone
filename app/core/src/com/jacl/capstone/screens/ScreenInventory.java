@@ -8,8 +8,6 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -28,8 +26,6 @@ import com.jacl.capstone.CapstoneGame;
 public class ScreenInventory implements Screen {
 	public ScreenInventory(CapstoneGame game) {
 		this.game = game;
-		
-		System.out.println(game);
 		this.last_screen = game.getScreen();
 	}
 	

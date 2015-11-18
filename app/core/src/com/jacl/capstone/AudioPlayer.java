@@ -1,31 +1,13 @@
 package com.jacl.capstone;
 
-import javax.sound.sampled.*;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 
 public class AudioPlayer {
-	
-	private Clip clip;
-	
+	private Sound sound;
 	public AudioPlayer(String s){
 		try {
-			AudioInputStream ais =
-					AudioSystem.getAudioInputStream(
-							getClass().getResourceAsStream(s));
-			AudioFormat baseFormat = ais.getFormat();
-			AudioFormat decodeFormat = new AudioFormat(
-					AudioFormat.Encoding.PCM_SIGNED,
-					baseFormat.getSampleRate(),
-					16,
-					baseFormat.getChannels(),
-					baseFormat.getChannels() * 2,
-					baseFormat.getSampleRate(),
-					false
-			);
-			AudioInputStream dais = 
-					AudioSystem.getAudioInputStream(
-							decodeFormat,ais);
-			clip = AudioSystem.getClip();
-			clip.open(dais);
+			sound = Gdx.audio.newSound(Gdx.files.internal(s));
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -33,18 +15,18 @@ public class AudioPlayer {
 	}
 	
 	public void play(){
-		if(clip==null) return;
+		if(sound==null) return;
 		stop();
-		clip.setFramePosition(0);
-		clip.start();
+		//sound.setLooping(soundId, looping);;
+		sound.play();
 	}
 	
 	public void stop(){
-		if(clip.isRunning()) clip.stop();
+		sound.stop();
 	}
 	
 	public void close(){
 		stop();
-		clip.close();
+		sound.dispose();
 	}
 }
