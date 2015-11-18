@@ -7,16 +7,16 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane.ScrollPaneStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Tree;
 import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
@@ -24,17 +24,16 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.jacl.capstone.CapstoneGame;
 
 public class ScreenInventory implements Screen {
-	public ScreenInventory(CapstoneGame game) {
+	public ScreenInventory(CapstoneGame game, TextureRegion textureRegion) {
 		this.game = game;
 		this.last_screen = game.getScreen();
+		this.texture = textureRegion;
 	}
 	
 	ArrayList<String> inventory = new ArrayList<String>();
 	//private InventoryActor inventoryActor;
 	private TextureAtlas atlas;
 	private Skin skin;
-	private TextureAtlas atlas2;
-	private Skin skin2;
 	private Table table;
 	private BitmapFont bitmap28;
 	private TextButton buttonBack;
@@ -42,8 +41,9 @@ public class ScreenInventory implements Screen {
 	private Screen last_screen;
 	public static Stage stage;
 	private Label heading;
+	private TextureRegion texture;
+	private SpriteBatch batch;
 	
-
 	@Override
 	public void show() {
 		stage = new Stage();
@@ -55,8 +55,6 @@ public class ScreenInventory implements Screen {
 		atlas = new TextureAtlas("atlas.pack");
 		skin = new Skin(atlas);
 		
-		atlas2 = new TextureAtlas("uiskin.atlas");
-		skin2 = new Skin(atlas2);
 		
 		Skin skin1 = new Skin(Gdx.files.internal("uiskin.json"));
 		bitmap28 = new BitmapFont(Gdx.files.internal("hud/fonts/font28.fnt"), false);
@@ -108,12 +106,13 @@ public class ScreenInventory implements Screen {
 		*/
 
 		table.setFillParent(true);
+		/*
 		final Table scrollTable = new Table();
 		ScrollPaneStyle scrollStyle = new ScrollPaneStyle();
 		scrollStyle.background = skin1.getDrawable("default-rect"); 
 		scrollStyle.vScrollKnob = skin1.getDrawable("default-round-large");
 		final ScrollPane scroller = new ScrollPane(scrollTable,scrollStyle);
-		
+		*/
 		final Tree tree = new Tree(skin1);
 
 		inventory.add("Axe");
@@ -157,13 +156,15 @@ public class ScreenInventory implements Screen {
 			tree.add(newNode);
 		}
 		tree.setPadding(100);
-		scrollTable.add(tree);
+		tree.setBounds(50, 50, 100, 100);
+		//scrollTable.add(tree);
 		table.add(heading).padBottom(70);
 		table.add();
 		table.row();
-		table.add(scroller).fill().expand();
+		table.add(tree).fill().expand();
 		table.row();
 		table.add(buttonBack);
+		
 		stage.addActor(table);
 		
 	}
@@ -172,6 +173,13 @@ public class ScreenInventory implements Screen {
 	public void render(float delta) {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		
+		batch = new SpriteBatch();
+		batch.begin();
+			Color c = batch.getColor();
+			batch.setColor(c.r, c.g, c.b, 0.3f);
+			batch.draw(texture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+		batch.end();
 		
 		stage.act(delta);
 		stage.draw();

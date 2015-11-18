@@ -1,11 +1,15 @@
 package com.jacl.capstone.screens;
 
+import javax.swing.text.AbstractDocument.Content;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -47,7 +51,8 @@ public class ScreenOptions extends ScreenAdapter
 	private Label heading;
 	private Label volumeValue;
 	private Slider volumeSlider;
-	
+	private SpriteBatch batch;
+	private Texture background;
 	@Override
 	/**
 	 * This is called when the screen is created.
@@ -66,7 +71,8 @@ public class ScreenOptions extends ScreenAdapter
 		atlas1 = new TextureAtlas("uiskin.atlas");
 		skin1 = new Skin(atlas1);
 		
-		// TableLayout layout = table.getTableLayout();
+		// Create background
+		background = new Texture(Gdx.files.internal("Backgrounds/grassbg1.gif"));
 		
 		// fonts
 		table = new Table(skin1);
@@ -187,6 +193,10 @@ public class ScreenOptions extends ScreenAdapter
 	{
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		batch = new SpriteBatch();
+		batch.begin();
+			batch.draw(background,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+		batch.end();
 		
 		stage.act(delta);
 		stage.draw();

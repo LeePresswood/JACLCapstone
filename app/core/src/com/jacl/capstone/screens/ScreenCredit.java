@@ -161,6 +161,7 @@ public class ScreenCredit extends ScreenAdapter{
 		table.row();
 		table.getCell(heading).spaceTop(0);
 		table.add(scroller).fill().expand();
+		table.getCell(scroller).spaceBottom(100);
 		table.row();
 		table.add(buttonBack);
 		
