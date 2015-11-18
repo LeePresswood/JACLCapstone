@@ -75,7 +75,6 @@ public class EventEntityHandler
 			EventEntity event = event_map.get(new_x + "," + new_y);
 			if(event.canCollide() && event.eventCollision(x, y))
 			{
-				event.init();
 				world.event_handler.event = event;
 				
 				//Reset the event at that HashMap spot.

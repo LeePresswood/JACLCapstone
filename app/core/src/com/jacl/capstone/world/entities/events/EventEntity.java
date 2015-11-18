@@ -91,6 +91,5 @@ public abstract class EventEntity extends Entity
 		return true;
 	}
 
-	public abstract void init();
 	public abstract boolean canCollide(); 
 }
