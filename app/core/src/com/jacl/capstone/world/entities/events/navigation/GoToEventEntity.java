@@ -42,12 +42,6 @@ public class GoToEventEntity extends EventEntity
 	}
 
 	@Override
-	public void init()
-	{
-		//Nothing needs to be initialized here. This event is very simple.
-	}
-
-	@Override
 	public void update(float delta)
 	{
 		/*
@@ -99,5 +93,11 @@ public class GoToEventEntity extends EventEntity
 			world.screen.renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		world.screen.renderer.end();
 		Gdx.gl.glDisable(GL20.GL_BLEND);
+	}
+
+	@Override
+	public boolean canCollide()
+	{
+		return true;
 	}
 }

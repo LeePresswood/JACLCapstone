@@ -107,7 +107,7 @@ public class InputGame implements InputProcessor
 					screen.world.entity_handler.player.attack.doAttack(ItemSelection.SWORD);;
 					break;
 				case Keys.E:
-					screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));
+					//screen.world.entity_handler.add(EnemyFactory.spawn(EnemyType.SAMPLE_CREEP, screen.world, 2, 4.5f, screen.world.data_handler.entity_root));
 					break;
 				case Keys.R:
 					clearInput();							//InputGame.class.cast(Gdx.input.getInputProcessor()).clearInput();

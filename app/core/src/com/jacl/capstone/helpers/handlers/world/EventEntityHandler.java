@@ -73,9 +73,8 @@ public class EventEntityHandler
 		{
 			//Now we need to determine if we have collided with the event.
 			EventEntity event = event_map.get(new_x + "," + new_y);
-			if(event.eventCollision(x, y))
+			if(event.canCollide() && event.eventCollision(x, y))
 			{
-				event.init();
 				world.event_handler.event = event;
 				
 				//Reset the event at that HashMap spot.

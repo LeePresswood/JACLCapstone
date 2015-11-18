@@ -3,7 +3,6 @@ package com.jacl.capstone.world.entities.events;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
-import com.jacl.capstone.world.entities.events.navigation.GoToEventEntity;
 
 /**
  * Event entities will be scattered throughout the land. If one is stepped upon, we must activate it.<br><br>
@@ -25,6 +24,7 @@ public abstract class EventEntity extends Entity
 	//To cause this effect, create a smaller rectangle from the event entity cell's
 	//collision rectangle.
 	protected final float SHRINK_SIZE_BY = 0.15f;
+	
 	
 	public EventEntity(World world, float x, float y, String... arguments)
 	{
@@ -79,7 +79,7 @@ public abstract class EventEntity extends Entity
 	 */
 	private boolean eventExists(int x, int y)
 	{
-		return world.event_handler.event_map.containsKey(x + "," + y) && world.event_handler.event_map.get(x + "," + y) instanceof GoToEventEntity;
+		return world.event_handler.event_map.containsKey(x + "," + y);// && world.event_handler.event_map.get(x + "," + y) instanceof GoToEventEntity;
 	}
 	
 	/**
@@ -91,5 +91,5 @@ public abstract class EventEntity extends Entity
 		return true;
 	}
 
-	public abstract void init();
+	public abstract boolean canCollide(); 
 }
