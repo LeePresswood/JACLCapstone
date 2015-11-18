@@ -164,11 +164,11 @@ public class CollisionHandler
 		}
 	}
 	
-	public void collectibleCollision(MovingEntity entity){
+	public void collectibleCollision(Player player){
 		//Look at all entities. If colliding with a collectible, collect it.
 		for(Entity e : world.entity_handler.all_entities){
 			if(e instanceof CollectibleItem){
-				if(entity.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle())){
+				if(player.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle())){
 					((CollectibleItem) e).collect();
 				}
 			}

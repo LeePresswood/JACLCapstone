@@ -20,6 +20,7 @@ public class DataHandler
 	public Element entity_root;
 	public Element item_root;
 	public Element player_root;
+	public Element collectible_root;
 
 	public DataHandler(World world)
 	{
@@ -32,6 +33,7 @@ public class DataHandler
 			entity_root = reader.parse(Gdx.files.internal("data/enemies.xml"));
 			item_root = reader.parse(Gdx.files.internal("data/items.xml"));
 			player_root = reader.parse(Gdx.files.local("saves/test.xml"));
+			collectible_root = reader.parse(Gdx.files.internal("data/collectibles.xml"));
 		}
 		catch(IOException e)
 		{

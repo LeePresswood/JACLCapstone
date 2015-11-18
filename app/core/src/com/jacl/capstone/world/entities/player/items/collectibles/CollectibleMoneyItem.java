@@ -6,13 +6,13 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 
-public class Money extends CollectibleItem
+public class CollectibleMoneyItem extends CollectibleItem
 {
 	public int value;
 
-	public Money(World world, float x, float y, Element data, Alignment alignment)
+	public CollectibleMoneyItem(World world, float x, float y, Element data)
 	{
-		super(world, x, y, data, alignment);
+		super(world, x, y, data, Alignment.PLAYER);
 		
 		//A money drop was requested. Determine its value.
 		value = new Random().nextInt(50);
