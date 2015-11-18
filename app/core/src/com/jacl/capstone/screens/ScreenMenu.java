@@ -40,7 +40,6 @@ public class ScreenMenu extends ScreenAdapter{
 	private Label heading;
 	private TextButton buttonExit,buttonLoad,buttonNew,buttonCredit,buttonOptions;
 	public static Texture backgroundTexture;
-	public static TextureRegion backgroundTextureRegion;
 	private SpriteBatch spriteBatch;
 	private Music musicbg;
 	
@@ -67,12 +66,6 @@ public class ScreenMenu extends ScreenAdapter{
 		spriteBatch = new SpriteBatch();
 		//setting up backgrounds
 		backgroundTexture = new Texture("Backgrounds/menubg.gif");// load the image
-		
-		//set the linear texture filter to improve the image stretching
-		backgroundTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-		//create a region of texture
-		backgroundTextureRegion = new TextureRegion(backgroundTexture, 0,0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 		
 		// adding background music
 		musicbg = Gdx.audio.newMusic(Gdx.files.internal("sounds/menu.mp3"));
@@ -180,8 +173,9 @@ public class ScreenMenu extends ScreenAdapter{
 	public void render(float delta) {
 		//Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		spriteBatch = new SpriteBatch();
 		spriteBatch.begin();
-			spriteBatch.draw(backgroundTextureRegion,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+			spriteBatch.draw(backgroundTexture,0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
 		spriteBatch.end();
 		stage.act(delta);
 		stage.draw();

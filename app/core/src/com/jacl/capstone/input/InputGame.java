@@ -2,6 +2,8 @@ package com.jacl.capstone.input;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.Input.Keys;
 import com.jacl.capstone.CapstoneGame;
 import com.jacl.capstone.data.enums.EnemyType;
@@ -16,6 +18,7 @@ public class InputGame implements InputProcessor
 {
 	public ScreenGame screen;
 	public CapstoneGame game;
+	private TextureRegion textureRegion;
 	public InputGame(ScreenGame screen)
 	{
 		this.game = screen.game;
@@ -113,7 +116,8 @@ public class InputGame implements InputProcessor
 					screen.hud.dialogue_handler.startDialogue(Gdx.files.internal("dialogue/chapter1-dialog.txt").readString());
 					break;
 				case Keys.I:
-					game.setScreen(new ScreenInventory(game));
+					textureRegion = ScreenUtils.getFrameBufferTexture(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+					game.setScreen(new ScreenInventory(game,textureRegion));
 					break;
 				case Keys.ESCAPE:
 					game.setScreen(new ScreenMenu(game));
