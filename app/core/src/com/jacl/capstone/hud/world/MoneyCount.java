@@ -9,7 +9,7 @@ public class MoneyCount
 	
 	public MoneyCount(HUD hud){
 		this.hud = hud;
-		amount = 300;
+		amount = 0;
 	}
 	
 	/**
@@ -23,6 +23,6 @@ public class MoneyCount
 	@Override
 	public String toString()
 	{
-		return "" + amount;
+		return "Gold: " + amount;
 	}
 }

@@ -109,7 +109,7 @@ public class InputGame implements InputProcessor
 					break;
 				case Keys.R:
 					clearInput();							//InputGame.class.cast(Gdx.input.getInputProcessor()).clearInput();
-					//screen.hud.dialogue_handler.startDialogue("Hello. This is a long string.\n TESTTIEUEUEUEJFKJDKJJ<s>KJKAKFJAKJFJKSAFKJSFJK");
+					//screen.hud.dialogue_handler.startDialogue("Hello. This is a long string.\n TIEUEUEUEJFKJDKJJ<s>KJKAKFJAKJFJKSAFKJSFJK");
 					screen.hud.dialogue_handler.startDialogue(Gdx.files.internal("dialogue/chapter1-dialog.txt").readString());
 					break;
 				case Keys.I:
