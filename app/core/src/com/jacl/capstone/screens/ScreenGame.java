@@ -28,7 +28,15 @@ public class ScreenGame extends ScreenParent
 		save_handler.getFromSave();
 		
 		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/05 Come and Find Me.mp3"));
-		backgroundMusic.play();
+		if(game.getPreferences().isMusicEffectsEnabled()){
+			backgroundMusic.setVolume(game.getPreferences().getVolume());
+			backgroundMusic.setLooping(true);
+			if (backgroundMusic.isPlaying())
+			{
+				backgroundMusic.stop();
+			}
+			backgroundMusic.play();
+		}
 	}
 
 	@Override

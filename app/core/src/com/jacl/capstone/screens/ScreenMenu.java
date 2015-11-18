@@ -76,7 +76,17 @@ public class ScreenMenu extends ScreenAdapter{
 		
 		// adding background music
 		musicbg = Gdx.audio.newMusic(Gdx.files.internal("sounds/menu.mp3"));
-		musicbg.play();
+		if(game.getPreferences().isMusicEffectsEnabled()){
+			musicbg.setLooping(true);
+			System.out.println(game.getPreferences().getVolume());
+			musicbg.setVolume(game.getPreferences().getVolume());
+			if (musicbg.isPlaying())
+			{
+				musicbg.stop();
+			}
+			musicbg.play();
+		}
+		
 		//fonts
 		table = new Table(skin);
 		table.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -138,6 +148,7 @@ public class ScreenMenu extends ScreenAdapter{
 			@Override
 			public void clicked(InputEvent event, float x, float y){
 				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenOptions(game));
+				musicbg.pause();
 			}
 		});
 		buttonOptions.pad(5);
