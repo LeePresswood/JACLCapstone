@@ -18,7 +18,7 @@ public class GamePreferences {
 	
 	protected Preferences getPrefs()
 	{
-		return Gdx.app.getPreferences(PREF_NAME);
+		return Gdx.app.getPreferences(PREF_NAME+PREF_VERSION);
 	}
 	
 	public boolean isSoundEffectsEnabled()
