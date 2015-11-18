@@ -1,9 +1,9 @@
 <player>
-	<map>chapter1-1.tmx</map>
-	<time>06:05</time>
+	<map>chapter1-2.tmx</map>
+	<time>06:18</time>
 	<player_location>
-		<x>8</x>
-		<y>8</y>
+		<x>29</x>
+		<y>34</y>
 	</player_location>
 	<progress>
 		<chapter>1</chapter>
