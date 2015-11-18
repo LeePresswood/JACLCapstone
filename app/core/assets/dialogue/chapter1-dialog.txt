@@ -1,4 +1,4 @@
-Malc: Dia! Quickly, follow me to the cave and take cover!<s><t>
+Sign: Dia! Quickly, head into the cave and take cover! -Malc<s><t>
 Malc: Dia! Stay close and wait for this earthquake to stop!<s>
 Malc: Whew, that was a close call! I hope mother and father are alright.
 This cave sure is dark, good thing I brought our lantern with us.<s><t>
