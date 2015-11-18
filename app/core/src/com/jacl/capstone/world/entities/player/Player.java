@@ -99,6 +99,15 @@ public class Player extends MovingEntity
 	}
 	
 	@Override
+	public void entityCollision()
+	{
+		super.entityCollision();
+		
+		//The player is also looking for collision with collectibles.
+		world.collision_handler.collectibleCollision(this);
+	}
+	
+	@Override
 	public void update(float delta)
 	{//On top of normal updating, check for events we may have started.
 		super.update(delta);

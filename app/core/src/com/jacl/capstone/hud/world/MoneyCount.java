@@ -1,15 +1,15 @@
-package com.jacl.capstone.world.atmosphere;
+package com.jacl.capstone.hud.world;
 
 import com.jacl.capstone.hud.HUD;
 
-public class Money
+public class MoneyCount
 {
 	public HUD hud;
 	public int amount;
 	
-	public Money(HUD hud){
+	public MoneyCount(HUD hud){
 		this.hud = hud;
-		amount = 300;
+		amount = 0;
 	}
 	
 	/**
@@ -23,6 +23,6 @@ public class Money
 	@Override
 	public String toString()
 	{
-		return "" + amount;
+		return "Gold: " + amount;
 	}
 }
