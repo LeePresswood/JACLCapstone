@@ -122,4 +122,9 @@ public class Player extends MovingEntity
 	{
 		return new float[]{health_max, health_current, health_regen};
 	}
+	
+	@Override
+	protected void die(){
+			System.out.println("Player died.");
+	}
 }

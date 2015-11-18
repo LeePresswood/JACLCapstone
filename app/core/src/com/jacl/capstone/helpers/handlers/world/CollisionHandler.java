@@ -130,8 +130,9 @@ public class CollisionHandler
 				//There was a collision. Stop further checking and return to last location. Because we made it here, we've overlapped. We want to get the intersection of the overlap.
 				if(Intersector.intersectRectangles(entity.sprite.getBoundingRectangle(), e.sprite.getBoundingRectangle(), intersector))
 				{
-					gettingHit = new AudioPlayer("sounds/GettingHit.wav");
-					gettingHit.play();
+					//gettingHit = new AudioPlayer("sounds/GettingHit.wav");
+					//gettingHit.play();
+					
 					//Determine the colliding edges for knockback calculation.
 					Rectangle r1 = entity.sprite.getBoundingRectangle();
 					if(intersector.x > r1.x && intersector.width < intersector.height)
