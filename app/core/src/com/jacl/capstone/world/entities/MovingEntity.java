@@ -169,21 +169,23 @@ public abstract class MovingEntity extends Entity
 		checkCurrent();
 	}
 	
-	private void checkMax()
-	{
-		if(health_max < 0.0f)
-		{
+	private void checkMax(){
+		if(health_max < 0.0f){
 			health_max = 0.0f;
 		}
 	}
 	
 	private void checkCurrent()
 	{
-		if(health_current > health_max)
-		{
+		if(health_current > health_max){
 			health_current = health_max;
+		}
+		if(health_current <= 0f){
+			die();
 		}
 	}
 	
 	protected abstract void move(float delta);
+	
+	protected abstract void die();
 }

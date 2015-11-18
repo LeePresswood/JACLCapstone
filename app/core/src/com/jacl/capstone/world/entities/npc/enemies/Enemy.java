@@ -18,4 +18,8 @@ public abstract class Enemy extends NPC
 	{
 		super(world, x, y, data, alignment);
 	}
+	
+	public void die(){
+		
+	}
 }
