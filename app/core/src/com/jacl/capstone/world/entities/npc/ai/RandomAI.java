@@ -20,7 +20,7 @@ public class RandomAI extends AI
 	
 	//Two movement actions are either move or wait. Waiting should be the more common action of the two.
 	private Random random;
-	private final float CHANCE_WAIT = 0.6f;
+	private final float CHANCE_WAIT = 0.3f;
 	
 	private boolean moving;
 	private float move_current;

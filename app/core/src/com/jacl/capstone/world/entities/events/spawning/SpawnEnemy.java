@@ -17,7 +17,6 @@ public class SpawnEnemy extends EventEntity
 		//The only thing we're interested in is spawning the enemy.
 		Enemy e = EnemyFactory.spawn(EnemyType.valueOf(arguments[1].toUpperCase()), world, x / world.map_handler.tile_size, y / world.map_handler.tile_size, world.data_handler.entity_root);
 		world.entity_handler.add(e);
-		System.out.println(e.getTileX() + " : " + e.getTileY());
 	}
 
 	@Override
