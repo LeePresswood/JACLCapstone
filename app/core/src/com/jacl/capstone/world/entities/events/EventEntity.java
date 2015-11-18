@@ -3,7 +3,6 @@ package com.jacl.capstone.world.entities.events;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
-import com.jacl.capstone.world.entities.events.navigation.GoToEventEntity;
 
 /**
  * Event entities will be scattered throughout the land. If one is stepped upon, we must activate it.<br><br>
@@ -79,7 +78,7 @@ public abstract class EventEntity extends Entity
 	 */
 	private boolean eventExists(int x, int y)
 	{
-		return world.event_handler.event_map.containsKey(x + "," + y) && world.event_handler.event_map.get(x + "," + y) instanceof GoToEventEntity;
+		return world.event_handler.event_map.containsKey(x + "," + y);// && world.event_handler.event_map.get(x + "," + y) instanceof GoToEventEntity;
 	}
 	
 	/**

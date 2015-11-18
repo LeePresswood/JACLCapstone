@@ -3,6 +3,7 @@ package com.jacl.capstone.world.entities.events;
 import com.jacl.capstone.data.enums.EventTypes;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.events.navigation.GoToEventEntity;
+import com.jacl.capstone.world.entities.events.spawning.SpawnEnemy;
 
 /**
  * Get the correct EventEntity from the given properties.
@@ -22,6 +23,8 @@ public class EventEntityFactory
 		{
 			case GOTO:
 				return new GoToEventEntity(world, x, y, tokens);
+			case SPAWN_ENEMY:
+				return new SpawnEnemy(world, x, y, tokens);
 			default:
 				return null;
 		}
