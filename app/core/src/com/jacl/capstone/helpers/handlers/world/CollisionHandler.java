@@ -11,8 +11,10 @@ import com.badlogic.gdx.utils.Array;
 import com.jacl.capstone.AudioPlayer;
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
+import com.jacl.capstone.world.entities.Entity;
 import com.jacl.capstone.world.entities.MovingEntity;
 import com.jacl.capstone.world.entities.player.Player;
+import com.jacl.capstone.world.entities.player.items.collectibles.CollectibleItem;
 
 /**
  * Handles collision of entities.
@@ -158,6 +160,17 @@ public class CollisionHandler
 					e.hitBy(entity);
 					
 					return;
+				}
+			}
+		}
+	}
+	
+	public void collectibleCollision(Player player){
+		//Look at all entities. If colliding with a collectible, collect it.
+		for(Entity e : world.entity_handler.all_entities){
+			if(e instanceof CollectibleItem){
+				if(player.sprite.getBoundingRectangle().overlaps(e.sprite.getBoundingRectangle())){
+					((CollectibleItem) e).collect();
 				}
 			}
 		}

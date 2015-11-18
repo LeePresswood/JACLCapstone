@@ -86,7 +86,7 @@ public abstract class MovingEntity extends Entity
 		last_location.set(sprite.getX(), sprite.getY());
 	}
 	
-	private void entityCollision()
+	public void entityCollision()
 	{
 		//We don't want to be hit while we're invincible. Completely skip this step if so.
 		if(!invincible.is_invincible)

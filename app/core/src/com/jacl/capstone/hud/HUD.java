@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.helpers.handlers.hud.DialogueHandler;
 import com.jacl.capstone.hud.world.HealthBar;
+import com.jacl.capstone.hud.world.MoneyCount;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.atmosphere.GameTime;
-import com.jacl.capstone.world.atmosphere.Money;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
@@ -26,7 +26,7 @@ public class HUD
 	
 	public HealthBar health_bar;
 	public GameTime time;
-	public Money money;
+	public MoneyCount money;
 	
 	public HUD(ScreenGame screen)
 	{
@@ -44,7 +44,7 @@ public class HUD
 		
 		dialogue_handler = new DialogueHandler(this);
 		health_bar = new HealthBar(this);
-		money = new Money(this);
+		money = new MoneyCount(this);
 	}
 	
 	/**
