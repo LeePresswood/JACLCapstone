@@ -22,6 +22,6 @@ public abstract class Enemy extends NPC
 	
 	public void die(){
 		remove = true;
-		world.entity_handler.add(new CollectibleMoneyItem(world, sprite.getX(),  sprite.getY(), world.data_handler.collectible_root.getChildByName("money")));
+		world.entity_handler.to_add.add(new CollectibleMoneyItem(world, sprite.getX(),  sprite.getY(), world.data_handler.collectible_root.getChildByName("money")));
 	}
 }

@@ -7,9 +7,7 @@ import com.jacl.capstone.world.entities.npc.enemies.creeps.SampleCreep;
 
 /**
  * Handles spawning of enemies.
- * 
  * @author Lee
- *
  */
 public class EnemyFactory
 {
