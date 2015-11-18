@@ -3,7 +3,7 @@ package com.jacl.capstone.world.entities.npc.enemies;
 import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.EnemyType;
 import com.jacl.capstone.world.World;
-import com.jacl.capstone.world.entities.npc.enemies.creeps.SampleCreep;
+import com.jacl.capstone.world.entities.npc.enemies.creeps.Skeleton;
 
 /**
  * Handles spawning of enemies.
@@ -23,8 +23,8 @@ public class EnemyFactory
 	{
 		switch(type)
 		{
-			case SAMPLE_CREEP:
-				return new SampleCreep(world, x, y, data);
+			case SKELETON:
+				return new Skeleton(world, x, y, data);
 			default:
 				return null;
 		}

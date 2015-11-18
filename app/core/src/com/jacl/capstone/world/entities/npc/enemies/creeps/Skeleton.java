@@ -11,9 +11,9 @@ import com.jacl.capstone.world.entities.npc.enemies.Enemy;
 /**
  * This enemy will not be in the final game. Purely for testing.
  */
-public class SampleCreep extends Enemy
+public class Skeleton extends Enemy
 {
-	public SampleCreep(World world, float x, float y, Element data)
+	public Skeleton(World world, float x, float y, Element data)
 	{
 		super(world, x, y, data.getChildByName("sample_creep"), Alignment.ENEMY);
 	}
