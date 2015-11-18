@@ -1,4 +1,4 @@
-package com.jacl.capstone.world.atmosphere;
+package com.jacl.capstone.hud.world;
 
 import com.jacl.capstone.hud.HUD;
 

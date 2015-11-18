@@ -2,7 +2,7 @@
 <!--Items are sorted alphabetically.-->
 <items>
 	<money>
-		<name>sword</name>
+		<name>Money</name>
 		<texture>money.png</texture>
 		<width>1.0</width>
 		<height>1.0</height>

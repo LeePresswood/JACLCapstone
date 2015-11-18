@@ -7,9 +7,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.jacl.capstone.data.Assets;
 import com.jacl.capstone.helpers.handlers.hud.DialogueHandler;
 import com.jacl.capstone.hud.world.HealthBar;
+import com.jacl.capstone.hud.world.MoneyCount;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.world.atmosphere.GameTime;
-import com.jacl.capstone.world.atmosphere.MoneyCount;
 import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**

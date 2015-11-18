@@ -10,7 +10,7 @@ public abstract class CollectibleItem extends Entity
 {	
 	public CollectibleItem(World world, float x, float y, Element data, Alignment alignment)
 	{
-		super(world, x, y, data, alignment);
+		super(world, x, y, data.getChildByName("money"), alignment);
 	}
 
 	@Override
