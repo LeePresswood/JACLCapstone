@@ -125,6 +125,6 @@ public class Player extends MovingEntity
 	
 	@Override
 	protected void die(){
-			while(true);
+			System.out.println("Player died.");
 	}
 }

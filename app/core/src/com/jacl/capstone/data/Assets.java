@@ -86,9 +86,13 @@ public class Assets extends AssetManager
 	}
 
 	private void loadTexturesFromFolder(String folder)
-	{
+	{		
 		for(FileHandle file : Gdx.files.internal("../core/assets/" + folder).list())
-		{
+		{		
+			//Recursively load if file is a directory.
+			
+			
+			//Load normally otherwise.
 			load(folder + file.name(), Texture.class);
 		}
 	}
