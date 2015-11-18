@@ -6,7 +6,7 @@
 		<texture_folder>player/</texture_folder>
 		<width>1.0</width>
 		<height>1.0</height>
-		<health>100.0</health>
+		<health>2.0</health>
 		<knockback_on_collide>true</knockback_on_collide>
 		<damage_on_collide>1.0</damage_on_collide>
 		<move_speed>3.0</move_speed>

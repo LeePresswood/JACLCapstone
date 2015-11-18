@@ -4,6 +4,7 @@ import com.badlogic.gdx.utils.XmlReader.Element;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.npc.NPC;
+import com.jacl.capstone.world.entities.player.items.collectibles.CollectibleMoneyItem;
 
 /**
  * Parent enemy class. All enemies will hurt the hero upon being hit, and they will
@@ -20,6 +21,7 @@ public abstract class Enemy extends NPC
 	}
 	
 	public void die(){
-		
+		remove = true;
+		world.entity_handler.add(new CollectibleMoneyItem(world, sprite.getX(),  sprite.getY(), world.data_handler.collectible_root.getChildByName("money")));
 	}
 }
