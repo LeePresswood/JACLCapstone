@@ -70,14 +70,15 @@ public class EntityHandler
 			Collections.sort(all_entities, new EntityComparator());
 		}
 		
-		//Remove old entities.
-		remove();
-		
 		//Added buffered entities to list.
 		for(Entity e : to_add){
 			add(e);
+			System.out.println(e.sprite.getBoundingRectangle());
 		}
 		to_add.clear();
+		
+		//Remove old entities.
+		remove();
 	}
 	
 	public void draw()
