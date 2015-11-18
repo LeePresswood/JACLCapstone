@@ -73,7 +73,6 @@ public class EntityHandler
 		//Added buffered entities to list.
 		for(Entity e : to_add){
 			add(e);
-			System.out.println(e.sprite.getBoundingRectangle());
 		}
 		to_add.clear();
 		

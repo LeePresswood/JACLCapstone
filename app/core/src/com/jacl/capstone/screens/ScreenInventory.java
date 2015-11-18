@@ -164,6 +164,7 @@ public class ScreenInventory implements Screen {
 		table.add(tree).fill().expand();
 		table.row();
 		table.add(buttonBack);
+		table.center();
 		
 		stage.addActor(table);
 		

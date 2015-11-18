@@ -12,7 +12,6 @@ import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.screens.ScreenInventory;
 import com.jacl.capstone.screens.ScreenMenu;
 import com.jacl.capstone.world.entities.npc.enemies.EnemyFactory;
-import com.jacl.capstone.world.entities.player.items.collectibles.CollectibleMoneyItem;
 
 public class InputGame implements InputProcessor
 {
@@ -121,9 +120,6 @@ public class InputGame implements InputProcessor
 					break;
 				case Keys.ESCAPE:
 					game.setScreen(new ScreenMenu(game));
-					break;
-				case Keys.SHIFT_LEFT:
-					screen.world.entity_handler.add(new CollectibleMoneyItem(screen.world, 2,  4.5f, screen.world.data_handler.collectible_root.getChildByName("money")));
 					break;
 			}
 		}
