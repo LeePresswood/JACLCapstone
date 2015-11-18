@@ -109,15 +109,23 @@ public class ScreenOptions extends ScreenAdapter
 		//create sound checkbox effects
 		final CheckBox soundEffectsCheckbox = new CheckBox("Sound Effects", checkboxStyle);
 		soundEffectsCheckbox.setChecked(true);
-		//soundEffectsCheckbox.setChecked(game.getPreferences().isSoundEffectsEnabled() ); 
-		/*soundEffectsCheckbox.addListener(newClickListener() { public void clicked(InputEvent event, float x, float y) { 
+		soundEffectsCheckbox.setChecked(game.getPreferences().isSoundEffectsEnabled() ); 
+		soundEffectsCheckbox.addListener(new ChangeListener() {
+			public void changed(ChangeEvent event, Actor actor) { 
 				boolean enabled = soundEffectsCheckbox.isChecked();
 				game.getPreferences().setSoundEffectsEnabled(enabled); 
 			} 
-		});*/
+		});
 		//create music checkbox effects
 		final CheckBox musicEffectsCheckbox = new CheckBox("Music Effects", checkboxStyle);
 		musicEffectsCheckbox.setChecked(true);
+		musicEffectsCheckbox.setChecked(game.getPreferences().isMusicEffectsEnabled() ); 
+		musicEffectsCheckbox.addListener(new ChangeListener() {
+			public void changed(ChangeEvent event, Actor actor) { 
+				boolean enabled = musicEffectsCheckbox.isChecked();
+				game.getPreferences().setMusicEffectsEnabled(enabled); 
+			} 
+		});
 		/**
 		 * slider doesn't work correctly
 		 * 
@@ -134,15 +142,26 @@ public class ScreenOptions extends ScreenAdapter
 		style.knob = skin1.getDrawable("default-slider-knob");
 		
 		volumeSlider = new Slider(0, 100, 1, false, style);
-		volumeSlider.setValue(50);
+		volumeSlider.setValue(game.getPreferences().getVolume()*100);
 		//volumeSlider.getCaptureListeners();
 		volumeSlider.addCaptureListener(new ChangeListener(){
 			public void changed (ChangeEvent event, Actor actor){
+				if(volumeSlider.getValue()==0)
+				{
+					musicEffectsCheckbox.setChecked(false);
+					soundEffectsCheckbox.setChecked(false);
+				}
+				else
+				{
+					musicEffectsCheckbox.setChecked(true);
+				}
 				int volume = Math.round(volumeSlider.getValue());
 				volumeValue.setText(Integer.toString(volume));
+				game.getPreferences().setVolume(volumeSlider.getValue()/100);
 			}
 		});
-		CharSequence x = "50";
+		// update title volume
+		CharSequence x = Integer.toString(Math.round(game.getPreferences().getVolume()*100));
 		volumeValue = new Label(x,headingStyle);
 		updateVolumeLabel();
 		
