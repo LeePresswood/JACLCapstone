@@ -17,10 +17,11 @@ public class InputGame implements InputProcessor
 	public CapstoneGame game;
 	private TextureRegion textureRegion;
 	private ScreenMenu mainMenu;
+	private ScreenInventory inventory;
 	public InputGame(ScreenGame screen)
 	{
 		this.game = screen.game;
-		this.mainMenu = new ScreenMenu(game);
+		this.mainMenu = new ScreenMenu(game,"Paused");
 		this.screen = screen;
 	}
 
@@ -115,22 +116,31 @@ public class InputGame implements InputProcessor
 					screen.hud.dialogue_handler.startDialogue(Gdx.files.internal("dialogue/chapter1-dialog.txt").readString());
 					break;
 				case Keys.I:
-					textureRegion = ScreenUtils.getFrameBufferTexture(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-					game.setScreen(new ScreenInventory(game,textureRegion));
-					break;
-				case Keys.ESCAPE:
-					if (game.getScreen() == mainMenu)
+					if (game.getScreen() == inventory)
 					{
 						//mainMenu.pause();
+						System.out.println("abc");
 						game.setScreen(screen);
 					}
 					else if(game.getScreen() == screen)
 					{
-						//screen.pause();
-						game.setScreen(mainMenu);
+						screen.pause();
+						textureRegion = ScreenUtils.getFrameBufferTexture(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+						this.inventory = new ScreenInventory(game,textureRegion);
+						game.setScreen(inventory);
 					}
-						
-					
+					break;
+				case Keys.ESCAPE:
+					if (game.getScreen() == mainMenu)
+					{
+						mainMenu.pause();
+						game.setScreen(screen);
+					}
+					else if(game.getScreen() == screen)
+					{
+						screen.pause();
+						game.setScreen(mainMenu);
+					}	
 					break;
 			}
 		}

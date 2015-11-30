@@ -28,7 +28,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
  *  
  */
 public class ScreenMenu extends ScreenAdapter{
-
+	private String caption;
 	private Stage stage;
 	public CapstoneGame game;
 	private TextureAtlas atlas;
@@ -42,6 +42,10 @@ public class ScreenMenu extends ScreenAdapter{
 	private Music musicbg;
 	public ScreenMenu(CapstoneGame game) {
 		this.game = game;
+	}
+	public ScreenMenu(CapstoneGame game, String paused){
+		this.game = game;
+		this.caption = paused;
 	}
 
 	@Override
@@ -140,9 +144,10 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonOptions.pad(5);
 		
 		//heading
-		String label = game.GAME_NAME+" "+game.GAME_VERSION;
+		if(this.caption == null)
+			this.caption = game.GAME_NAME+" "+game.GAME_VERSION;
 		LabelStyle headingStyle = new LabelStyle(bitmap, Color.WHITE);
-		heading = new Label(label,headingStyle);
+		heading = new Label(this.caption,headingStyle);
 		heading.setFontScale(2);
 		
 		//add together stuffs

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -23,7 +24,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Tree.Node;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.jacl.capstone.CapstoneGame;
 
-public class ScreenInventory implements Screen {
+public class ScreenInventory extends ScreenAdapter {
 	public ScreenInventory(CapstoneGame game, TextureRegion textureRegion) {
 		this.game = game;
 		this.last_screen = game.getScreen();
@@ -185,30 +186,6 @@ public class ScreenInventory implements Screen {
 		stage.act(delta);
 		stage.draw();
 		//stage.setDebugAll(true);
-	}
-
-	@Override
-	public void resize(int width, int height) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void pause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void resume() {
-		
-		
-	}
-
-	@Override
-	public void hide() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
