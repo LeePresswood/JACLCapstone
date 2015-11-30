@@ -31,17 +31,7 @@ public class ScreenGame extends ScreenParent
 		
 		save_handler = new SaveHandler(this);
 		//save_handler.getFromSave(save_file);
-		
 		backgroundMusic = Gdx.audio.newMusic(Gdx.files.internal("sounds/05 Come and Find Me.mp3"));
-		if(game.getPreferences().isMusicEffectsEnabled()){
-			backgroundMusic.setVolume(game.getPreferences().getVolume());
-			backgroundMusic.setLooping(true);
-			if (backgroundMusic.isPlaying())
-			{
-				backgroundMusic.stop();
-			}
-			backgroundMusic.play();
-		}
 	}
 
 	@Override
@@ -87,6 +77,11 @@ public class ScreenGame extends ScreenParent
 	public void show()
 	{
 		super.show();
+		if(game.getPreferences().isMusicEffectsEnabled()){
+			backgroundMusic.setVolume(game.getPreferences().getVolume());
+			backgroundMusic.setLooping(true);
+			backgroundMusic.play();
+		}
 		save_handler.getFromSave(save_file);
 	}
 	
@@ -98,6 +93,7 @@ public class ScreenGame extends ScreenParent
 	public void hide()
 	{
 		super.hide();
+		backgroundMusic.pause();
 		save_handler.write();
 	}
 }

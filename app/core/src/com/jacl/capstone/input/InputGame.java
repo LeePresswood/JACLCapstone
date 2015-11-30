@@ -1,26 +1,26 @@
 package com.jacl.capstone.input;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.ScreenUtils;
-import com.badlogic.gdx.Input.Keys;
 import com.jacl.capstone.CapstoneGame;
-import com.jacl.capstone.data.enums.EnemyType;
 import com.jacl.capstone.data.enums.ItemSelection;
 import com.jacl.capstone.screens.ScreenGame;
 import com.jacl.capstone.screens.ScreenInventory;
 import com.jacl.capstone.screens.ScreenMenu;
-import com.jacl.capstone.world.entities.npc.enemies.EnemyFactory;
 
 public class InputGame implements InputProcessor
 {
 	public ScreenGame screen;
 	public CapstoneGame game;
 	private TextureRegion textureRegion;
+	private ScreenMenu mainMenu;
 	public InputGame(ScreenGame screen)
 	{
 		this.game = screen.game;
+		this.mainMenu = new ScreenMenu(game);
 		this.screen = screen;
 	}
 
@@ -119,7 +119,18 @@ public class InputGame implements InputProcessor
 					game.setScreen(new ScreenInventory(game,textureRegion));
 					break;
 				case Keys.ESCAPE:
-					game.setScreen(new ScreenMenu(game));
+					if (game.getScreen() == mainMenu)
+					{
+						//mainMenu.pause();
+						game.setScreen(screen);
+					}
+					else if(game.getScreen() == screen)
+					{
+						//screen.pause();
+						game.setScreen(mainMenu);
+					}
+						
+					
 					break;
 			}
 		}

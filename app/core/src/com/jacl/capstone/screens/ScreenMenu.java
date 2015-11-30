@@ -40,7 +40,6 @@ public class ScreenMenu extends ScreenAdapter{
 	public static Texture backgroundTexture;
 	private SpriteBatch spriteBatch;
 	private Music musicbg;
-	
 	public ScreenMenu(CapstoneGame game) {
 		this.game = game;
 	}
@@ -71,10 +70,6 @@ public class ScreenMenu extends ScreenAdapter{
 			musicbg.setLooping(true);
 			//System.out.println(game.getPreferences().getVolume());
 			musicbg.setVolume(game.getPreferences().getVolume());
-			if (musicbg.isPlaying())
-			{
-				musicbg.stop();
-			}
 			musicbg.play();
 		}
 		
@@ -106,7 +101,7 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonNew.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
-				musicbg.stop();
+				
 				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game, "new.xml"));
 			}
 		});
@@ -117,7 +112,7 @@ public class ScreenMenu extends ScreenAdapter{
 		buttonLoad.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y){
-				musicbg.stop();
+				//musicbg.stop();
 				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenGame(game, "test.xml"));
 			}
 		});
@@ -139,7 +134,7 @@ public class ScreenMenu extends ScreenAdapter{
 			@Override
 			public void clicked(InputEvent event, float x, float y){
 				((CapstoneGame) Gdx.app.getApplicationListener()).setScreen(new ScreenOptions(game));
-				musicbg.pause();
+				//musicbg.pause();
 			}
 		});
 		buttonOptions.pad(5);
@@ -186,5 +181,9 @@ public class ScreenMenu extends ScreenAdapter{
 		skin.dispose();
 		bitmap.dispose();
 		musicbg.dispose();
+	}
+	@Override
+	public void hide(){
+		musicbg.pause();
 	}
 }

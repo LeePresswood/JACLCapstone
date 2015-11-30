@@ -1,10 +1,9 @@
 package com.jacl.capstone.screens;
 
-import javax.swing.text.AbstractDocument.Content;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,17 +16,18 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox;
 import com.badlogic.gdx.scenes.scene2d.ui.CheckBox.CheckBoxStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider.SliderStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.ui.Slider;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.jacl.capstone.CapstoneGame;
+
 
 public class ScreenOptions extends ScreenAdapter
 {
@@ -53,6 +53,7 @@ public class ScreenOptions extends ScreenAdapter
 	private Slider volumeSlider;
 	private SpriteBatch batch;
 	private Texture background;
+	private Music musicbg;
 	@Override
 	/**
 	 * This is called when the screen is created.
@@ -61,6 +62,15 @@ public class ScreenOptions extends ScreenAdapter
 	 */
 	public void show()
 	{
+		// adding background music
+		musicbg = Gdx.audio.newMusic(Gdx.files.internal("sounds/10 Arpanauts.mp3"));
+		if(game.getPreferences().isMusicEffectsEnabled()){
+			musicbg.setLooping(true);
+			//System.out.println(game.getPreferences().getVolume());
+			musicbg.setVolume(game.getPreferences().getVolume());
+			musicbg.play();
+		}
+		
 		stage = new Stage(new ScreenViewport());
 		
 		Gdx.input.setInputProcessor(stage);
@@ -132,24 +142,13 @@ public class ScreenOptions extends ScreenAdapter
 				game.getPreferences().setMusicEffectsEnabled(enabled); 
 			} 
 		});
-		/**
-		 * slider doesn't work correctly
-		 * 
-		 * Lee's edit: I looked at your Slider, and it looks like your problem is
-		 * with the skin you're using. To fix that, you'll need a SliderStyle.
-		 * This will allow you to set the background of the slider bar and the
-		 * little knob that the user moves. I made an example in the code. 
-		 * 
-		 * Also, the volumeValue label is broken for the same reason. The name "default"
-		 * is not defined in the skin you're using. You'll need to make a LabelStyle to fix this.
-		 */
+		
 		SliderStyle style = new SliderStyle();
 		style.background = skin1.getDrawable("default-slider");
 		style.knob = skin1.getDrawable("default-slider-knob");
 		
 		volumeSlider = new Slider(0, 100, 1, false, style);
 		volumeSlider.setValue(game.getPreferences().getVolume()*100);
-		//volumeSlider.getCaptureListeners();
 		volumeSlider.addCaptureListener(new ChangeListener(){
 			public void changed (ChangeEvent event, Actor actor){
 				if(volumeSlider.getValue()==0)
@@ -161,9 +160,7 @@ public class ScreenOptions extends ScreenAdapter
 				{
 					musicEffectsCheckbox.setChecked(true);
 				}
-				int volume = Math.round(volumeSlider.getValue());
-				volumeValue.setText(Integer.toString(volume));
-				game.getPreferences().setVolume(volumeSlider.getValue()/100);
+				updateVolumeLabel();
 			}
 		});
 		// update title volume
@@ -211,16 +208,17 @@ public class ScreenOptions extends ScreenAdapter
 		skin.dispose();
 		bitmap.dispose();
 	}
-	
-	public void update(float delta){
-		float volume = (volumeSlider.getValue()/4*100);
-		volumeValue.setText(Float.toString(volume));
+	@Override
+	public void hide()
+	{
+		musicbg.stop();
 	}
 	
 	private void updateVolumeLabel()
 	{
-		//float volume=(game.getPreferences().getVolume()*100);
-		//float volume = volumeSlider.getValue();
-		//volumeValue.setText(String.format("%0.1f%%",volume));
+		int volume = Math.round(volumeSlider.getValue());
+		volumeValue.setText(Integer.toString(volume));
+		game.getPreferences().setVolume(volumeSlider.getValue()/100);
+		musicbg.setVolume(volumeSlider.getValue()/100);
 	}
 }

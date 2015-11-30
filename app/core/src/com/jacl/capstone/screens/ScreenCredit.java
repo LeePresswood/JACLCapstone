@@ -177,7 +177,7 @@ public class ScreenCredit extends ScreenAdapter{
 		
 		stage.act(delta);
 		stage.draw();
-		stage.setDebugAll(true);
+		//stage.setDebugAll(true);
 	}
 
 	@Override
