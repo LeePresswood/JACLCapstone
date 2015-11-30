@@ -43,6 +43,11 @@ public class ScreenMenu extends ScreenAdapter{
 	public ScreenMenu(CapstoneGame game) {
 		this.game = game;
 	}
+	/**
+	 * create Screen menu with button of Exit, Load, New, Credit, and Options
+	 * @param game pass parameter of game
+	 * @param paused pass string for screen label
+	 */
 	public ScreenMenu(CapstoneGame game, String paused){
 		this.game = game;
 		this.caption = paused;

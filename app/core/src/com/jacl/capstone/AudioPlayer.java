@@ -17,7 +17,6 @@ public class AudioPlayer {
 	public void play(){
 		if(sound==null) return;
 		stop();
-		//sound.setLooping(soundId, looping);;
 		sound.play(1.0f);
 	}
 	

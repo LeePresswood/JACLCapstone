@@ -8,7 +8,6 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.jacl.capstone.AudioPlayer;
 import com.jacl.capstone.data.enums.Direction;
 import com.jacl.capstone.world.World;
 import com.jacl.capstone.world.entities.Entity;
@@ -23,7 +22,6 @@ import com.jacl.capstone.world.entities.player.items.collectibles.CollectibleIte
 public class CollisionHandler
 {
 	public World world;
-	private AudioPlayer gettingHit;
 	
 	//Collision objects will be contained on a collision layer.
 	public final String COLLISION_LAYER = "collisionobjects";

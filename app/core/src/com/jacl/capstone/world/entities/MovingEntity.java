@@ -2,7 +2,9 @@ package com.jacl.capstone.world.entities;
 
 import java.util.ArrayList;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.utils.XmlReader.Element;
+import com.jacl.capstone.AudioPlayer;
 import com.jacl.capstone.data.enums.Alignment;
 import com.jacl.capstone.helpers.AttackHelper;
 import com.jacl.capstone.helpers.DamageCalculator;
@@ -24,6 +26,8 @@ public abstract class MovingEntity extends Entity
 	public AttackHelper attack;
 	public InvincibleHelper invincible;	
 	public TextureHelper texture_helper;
+
+	private AudioPlayer gettingHit;
 	
 	public float health_current;
 	public float health_max;
@@ -118,6 +122,9 @@ public abstract class MovingEntity extends Entity
 	{
 		if(!invincible.is_invincible && e.knockback_on_collide)
 		{//Knockback and damage.
+			//gettingHit = new AudioPlayer("sounds/GettingHit.wav");
+			
+			//gettingHit.play();
 			knockback.doKnockback();
 			health_current -= DamageCalculator.getDamage(e.damage_on_collide, defense);
 		}
