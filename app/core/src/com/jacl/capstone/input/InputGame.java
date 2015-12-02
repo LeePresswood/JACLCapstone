@@ -142,6 +142,9 @@ public class InputGame implements InputProcessor
 						game.setScreen(mainMenu);
 					}	
 					break;
+				case Keys.BACKSPACE:
+					screen.hud.time.hours++;
+					break;
 			}
 		}
 		
