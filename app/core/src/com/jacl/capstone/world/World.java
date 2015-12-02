@@ -3,6 +3,8 @@ package com.jacl.capstone.world;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.jacl.capstone.helpers.handlers.world.CameraHandler;
 import com.jacl.capstone.helpers.handlers.world.CollisionHandler;
@@ -129,6 +131,15 @@ public class World
 				screen.renderer.rect(0f, 0f, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 			screen.renderer.end();
 			Gdx.gl.glDisable(GL20.GL_BLEND);
+		}
+		//If we are inside, we can use the shorter vision lens
+		//****NOTE: The current way this code works will use the vision lens in houses as well. This should not happen in a fully produced game. For capstone, however, it's fine.
+		else{
+			Sprite dark = new Sprite(screen.game.assets.get("sprites/dark.png", Texture.class));
+			dark.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			screen.batch.begin();
+				dark.draw(screen.batch);
+			screen.batch.end();
 		}
 	}
 }
