@@ -136,14 +136,14 @@ public class World
 		}
 		//If we are inside, we can use the shorter vision lens
 		//****NOTE: The current way this code works will use the vision lens in houses as well. This should not happen in a fully produced game. For capstone, however, it's fine.
-		else{
+		/*else{
 			Sprite dark = new Sprite(screen.game.assets.get("sprites/dark.png", Texture.class));
 			dark.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 			System.out.println(123);
-			screen.batch.setTransformMatrix(screen.hud.camera.combined);
+			//screen.batch.setTransformMatrix(screen.hud.camera.combined);
 			screen.batch.begin();
 				dark.draw(screen.batch);
 			screen.batch.end();
-		}
+		}*/
 	}
 }
