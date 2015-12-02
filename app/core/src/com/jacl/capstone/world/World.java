@@ -31,7 +31,7 @@ public class World
 	public DataHandler data_handler;
 	
 	//Atmosphere.
-	public Color time_color;	
+	//public Color time_color;	
 	
 	public World(ScreenGame screen)
 	{
@@ -116,7 +116,7 @@ public class World
 		map_handler.tiled_map_renderer.setView(camera_handler);
 		map_handler.tiled_map_renderer.render(map_handler.layers_under_player);
 		
-		//Render player and other entities.		
+		//Render player and other entities.
 		entity_handler.draw();
 		
 		//Render layers/objects over player.
@@ -136,7 +136,7 @@ public class World
 		else{
 			Sprite dark = new Sprite(screen.game.assets.get("sprites/dark.png", Texture.class));
 			dark.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			
+			System.out.println(123);
 			screen.batch.setTransformMatrix(screen.hud.camera.combined);
 			screen.batch.begin();
 				dark.draw(screen.batch);
