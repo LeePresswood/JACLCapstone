@@ -13,6 +13,7 @@ import com.jacl.capstone.helpers.handlers.world.EntityHandler;
 import com.jacl.capstone.helpers.handlers.world.EventEntityHandler;
 import com.jacl.capstone.helpers.handlers.world.MapHandler;
 import com.jacl.capstone.screens.ScreenGame;
+import com.jacl.capstone.world.atmosphere.TimeColorer;
 
 /**
  * Handles the updating and rendering of game objects. Create managers to keep this class general.
@@ -31,7 +32,7 @@ public class World
 	public DataHandler data_handler;
 	
 	//Atmosphere.
-	//public Color time_color;	
+	public Color time_color;	
 	
 	public World(ScreenGame screen)
 	{
@@ -103,6 +104,8 @@ public class World
 		
 		//Update camera onto player.
 		camera_handler.updateCamera();
+		
+		time_color = TimeColorer.getColor(screen.hud.time);
 	}
 	
 	/**
