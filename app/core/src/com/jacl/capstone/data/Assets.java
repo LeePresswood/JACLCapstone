@@ -73,6 +73,8 @@ public class Assets extends AssetManager
 		loadTexturesFromFolder(TEXTURE_BASE + "weapons/");
 
 		loadTexturesFromFolder("hud/healthbar/");
+		
+		load("sprites/dark.png", Texture.class);
 
 		finishLoading();
 	}

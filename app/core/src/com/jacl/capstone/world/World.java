@@ -123,8 +123,7 @@ public class World
 		map_handler.tiled_map_renderer.render(map_handler.layers_over_player);
 		
 		//Draw the day/night overlay if we are outside.
-		if(map_handler.is_outside)
-		{
+		if(map_handler.is_outside){
 			Gdx.gl.glEnable(GL20.GL_BLEND);
 			screen.renderer.setColor(time_color);
 			screen.renderer.begin(ShapeType.Filled);	
@@ -137,6 +136,8 @@ public class World
 		else{
 			Sprite dark = new Sprite(screen.game.assets.get("sprites/dark.png", Texture.class));
 			dark.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+			
+			screen.batch.setTransformMatrix(screen.hud.camera.combined);
 			screen.batch.begin();
 				dark.draw(screen.batch);
 			screen.batch.end();
