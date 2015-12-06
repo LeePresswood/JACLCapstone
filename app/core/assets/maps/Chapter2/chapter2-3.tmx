@@ -19,9 +19,9 @@
   </data>
  </layer>
  <objectgroup name="collisionobjects"/>
- <layer name="events" width="50" height="50">
+ <layer name="events" width="50" height="50" visible="0">
   <data encoding="base64" compression="zlib">
-   eJzt1MENwCAIBVAHcNnuf2lMF2iMVIrvHT0o/AitAdR39Xdnq9/YcQfAkGWfZKkjSvX+ZskF6jDPcLaZHVB1b1TtC05ntoFImXfMrtoyZ0Isf+4/ZPaIyEG28K0bPXkKQg==
+   eJzt2DESgCAMBEAe4Gf9f2Nhqw2TSAy7PUxyQArGAJ6cx+oKYujjfX10NhH7dTkvYL0q86RKHVm69zdLLtCH9wx7m5kBXedG175gd/7zgEyV58Oq2ipnQi537j9kdsvIQbbwrQtzHww2
   </data>
  </layer>
 </map>

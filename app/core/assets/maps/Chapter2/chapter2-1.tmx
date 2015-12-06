@@ -22,7 +22,7 @@
   </data>
  </layer>
  <objectgroup name="collisionobjects"/>
- <layer name="events" width="75" height="30">
+ <layer name="events" width="75" height="30" visible="0">
   <properties>
    <property name="0,22" value=""/>
    <property name="0,23" value=""/>

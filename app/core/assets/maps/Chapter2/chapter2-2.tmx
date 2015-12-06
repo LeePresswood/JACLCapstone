@@ -22,9 +22,9 @@
   </data>
  </layer>
  <objectgroup name="collisionobjects"/>
- <layer name="events" width="100" height="100">
+ <layer name="events" width="100" height="100" visible="0">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T+1lC6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAbnEAAAQ==
+   eJzt3D0OgzAMBlAO0Mv2/ktVsZSKikbkx3Hek9gYgv05KR3Ytt3zcbwAAAAyifCeE2EN0Jvct6W+wB219xB70jU1ohXZAr7ZF8hgVI7Nz7k7dYlQ0whrqCnb8wCwLmcatGO+dlnqkOU5aE9WYB3mndZaZExu8+nRU7k5Ug+ymDHLM66ZcvpMKZkhOxlf17+9v7pPhqCO0lkyewC04HzhF9nIR085IxfAKPYfViDnlJg1L7OuGwCgt1q/m3xndj5qDGOZQVYl+8xGZiEfcw1kZG+LRT9iydKPqP/l04e+5aCPABCHcxkAAOjl/f7xedXyAi7IITU=
   </data>
  </layer>
 </map>
