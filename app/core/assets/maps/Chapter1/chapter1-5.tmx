@@ -27,17 +27,43 @@
  </objectgroup>
  <layer name="events" width="40" height="150">
   <properties>
+   <property name="10,99" value=""/>
+   <property name="11,32" value="SPAWN_ENEMY skeleton"/>
+   <property name="11,42" value="SPAWN_ENEMY skeleton"/>
+   <property name="17,19" value="SPAWN_ENEMY skeleton"/>
+   <property name="17,72" value="SPAWN_ENEMY skeleton"/>
    <property name="18,0" value="GOTO chapter1-4.tmx 8,0"/>
    <property name="18,149" value="GOTO prism_city.tmx 23,0"/>
    <property name="19,0" value="GOTO chapter1-4.tmx 9,0"/>
+   <property name="19,116" value="SPAWN_ENEMY skeleton"/>
+   <property name="19,117" value="SPAWN_ENEMY skeleton"/>
    <property name="19,149" value="GOTO prism_city.tmx 24,0"/>
    <property name="20,0" value="GOTO chapter1-4.tmx 10,0"/>
+   <property name="20,104" value="SPAWN_ENEMY skeleton"/>
+   <property name="20,115" value="SPAWN_ENEMY skeleton"/>
+   <property name="20,116" value="SPAWN_ENEMY skeleton"/>
+   <property name="20,117" value="SPAWN_ENEMY skeleton"/>
+   <property name="20,118" value="SPAWN_ENEMY skeleton"/>
    <property name="20,149" value="GOTO prism_city.tmx 25,0"/>
+   <property name="20,39" value="SPAWN_ENEMY skeleton"/>
    <property name="21,0" value="GOTO chapter1-4.tmx 11,0"/>
+   <property name="21,115" value="SPAWN_ENEMY skeleton"/>
+   <property name="21,116" value="SPAWN_ENEMY skeleton"/>
+   <property name="21,117" value="SPAWN_ENEMY skeleton"/>
+   <property name="21,118" value="SPAWN_ENEMY skeleton"/>
    <property name="21,149" value="GOTO prism_city.tmx 26,0"/>
+   <property name="22,116" value="SPAWN_ENEMY skeleton"/>
+   <property name="22,117" value="SPAWN_ENEMY skeleton"/>
+   <property name="26,16" value="SPAWN_ENEMY skeleton"/>
+   <property name="28,71" value="SPAWN_ENEMY skeleton"/>
+   <property name="28,80" value="SPAWN_ENEMY skeleton"/>
+   <property name="34,10" value="SPAWN_ENEMY skeleton"/>
+   <property name="34,64" value="SPAWN_ENEMY skeleton"/>
+   <property name="6,91" value="SPAWN_ENEMY skeleton"/>
+   <property name="7,58" value="SPAWN_ENEMY skeleton"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt3KENAAAIBDEGYFn2N2g879rk1riqH9M3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAICU1B99AYrpA+k=
+   eJzt3DEKwCAMBVAP0Mv2/kvp2KEQREuavAfuCvmJODjGGufxXLCSmoJ9vshX1wx3PTe8kQkAgJjM72vZ3wCz7++WeW8AMMtsoyN1D3Sh3wFAnLkJVFKpp1U6C/AP+g6sJVMAAL25D6IGgBl6BwAQ5d6AGoC65Bugp11/D11j2hMM
   </data>
  </layer>
 </map>

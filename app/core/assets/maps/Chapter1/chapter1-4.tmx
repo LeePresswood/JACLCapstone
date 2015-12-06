@@ -25,7 +25,7 @@
   <object id="1" x="213" y="518" width="37" height="37"/>
   <object id="2" x="113" y="418" width="93" height="53"/>
  </objectgroup>
- <layer name="events" width="20" height="40" visible="0">
+ <layer name="events" width="20" height="40">
   <properties>
    <property name="10,0" value="INITIATE dialog"/>
    <property name="10,39" value="GOTO"/>
