@@ -139,7 +139,6 @@ public class World
 		else{
 			/*Sprite dark = new Sprite(screen.game.assets.get("sprites/dark.png", Texture.class));
 			dark.setBounds(0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-			System.out.println(123);
 			//screen.batch.setTransformMatrix(screen.hud.camera.combined);
 			screen.batch.begin();
 				dark.draw(screen.batch);
