@@ -75,9 +75,13 @@
  </objectgroup>
  <layer name="events" width="20" height="40" visible="0">
   <properties>
+   <property name="10,0" value="GOTO chapter1-3.tmx 10,49"/>
    <property name="10,39" value="GOTO chapter1-5.tmx 20,0"/>
+   <property name="11,0" value="GOTO chapter1-3.tmx 11,49"/>
    <property name="11,39" value="GOTO chapter1-5.tmx 21,0"/>
+   <property name="8,0" value="GOTO chapter1-3.tmx 8,49"/>
    <property name="8,39" value="GOTO chapter1-5.tmx 18,0"/>
+   <property name="9,0" value="GOTO chapter1-3.tmx 9,49"/>
    <property name="9,39" value="GOTO chapter1-5.tmx 19,0"/>
   </properties>
   <data encoding="base64" compression="zlib">
