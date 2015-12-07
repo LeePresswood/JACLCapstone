@@ -25,7 +25,7 @@
   <object id="308" x="1.33333" y="949.333" width="4" height="112"/>
   <object id="309" x="635" y="1243.33" width="4" height="155.333"/>
  </objectgroup>
- <layer name="events" width="40" height="150">
+ <layer name="events" width="40" height="150" visible="0">
   <properties>
    <property name="10,99" value=""/>
    <property name="11,32" value="SPAWN_ENEMY skeleton"/>
