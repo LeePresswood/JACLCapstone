@@ -21,8 +21,6 @@ public class Skeleton extends Enemy
 	@Override
 	protected AI initAI()
 	{
-		//return new LerpAI(this);
-		//return new PathfindingAI(this);
 		return new RandomAI(this);
 	}
 
