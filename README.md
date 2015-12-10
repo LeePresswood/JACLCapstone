@@ -36,6 +36,9 @@ Jewel is built entirely in Java and uses a number of free products to work prope
 * [libGDX] - Cross-Platform Java Game Engine
 * [Tiled] - Tile Map Editor for Game World Creation
 
+## State of the Project
+Capstone is done! Yay! This project will remain here as a monument to our growth as well as a save point if/when we decide to come back to work on this some more.
+
 ## Installation
 You need Gradle installed on your machine in order to view, manipulate, or execute the code from Eclipse/IntelliJ/IDE of your choice.
 
