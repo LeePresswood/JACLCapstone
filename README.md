@@ -1,3 +1,5 @@
+#Note: As capstone is over, this project is no longer being maintained. Feel free to use this code base however you wish.
+
 # Jewel
 ###### Version 0.5 Alpha 
 * [See Current Change Log]
